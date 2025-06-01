@@ -78,7 +78,7 @@ class LoginViewModel extends StateNotifier<LoginState> {
         StorageManager.setAccessToken(loginResponse.data?.accessToken ?? "");
       }
       if(loginResponse.data?.refreshToken?.isNotEmpty == true) {
-        StorageManager.setAccessToken(loginResponse.data?.refreshToken ?? "");
+        StorageManager.setRefreshToken(loginResponse.data?.refreshToken ?? "");
       }
 
       StorageManager.setUserId(loginResponse.data?.userId);

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ssentif_manager_web/core/storage/storage_manager.dart';
 import 'package:ssentif_manager_web/features/login/data/model/request_login.dart';
 import 'package:ssentif_manager_web/features/login/data/model/response_login.dart';
+import 'package:ssentif_manager_web/features/schedule/data/model/schedule_model.dart';
 
 import '../../shared/data/model/work_place_model.dart';
 import '../../shared/data/model/user_profile_model.dart';
@@ -27,7 +28,8 @@ class ApiService {
 
   ApiService({Dio? dio}) : _dio = dio ?? Dio() {
     _dio.options.baseUrl = apiBaseUrl;
-    _dio.interceptors.add(ApiInterceptor(dio: _dio, refreshToken: refreshToken));
+    _dio.interceptors
+        .add(ApiInterceptor(dio: _dio, refreshToken: refreshToken));
     _dio.interceptors.add(LogInterceptor(
       requestBody: true,
       responseBody: true,
@@ -56,34 +58,60 @@ class ApiService {
     final response = await _dio.get(
       '/api/user',
       options: Options(
-        extra: { 'requiresToken': true },
+        extra: {'requiresToken': true},
       ),
     );
     return UserProfileModel.fromJson(response.data);
   }
 
   /// 근무지 조회
-  Future<ResponseWorkPlaceList> searchWorkPlaces({required String keyword}) async {
+  Future<ResponseWorkPlaceList> searchWorkPlaces(
+      {required String keyword}) async {
     final response = await _dio.get(
       '/api/workplace/search',
-      queryParameters: {
-        'keyword' : keyword
-      },
+      queryParameters: {'keyword': keyword},
       options: Options(
-        extra: { 'requiresToken': true },
+        extra: {'requiresToken': true},
       ),
     );
     return ResponseWorkPlaceList.fromJson(response.data);
   }
 
   /// 트레이너 리스트 가져오기
-  Future<ResponseLogin> getCoachList({required int workPlaceId}) async {
+  Future<List<UserProfileModel>> getCoachList(
+      {required int workPlaceId}) async {
     final response = await _dio.get(
       '/api/workplace/$workPlaceId/trainers',
       options: Options(
         extra: {'requiresToken': false},
       ),
     );
-    return ResponseLogin.fromJson(response.data);
+    final data = response.data;
+    if (data is List) {
+      return data
+          .map((e) => UserProfileModel.fromJson(e as Map<String, dynamic>))
+          .toList();
+    }
+    return [];
+  }
+
+  /// 트레이너별 주간 스케줄 가져오기
+  Future<ScheduleModel> getSchedules({
+    required String startDate,
+    required String endDate,
+    required int trainerId,
+  }) async {
+    final response = await _dio.get(
+      '/api/schedule/calendar/v2',
+      queryParameters: {
+        'startDate': startDate,
+        'endDate': endDate,
+        'trainerId' : trainerId
+      },
+      options: Options(
+        extra: {'requiresToken': true },
+      ),
+    );
+    return ScheduleModel.fromJson(response.data) ;
   }
 }

@@ -1,4 +1,3 @@
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ssentif_manager_web/shared/data/mapper/user_profile_mapper.dart';
 import 'package:ssentif_manager_web/shared/data/source/user_datasource.dart';
@@ -11,11 +10,10 @@ final userRepositoryProvider = Provider<UserRepository>((ref) {
   final userDataSource = ref.read(userDataSourceProvider);
   final userProfileMapper = ref.read(userProfileMapperProvider);
   return UserRepositoryImpl(
-      userDataSource: userDataSource,
-      userProfileMapper: userProfileMapper
-  );
+      userDataSource: userDataSource, userProfileMapper: userProfileMapper);
 });
 
 abstract class UserRepository {
   Future<ApiStatusEntity<UserEntity>> getUserInfo();
+  Future<ApiStatusEntity<List<UserEntity>>> getCoachList({required int workPlaceId});
 }

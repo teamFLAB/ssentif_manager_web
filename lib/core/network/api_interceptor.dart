@@ -22,13 +22,11 @@ class ApiInterceptor extends Interceptor {
     final accessToken = StorageManager.getAccessToken();
     bool? requiresToken = options.headers['requiresToken'];
 
-    if (requiresToken == true && accessToken != null && accessToken.isNotEmpty) {
-      options.headers = null;
+    if (requiresToken == true) {
       options.headers['X-AUTH-TOKEN'] = accessToken;
     }
-    dio.options.headers['Access-Control-Allow-Origin'] = '*';
-
-    print('[API REQUEST] ${options.method} ${options.uri}');
+    options.headers.remove('requiresToken');
+    options.headers['Access-Control-Allow-Origin'] = '*';
     super.onRequest(options, handler);
   }
 

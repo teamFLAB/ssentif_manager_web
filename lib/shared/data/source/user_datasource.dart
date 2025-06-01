@@ -13,4 +13,5 @@ final userDataSourceProvider = Provider<UserDataSource>((ref) {
 
 abstract class UserDataSource {
   Future<UserProfileModel> getUserProfile();
+  Future<List<UserProfileModel>> getCoachList({ required int workPlaceId });
 }

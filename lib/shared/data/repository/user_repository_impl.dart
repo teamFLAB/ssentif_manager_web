@@ -1,5 +1,3 @@
-
-
 import 'package:ssentif_manager_web/shared/data/mapper/user_profile_mapper.dart';
 import 'package:ssentif_manager_web/shared/data/source/user_datasource.dart';
 import 'package:ssentif_manager_web/shared/domain/entity/user_entity.dart';
@@ -11,22 +9,32 @@ class UserRepositoryImpl extends UserRepository {
   final UserDataSource userDataSource;
   final UserProfileMapper userProfileMapper;
 
-  UserRepositoryImpl({
-    required this.userDataSource,
-    required this.userProfileMapper
-  });
+  UserRepositoryImpl(
+      {required this.userDataSource, required this.userProfileMapper});
 
   @override
   Future<ApiStatusEntity<UserEntity>> getUserInfo() async {
     try {
       var response = await userDataSource.getUserProfile();
-      return ApiStatusEntity(
-          data: userProfileMapper.map(response)
-      );
-    } catch(e) {
+      return ApiStatusEntity(data: userProfileMapper.map(response));
+    } catch (e) {
       return e.toErrorEntity();
     }
-
   }
 
+  @override
+  Future<ApiStatusEntity<List<UserEntity>>> getCoachList({
+    required int workPlaceId
+  }) async {
+    try {
+      var response = await userDataSource.getCoachList(workPlaceId: workPlaceId);
+      return ApiStatusEntity(
+          data: response.map(
+                  (e) => userProfileMapper.map(e)
+          ).toList()
+      );
+    } catch (e) {
+      return e.toErrorEntity();
+    }
+  }
 }

@@ -34,11 +34,13 @@ class _MainScreenState extends State<MainScreen> {
           Expanded(
             child: Consumer(
               builder: (context, ref, _) {
-                final selected =
-                    ref.watch(mainViewModelProvider).selectedSection;
+                final coaches = ref.watch(mainViewModelProvider).coaches;
+                final selected = ref.watch(mainViewModelProvider).selectedSection;
                 switch (selected) {
                   case NavigationSectionType.schedule:
-                    return const ScheduleScreen();
+                    return ScheduleScreen(
+                      coaches: coaches
+                    );
                   case NavigationSectionType.coach:
                     return const CoachesScreen();
                   case NavigationSectionType.analysis:

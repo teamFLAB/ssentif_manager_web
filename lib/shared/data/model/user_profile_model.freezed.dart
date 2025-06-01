@@ -20,6 +20,7 @@ UserProfileModel _$UserProfileModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserProfileModel {
+  int get id => throw _privateConstructorUsedError;
   String get imgUrl => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -48,7 +49,8 @@ abstract class $UserProfileModelCopyWith<$Res> {
       _$UserProfileModelCopyWithImpl<$Res, UserProfileModel>;
   @useResult
   $Res call(
-      {String imgUrl,
+      {int id,
+      String imgUrl,
       String email,
       String name,
       String birthDate,
@@ -75,6 +77,7 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? imgUrl = null,
     Object? email = null,
     Object? name = null,
@@ -87,6 +90,10 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
     Object? sex = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       imgUrl: null == imgUrl
           ? _value.imgUrl
           : imgUrl // ignore: cast_nullable_to_non_nullable
@@ -140,7 +147,8 @@ abstract class _$$UserProfileModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String imgUrl,
+      {int id,
+      String imgUrl,
       String email,
       String name,
       String birthDate,
@@ -165,6 +173,7 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? imgUrl = null,
     Object? email = null,
     Object? name = null,
@@ -177,6 +186,10 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
     Object? sex = null,
   }) {
     return _then(_$UserProfileModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
       imgUrl: null == imgUrl
           ? _value.imgUrl
           : imgUrl // ignore: cast_nullable_to_non_nullable
@@ -225,7 +238,8 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserProfileModelImpl implements _UserProfileModel {
   _$UserProfileModelImpl(
-      {this.imgUrl = "",
+      {this.id = -1,
+      this.imgUrl = "",
       this.email = "",
       this.name = "",
       this.birthDate = "",
@@ -239,6 +253,9 @@ class _$UserProfileModelImpl implements _UserProfileModel {
   factory _$UserProfileModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserProfileModelImplFromJson(json);
 
+  @override
+  @JsonKey()
+  final int id;
   @override
   @JsonKey()
   final String imgUrl;
@@ -272,7 +289,7 @@ class _$UserProfileModelImpl implements _UserProfileModel {
 
   @override
   String toString() {
-    return 'UserProfileModel(imgUrl: $imgUrl, email: $email, name: $name, birthDate: $birthDate, phoneNumber: $phoneNumber, workplaceName: $workplaceName, workplaceAddress: $workplaceAddress, workplaceAddressDetail: $workplaceAddressDetail, workType: $workType, sex: $sex)';
+    return 'UserProfileModel(id: $id, imgUrl: $imgUrl, email: $email, name: $name, birthDate: $birthDate, phoneNumber: $phoneNumber, workplaceName: $workplaceName, workplaceAddress: $workplaceAddress, workplaceAddressDetail: $workplaceAddressDetail, workType: $workType, sex: $sex)';
   }
 
   @override
@@ -280,6 +297,7 @@ class _$UserProfileModelImpl implements _UserProfileModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserProfileModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.imgUrl, imgUrl) || other.imgUrl == imgUrl) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.name, name) || other.name == name) &&
@@ -302,6 +320,7 @@ class _$UserProfileModelImpl implements _UserProfileModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       imgUrl,
       email,
       name,
@@ -332,7 +351,8 @@ class _$UserProfileModelImpl implements _UserProfileModel {
 
 abstract class _UserProfileModel implements UserProfileModel {
   factory _UserProfileModel(
-      {final String imgUrl,
+      {final int id,
+      final String imgUrl,
       final String email,
       final String name,
       final String birthDate,
@@ -346,6 +366,8 @@ abstract class _UserProfileModel implements UserProfileModel {
   factory _UserProfileModel.fromJson(Map<String, dynamic> json) =
       _$UserProfileModelImpl.fromJson;
 
+  @override
+  int get id;
   @override
   String get imgUrl;
   @override

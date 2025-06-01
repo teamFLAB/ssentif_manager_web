@@ -107,6 +107,8 @@ class ScDreamStyles extends TextStyle {
       : super(fontFamily: AppTextStyles.fontScDreamBold, color: color, fontSize: Sizes.size16);
   const ScDreamStyles.bold14(Color color)
       : super(fontFamily: AppTextStyles.fontScDreamBold, color: color, fontSize: Sizes.size14);
+  const ScDreamStyles.bold12(Color color)
+      : super(fontFamily: AppTextStyles.fontScDreamBold, color: color, fontSize: Sizes.size12);
 
   const ScDreamStyles.medium24(Color color)
       : super(fontFamily: AppTextStyles.fontScDreamMedium, color: color, fontSize: Sizes.size24);

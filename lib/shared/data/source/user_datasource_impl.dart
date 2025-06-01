@@ -14,4 +14,9 @@ class UserDataSourceImpl extends UserDataSource {
     return apiService.getUserProfile();
   }
 
+  @override
+  Future<List<UserProfileModel>> getCoachList({required int workPlaceId}) {
+    return apiService.getCoachList(workPlaceId: workPlaceId);
+  }
+
 }

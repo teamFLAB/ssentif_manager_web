@@ -16,6 +16,7 @@ class UserProfileMapper extends BaseMapper<UserProfileModel, UserEntity> {
   @override
   UserEntity map(UserProfileModel data) {
     return UserEntity(
+        userId: data.id,
         userName: data.name,
         birthDate: data.birthDate,
         gender: GenderType.findGenderType(data.sex.isNotEmpty ? data.sex : GenderType.maleDto),
