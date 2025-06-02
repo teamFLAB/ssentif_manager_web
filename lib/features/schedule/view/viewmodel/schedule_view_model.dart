@@ -35,70 +35,77 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
   final StateController<ScheduleEffect?> scheduleEffect;
   final ScheduleState initialState;
 
-  ScheduleViewModel({
-    required this.getTrainerSchedulesUseCase,
-    required this.initialState,
-    required this.scheduleEffect
-  }) : super(initialState) {
+  ScheduleViewModel(
+      {required this.getTrainerSchedulesUseCase,
+      required this.initialState,
+      required this.scheduleEffect})
+      : super(initialState) {
     _getCachedInfo();
   }
 
   void handleIntent(ScheduleIntent scheduleIntent) {
     scheduleIntent.when(
-        clickScheduleItem: (int scheduleId) {
-
-        },
-        onRefreshScheduleList: () {
-
-        },
+        clickScheduleItem: (int scheduleId) {},
+        onRefreshScheduleList: () {},
         clickPreviousMonth: () {
           var newMonth = _updateSelectedMonth(-1);
           var selectedDate = state.selectedDate;
-          final newSelectedDate = DateTime(selectedDate.year, selectedDate.month - 1, selectedDate.day);
+          final newSelectedDate = DateTime(
+              selectedDate.year, selectedDate.month - 1, selectedDate.day);
           _updateSelectedDate(newSelectedDate);
-          scheduleEffect.state = ScheduleEffect.updateCalendarView(dateTime: newMonth, selectedDate: newSelectedDate);
+          scheduleEffect.state = ScheduleEffect.updateCalendarView(
+              dateTime: newMonth, selectedDate: newSelectedDate);
         },
         clickNextMonth: () {
           var newMonth = _updateSelectedMonth(1);
           var selectedDate = state.selectedDate;
-          final newSelectedDate = DateTime(selectedDate.year, selectedDate.month + 1, selectedDate.day);
+          final newSelectedDate = DateTime(
+              selectedDate.year, selectedDate.month + 1, selectedDate.day);
           _updateSelectedDate(newSelectedDate);
-          scheduleEffect.state = ScheduleEffect.updateCalendarView(dateTime: newMonth, selectedDate: newSelectedDate);
+          scheduleEffect.state = ScheduleEffect.updateCalendarView(
+              dateTime: newMonth, selectedDate: newSelectedDate);
         },
         clickTodayDate: () {
           final now = DateTime.now();
           var selectedMonth = state.selectedMonth;
-          final monthDiff = (now.year - selectedMonth.year) * 12 + (now.month - selectedMonth.month);
+          final monthDiff = (now.year - selectedMonth.year) * 12 +
+              (now.month - selectedMonth.month);
           var newMonth = _updateSelectedMonth(monthDiff);
           _updateSelectedDate(now);
-          scheduleEffect.state = ScheduleEffect.updateCalendarView(dateTime: newMonth, selectedDate: now);
+          scheduleEffect.state = ScheduleEffect.updateCalendarView(
+              dateTime: newMonth, selectedDate: now);
         },
         selectDate: (DateTime date) {
-          _updateSelectedDate(date);
+          if (date.year != state.selectedMonth.year
+              || date.month != state.selectedMonth.month) {
+            final newMonth = DateTime(date.year, date.month, 1);
+            final monthDiff = (date.year - state.selectedMonth.year) * 12 +
+                (date.month - state.selectedMonth.month);
+
+            _updateSelectedMonth(monthDiff);
+            _updateSelectedDate(date);
+            scheduleEffect.state = ScheduleEffect.updateCalendarView(
+                dateTime: newMonth, selectedDate: date);
+          } else {
+            _updateSelectedDate(date);
+          }
         },
         updateSearchFilter: (String filter) {
           _updateSearchFilter(filter);
-        }
-    );
+        });
   }
 
   void _updateSearchFilter(String searchFilter) {
     state = state.copyWith(searchFilter: searchFilter);
-    var filteredSchedules = _filterBySearchQuery(
-        state.monthlySchedules,
-        searchFilter
-    );
+    var filteredSchedules =
+        _filterBySearchQuery(state.monthlySchedules, searchFilter);
 
     var selectedDateSchedules = _filterBySelectedDate(
-        state.monthlySchedules,
-        state.selectedDate,
-        searchFilter
-    );
+        state.monthlySchedules, state.selectedDate, searchFilter);
 
     state = state.copyWith(
         filteredMonthlySchedules: filteredSchedules,
-        selectedDateSchedules: selectedDateSchedules
-    );
+        selectedDateSchedules: selectedDateSchedules);
     // scheduleEffect.state = ScheduleEffect.updateCalendarView(
     //     dateTime: state.selectedMonth,
     //     selectedDate: state.selectedDate
@@ -109,10 +116,7 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
     state = state.copyWith(
       selectedDate: date,
       selectedDateSchedules: _filterBySelectedDate(
-          state.monthlySchedules,
-          date,
-          state.searchFilter
-      ),
+          state.monthlySchedules, date, state.searchFilter),
     );
   }
 
@@ -147,11 +151,10 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
 
     for (final coach in coaches) {
       final schedules = await getTrainerSchedulesUseCase(
-        startDate: firstDay.formatYMD(),
-        endDate: lastDay.formatYMD(),
-        trainerId: coach.userId,
-        trainerName: coach.userName
-      );
+          startDate: firstDay.formatYMD(),
+          endDate: lastDay.formatYMD(),
+          trainerId: coach.userId,
+          trainerName: coach.userName);
 
       schedules.handleStatus(
         onSuccess: (data) {
@@ -159,15 +162,12 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
             allSchedules.addAll(data.schedules);
             state = state.copyWith(
               monthlySchedules: List.from(allSchedules),
-              filteredMonthlySchedules: _filterBySearchQuery(
-                  allSchedules,
-                  state.searchFilter
-              ),
+              filteredMonthlySchedules:
+                  _filterBySearchQuery(allSchedules, state.searchFilter),
               selectedDateSchedules: _filterBySelectedDate(
-                List.from(allSchedules),
-                state.selectedDate,
-                state.searchFilter
-              ),
+                  List.from(allSchedules),
+                  state.selectedDate,
+                  state.searchFilter),
             );
           }
         },
@@ -181,8 +181,7 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
   List<CalendarScheduleEntity> _filterBySelectedDate(
       List<CalendarScheduleEntity> schedules,
       DateTime selectedDate,
-      String searchQuery
-  ) {
+      String searchQuery) {
     var selectedDateSchedules = schedules
         .where((s) =>
             s.startTime != null &&
@@ -194,8 +193,9 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
     return _filterBySearchQuery(selectedDateSchedules, searchQuery);
   }
 
-  List<CalendarScheduleEntity> _filterBySearchQuery(List<CalendarScheduleEntity> schedules, String filter) {
-    if(filter.isNotEmpty) {
+  List<CalendarScheduleEntity> _filterBySearchQuery(
+      List<CalendarScheduleEntity> schedules, String filter) {
+    if (filter.isNotEmpty) {
       return schedules.where((s) {
         return s.trainerName.contains(filter) ||
             s.scheduleName.contains(filter);

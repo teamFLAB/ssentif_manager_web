@@ -36,15 +36,15 @@ class ScheduleHeader extends StatelessWidget {
         padding: const EdgeInsets.only(right: 24),
         child: Row(
           children: [
-            Container(
-              width: 200,
-              alignment: Alignment.center,
-              child: Text(
-                '센터 일정 관리',
-                style: ScDreamStyles.extraBold18(AppColors.black),
-                textAlign: TextAlign.center,
-              ),
-            ),
+            // Container(
+            //   width: 200,
+            //   alignment: Alignment.center,
+            //   child: Text(
+            //     '센터 일정 관리',
+            //     style: ScDreamStyles.extraBold18(AppColors.black),
+            //     textAlign: TextAlign.center,
+            //   ),
+            // ),
             Expanded(
               child: ScheduleSearchField(
                 onChanged: onSearchFilterChanged,
@@ -53,8 +53,8 @@ class ScheduleHeader extends StatelessWidget {
             GestureDetector(
               onTap: onToday,
               child: Container(
-                height: 22,
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+                height: 32,
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(4),
@@ -65,30 +65,30 @@ class ScheduleHeader extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 1),
                   child: Text(
                     '오늘',
-                    style: ScDreamStyles.medium10(AppColors.primary),
+                    style: ScDreamStyles.medium14(AppColors.primary),
                   ),
                 ),
               ),
             ),
-            SizedBox(width: 10),
+            SizedBox(width: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
                   onTap: onPrevMonth,
                   child: Assets.images.icButtonPrevious
-                      .image(width: 24, height: 24),
+                      .image(width: 34, height: 34),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 12),
                 Text(
                   formattedDate,
-                  style: ScDreamStyles.extraBold18(AppColors.black),
+                  style: ScDreamStyles.extraBold24(AppColors.black),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 12),
                 GestureDetector(
                   onTap: onNextMonth,
                   child:
-                      Assets.images.icButtonNext.image(width: 24, height: 24),
+                      Assets.images.icButtonNext.image(width: 34, height: 34),
                 ),
               ],
             ),
@@ -106,8 +106,8 @@ class ScheduleSearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 36,
-      margin: const EdgeInsets.only(left: 10, right: 50),
+      height: 34,
+      margin: const EdgeInsets.only(left: 20, right: 40),
       padding: const EdgeInsets.symmetric(horizontal: 8),
       decoration: BoxDecoration(
         color: AppColors.backgroundColor,
@@ -116,7 +116,7 @@ class ScheduleSearchField extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Assets.images.icSearchGray.image(width: 20, height: 20),
+            Assets.images.icSearchGray.image(width: 20, height: 20),
           const SizedBox(width: 8),
           Expanded(
             child: TextField(
