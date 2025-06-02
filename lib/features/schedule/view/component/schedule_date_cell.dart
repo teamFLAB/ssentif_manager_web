@@ -59,8 +59,7 @@ class ScheduleDateCell extends StatelessWidget {
                   ),
                 ),
           if (schedules.isNotEmpty)
-            SizedBox(
-              height: 48,
+            Expanded(
               child: ListView.builder(
                 physics: ClampingScrollPhysics(),
                 itemCount: schedules.length,
@@ -84,7 +83,7 @@ class ScheduleDateCell extends StatelessWidget {
                         const SizedBox(width: 4),
                         Expanded(
                           child: Text(
-                            s.scheduleName,
+                            "${s.trainerName} 코치 - ${s.scheduleName}",
                             style: ScDreamStyles.medium10(AppColors.white),
                             overflow: TextOverflow.ellipsis,
                           ),
