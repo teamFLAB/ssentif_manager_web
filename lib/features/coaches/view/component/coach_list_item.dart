@@ -5,14 +5,18 @@ import 'package:ssentif_manager_web/core/themes/app_colors.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
 import 'package:ssentif_manager_web/shared/enumtype/work_position.dart';
 
+import '../../../../core/widgets/profile_image_widget.dart';
+
 class CoachListItem extends StatelessWidget {
   final UserEntity user;
   final bool selected;
+  final bool isFirstItem;
   final VoidCallback onClick;
   const CoachListItem({
     super.key,
     required this.user,
     required this.selected,
+    required this.isFirstItem,
     required this.onClick
   });
 
@@ -21,36 +25,29 @@ class CoachListItem extends StatelessWidget {
     return GestureDetector(
       onTap: onClick,
       child: Container(
-        height: 55,
-        width: 150,
+        height: 60,
+        width: 130,
         padding: const EdgeInsets.symmetric(horizontal: 12),
         decoration: BoxDecoration(
           color: Colors.white,
-          border: Border.all(
-            color: selected ? AppColors.primary : AppColors.gray3,
-            width: 1,
+          border: selected ? Border.all(
+            color: AppColors.primary,
+            width: 1.5,
+            strokeAlign: BorderSide.strokeAlignOutside
+          ) : Border(
+            left: BorderSide(color: AppColors.transparent),
+            right: BorderSide(color: AppColors.grayE4, width: 1.5),
           ),
-          borderRadius: BorderRadius.circular(4),
+          borderRadius: BorderRadius.circular(0),
         ),
         child: Row(
           children: [
             // 프로필 이미지
-            ClipOval(
-              child: user.imageUrl.isNotEmpty
-                  ? Image.network(
-                      user.imageUrl,
-                      width: 35,
-                      height: 35,
-                      fit: BoxFit.cover,
-                    )
-                  : Container(
-                      width: 35,
-                      height: 35,
-                      color: AppColors.gray3,
-                      child: Icon(Icons.person, color: AppColors.gray1, size: 28),
-                    ),
+            ProfileImageWidget(
+                selected: selected,
+                imageURL: user.imageUrl
             ),
-            const SizedBox(width: 20),
+            const SizedBox(width: 10),
             // 이름/직책
             Expanded(
               child: Column(

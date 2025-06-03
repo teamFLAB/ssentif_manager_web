@@ -24,7 +24,7 @@ class ScheduleHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final formattedDate = "${selectedMonth.year}년 ${selectedMonth.month}월";
     return Container(
-      height: 75,
+      height: 60,
       width: double.infinity,
       decoration: BoxDecoration(
         border: Border(

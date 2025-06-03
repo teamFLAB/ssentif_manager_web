@@ -16,44 +16,43 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$CoachesIntent {
-  int get userId => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int userId) clickCoachProfile,
+    required TResult Function(int idx) selectTab,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int userId)? clickCoachProfile,
+    TResult? Function(int idx)? selectTab,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int userId)? clickCoachProfile,
+    TResult Function(int idx)? selectTab,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ClickCoachProfile value) clickCoachProfile,
+    required TResult Function(_SelectTab value) selectTab,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClickCoachProfile value)? clickCoachProfile,
+    TResult? Function(_SelectTab value)? selectTab,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClickCoachProfile value)? clickCoachProfile,
+    TResult Function(_SelectTab value)? selectTab,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of CoachesIntent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $CoachesIntentCopyWith<CoachesIntent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -62,8 +61,6 @@ abstract class $CoachesIntentCopyWith<$Res> {
   factory $CoachesIntentCopyWith(
           CoachesIntent value, $Res Function(CoachesIntent) then) =
       _$CoachesIntentCopyWithImpl<$Res, CoachesIntent>;
-  @useResult
-  $Res call({int userId});
 }
 
 /// @nodoc
@@ -78,27 +75,13 @@ class _$CoachesIntentCopyWithImpl<$Res, $Val extends CoachesIntent>
 
   /// Create a copy of CoachesIntent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? userId = null,
-  }) {
-    return _then(_value.copyWith(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$ClickCoachProfileImplCopyWith<$Res>
-    implements $CoachesIntentCopyWith<$Res> {
+abstract class _$$ClickCoachProfileImplCopyWith<$Res> {
   factory _$$ClickCoachProfileImplCopyWith(_$ClickCoachProfileImpl value,
           $Res Function(_$ClickCoachProfileImpl) then) =
       __$$ClickCoachProfileImplCopyWithImpl<$Res>;
-  @override
   @useResult
   $Res call({int userId});
 }
@@ -164,6 +147,7 @@ class _$ClickCoachProfileImpl implements _ClickCoachProfile {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int userId) clickCoachProfile,
+    required TResult Function(int idx) selectTab,
   }) {
     return clickCoachProfile(userId);
   }
@@ -172,6 +156,7 @@ class _$ClickCoachProfileImpl implements _ClickCoachProfile {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int userId)? clickCoachProfile,
+    TResult? Function(int idx)? selectTab,
   }) {
     return clickCoachProfile?.call(userId);
   }
@@ -180,6 +165,7 @@ class _$ClickCoachProfileImpl implements _ClickCoachProfile {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int userId)? clickCoachProfile,
+    TResult Function(int idx)? selectTab,
     required TResult orElse(),
   }) {
     if (clickCoachProfile != null) {
@@ -192,6 +178,7 @@ class _$ClickCoachProfileImpl implements _ClickCoachProfile {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ClickCoachProfile value) clickCoachProfile,
+    required TResult Function(_SelectTab value) selectTab,
   }) {
     return clickCoachProfile(this);
   }
@@ -200,6 +187,7 @@ class _$ClickCoachProfileImpl implements _ClickCoachProfile {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClickCoachProfile value)? clickCoachProfile,
+    TResult? Function(_SelectTab value)? selectTab,
   }) {
     return clickCoachProfile?.call(this);
   }
@@ -208,6 +196,7 @@ class _$ClickCoachProfileImpl implements _ClickCoachProfile {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClickCoachProfile value)? clickCoachProfile,
+    TResult Function(_SelectTab value)? selectTab,
     required TResult orElse(),
   }) {
     if (clickCoachProfile != null) {
@@ -221,13 +210,151 @@ abstract class _ClickCoachProfile implements CoachesIntent {
   const factory _ClickCoachProfile({required final int userId}) =
       _$ClickCoachProfileImpl;
 
-  @override
   int get userId;
 
   /// Create a copy of CoachesIntent
   /// with the given fields replaced by the non-null parameter values.
-  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ClickCoachProfileImplCopyWith<_$ClickCoachProfileImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SelectTabImplCopyWith<$Res> {
+  factory _$$SelectTabImplCopyWith(
+          _$SelectTabImpl value, $Res Function(_$SelectTabImpl) then) =
+      __$$SelectTabImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int idx});
+}
+
+/// @nodoc
+class __$$SelectTabImplCopyWithImpl<$Res>
+    extends _$CoachesIntentCopyWithImpl<$Res, _$SelectTabImpl>
+    implements _$$SelectTabImplCopyWith<$Res> {
+  __$$SelectTabImplCopyWithImpl(
+      _$SelectTabImpl _value, $Res Function(_$SelectTabImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CoachesIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? idx = null,
+  }) {
+    return _then(_$SelectTabImpl(
+      idx: null == idx
+          ? _value.idx
+          : idx // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SelectTabImpl implements _SelectTab {
+  const _$SelectTabImpl({required this.idx});
+
+  @override
+  final int idx;
+
+  @override
+  String toString() {
+    return 'CoachesIntent.selectTab(idx: $idx)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SelectTabImpl &&
+            (identical(other.idx, idx) || other.idx == idx));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, idx);
+
+  /// Create a copy of CoachesIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SelectTabImplCopyWith<_$SelectTabImpl> get copyWith =>
+      __$$SelectTabImplCopyWithImpl<_$SelectTabImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int userId) clickCoachProfile,
+    required TResult Function(int idx) selectTab,
+  }) {
+    return selectTab(idx);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int userId)? clickCoachProfile,
+    TResult? Function(int idx)? selectTab,
+  }) {
+    return selectTab?.call(idx);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int userId)? clickCoachProfile,
+    TResult Function(int idx)? selectTab,
+    required TResult orElse(),
+  }) {
+    if (selectTab != null) {
+      return selectTab(idx);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClickCoachProfile value) clickCoachProfile,
+    required TResult Function(_SelectTab value) selectTab,
+  }) {
+    return selectTab(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClickCoachProfile value)? clickCoachProfile,
+    TResult? Function(_SelectTab value)? selectTab,
+  }) {
+    return selectTab?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClickCoachProfile value)? clickCoachProfile,
+    TResult Function(_SelectTab value)? selectTab,
+    required TResult orElse(),
+  }) {
+    if (selectTab != null) {
+      return selectTab(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SelectTab implements CoachesIntent {
+  const factory _SelectTab({required final int idx}) = _$SelectTabImpl;
+
+  int get idx;
+
+  /// Create a copy of CoachesIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SelectTabImplCopyWith<_$SelectTabImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

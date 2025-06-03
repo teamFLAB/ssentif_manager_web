@@ -104,6 +104,10 @@ class $AssetsImagesGen {
   AssetGenImage get icSearchGray =>
       const AssetGenImage('assets/images/ic_search_gray.png');
 
+  /// File path: assets/images/ic_ssentif_profile.png
+  AssetGenImage get icSsentifProfile =>
+      const AssetGenImage('assets/images/ic_ssentif_profile.png');
+
   /// File path: assets/images/ic_statistics_black.png
   AssetGenImage get icStatisticsBlack =>
       const AssetGenImage('assets/images/ic_statistics_black.png');
@@ -132,6 +136,7 @@ class $AssetsImagesGen {
     icPlusPrimary,
     icPlusWhite,
     icSearchGray,
+    icSsentifProfile,
     icStatisticsBlack,
     icStatisticsWhite,
     ssentifManagerTextLogo,

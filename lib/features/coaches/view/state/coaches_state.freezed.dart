@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$CoachesState {
   List<UserEntity> get coaches => throw _privateConstructorUsedError;
+  int get selectedTabIdx => throw _privateConstructorUsedError;
   int? get selectedUserId => throw _privateConstructorUsedError;
 
   /// Create a copy of CoachesState
@@ -32,7 +33,8 @@ abstract class $CoachesStateCopyWith<$Res> {
           CoachesState value, $Res Function(CoachesState) then) =
       _$CoachesStateCopyWithImpl<$Res, CoachesState>;
   @useResult
-  $Res call({List<UserEntity> coaches, int? selectedUserId});
+  $Res call(
+      {List<UserEntity> coaches, int selectedTabIdx, int? selectedUserId});
 }
 
 /// @nodoc
@@ -51,6 +53,7 @@ class _$CoachesStateCopyWithImpl<$Res, $Val extends CoachesState>
   @override
   $Res call({
     Object? coaches = null,
+    Object? selectedTabIdx = null,
     Object? selectedUserId = freezed,
   }) {
     return _then(_value.copyWith(
@@ -58,6 +61,10 @@ class _$CoachesStateCopyWithImpl<$Res, $Val extends CoachesState>
           ? _value.coaches
           : coaches // ignore: cast_nullable_to_non_nullable
               as List<UserEntity>,
+      selectedTabIdx: null == selectedTabIdx
+          ? _value.selectedTabIdx
+          : selectedTabIdx // ignore: cast_nullable_to_non_nullable
+              as int,
       selectedUserId: freezed == selectedUserId
           ? _value.selectedUserId
           : selectedUserId // ignore: cast_nullable_to_non_nullable
@@ -74,7 +81,8 @@ abstract class _$$CoachesStateImplCopyWith<$Res>
       __$$CoachesStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({List<UserEntity> coaches, int? selectedUserId});
+  $Res call(
+      {List<UserEntity> coaches, int selectedTabIdx, int? selectedUserId});
 }
 
 /// @nodoc
@@ -91,6 +99,7 @@ class __$$CoachesStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? coaches = null,
+    Object? selectedTabIdx = null,
     Object? selectedUserId = freezed,
   }) {
     return _then(_$CoachesStateImpl(
@@ -98,6 +107,10 @@ class __$$CoachesStateImplCopyWithImpl<$Res>
           ? _value._coaches
           : coaches // ignore: cast_nullable_to_non_nullable
               as List<UserEntity>,
+      selectedTabIdx: null == selectedTabIdx
+          ? _value.selectedTabIdx
+          : selectedTabIdx // ignore: cast_nullable_to_non_nullable
+              as int,
       selectedUserId: freezed == selectedUserId
           ? _value.selectedUserId
           : selectedUserId // ignore: cast_nullable_to_non_nullable
@@ -110,7 +123,9 @@ class __$$CoachesStateImplCopyWithImpl<$Res>
 
 class _$CoachesStateImpl implements _CoachesState {
   const _$CoachesStateImpl(
-      {final List<UserEntity> coaches = const [], this.selectedUserId})
+      {final List<UserEntity> coaches = const [],
+      this.selectedTabIdx = 0,
+      this.selectedUserId})
       : _coaches = coaches;
 
   final List<UserEntity> _coaches;
@@ -123,11 +138,14 @@ class _$CoachesStateImpl implements _CoachesState {
   }
 
   @override
+  @JsonKey()
+  final int selectedTabIdx;
+  @override
   final int? selectedUserId;
 
   @override
   String toString() {
-    return 'CoachesState(coaches: $coaches, selectedUserId: $selectedUserId)';
+    return 'CoachesState(coaches: $coaches, selectedTabIdx: $selectedTabIdx, selectedUserId: $selectedUserId)';
   }
 
   @override
@@ -136,13 +154,18 @@ class _$CoachesStateImpl implements _CoachesState {
         (other.runtimeType == runtimeType &&
             other is _$CoachesStateImpl &&
             const DeepCollectionEquality().equals(other._coaches, _coaches) &&
+            (identical(other.selectedTabIdx, selectedTabIdx) ||
+                other.selectedTabIdx == selectedTabIdx) &&
             (identical(other.selectedUserId, selectedUserId) ||
                 other.selectedUserId == selectedUserId));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_coaches), selectedUserId);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_coaches),
+      selectedTabIdx,
+      selectedUserId);
 
   /// Create a copy of CoachesState
   /// with the given fields replaced by the non-null parameter values.
@@ -156,10 +179,13 @@ class _$CoachesStateImpl implements _CoachesState {
 abstract class _CoachesState implements CoachesState {
   const factory _CoachesState(
       {final List<UserEntity> coaches,
+      final int selectedTabIdx,
       final int? selectedUserId}) = _$CoachesStateImpl;
 
   @override
   List<UserEntity> get coaches;
+  @override
+  int get selectedTabIdx;
   @override
   int? get selectedUserId;
 

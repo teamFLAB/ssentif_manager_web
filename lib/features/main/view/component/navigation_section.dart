@@ -25,7 +25,7 @@ class NavigationSection extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: 75,
+            height: 60,
             width: double.infinity,
             decoration: BoxDecoration(
               border: Border(

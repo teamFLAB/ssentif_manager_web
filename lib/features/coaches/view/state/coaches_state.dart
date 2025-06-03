@@ -7,6 +7,7 @@ part 'coaches_state.freezed.dart';
 class CoachesState with _$CoachesState {
   const factory CoachesState({
     @Default([]) List<UserEntity> coaches,
+    @Default(0) int selectedTabIdx,
     int? selectedUserId
   }) = _CoachesState;
 }

@@ -20,11 +20,18 @@ class CoachesViewModel extends StateNotifier<CoachesState> {
     intent.when(
         clickCoachProfile: (int userId) {
           _updateSelectedCoach(userId);
+        },
+        selectTab: (int idx) {
+          _updateSelectedTab(idx);
         }
     );
   }
 
   void _updateSelectedCoach(int userId) {
     state = state.copyWith(selectedUserId: userId);
+  }
+
+  void _updateSelectedTab(int index) {
+    state = state.copyWith(selectedTabIdx: index);
   }
 }
