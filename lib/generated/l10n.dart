@@ -4349,6 +4349,126 @@ class S {
       args: [],
     );
   }
+
+  /// `Workplace Name`
+  String get workplace_name {
+    return Intl.message(
+      'Workplace Name',
+      name: 'workplace_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the name of workplace.`
+  String get hint_workplace_name {
+    return Intl.message(
+      'Enter the name of workplace.',
+      name: 'hint_workplace_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Workplace Address`
+  String get workplace_address {
+    return Intl.message(
+      'Workplace Address',
+      name: 'workplace_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the address of workplace.`
+  String get hint_workplace_address {
+    return Intl.message(
+      'Enter the address of workplace.',
+      name: 'hint_workplace_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search Address`
+  String get search_address {
+    return Intl.message(
+      'Search Address',
+      name: 'search_address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the detailed address.`
+  String get write_workplace_address_detail {
+    return Intl.message(
+      'Enter the detailed address.',
+      name: 'write_workplace_address_detail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Manually`
+  String get write_directly {
+    return Intl.message(
+      'Enter Manually',
+      name: 'write_directly',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Job Role`
+  String get work_position {
+    return Intl.message(
+      'Job Role',
+      name: 'work_position',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Representative`
+  String get representative {
+    return Intl.message(
+      'Representative',
+      name: 'representative',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manager`
+  String get manager {
+    return Intl.message(
+      'Manager',
+      name: 'manager',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employee`
+  String get employee {
+    return Intl.message(
+      'Employee',
+      name: 'employee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Freelancer`
+  String get freelancer {
+    return Intl.message(
+      'Freelancer',
+      name: 'freelancer',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

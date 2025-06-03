@@ -203,6 +203,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("** 기록을 클릭하면 수정 및 삭제가 가능합니다."),
         "edit_routine": MessageLookupByLibrary.simpleMessage("루틴 수정하기"),
         "email_id": MessageLookupByLibrary.simpleMessage("이메일 ID"),
+        "employee": MessageLookupByLibrary.simpleMessage("직원"),
         "empty_body_composition_records":
             MessageLookupByLibrary.simpleMessage("기록된 체성분 측정 정보가 없어요."),
         "empty_class_record":
@@ -301,12 +302,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "finish_routine_record":
             MessageLookupByLibrary.simpleMessage("루틴 기록 종료"),
         "fore_arm": MessageLookupByLibrary.simpleMessage("전완"),
+        "freelancer": MessageLookupByLibrary.simpleMessage("프리랜서"),
         "fri": MessageLookupByLibrary.simpleMessage("금"),
         "gallery": MessageLookupByLibrary.simpleMessage("갤러리"),
         "gender": MessageLookupByLibrary.simpleMessage("성별"),
         "go_to_login": MessageLookupByLibrary.simpleMessage("로그인 하러 가기"),
         "go_to_update": MessageLookupByLibrary.simpleMessage("업데이트 하기"),
         "have_not_worked_out": MessageLookupByLibrary.simpleMessage("회원 미수행"),
+        "hint_workplace_address":
+            MessageLookupByLibrary.simpleMessage("주소 등록하기"),
+        "hint_workplace_name":
+            MessageLookupByLibrary.simpleMessage("근무지명 입력하기"),
         "history": MessageLookupByLibrary.simpleMessage("히스토리"),
         "home_tab": MessageLookupByLibrary.simpleMessage("홈"),
         "hour_unit": MessageLookupByLibrary.simpleMessage("시간"),
@@ -357,6 +363,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "male": MessageLookupByLibrary.simpleMessage("남성"),
         "male_1char": MessageLookupByLibrary.simpleMessage("남"),
         "manage_account": MessageLookupByLibrary.simpleMessage("계정 관리"),
+        "manager": MessageLookupByLibrary.simpleMessage("관리자"),
         "matched": MessageLookupByLibrary.simpleMessage("나와 매칭된"),
         "maxReps": MessageLookupByLibrary.simpleMessage("최대 횟수"),
         "maxTime": MessageLookupByLibrary.simpleMessage("최대 시간"),
@@ -458,6 +465,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("개인 정보 입력"),
         "remain": MessageLookupByLibrary.simpleMessage("잔여"),
         "reorder_exercises": MessageLookupByLibrary.simpleMessage("운동 순서 편집"),
+        "representative": MessageLookupByLibrary.simpleMessage("대표"),
         "reps_format": MessageLookupByLibrary.simpleMessage("회"),
         "reps_unit": MessageLookupByLibrary.simpleMessage("회"),
         "request_class_reservation":
@@ -486,6 +494,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("해당 루틴에 대한 설명을 작성해주세요!"),
         "routine_memo": MessageLookupByLibrary.simpleMessage("루틴 메모"),
         "sat": MessageLookupByLibrary.simpleMessage("토"),
+        "search_address": MessageLookupByLibrary.simpleMessage("주소 검색하기"),
         "search_exercise_name":
             MessageLookupByLibrary.simpleMessage("찾으시는 운동명을 입력해주세요."),
         "search_name_or_number":
@@ -623,10 +632,16 @@ class MessageLookup extends MessageLookupByLibrary {
             "수강권, 수업 내역, 인바디 기록을 포함한 모든 정보가 삭제되며 다시 복구할 수 없습니다."),
         "withdrawal_title":
             MessageLookupByLibrary.simpleMessage("회원 탈퇴시\n모든 정보가 삭제됩니다."),
+        "work_position": MessageLookupByLibrary.simpleMessage("근무 타입"),
         "workout_complete": MessageLookupByLibrary.simpleMessage("회원 수행"),
         "workout_routine_history":
             MessageLookupByLibrary.simpleMessage("개인 운동 히스토리"),
         "workout_tab_name": MessageLookupByLibrary.simpleMessage("개인 운동"),
+        "workplace_address": MessageLookupByLibrary.simpleMessage("근무지 주소"),
+        "workplace_name": MessageLookupByLibrary.simpleMessage("근무지명 (상호명)"),
+        "write_directly": MessageLookupByLibrary.simpleMessage("직접 입력"),
+        "write_workplace_address_detail":
+            MessageLookupByLibrary.simpleMessage("상세주소 입력하기"),
         "zero_count_voucher":
             MessageLookupByLibrary.simpleMessage("선택한 수강권의 예약 가능 횟수가 0회 입니다.")
       };

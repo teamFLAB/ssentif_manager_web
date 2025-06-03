@@ -5,15 +5,16 @@ import 'package:ssentif_manager_web/shared/domain/usecase/get_coach_list_usecase
 import '../state/main_state.dart';
 import 'package:ssentif_manager_web/features/main/domain/enumtype/navigation_section_type.dart';
 
-final mainViewModelProvider =
-    StateNotifierProvider<MainViewModel, MainState>((ref) {
+final mainViewModelProvider = StateNotifierProvider.autoDispose<MainViewModel, MainState>((ref) {
   var getCoachListUseCase = ref.read(getCoachListUseCaseProvider);
   return MainViewModel(getCoachListUseCase: getCoachListUseCase);
 });
 
 class MainViewModel extends StateNotifier<MainState> {
   final GetCoachListUseCase getCoachListUseCase;
-  MainViewModel({required this.getCoachListUseCase}) : super(const MainState(coaches: [])) {
+  MainViewModel({
+    required this.getCoachListUseCase
+  }): super(MainState(coaches: [])) {
     _loadCachedWorkPlaceInfo();
   }
 

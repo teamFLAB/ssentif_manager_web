@@ -6,7 +6,7 @@ class MainState {
   final NavigationSectionType selectedSection;
   final List<UserEntity> coaches;
 
-  const MainState({
+  MainState({
     this.gymName = 'SSENTIF GYM',
     this.selectedSection = NavigationSectionType.schedule,
     required this.coaches
@@ -20,7 +20,7 @@ class MainState {
     return MainState(
       gymName: gymName ?? this.gymName,
       selectedSection: selectedSection ?? this.selectedSection,
-      coaches: coaches ?? []
+      coaches: coaches ?? this.coaches
     );
   }
 }

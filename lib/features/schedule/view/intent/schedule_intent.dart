@@ -1,4 +1,4 @@
-// NOTE: 이 파일을 사용하려면 freezed 코드 생성이 필요합니다. (flutter pub run build_runner build)
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'schedule_intent.freezed.dart';
 

@@ -64,6 +64,18 @@ flutter:
       fonts:
         - asset: assets/fonts/SCDreamExtraLight.otf
 
+    - family: GmarketSansBold
+      fonts:
+        - asset: assets/fonts/GmarketSansTTFBold.ttf
+
+    - family: GmarketSansMedium
+      fonts:
+        - asset: assets/fonts/GmarketSansTTFMedium.ttf
+
+    - family: GmarketSansLight
+      fonts:
+        - asset: assets/fonts/GmarketSansTTFLight.ttf
+
 flutter_intl:
   enabled: true
 

@@ -10,6 +10,15 @@
 class FontFamily {
   FontFamily._();
 
+  /// Font family: GmarketSansBold
+  static const String gmarketSansBold = 'GmarketSansBold';
+
+  /// Font family: GmarketSansLight
+  static const String gmarketSansLight = 'GmarketSansLight';
+
+  /// Font family: GmarketSansMedium
+  static const String gmarketSansMedium = 'GmarketSansMedium';
+
   /// Font family: SCDreamBold
   static const String sCDreamBold = 'SCDreamBold';
 

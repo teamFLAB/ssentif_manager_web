@@ -232,6 +232,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "** You can modify and delete the history by clicking it."),
         "edit_routine": MessageLookupByLibrary.simpleMessage("Edit Routine"),
         "email_id": MessageLookupByLibrary.simpleMessage("Email ID"),
+        "employee": MessageLookupByLibrary.simpleMessage("Employee"),
         "empty_body_composition_records": MessageLookupByLibrary.simpleMessage(
             "There is no recorded body composition measurement information."),
         "empty_class_record": MessageLookupByLibrary.simpleMessage(
@@ -336,12 +337,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "find_password": MessageLookupByLibrary.simpleMessage("Find Password"),
         "finish_routine_record": MessageLookupByLibrary.simpleMessage("Finish"),
         "fore_arm": MessageLookupByLibrary.simpleMessage("Fore Arm"),
+        "freelancer": MessageLookupByLibrary.simpleMessage("Freelancer"),
         "fri": MessageLookupByLibrary.simpleMessage("FRI"),
         "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "gender": MessageLookupByLibrary.simpleMessage("Gender"),
         "go_to_login": MessageLookupByLibrary.simpleMessage("Login"),
         "go_to_update": MessageLookupByLibrary.simpleMessage("Update"),
         "have_not_worked_out": MessageLookupByLibrary.simpleMessage("Not yet"),
+        "hint_workplace_address": MessageLookupByLibrary.simpleMessage(
+            "Enter the address of workplace."),
+        "hint_workplace_name": MessageLookupByLibrary.simpleMessage(
+            "Enter the name of workplace."),
         "history": MessageLookupByLibrary.simpleMessage("History"),
         "home_tab": MessageLookupByLibrary.simpleMessage("Home"),
         "hour_unit": MessageLookupByLibrary.simpleMessage("h"),
@@ -400,6 +406,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "male_1char": MessageLookupByLibrary.simpleMessage("M"),
         "manage_account":
             MessageLookupByLibrary.simpleMessage("Manage account"),
+        "manager": MessageLookupByLibrary.simpleMessage("Manager"),
         "matched": MessageLookupByLibrary.simpleMessage("Your matched"),
         "maxReps": MessageLookupByLibrary.simpleMessage("Max Reps"),
         "maxTime": MessageLookupByLibrary.simpleMessage("Max Time"),
@@ -512,6 +519,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "remain": MessageLookupByLibrary.simpleMessage("Remain"),
         "reorder_exercises":
             MessageLookupByLibrary.simpleMessage("Edit Exercise Order"),
+        "representative":
+            MessageLookupByLibrary.simpleMessage("Representative"),
         "reps_format": MessageLookupByLibrary.simpleMessage("reps"),
         "reps_unit": MessageLookupByLibrary.simpleMessage("reps"),
         "request_class_reservation":
@@ -544,6 +553,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please write a description of the routine!"),
         "routine_memo": MessageLookupByLibrary.simpleMessage("Routine Memo"),
         "sat": MessageLookupByLibrary.simpleMessage("SAT"),
+        "search_address":
+            MessageLookupByLibrary.simpleMessage("Search Address"),
         "search_exercise_name": MessageLookupByLibrary.simpleMessage(
             "Enter the name of the exercise you are looking for."),
         "search_name_or_number":
@@ -691,10 +702,19 @@ class MessageLookup extends MessageLookupByLibrary {
             "All information, including course passes, class history, and InBody records, will be deleted and cannot be recovered."),
         "withdrawal_title": MessageLookupByLibrary.simpleMessage(
             "When you delete your account\nall information will be removed."),
+        "work_position": MessageLookupByLibrary.simpleMessage("Job Role"),
         "workout_complete": MessageLookupByLibrary.simpleMessage("Complete"),
         "workout_routine_history":
             MessageLookupByLibrary.simpleMessage("Personal Workout"),
         "workout_tab_name": MessageLookupByLibrary.simpleMessage("Individual"),
+        "workplace_address":
+            MessageLookupByLibrary.simpleMessage("Workplace Address"),
+        "workplace_name":
+            MessageLookupByLibrary.simpleMessage("Workplace Name"),
+        "write_directly":
+            MessageLookupByLibrary.simpleMessage("Enter Manually"),
+        "write_workplace_address_detail":
+            MessageLookupByLibrary.simpleMessage("Enter the detailed address."),
         "zero_count_voucher": MessageLookupByLibrary.simpleMessage(
             "The selected subscription has 0 available reservations.")
       };

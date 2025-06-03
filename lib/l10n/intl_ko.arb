@@ -429,5 +429,17 @@
   "exercise_name" : "운동명",
   "exercise_description_hint" : "작성된 운동 설명이 없습니다.",
   "complete_download" : "다운로드가 완료되었습니다.",
-  "unattended_schedule" : "출석 미완료 일정"
+  "unattended_schedule" : "출석 미완료 일정",
+  "workplace_name" : "근무지명 (상호명)",
+  "hint_workplace_name" : "근무지명 입력하기",
+  "workplace_address" : "근무지 주소",
+  "hint_workplace_address" : "주소 등록하기",
+  "search_address" : "주소 검색하기",
+  "write_workplace_address_detail" : "상세주소 입력하기",
+  "write_directly" : "직접 입력",
+  "work_position" : "근무 타입",
+  "representative" : "대표",
+  "manager" : "관리자",
+  "employee" : "직원",
+  "freelancer" : "프리랜서"
 }

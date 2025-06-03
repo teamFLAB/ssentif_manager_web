@@ -429,6 +429,17 @@
   "exercise_description" : "Exercise Description",
   "exercise_description_hint" : "There is no workout description provided.",
   "complete_download" : "The file has been downloaded successfully.",
-  "unattended_schedule" : "UnCompleted Schedule"
-
+  "unattended_schedule" : "UnCompleted Schedule",
+  "workplace_name" : "Workplace Name",
+  "hint_workplace_name" : "Enter the name of workplace.",
+  "workplace_address" : "Workplace Address",
+  "hint_workplace_address" : "Enter the address of workplace.",
+  "search_address" : "Search Address",
+  "write_workplace_address_detail" : "Enter the detailed address.",
+  "write_directly" : "Enter Manually",
+  "work_position" : "Job Role",
+  "representative" : "Representative",
+  "manager" : "Manager",
+  "employee" : "Employee",
+  "freelancer" : "Freelancer"
 }
