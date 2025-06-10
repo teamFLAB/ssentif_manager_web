@@ -27,9 +27,7 @@ class CoachesViewModel extends StateNotifier<CoachesState> {
   }) : super(CoachesState(
       coaches: coaches,
       selectedUser: coaches.firstOrNull
-  )) {
-    _updatedSelectedCoachSchedules();
-  }
+  )) {}
 
 
   void handleIntent(CoachesIntent intent) {
@@ -39,58 +37,15 @@ class CoachesViewModel extends StateNotifier<CoachesState> {
         },
         selectTab: (int idx) {
           _updateSelectedTab(idx);
-        },
-        onChangePreviousWeek: () {
-          var changedDate = CalendarUtils.addWeeks(
-              state.scheduleStartDate ?? DateTime.now(),
-              -1
-          );
-          _updateScheduleStartDate(changedDate);
-        },
-        onChangeNextWeek: () {
-          var changedDate = CalendarUtils.addWeeks(
-              state.scheduleStartDate ?? DateTime.now(),
-              1
-          );
-          _updateScheduleStartDate(changedDate);
         }
     );
   }
 
   void _updateSelectedCoach(UserEntity user) {
     state = state.copyWith(selectedUser: user);
-    _updatedSelectedCoachSchedules();
   }
 
   void _updateSelectedTab(int index) {
     state = state.copyWith(selectedTabIdx: index);
-  }
-
-  void _updateScheduleStartDate(DateTime date) {
-    state = state.copyWith(scheduleStartDate: date);
-    _updatedSelectedCoachSchedules();
-  }
-
-  void _updatedSelectedCoachSchedules() async {
-    if(state.selectedUser != null) {
-      var startDate = (state.scheduleStartDate ?? DateTime.now());
-      var endDate = CalendarUtils.addDays(startDate, 6);
-      var startDateStr = CalendarUtils.getMonday(startDate).formatYMD();
-      var endDateStr = CalendarUtils.getMonday(endDate).formatYMD();
-
-      (await getTrainerSchedulesUseCase(
-          startDate: startDateStr,
-          endDate: endDateStr,
-          trainerName: state.selectedUser!.userName,
-          trainerId: state.selectedUser!.userId
-      )).handleStatus(
-        onSuccess: (response) {
-
-        },
-        onError: (errCode, errMsg) {
-
-        }
-      );
-    }
   }
 }

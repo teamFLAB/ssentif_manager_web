@@ -48,6 +48,10 @@ class $AssetsFontsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/btn_close_white.png
+  AssetGenImage get btnCloseWhite =>
+      const AssetGenImage('assets/images/btn_close_white.png');
+
   /// File path: assets/images/gym_visual_dummy.png
   AssetGenImage get gymVisualDummy =>
       const AssetGenImage('assets/images/gym_visual_dummy.png');
@@ -116,12 +120,17 @@ class $AssetsImagesGen {
   AssetGenImage get icStatisticsWhite =>
       const AssetGenImage('assets/images/ic_statistics_white.png');
 
+  /// File path: assets/images/ic_user_profile.png
+  AssetGenImage get icUserProfile =>
+      const AssetGenImage('assets/images/ic_user_profile.png');
+
   /// File path: assets/images/ssentif_manager_text_logo.png
   AssetGenImage get ssentifManagerTextLogo =>
       const AssetGenImage('assets/images/ssentif_manager_text_logo.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [
+    btnCloseWhite,
     gymVisualDummy,
     icBackGray,
     icBookmarkSelected,
@@ -139,6 +148,7 @@ class $AssetsImagesGen {
     icSsentifProfile,
     icStatisticsBlack,
     icStatisticsWhite,
+    icUserProfile,
     ssentifManagerTextLogo,
   ];
 }

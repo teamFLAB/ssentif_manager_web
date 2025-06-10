@@ -7,6 +7,7 @@ import 'package:ssentif_manager_web/features/login/data/model/request_login.dart
 import 'package:ssentif_manager_web/features/login/data/model/response_login.dart';
 import 'package:ssentif_manager_web/features/schedule/data/model/schedule_model.dart';
 
+import '../../features/schedule/data/model/schedule_detail_model.dart';
 import '../../shared/data/model/work_place_model.dart';
 import '../../shared/data/model/user_profile_model.dart';
 import 'api_interceptor.dart';
@@ -53,7 +54,7 @@ class ApiService {
     return ResponseLogin.fromJson(response.data);
   }
 
-  /// 내 정보 가져오기
+  /// 내 정보 조회하기
   Future<UserProfileModel> getUserProfile() async {
     final response = await _dio.get(
       '/api/user',
@@ -64,7 +65,7 @@ class ApiService {
     return UserProfileModel.fromJson(response.data);
   }
 
-  /// 근무지 조회
+  /// 근무지 조회하기
   Future<ResponseWorkPlaceList> searchWorkPlaces(
       {required String keyword}) async {
     final response = await _dio.get(
@@ -77,7 +78,7 @@ class ApiService {
     return ResponseWorkPlaceList.fromJson(response.data);
   }
 
-  /// 트레이너 리스트 가져오기
+  /// 트레이너 리스트 조회하기
   Future<List<UserProfileModel>> getCoachList(
       {required int workPlaceId}) async {
     final response = await _dio.get(
@@ -95,7 +96,7 @@ class ApiService {
     return [];
   }
 
-  /// 트레이너별 주간 스케줄 가져오기
+  /// 트레이너별 주간 스케줄 조회하기
   Future<ScheduleModel> getSchedules({
     required String startDate,
     required String endDate,
@@ -113,5 +114,21 @@ class ApiService {
       ),
     );
     return ScheduleModel.fromJson(response.data) ;
+  }
+
+  /// 일정 상세 조회하기
+  Future<ScheduleDetailModel> getScheduleDetail({
+    required int scheduleId
+  }) async {
+    final response = await _dio.get(
+      '/api/schedule/detail/v2',
+      queryParameters: {
+        'schedule' : scheduleId
+      },
+      options: Options(
+        extra: {'requiresToken': true },
+      ),
+    );
+    return ScheduleDetailModel.fromJson(response.data) ;
   }
 }

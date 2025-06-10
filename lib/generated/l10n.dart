@@ -930,6 +930,26 @@ class S {
     );
   }
 
+  /// `Today's class routine`
+  String get today_routine {
+    return Intl.message(
+      'Today\'s class routine',
+      name: 'today_routine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check Attend`
+  String get check_class_attend {
+    return Intl.message(
+      'Check Attend',
+      name: 'check_class_attend',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// ``
   String get myTabStringResources {
     return Intl.message(

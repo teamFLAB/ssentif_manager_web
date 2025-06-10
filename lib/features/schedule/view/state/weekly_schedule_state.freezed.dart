@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'coaches_state.dart';
+part of 'weekly_schedule_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,67 +15,58 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$CoachesState {
-  List<UserEntity> get coaches => throw _privateConstructorUsedError;
-  int get selectedTabIdx => throw _privateConstructorUsedError;
+mixin _$WeeklyScheduleState {
   UserEntity? get selectedUser => throw _privateConstructorUsedError;
   DateTime? get scheduleStartDate => throw _privateConstructorUsedError;
   List<CalendarScheduleEntity> get schedulesOfSelectedCoach =>
       throw _privateConstructorUsedError;
+  ScheduleDetailEntity? get scheduleDetail =>
+      throw _privateConstructorUsedError;
 
-  /// Create a copy of CoachesState
+  /// Create a copy of WeeklyScheduleState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $CoachesStateCopyWith<CoachesState> get copyWith =>
+  $WeeklyScheduleStateCopyWith<WeeklyScheduleState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CoachesStateCopyWith<$Res> {
-  factory $CoachesStateCopyWith(
-          CoachesState value, $Res Function(CoachesState) then) =
-      _$CoachesStateCopyWithImpl<$Res, CoachesState>;
+abstract class $WeeklyScheduleStateCopyWith<$Res> {
+  factory $WeeklyScheduleStateCopyWith(
+          WeeklyScheduleState value, $Res Function(WeeklyScheduleState) then) =
+      _$WeeklyScheduleStateCopyWithImpl<$Res, WeeklyScheduleState>;
   @useResult
   $Res call(
-      {List<UserEntity> coaches,
-      int selectedTabIdx,
-      UserEntity? selectedUser,
+      {UserEntity? selectedUser,
       DateTime? scheduleStartDate,
-      List<CalendarScheduleEntity> schedulesOfSelectedCoach});
+      List<CalendarScheduleEntity> schedulesOfSelectedCoach,
+      ScheduleDetailEntity? scheduleDetail});
 
   $UserEntityCopyWith<$Res>? get selectedUser;
+  $ScheduleDetailEntityCopyWith<$Res>? get scheduleDetail;
 }
 
 /// @nodoc
-class _$CoachesStateCopyWithImpl<$Res, $Val extends CoachesState>
-    implements $CoachesStateCopyWith<$Res> {
-  _$CoachesStateCopyWithImpl(this._value, this._then);
+class _$WeeklyScheduleStateCopyWithImpl<$Res, $Val extends WeeklyScheduleState>
+    implements $WeeklyScheduleStateCopyWith<$Res> {
+  _$WeeklyScheduleStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CoachesState
+  /// Create a copy of WeeklyScheduleState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? coaches = null,
-    Object? selectedTabIdx = null,
     Object? selectedUser = freezed,
     Object? scheduleStartDate = freezed,
     Object? schedulesOfSelectedCoach = null,
+    Object? scheduleDetail = freezed,
   }) {
     return _then(_value.copyWith(
-      coaches: null == coaches
-          ? _value.coaches
-          : coaches // ignore: cast_nullable_to_non_nullable
-              as List<UserEntity>,
-      selectedTabIdx: null == selectedTabIdx
-          ? _value.selectedTabIdx
-          : selectedTabIdx // ignore: cast_nullable_to_non_nullable
-              as int,
       selectedUser: freezed == selectedUser
           ? _value.selectedUser
           : selectedUser // ignore: cast_nullable_to_non_nullable
@@ -88,10 +79,14 @@ class _$CoachesStateCopyWithImpl<$Res, $Val extends CoachesState>
           ? _value.schedulesOfSelectedCoach
           : schedulesOfSelectedCoach // ignore: cast_nullable_to_non_nullable
               as List<CalendarScheduleEntity>,
+      scheduleDetail: freezed == scheduleDetail
+          ? _value.scheduleDetail
+          : scheduleDetail // ignore: cast_nullable_to_non_nullable
+              as ScheduleDetailEntity?,
     ) as $Val);
   }
 
-  /// Create a copy of CoachesState
+  /// Create a copy of WeeklyScheduleState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
@@ -104,55 +99,61 @@ class _$CoachesStateCopyWithImpl<$Res, $Val extends CoachesState>
       return _then(_value.copyWith(selectedUser: value) as $Val);
     });
   }
+
+  /// Create a copy of WeeklyScheduleState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ScheduleDetailEntityCopyWith<$Res>? get scheduleDetail {
+    if (_value.scheduleDetail == null) {
+      return null;
+    }
+
+    return $ScheduleDetailEntityCopyWith<$Res>(_value.scheduleDetail!, (value) {
+      return _then(_value.copyWith(scheduleDetail: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$CoachesStateImplCopyWith<$Res>
-    implements $CoachesStateCopyWith<$Res> {
-  factory _$$CoachesStateImplCopyWith(
-          _$CoachesStateImpl value, $Res Function(_$CoachesStateImpl) then) =
-      __$$CoachesStateImplCopyWithImpl<$Res>;
+abstract class _$$WeeklyScheduleStateImplCopyWith<$Res>
+    implements $WeeklyScheduleStateCopyWith<$Res> {
+  factory _$$WeeklyScheduleStateImplCopyWith(_$WeeklyScheduleStateImpl value,
+          $Res Function(_$WeeklyScheduleStateImpl) then) =
+      __$$WeeklyScheduleStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {List<UserEntity> coaches,
-      int selectedTabIdx,
-      UserEntity? selectedUser,
+      {UserEntity? selectedUser,
       DateTime? scheduleStartDate,
-      List<CalendarScheduleEntity> schedulesOfSelectedCoach});
+      List<CalendarScheduleEntity> schedulesOfSelectedCoach,
+      ScheduleDetailEntity? scheduleDetail});
 
   @override
   $UserEntityCopyWith<$Res>? get selectedUser;
+  @override
+  $ScheduleDetailEntityCopyWith<$Res>? get scheduleDetail;
 }
 
 /// @nodoc
-class __$$CoachesStateImplCopyWithImpl<$Res>
-    extends _$CoachesStateCopyWithImpl<$Res, _$CoachesStateImpl>
-    implements _$$CoachesStateImplCopyWith<$Res> {
-  __$$CoachesStateImplCopyWithImpl(
-      _$CoachesStateImpl _value, $Res Function(_$CoachesStateImpl) _then)
+class __$$WeeklyScheduleStateImplCopyWithImpl<$Res>
+    extends _$WeeklyScheduleStateCopyWithImpl<$Res, _$WeeklyScheduleStateImpl>
+    implements _$$WeeklyScheduleStateImplCopyWith<$Res> {
+  __$$WeeklyScheduleStateImplCopyWithImpl(_$WeeklyScheduleStateImpl _value,
+      $Res Function(_$WeeklyScheduleStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CoachesState
+  /// Create a copy of WeeklyScheduleState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? coaches = null,
-    Object? selectedTabIdx = null,
     Object? selectedUser = freezed,
     Object? scheduleStartDate = freezed,
     Object? schedulesOfSelectedCoach = null,
+    Object? scheduleDetail = freezed,
   }) {
-    return _then(_$CoachesStateImpl(
-      coaches: null == coaches
-          ? _value._coaches
-          : coaches // ignore: cast_nullable_to_non_nullable
-              as List<UserEntity>,
-      selectedTabIdx: null == selectedTabIdx
-          ? _value.selectedTabIdx
-          : selectedTabIdx // ignore: cast_nullable_to_non_nullable
-              as int,
+    return _then(_$WeeklyScheduleStateImpl(
       selectedUser: freezed == selectedUser
           ? _value.selectedUser
           : selectedUser // ignore: cast_nullable_to_non_nullable
@@ -165,34 +166,24 @@ class __$$CoachesStateImplCopyWithImpl<$Res>
           ? _value._schedulesOfSelectedCoach
           : schedulesOfSelectedCoach // ignore: cast_nullable_to_non_nullable
               as List<CalendarScheduleEntity>,
+      scheduleDetail: freezed == scheduleDetail
+          ? _value.scheduleDetail
+          : scheduleDetail // ignore: cast_nullable_to_non_nullable
+              as ScheduleDetailEntity?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$CoachesStateImpl implements _CoachesState {
-  const _$CoachesStateImpl(
-      {final List<UserEntity> coaches = const [],
-      this.selectedTabIdx = 0,
-      this.selectedUser,
+class _$WeeklyScheduleStateImpl implements _WeeklyScheduleState {
+  const _$WeeklyScheduleStateImpl(
+      {this.selectedUser,
       this.scheduleStartDate,
-      final List<CalendarScheduleEntity> schedulesOfSelectedCoach = const []})
-      : _coaches = coaches,
-        _schedulesOfSelectedCoach = schedulesOfSelectedCoach;
+      final List<CalendarScheduleEntity> schedulesOfSelectedCoach = const [],
+      this.scheduleDetail})
+      : _schedulesOfSelectedCoach = schedulesOfSelectedCoach;
 
-  final List<UserEntity> _coaches;
-  @override
-  @JsonKey()
-  List<UserEntity> get coaches {
-    if (_coaches is EqualUnmodifiableListView) return _coaches;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_coaches);
-  }
-
-  @override
-  @JsonKey()
-  final int selectedTabIdx;
   @override
   final UserEntity? selectedUser;
   @override
@@ -208,68 +199,66 @@ class _$CoachesStateImpl implements _CoachesState {
   }
 
   @override
+  final ScheduleDetailEntity? scheduleDetail;
+
+  @override
   String toString() {
-    return 'CoachesState(coaches: $coaches, selectedTabIdx: $selectedTabIdx, selectedUser: $selectedUser, scheduleStartDate: $scheduleStartDate, schedulesOfSelectedCoach: $schedulesOfSelectedCoach)';
+    return 'WeeklyScheduleState(selectedUser: $selectedUser, scheduleStartDate: $scheduleStartDate, schedulesOfSelectedCoach: $schedulesOfSelectedCoach, scheduleDetail: $scheduleDetail)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CoachesStateImpl &&
-            const DeepCollectionEquality().equals(other._coaches, _coaches) &&
-            (identical(other.selectedTabIdx, selectedTabIdx) ||
-                other.selectedTabIdx == selectedTabIdx) &&
+            other is _$WeeklyScheduleStateImpl &&
             (identical(other.selectedUser, selectedUser) ||
                 other.selectedUser == selectedUser) &&
             (identical(other.scheduleStartDate, scheduleStartDate) ||
                 other.scheduleStartDate == scheduleStartDate) &&
             const DeepCollectionEquality().equals(
-                other._schedulesOfSelectedCoach, _schedulesOfSelectedCoach));
+                other._schedulesOfSelectedCoach, _schedulesOfSelectedCoach) &&
+            (identical(other.scheduleDetail, scheduleDetail) ||
+                other.scheduleDetail == scheduleDetail));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(_coaches),
-      selectedTabIdx,
       selectedUser,
       scheduleStartDate,
-      const DeepCollectionEquality().hash(_schedulesOfSelectedCoach));
+      const DeepCollectionEquality().hash(_schedulesOfSelectedCoach),
+      scheduleDetail);
 
-  /// Create a copy of CoachesState
+  /// Create a copy of WeeklyScheduleState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$CoachesStateImplCopyWith<_$CoachesStateImpl> get copyWith =>
-      __$$CoachesStateImplCopyWithImpl<_$CoachesStateImpl>(this, _$identity);
+  _$$WeeklyScheduleStateImplCopyWith<_$WeeklyScheduleStateImpl> get copyWith =>
+      __$$WeeklyScheduleStateImplCopyWithImpl<_$WeeklyScheduleStateImpl>(
+          this, _$identity);
 }
 
-abstract class _CoachesState implements CoachesState {
-  const factory _CoachesState(
-          {final List<UserEntity> coaches,
-          final int selectedTabIdx,
-          final UserEntity? selectedUser,
-          final DateTime? scheduleStartDate,
-          final List<CalendarScheduleEntity> schedulesOfSelectedCoach}) =
-      _$CoachesStateImpl;
+abstract class _WeeklyScheduleState implements WeeklyScheduleState {
+  const factory _WeeklyScheduleState(
+      {final UserEntity? selectedUser,
+      final DateTime? scheduleStartDate,
+      final List<CalendarScheduleEntity> schedulesOfSelectedCoach,
+      final ScheduleDetailEntity? scheduleDetail}) = _$WeeklyScheduleStateImpl;
 
-  @override
-  List<UserEntity> get coaches;
-  @override
-  int get selectedTabIdx;
   @override
   UserEntity? get selectedUser;
   @override
   DateTime? get scheduleStartDate;
   @override
   List<CalendarScheduleEntity> get schedulesOfSelectedCoach;
+  @override
+  ScheduleDetailEntity? get scheduleDetail;
 
-  /// Create a copy of CoachesState
+  /// Create a copy of WeeklyScheduleState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$CoachesStateImplCopyWith<_$CoachesStateImpl> get copyWith =>
+  _$$WeeklyScheduleStateImplCopyWith<_$WeeklyScheduleStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

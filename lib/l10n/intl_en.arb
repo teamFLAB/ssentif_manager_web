@@ -88,6 +88,8 @@
   "reservation_wait_2" : "Lesson(Request)",
   "reservation_wait_title" : "Schedules on the waiting list!",
   "cancel_reservation" : "Cancel Reservation",
+  "today_routine" : "Today's class routine",
+  "check_class_attend" : "Check Attend",
   "myTabStringResources" : "",
   "unit_years_old" : "yrs",
   "remain" : "Remain",

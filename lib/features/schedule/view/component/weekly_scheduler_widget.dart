@@ -33,9 +33,10 @@ class WeeklySchedulerWidget extends StatelessWidget {
       view: CalendarView.week,
       showDatePickerButton: true,
       headerStyle: CalendarHeaderStyle(
-          backgroundColor: AppColors.backgroundColor,
+          backgroundColor: AppColors.white,
           textAlign: TextAlign.center,
-          textStyle: ScDreamStyles.medium20(AppColors.black)),
+          textStyle: ScDreamStyles.medium20(AppColors.black),
+      ),
       todayTextStyle: ScDreamStyles.medium12(AppColors.black),
       showCurrentTimeIndicator: true,
       initialDisplayDate: startDate,
@@ -53,7 +54,7 @@ class WeeklySchedulerWidget extends StatelessWidget {
         dateFormat: 'dd',
         dayFormat: 'E',
       ),
-      backgroundColor: AppColors.backgroundColor,
+      backgroundColor: AppColors.white,
       appointmentTextStyle: ScDreamStyles.medium12(AppColors.white),
       cellEndPadding: 0,
       selectionDecoration: BoxDecoration(

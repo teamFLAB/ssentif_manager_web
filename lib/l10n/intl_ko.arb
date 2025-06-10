@@ -88,6 +88,8 @@
   "reservation_wait_2" : "예약 요청",
   "reservation_wait_title" : "예약 대기 중인 일정이 있어요!",
   "cancel_reservation" : "예약 취소",
+  "today_routine" : "오늘의 수업 내용",
+  "check_class_attend" : "출석 완료",
   "myTabStringResources" : "",
   "unit_years_old" : "세",
   "remain" : "잔여",
@@ -441,5 +443,6 @@
   "representative" : "대표",
   "manager" : "관리자",
   "employee" : "직원",
-  "freelancer" : "프리랜서"
+  "freelancer" : "프리랜서",
+
 }

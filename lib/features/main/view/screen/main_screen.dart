@@ -23,7 +23,6 @@ class _MainScreenState extends ConsumerState<MainScreen> {
       final state = ref.watch(mainViewModelProvider);
       final viewModel = ref.read(mainViewModelProvider.notifier);
 
-      print("===> ${state.coaches}");
       return Scaffold(
         body: Row(
           children: [

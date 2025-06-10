@@ -104,7 +104,10 @@ class _CoachesScreenState extends ConsumerState<CoachesScreen> {
                 physics: const NeverScrollableScrollPhysics(),
                 onPageChanged: (_) {},
                 children: [
-                  WeeklySchedulePage(),
+                  WeeklySchedulePage(
+                      key: ValueKey(state.selectedUser),
+                      selectedCoach: state.selectedUser
+                  ),
                   Center(child: Text('관리중인 회원 페이지')),
                   Center(child: Text('월간 수업 페이지')),
                   Center(child: Text('수강권 매출 페이지')),

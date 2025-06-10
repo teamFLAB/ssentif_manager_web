@@ -9,7 +9,7 @@ import '../../domain/enumtype/schedule_status_type.dart';
 import '../model/calendar_schedule_model.dart';
 import '../model/schedule_model.dart';
 
-final scheduleMapper = Provider<ScheduleMapper>((ref) {
+final scheduleMapperProvider = Provider<ScheduleMapper>((ref) {
   final calendarScheduleMapper = ref.read(calendarScheduleMapperProvider);
   return ScheduleMapper(calendarScheduleMapper: calendarScheduleMapper);
 });
