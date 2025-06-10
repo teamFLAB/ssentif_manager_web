@@ -21,6 +21,8 @@ class CoachesScreen extends ConsumerStatefulWidget {
 }
 
 class _CoachesScreenState extends ConsumerState<CoachesScreen> {
+  final _tabController = PageController(initialPage: 0);
+
   @override
   Widget build(BuildContext context) {
     return Consumer(
@@ -65,11 +67,12 @@ class _CoachesScreenState extends ConsumerState<CoachesScreen> {
                           var user = state.coaches[idx];
                           return CoachListItem(
                             user: user,
-                            selected: state.selectedUserId == user.userId,
+                            selected: state.selectedUser?.userId == user.userId,
                             isFirstItem: idx == 0,
                             onClick: () {
                               viewModel.handleIntent(
-                                  CoachesIntent.clickCoachProfile(userId: user.userId));
+                                  CoachesIntent.clickCoachProfile(user: user)
+                              );
                             },
                           );
                         }),
@@ -87,14 +90,17 @@ class _CoachesScreenState extends ConsumerState<CoachesScreen> {
           _CoachTabBar(
               selectedTabIdx: state.selectedTabIdx,
               onSelectTab: (int value) {
-                viewModel.handleIntent(CoachesIntent.selectTab(idx: value));
+                setState(() {
+                  viewModel.handleIntent(CoachesIntent.selectTab(idx: value));
+                  _tabController.jumpToPage(value);
+                });
               }),
           const SizedBox(height: 20),
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 24),
               child: PageView(
-                controller: PageController(initialPage: state.selectedTabIdx),
+                controller: _tabController,
                 physics: const NeverScrollableScrollPhysics(),
                 onPageChanged: (_) {},
                 children: [

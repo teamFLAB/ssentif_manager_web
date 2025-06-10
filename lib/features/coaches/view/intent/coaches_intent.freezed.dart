@@ -18,20 +18,26 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CoachesIntent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int userId) clickCoachProfile,
+    required TResult Function(UserEntity user) clickCoachProfile,
     required TResult Function(int idx) selectTab,
+    required TResult Function() onChangePreviousWeek,
+    required TResult Function() onChangeNextWeek,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int userId)? clickCoachProfile,
+    TResult? Function(UserEntity user)? clickCoachProfile,
     TResult? Function(int idx)? selectTab,
+    TResult? Function()? onChangePreviousWeek,
+    TResult? Function()? onChangeNextWeek,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int userId)? clickCoachProfile,
+    TResult Function(UserEntity user)? clickCoachProfile,
     TResult Function(int idx)? selectTab,
+    TResult Function()? onChangePreviousWeek,
+    TResult Function()? onChangeNextWeek,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +45,24 @@ mixin _$CoachesIntent {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClickCoachProfile value) clickCoachProfile,
     required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_OnChangePreviousWeek value) onChangePreviousWeek,
+    required TResult Function(_OnChangeNextWeek value) onChangeNextWeek,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClickCoachProfile value)? clickCoachProfile,
     TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_OnChangePreviousWeek value)? onChangePreviousWeek,
+    TResult? Function(_OnChangeNextWeek value)? onChangeNextWeek,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClickCoachProfile value)? clickCoachProfile,
     TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_OnChangePreviousWeek value)? onChangePreviousWeek,
+    TResult Function(_OnChangeNextWeek value)? onChangeNextWeek,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -83,7 +95,9 @@ abstract class _$$ClickCoachProfileImplCopyWith<$Res> {
           $Res Function(_$ClickCoachProfileImpl) then) =
       __$$ClickCoachProfileImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int userId});
+  $Res call({UserEntity user});
+
+  $UserEntityCopyWith<$Res> get user;
 }
 
 /// @nodoc
@@ -99,28 +113,38 @@ class __$$ClickCoachProfileImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
+    Object? user = null,
   }) {
     return _then(_$ClickCoachProfileImpl(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int,
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserEntity,
     ));
+  }
+
+  /// Create a copy of CoachesIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserEntityCopyWith<$Res> get user {
+    return $UserEntityCopyWith<$Res>(_value.user, (value) {
+      return _then(_value.copyWith(user: value));
+    });
   }
 }
 
 /// @nodoc
 
 class _$ClickCoachProfileImpl implements _ClickCoachProfile {
-  const _$ClickCoachProfileImpl({required this.userId});
+  const _$ClickCoachProfileImpl({required this.user});
 
   @override
-  final int userId;
+  final UserEntity user;
 
   @override
   String toString() {
-    return 'CoachesIntent.clickCoachProfile(userId: $userId)';
+    return 'CoachesIntent.clickCoachProfile(user: $user)';
   }
 
   @override
@@ -128,11 +152,11 @@ class _$ClickCoachProfileImpl implements _ClickCoachProfile {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ClickCoachProfileImpl &&
-            (identical(other.userId, userId) || other.userId == userId));
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, userId);
+  int get hashCode => Object.hash(runtimeType, user);
 
   /// Create a copy of CoachesIntent
   /// with the given fields replaced by the non-null parameter values.
@@ -146,30 +170,36 @@ class _$ClickCoachProfileImpl implements _ClickCoachProfile {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int userId) clickCoachProfile,
+    required TResult Function(UserEntity user) clickCoachProfile,
     required TResult Function(int idx) selectTab,
+    required TResult Function() onChangePreviousWeek,
+    required TResult Function() onChangeNextWeek,
   }) {
-    return clickCoachProfile(userId);
+    return clickCoachProfile(user);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int userId)? clickCoachProfile,
+    TResult? Function(UserEntity user)? clickCoachProfile,
     TResult? Function(int idx)? selectTab,
+    TResult? Function()? onChangePreviousWeek,
+    TResult? Function()? onChangeNextWeek,
   }) {
-    return clickCoachProfile?.call(userId);
+    return clickCoachProfile?.call(user);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int userId)? clickCoachProfile,
+    TResult Function(UserEntity user)? clickCoachProfile,
     TResult Function(int idx)? selectTab,
+    TResult Function()? onChangePreviousWeek,
+    TResult Function()? onChangeNextWeek,
     required TResult orElse(),
   }) {
     if (clickCoachProfile != null) {
-      return clickCoachProfile(userId);
+      return clickCoachProfile(user);
     }
     return orElse();
   }
@@ -179,6 +209,8 @@ class _$ClickCoachProfileImpl implements _ClickCoachProfile {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClickCoachProfile value) clickCoachProfile,
     required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_OnChangePreviousWeek value) onChangePreviousWeek,
+    required TResult Function(_OnChangeNextWeek value) onChangeNextWeek,
   }) {
     return clickCoachProfile(this);
   }
@@ -188,6 +220,8 @@ class _$ClickCoachProfileImpl implements _ClickCoachProfile {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClickCoachProfile value)? clickCoachProfile,
     TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_OnChangePreviousWeek value)? onChangePreviousWeek,
+    TResult? Function(_OnChangeNextWeek value)? onChangeNextWeek,
   }) {
     return clickCoachProfile?.call(this);
   }
@@ -197,6 +231,8 @@ class _$ClickCoachProfileImpl implements _ClickCoachProfile {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClickCoachProfile value)? clickCoachProfile,
     TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_OnChangePreviousWeek value)? onChangePreviousWeek,
+    TResult Function(_OnChangeNextWeek value)? onChangeNextWeek,
     required TResult orElse(),
   }) {
     if (clickCoachProfile != null) {
@@ -207,10 +243,10 @@ class _$ClickCoachProfileImpl implements _ClickCoachProfile {
 }
 
 abstract class _ClickCoachProfile implements CoachesIntent {
-  const factory _ClickCoachProfile({required final int userId}) =
+  const factory _ClickCoachProfile({required final UserEntity user}) =
       _$ClickCoachProfileImpl;
 
-  int get userId;
+  UserEntity get user;
 
   /// Create a copy of CoachesIntent
   /// with the given fields replaced by the non-null parameter values.
@@ -287,8 +323,10 @@ class _$SelectTabImpl implements _SelectTab {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int userId) clickCoachProfile,
+    required TResult Function(UserEntity user) clickCoachProfile,
     required TResult Function(int idx) selectTab,
+    required TResult Function() onChangePreviousWeek,
+    required TResult Function() onChangeNextWeek,
   }) {
     return selectTab(idx);
   }
@@ -296,8 +334,10 @@ class _$SelectTabImpl implements _SelectTab {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(int userId)? clickCoachProfile,
+    TResult? Function(UserEntity user)? clickCoachProfile,
     TResult? Function(int idx)? selectTab,
+    TResult? Function()? onChangePreviousWeek,
+    TResult? Function()? onChangeNextWeek,
   }) {
     return selectTab?.call(idx);
   }
@@ -305,8 +345,10 @@ class _$SelectTabImpl implements _SelectTab {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int userId)? clickCoachProfile,
+    TResult Function(UserEntity user)? clickCoachProfile,
     TResult Function(int idx)? selectTab,
+    TResult Function()? onChangePreviousWeek,
+    TResult Function()? onChangeNextWeek,
     required TResult orElse(),
   }) {
     if (selectTab != null) {
@@ -320,6 +362,8 @@ class _$SelectTabImpl implements _SelectTab {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClickCoachProfile value) clickCoachProfile,
     required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_OnChangePreviousWeek value) onChangePreviousWeek,
+    required TResult Function(_OnChangeNextWeek value) onChangeNextWeek,
   }) {
     return selectTab(this);
   }
@@ -329,6 +373,8 @@ class _$SelectTabImpl implements _SelectTab {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClickCoachProfile value)? clickCoachProfile,
     TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_OnChangePreviousWeek value)? onChangePreviousWeek,
+    TResult? Function(_OnChangeNextWeek value)? onChangeNextWeek,
   }) {
     return selectTab?.call(this);
   }
@@ -338,6 +384,8 @@ class _$SelectTabImpl implements _SelectTab {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClickCoachProfile value)? clickCoachProfile,
     TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_OnChangePreviousWeek value)? onChangePreviousWeek,
+    TResult Function(_OnChangeNextWeek value)? onChangeNextWeek,
     required TResult orElse(),
   }) {
     if (selectTab != null) {
@@ -357,4 +405,239 @@ abstract class _SelectTab implements CoachesIntent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectTabImplCopyWith<_$SelectTabImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OnChangePreviousWeekImplCopyWith<$Res> {
+  factory _$$OnChangePreviousWeekImplCopyWith(_$OnChangePreviousWeekImpl value,
+          $Res Function(_$OnChangePreviousWeekImpl) then) =
+      __$$OnChangePreviousWeekImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$OnChangePreviousWeekImplCopyWithImpl<$Res>
+    extends _$CoachesIntentCopyWithImpl<$Res, _$OnChangePreviousWeekImpl>
+    implements _$$OnChangePreviousWeekImplCopyWith<$Res> {
+  __$$OnChangePreviousWeekImplCopyWithImpl(_$OnChangePreviousWeekImpl _value,
+      $Res Function(_$OnChangePreviousWeekImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CoachesIntent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$OnChangePreviousWeekImpl implements _OnChangePreviousWeek {
+  const _$OnChangePreviousWeekImpl();
+
+  @override
+  String toString() {
+    return 'CoachesIntent.onChangePreviousWeek()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnChangePreviousWeekImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserEntity user) clickCoachProfile,
+    required TResult Function(int idx) selectTab,
+    required TResult Function() onChangePreviousWeek,
+    required TResult Function() onChangeNextWeek,
+  }) {
+    return onChangePreviousWeek();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserEntity user)? clickCoachProfile,
+    TResult? Function(int idx)? selectTab,
+    TResult? Function()? onChangePreviousWeek,
+    TResult? Function()? onChangeNextWeek,
+  }) {
+    return onChangePreviousWeek?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserEntity user)? clickCoachProfile,
+    TResult Function(int idx)? selectTab,
+    TResult Function()? onChangePreviousWeek,
+    TResult Function()? onChangeNextWeek,
+    required TResult orElse(),
+  }) {
+    if (onChangePreviousWeek != null) {
+      return onChangePreviousWeek();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClickCoachProfile value) clickCoachProfile,
+    required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_OnChangePreviousWeek value) onChangePreviousWeek,
+    required TResult Function(_OnChangeNextWeek value) onChangeNextWeek,
+  }) {
+    return onChangePreviousWeek(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClickCoachProfile value)? clickCoachProfile,
+    TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_OnChangePreviousWeek value)? onChangePreviousWeek,
+    TResult? Function(_OnChangeNextWeek value)? onChangeNextWeek,
+  }) {
+    return onChangePreviousWeek?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClickCoachProfile value)? clickCoachProfile,
+    TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_OnChangePreviousWeek value)? onChangePreviousWeek,
+    TResult Function(_OnChangeNextWeek value)? onChangeNextWeek,
+    required TResult orElse(),
+  }) {
+    if (onChangePreviousWeek != null) {
+      return onChangePreviousWeek(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnChangePreviousWeek implements CoachesIntent {
+  const factory _OnChangePreviousWeek() = _$OnChangePreviousWeekImpl;
+}
+
+/// @nodoc
+abstract class _$$OnChangeNextWeekImplCopyWith<$Res> {
+  factory _$$OnChangeNextWeekImplCopyWith(_$OnChangeNextWeekImpl value,
+          $Res Function(_$OnChangeNextWeekImpl) then) =
+      __$$OnChangeNextWeekImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$OnChangeNextWeekImplCopyWithImpl<$Res>
+    extends _$CoachesIntentCopyWithImpl<$Res, _$OnChangeNextWeekImpl>
+    implements _$$OnChangeNextWeekImplCopyWith<$Res> {
+  __$$OnChangeNextWeekImplCopyWithImpl(_$OnChangeNextWeekImpl _value,
+      $Res Function(_$OnChangeNextWeekImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CoachesIntent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$OnChangeNextWeekImpl implements _OnChangeNextWeek {
+  const _$OnChangeNextWeekImpl();
+
+  @override
+  String toString() {
+    return 'CoachesIntent.onChangeNextWeek()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$OnChangeNextWeekImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserEntity user) clickCoachProfile,
+    required TResult Function(int idx) selectTab,
+    required TResult Function() onChangePreviousWeek,
+    required TResult Function() onChangeNextWeek,
+  }) {
+    return onChangeNextWeek();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserEntity user)? clickCoachProfile,
+    TResult? Function(int idx)? selectTab,
+    TResult? Function()? onChangePreviousWeek,
+    TResult? Function()? onChangeNextWeek,
+  }) {
+    return onChangeNextWeek?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserEntity user)? clickCoachProfile,
+    TResult Function(int idx)? selectTab,
+    TResult Function()? onChangePreviousWeek,
+    TResult Function()? onChangeNextWeek,
+    required TResult orElse(),
+  }) {
+    if (onChangeNextWeek != null) {
+      return onChangeNextWeek();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClickCoachProfile value) clickCoachProfile,
+    required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_OnChangePreviousWeek value) onChangePreviousWeek,
+    required TResult Function(_OnChangeNextWeek value) onChangeNextWeek,
+  }) {
+    return onChangeNextWeek(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClickCoachProfile value)? clickCoachProfile,
+    TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_OnChangePreviousWeek value)? onChangePreviousWeek,
+    TResult? Function(_OnChangeNextWeek value)? onChangeNextWeek,
+  }) {
+    return onChangeNextWeek?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClickCoachProfile value)? clickCoachProfile,
+    TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_OnChangePreviousWeek value)? onChangePreviousWeek,
+    TResult Function(_OnChangeNextWeek value)? onChangeNextWeek,
+    required TResult orElse(),
+  }) {
+    if (onChangeNextWeek != null) {
+      return onChangeNextWeek(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnChangeNextWeek implements CoachesIntent {
+  const factory _OnChangeNextWeek() = _$OnChangeNextWeekImpl;
 }

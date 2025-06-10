@@ -8,6 +8,7 @@ class CoachesState with _$CoachesState {
   const factory CoachesState({
     @Default([]) List<UserEntity> coaches,
     @Default(0) int selectedTabIdx,
-    int? selectedUserId
+    UserEntity? selectedUser,
+    DateTime? scheduleStartDate
   }) = _CoachesState;
 }

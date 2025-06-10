@@ -41,9 +41,9 @@ class _WeeklySchedulePageState extends ConsumerState<WeeklySchedulePage> {
               }
           ),
         ),
-        SizedBox(width: 50),
+        SizedBox(width: 100),
         Container(color: AppColors.grayE4, width: 1),
-        SizedBox(width: 10),
+        SizedBox(width: 100),
         Flexible(flex:1, child: Spacer())
       ],
     );

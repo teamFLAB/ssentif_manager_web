@@ -18,7 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CoachesState {
   List<UserEntity> get coaches => throw _privateConstructorUsedError;
   int get selectedTabIdx => throw _privateConstructorUsedError;
-  int? get selectedUserId => throw _privateConstructorUsedError;
+  UserEntity? get selectedUser => throw _privateConstructorUsedError;
+  DateTime? get scheduleStartDate => throw _privateConstructorUsedError;
 
   /// Create a copy of CoachesState
   /// with the given fields replaced by the non-null parameter values.
@@ -34,7 +35,12 @@ abstract class $CoachesStateCopyWith<$Res> {
       _$CoachesStateCopyWithImpl<$Res, CoachesState>;
   @useResult
   $Res call(
-      {List<UserEntity> coaches, int selectedTabIdx, int? selectedUserId});
+      {List<UserEntity> coaches,
+      int selectedTabIdx,
+      UserEntity? selectedUser,
+      DateTime? scheduleStartDate});
+
+  $UserEntityCopyWith<$Res>? get selectedUser;
 }
 
 /// @nodoc
@@ -54,7 +60,8 @@ class _$CoachesStateCopyWithImpl<$Res, $Val extends CoachesState>
   $Res call({
     Object? coaches = null,
     Object? selectedTabIdx = null,
-    Object? selectedUserId = freezed,
+    Object? selectedUser = freezed,
+    Object? scheduleStartDate = freezed,
   }) {
     return _then(_value.copyWith(
       coaches: null == coaches
@@ -65,11 +72,29 @@ class _$CoachesStateCopyWithImpl<$Res, $Val extends CoachesState>
           ? _value.selectedTabIdx
           : selectedTabIdx // ignore: cast_nullable_to_non_nullable
               as int,
-      selectedUserId: freezed == selectedUserId
-          ? _value.selectedUserId
-          : selectedUserId // ignore: cast_nullable_to_non_nullable
-              as int?,
+      selectedUser: freezed == selectedUser
+          ? _value.selectedUser
+          : selectedUser // ignore: cast_nullable_to_non_nullable
+              as UserEntity?,
+      scheduleStartDate: freezed == scheduleStartDate
+          ? _value.scheduleStartDate
+          : scheduleStartDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
+  }
+
+  /// Create a copy of CoachesState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserEntityCopyWith<$Res>? get selectedUser {
+    if (_value.selectedUser == null) {
+      return null;
+    }
+
+    return $UserEntityCopyWith<$Res>(_value.selectedUser!, (value) {
+      return _then(_value.copyWith(selectedUser: value) as $Val);
+    });
   }
 }
 
@@ -82,7 +107,13 @@ abstract class _$$CoachesStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<UserEntity> coaches, int selectedTabIdx, int? selectedUserId});
+      {List<UserEntity> coaches,
+      int selectedTabIdx,
+      UserEntity? selectedUser,
+      DateTime? scheduleStartDate});
+
+  @override
+  $UserEntityCopyWith<$Res>? get selectedUser;
 }
 
 /// @nodoc
@@ -100,7 +131,8 @@ class __$$CoachesStateImplCopyWithImpl<$Res>
   $Res call({
     Object? coaches = null,
     Object? selectedTabIdx = null,
-    Object? selectedUserId = freezed,
+    Object? selectedUser = freezed,
+    Object? scheduleStartDate = freezed,
   }) {
     return _then(_$CoachesStateImpl(
       coaches: null == coaches
@@ -111,10 +143,14 @@ class __$$CoachesStateImplCopyWithImpl<$Res>
           ? _value.selectedTabIdx
           : selectedTabIdx // ignore: cast_nullable_to_non_nullable
               as int,
-      selectedUserId: freezed == selectedUserId
-          ? _value.selectedUserId
-          : selectedUserId // ignore: cast_nullable_to_non_nullable
-              as int?,
+      selectedUser: freezed == selectedUser
+          ? _value.selectedUser
+          : selectedUser // ignore: cast_nullable_to_non_nullable
+              as UserEntity?,
+      scheduleStartDate: freezed == scheduleStartDate
+          ? _value.scheduleStartDate
+          : scheduleStartDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -125,7 +161,8 @@ class _$CoachesStateImpl implements _CoachesState {
   const _$CoachesStateImpl(
       {final List<UserEntity> coaches = const [],
       this.selectedTabIdx = 0,
-      this.selectedUserId})
+      this.selectedUser,
+      this.scheduleStartDate})
       : _coaches = coaches;
 
   final List<UserEntity> _coaches;
@@ -141,11 +178,13 @@ class _$CoachesStateImpl implements _CoachesState {
   @JsonKey()
   final int selectedTabIdx;
   @override
-  final int? selectedUserId;
+  final UserEntity? selectedUser;
+  @override
+  final DateTime? scheduleStartDate;
 
   @override
   String toString() {
-    return 'CoachesState(coaches: $coaches, selectedTabIdx: $selectedTabIdx, selectedUserId: $selectedUserId)';
+    return 'CoachesState(coaches: $coaches, selectedTabIdx: $selectedTabIdx, selectedUser: $selectedUser, scheduleStartDate: $scheduleStartDate)';
   }
 
   @override
@@ -156,8 +195,10 @@ class _$CoachesStateImpl implements _CoachesState {
             const DeepCollectionEquality().equals(other._coaches, _coaches) &&
             (identical(other.selectedTabIdx, selectedTabIdx) ||
                 other.selectedTabIdx == selectedTabIdx) &&
-            (identical(other.selectedUserId, selectedUserId) ||
-                other.selectedUserId == selectedUserId));
+            (identical(other.selectedUser, selectedUser) ||
+                other.selectedUser == selectedUser) &&
+            (identical(other.scheduleStartDate, scheduleStartDate) ||
+                other.scheduleStartDate == scheduleStartDate));
   }
 
   @override
@@ -165,7 +206,8 @@ class _$CoachesStateImpl implements _CoachesState {
       runtimeType,
       const DeepCollectionEquality().hash(_coaches),
       selectedTabIdx,
-      selectedUserId);
+      selectedUser,
+      scheduleStartDate);
 
   /// Create a copy of CoachesState
   /// with the given fields replaced by the non-null parameter values.
@@ -180,14 +222,17 @@ abstract class _CoachesState implements CoachesState {
   const factory _CoachesState(
       {final List<UserEntity> coaches,
       final int selectedTabIdx,
-      final int? selectedUserId}) = _$CoachesStateImpl;
+      final UserEntity? selectedUser,
+      final DateTime? scheduleStartDate}) = _$CoachesStateImpl;
 
   @override
   List<UserEntity> get coaches;
   @override
   int get selectedTabIdx;
   @override
-  int? get selectedUserId;
+  UserEntity? get selectedUser;
+  @override
+  DateTime? get scheduleStartDate;
 
   /// Create a copy of CoachesState
   /// with the given fields replaced by the non-null parameter values.
