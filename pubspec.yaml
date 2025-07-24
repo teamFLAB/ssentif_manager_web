@@ -18,7 +18,7 @@ dependencies:
   freezed_annotation: ^2.4.1
   json_annotation: ^4.9.0
   cupertino_icons: ^1.0.8
-  go_router: ^15.1.2
+  go_router: ^16.0.0
   flutter_gen: ^5.4.0
   flutter_localizations:
     sdk: flutter
@@ -75,6 +75,23 @@ flutter:
     - family: GmarketSansLight
       fonts:
         - asset: assets/fonts/GmarketSansTTFLight.ttf
+
+    - family: SpoqaHanSansNeoBold
+      fonts:
+        - asset: assets/fonts/SpoqaHanSansNeo-Bold.otf
+
+    - family: SpoqaHanSansNeoMedium
+      fonts:
+        - asset: assets/fonts/SpoqaHanSansNeo-Medium.otf
+
+    - family: SpoqaHanSansNeoRegular
+      fonts:
+        - asset: assets/fonts/SpoqaHanSansNeo-Regular.otf
+
+    - family: SpoqaHanSansNeoLight
+      fonts:
+        - asset: assets/fonts/SpoqaHanSansNeo-Light.otf
+
 
 flutter_intl:
   enabled: true

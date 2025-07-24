@@ -7,4 +7,6 @@ sealed class CoachesIntent with _$CoachesIntent {
   const factory CoachesIntent.clickCoachProfile({required UserEntity user}) =
       _ClickCoachProfile;
   const factory CoachesIntent.selectTab({required int idx}) = _SelectTab;
+  const factory CoachesIntent.updateCalendarDate(DateTime calendarDate) =
+      _UpdateCalendarDate;
 }

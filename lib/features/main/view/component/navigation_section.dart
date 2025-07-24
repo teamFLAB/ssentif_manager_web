@@ -19,62 +19,76 @@ class NavigationSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
-      color: AppColors.blackNavy,
+      width: 280,
+      color: AppColors.backgroundColor,
       height: double.infinity,
       child: Column(
         children: [
           Container(
             height: 60,
             width: double.infinity,
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: AppColors.grayE4, width: 1),
-              ),
-            ),
+            decoration: BoxDecoration(color: AppColors.white),
             alignment: Alignment.centerLeft,
             child: Padding(
               padding: EdgeInsets.only(left: 20),
               child: Text(
                 gymName,
-                style: ScDreamStyles.extraBold20(AppColors.white),
+                style:
+                    SsentifTextStyles.bold20.copyWith(color: AppColors.gray555),
               ),
             ),
           ),
-          SizedBox(height: 15),
-          ...NavigationSectionType.values.map((type) {
-            final bool selected = type == selectedSection;
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              child: InkWell(
-                borderRadius: BorderRadius.circular(8),
-                onTap: () => onSectionSelected(type),
-                child: Container(
-                  height: 48,
-                  decoration: BoxDecoration(
-                    color: selected ? AppColors.primary : AppColors.blackNavy,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Row(
-                    children: [
-                      SizedBox(width: 20),
-                      (selected ? type.selectedIcon : type.unSelectedIcon)
-                          .image(),
-                      SizedBox(width: 12),
-                      Text(
-                        type.label,
-                        style: ScDreamStyles.medium16(
-                          selected ? AppColors.blackNavy : AppColors.white,
-                        ),
-                      ),
-                    ],
-                  ),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.backgroundColor,
+                border: Border(
+                  right: BorderSide(color: AppColors.grayE4, width: 1),
                 ),
               ),
-            );
-          }).toList(),
-          Expanded(
-            child: Container(),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  SizedBox(height: 15),
+                  ...NavigationSectionType.values.map((type) {
+                    final bool selected = type == selectedSection;
+                    return Padding(
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(8),
+                        onTap: () => onSectionSelected(type),
+                        child: Container(
+                          height: 48,
+                          decoration: BoxDecoration(
+                            color: selected
+                                ? AppColors.backgroundTabSelected
+                                : AppColors.backgroundColor,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Row(
+                            children: [
+                              SizedBox(width: 20),
+                              (selected ? type.selectedIcon : type.unSelectedIcon)
+                                  .image(width: 28, height: 28),
+                              SizedBox(width: 12),
+                              Text(
+                                type.label,
+                                style: SsentifTextStyles.regular18.copyWith(
+                                  color: selected
+                                      ? AppColors.backgroundTabSelectedText
+                                      : AppColors.gray1,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ],
+              ),
+            ),
           ),
         ],
       ),

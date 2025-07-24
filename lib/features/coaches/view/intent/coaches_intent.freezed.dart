@@ -20,18 +20,21 @@ mixin _$CoachesIntent {
   TResult when<TResult extends Object?>({
     required TResult Function(UserEntity user) clickCoachProfile,
     required TResult Function(int idx) selectTab,
+    required TResult Function(DateTime calendarDate) updateCalendarDate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(UserEntity user)? clickCoachProfile,
     TResult? Function(int idx)? selectTab,
+    TResult? Function(DateTime calendarDate)? updateCalendarDate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(UserEntity user)? clickCoachProfile,
     TResult Function(int idx)? selectTab,
+    TResult Function(DateTime calendarDate)? updateCalendarDate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$CoachesIntent {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClickCoachProfile value) clickCoachProfile,
     required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_UpdateCalendarDate value) updateCalendarDate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClickCoachProfile value)? clickCoachProfile,
     TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_UpdateCalendarDate value)? updateCalendarDate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClickCoachProfile value)? clickCoachProfile,
     TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_UpdateCalendarDate value)? updateCalendarDate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -160,6 +166,7 @@ class _$ClickCoachProfileImpl implements _ClickCoachProfile {
   TResult when<TResult extends Object?>({
     required TResult Function(UserEntity user) clickCoachProfile,
     required TResult Function(int idx) selectTab,
+    required TResult Function(DateTime calendarDate) updateCalendarDate,
   }) {
     return clickCoachProfile(user);
   }
@@ -169,6 +176,7 @@ class _$ClickCoachProfileImpl implements _ClickCoachProfile {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(UserEntity user)? clickCoachProfile,
     TResult? Function(int idx)? selectTab,
+    TResult? Function(DateTime calendarDate)? updateCalendarDate,
   }) {
     return clickCoachProfile?.call(user);
   }
@@ -178,6 +186,7 @@ class _$ClickCoachProfileImpl implements _ClickCoachProfile {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(UserEntity user)? clickCoachProfile,
     TResult Function(int idx)? selectTab,
+    TResult Function(DateTime calendarDate)? updateCalendarDate,
     required TResult orElse(),
   }) {
     if (clickCoachProfile != null) {
@@ -191,6 +200,7 @@ class _$ClickCoachProfileImpl implements _ClickCoachProfile {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClickCoachProfile value) clickCoachProfile,
     required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_UpdateCalendarDate value) updateCalendarDate,
   }) {
     return clickCoachProfile(this);
   }
@@ -200,6 +210,7 @@ class _$ClickCoachProfileImpl implements _ClickCoachProfile {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClickCoachProfile value)? clickCoachProfile,
     TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_UpdateCalendarDate value)? updateCalendarDate,
   }) {
     return clickCoachProfile?.call(this);
   }
@@ -209,6 +220,7 @@ class _$ClickCoachProfileImpl implements _ClickCoachProfile {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClickCoachProfile value)? clickCoachProfile,
     TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_UpdateCalendarDate value)? updateCalendarDate,
     required TResult orElse(),
   }) {
     if (clickCoachProfile != null) {
@@ -301,6 +313,7 @@ class _$SelectTabImpl implements _SelectTab {
   TResult when<TResult extends Object?>({
     required TResult Function(UserEntity user) clickCoachProfile,
     required TResult Function(int idx) selectTab,
+    required TResult Function(DateTime calendarDate) updateCalendarDate,
   }) {
     return selectTab(idx);
   }
@@ -310,6 +323,7 @@ class _$SelectTabImpl implements _SelectTab {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(UserEntity user)? clickCoachProfile,
     TResult? Function(int idx)? selectTab,
+    TResult? Function(DateTime calendarDate)? updateCalendarDate,
   }) {
     return selectTab?.call(idx);
   }
@@ -319,6 +333,7 @@ class _$SelectTabImpl implements _SelectTab {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(UserEntity user)? clickCoachProfile,
     TResult Function(int idx)? selectTab,
+    TResult Function(DateTime calendarDate)? updateCalendarDate,
     required TResult orElse(),
   }) {
     if (selectTab != null) {
@@ -332,6 +347,7 @@ class _$SelectTabImpl implements _SelectTab {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClickCoachProfile value) clickCoachProfile,
     required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_UpdateCalendarDate value) updateCalendarDate,
   }) {
     return selectTab(this);
   }
@@ -341,6 +357,7 @@ class _$SelectTabImpl implements _SelectTab {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClickCoachProfile value)? clickCoachProfile,
     TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_UpdateCalendarDate value)? updateCalendarDate,
   }) {
     return selectTab?.call(this);
   }
@@ -350,6 +367,7 @@ class _$SelectTabImpl implements _SelectTab {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClickCoachProfile value)? clickCoachProfile,
     TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_UpdateCalendarDate value)? updateCalendarDate,
     required TResult orElse(),
   }) {
     if (selectTab != null) {
@@ -368,5 +386,154 @@ abstract class _SelectTab implements CoachesIntent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SelectTabImplCopyWith<_$SelectTabImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateCalendarDateImplCopyWith<$Res> {
+  factory _$$UpdateCalendarDateImplCopyWith(_$UpdateCalendarDateImpl value,
+          $Res Function(_$UpdateCalendarDateImpl) then) =
+      __$$UpdateCalendarDateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime calendarDate});
+}
+
+/// @nodoc
+class __$$UpdateCalendarDateImplCopyWithImpl<$Res>
+    extends _$CoachesIntentCopyWithImpl<$Res, _$UpdateCalendarDateImpl>
+    implements _$$UpdateCalendarDateImplCopyWith<$Res> {
+  __$$UpdateCalendarDateImplCopyWithImpl(_$UpdateCalendarDateImpl _value,
+      $Res Function(_$UpdateCalendarDateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of CoachesIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? calendarDate = null,
+  }) {
+    return _then(_$UpdateCalendarDateImpl(
+      null == calendarDate
+          ? _value.calendarDate
+          : calendarDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateCalendarDateImpl implements _UpdateCalendarDate {
+  const _$UpdateCalendarDateImpl(this.calendarDate);
+
+  @override
+  final DateTime calendarDate;
+
+  @override
+  String toString() {
+    return 'CoachesIntent.updateCalendarDate(calendarDate: $calendarDate)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateCalendarDateImpl &&
+            (identical(other.calendarDate, calendarDate) ||
+                other.calendarDate == calendarDate));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, calendarDate);
+
+  /// Create a copy of CoachesIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateCalendarDateImplCopyWith<_$UpdateCalendarDateImpl> get copyWith =>
+      __$$UpdateCalendarDateImplCopyWithImpl<_$UpdateCalendarDateImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserEntity user) clickCoachProfile,
+    required TResult Function(int idx) selectTab,
+    required TResult Function(DateTime calendarDate) updateCalendarDate,
+  }) {
+    return updateCalendarDate(calendarDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserEntity user)? clickCoachProfile,
+    TResult? Function(int idx)? selectTab,
+    TResult? Function(DateTime calendarDate)? updateCalendarDate,
+  }) {
+    return updateCalendarDate?.call(calendarDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserEntity user)? clickCoachProfile,
+    TResult Function(int idx)? selectTab,
+    TResult Function(DateTime calendarDate)? updateCalendarDate,
+    required TResult orElse(),
+  }) {
+    if (updateCalendarDate != null) {
+      return updateCalendarDate(calendarDate);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClickCoachProfile value) clickCoachProfile,
+    required TResult Function(_SelectTab value) selectTab,
+    required TResult Function(_UpdateCalendarDate value) updateCalendarDate,
+  }) {
+    return updateCalendarDate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClickCoachProfile value)? clickCoachProfile,
+    TResult? Function(_SelectTab value)? selectTab,
+    TResult? Function(_UpdateCalendarDate value)? updateCalendarDate,
+  }) {
+    return updateCalendarDate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClickCoachProfile value)? clickCoachProfile,
+    TResult Function(_SelectTab value)? selectTab,
+    TResult Function(_UpdateCalendarDate value)? updateCalendarDate,
+    required TResult orElse(),
+  }) {
+    if (updateCalendarDate != null) {
+      return updateCalendarDate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UpdateCalendarDate implements CoachesIntent {
+  const factory _UpdateCalendarDate(final DateTime calendarDate) =
+      _$UpdateCalendarDateImpl;
+
+  DateTime get calendarDate;
+
+  /// Create a copy of CoachesIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateCalendarDateImplCopyWith<_$UpdateCalendarDateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -820,6 +820,16 @@ class S {
     );
   }
 
+  /// `ETC`
+  String get etc_schedule {
+    return Intl.message(
+      'ETC',
+      name: 'etc_schedule',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Lesson(Booked)`
   String get reservation_complete {
     return Intl.message(
@@ -4485,6 +4495,26 @@ class S {
     return Intl.message(
       'Freelancer',
       name: 'freelancer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employee Management`
+  String get manage_staff {
+    return Intl.message(
+      'Employee Management',
+      name: 'manage_staff',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `View each coach’s member management at a glance.`
+  String get manage_staff_description {
+    return Intl.message(
+      'View each coach’s member management at a glance.',
+      name: 'manage_staff_description',
       desc: '',
       args: [],
     );

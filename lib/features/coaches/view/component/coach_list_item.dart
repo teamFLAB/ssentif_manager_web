@@ -26,48 +26,46 @@ class CoachListItem extends StatelessWidget {
       onTap: onClick,
       child: Container(
         height: 60,
-        width: 130,
+        constraints: BoxConstraints(
+          minWidth: 130,
+        ),
         padding: const EdgeInsets.symmetric(horizontal: 12),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: selected ? AppColors.backgroundTabSelected : Colors.white,
           border: selected ? Border.all(
-            color: AppColors.primary,
-            width: 1.5,
+            color: AppColors.green1899,
+            width: 1,
             strokeAlign: BorderSide.strokeAlignOutside
-          ) : Border(
-            left: BorderSide(color: AppColors.transparent),
-            right: BorderSide(color: AppColors.grayE4, width: 1.5),
-          ),
-          borderRadius: BorderRadius.circular(0),
+          ) : null,
+          borderRadius: BorderRadius.circular(5),
         ),
         child: Row(
           children: [
             // 프로필 이미지
             ProfileImageWidget(
                 selected: selected,
-                imageURL: user.imageUrl
+                imageURL: user.imageUrl,
+                showSelected: false,
             ),
             const SizedBox(width: 10),
             // 이름/직책
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    user.userName,
-                    style: ScDreamStyles.medium14(AppColors.black),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    user.workPosition != null
-                        ? Intl.message(user.workPosition!.getIntlKey())
-                        : '',
-                    style: ScDreamStyles.medium12(AppColors.gray2),
-                  ),
-                ],
-              ),
-            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  user.userName,
+                  style: ScDreamStyles.medium14(AppColors.black),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  user.workPosition != null
+                      ? Intl.message(user.workPosition!.getIntlKey())
+                      : '',
+                  style: ScDreamStyles.medium12(AppColors.gray2),
+                ),
+              ],
+            )
           ],
         ),
       ),

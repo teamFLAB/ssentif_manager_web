@@ -20,9 +20,15 @@ class AppColors {
   static const gray3 = Color(0xFFC4C4C4);
   static const gray4 = Color(0xFFEAEAEA);
   static const gray5 = Color(0xFF7B7D8D);
+  static const gray555 = Color(0xFF555555);
+
   static const gray6 = Color(0xFFE7E7E7);
   static const gray7 = Color(0xFFF3F4F6);
+  static const gray8 = Color(0xFFF8F8F8);
+  static const gray9 = Color(0xFFE8E8E8);
+
   static const grayE4 = Color(0xFFE4E4E4);
+  static const grayEcEdF0 = Color(0xFFECEDF0);
 
   static const primary = Color(0xFF2ee0c3);
   static const primaryAlpha20 = Color(0x332ee0c3);
@@ -35,4 +41,7 @@ class AppColors {
   static const modalBackgroundGreen = Color(0xFFE4F4F2);
   static const modalTextRed = Color(0xFFFF7474);
 
+  static const backgroundTabSelected = Color(0xFFE4F4F2);
+  static const backgroundTabSelectedText = Color(0xFF0E5E72);
+  static const green1899 = Color(0xFF189997);
 }

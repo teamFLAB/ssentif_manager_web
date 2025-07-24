@@ -12,5 +12,6 @@ class CoachesState with _$CoachesState {
     UserEntity? selectedUser,
     DateTime? scheduleStartDate,
     @Default([]) List<CalendarScheduleEntity> schedulesOfSelectedCoach,
+    @Default(null) DateTime? calendarDate,
   }) = _CoachesState;
 }

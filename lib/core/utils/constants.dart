@@ -9,4 +9,6 @@ class Constants {
   static String localizationDateFormat() => PlatformDispatcher.instance.locale.languageCode == "ko"
       ? "yyyy년 MM월 dd일 E요일"
       : "yyyy . MM . dd EEE";
+
 }
+

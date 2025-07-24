@@ -4,16 +4,17 @@ import 'package:ssentif_manager_web/core/themes/typography.dart';
 import 'package:ssentif_manager_web/features/schedule/domain/entity/calendar_schedule_entity.dart';
 import 'package:ssentif_manager_web/features/schedule/domain/enumtype/schedule_status_type.dart';
 import 'package:ssentif_manager_web/core/utils/date_utils.dart';
+import 'package:intl/intl.dart';
 
 class ScheduleDateCell extends StatelessWidget {
   final DateTime cellDate;
   final DateTime selectedDate;
-  final List<CalendarScheduleEntity> schedules;
+  final Map<ScheduleStatusType, int> schedules;
   const ScheduleDateCell({
     super.key,
     required this.cellDate,
     required this.selectedDate,
-    this.schedules = const [],
+    this.schedules = const {},
   });
 
   @override
@@ -24,8 +25,9 @@ class ScheduleDateCell extends StatelessWidget {
     final isToday = cellDate.year == DateTime.now().year &&
         cellDate.month == DateTime.now().month &&
         cellDate.day == DateTime.now().day;
+
     return Container(
-      padding: const EdgeInsets.only(top: 4, left: 6, right: 4, bottom: 4),
+      padding: const EdgeInsets.only(top: 10, left: 6, right: 4, bottom: 4),
       alignment: Alignment.topLeft,
       decoration: BoxDecoration(
         border: Border.all(
@@ -62,31 +64,39 @@ class ScheduleDateCell extends StatelessWidget {
             Expanded(
               child: ListView.builder(
                 physics: ClampingScrollPhysics(),
-                itemCount: schedules.length,
+                itemCount: schedules.entries.length,
                 itemBuilder: (context, idx) {
-                  final s = schedules[idx];
+                  final scheduleType = schedules.keys.toList()[idx];
+                  final scheduleCount = schedules.values.toList()[idx];
+
                   return Container(
                     margin: const EdgeInsets.only(top: 2),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 2, vertical: 1),
-                    decoration: BoxDecoration(
-                      color:
-                          s.scheduleStatusType?.findColor() ?? AppColors.gray3,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 1),
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Text(
-                          s.startTime != null ? s.startTime!.formatHM() : '',
-                          style: ScDreamStyles.medium10(AppColors.white),
+                        // 6px 사각형 (scheduleStatus 색상)
+                        Container(
+                          width: 12,
+                          height: 12,
+                          decoration: BoxDecoration(
+                            color: scheduleType.findColor() ?? AppColors.gray3,
+                            borderRadius: BorderRadius.circular(1),
+                          ),
                         ),
-                        const SizedBox(width: 4),
+                        const SizedBox(width: 8), // 5px 간격
+                        // 스케줄 상태 텍스트
                         Expanded(
                           child: Text(
-                            "${s.trainerName} 코치 - ${s.scheduleName}",
-                            style: ScDreamStyles.medium10(AppColors.white),
+                            Intl.message(scheduleType.findScheduleDetailStringKey()),
+                            style: ScDreamStyles.medium14(AppColors.gray2),
                             overflow: TextOverflow.ellipsis,
                           ),
+                        ),
+                        // 스케줄 개수
+                        Text(
+                          '$scheduleCount',
+                          style: ScDreamStyles.medium14(AppColors.black),
                         ),
                       ],
                     ),

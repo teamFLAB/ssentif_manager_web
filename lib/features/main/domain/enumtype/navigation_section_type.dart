@@ -2,41 +2,55 @@ import 'package:ssentif_manager_web/gen/assets.gen.dart';
 
 enum NavigationSectionType {
   schedule, // 일정관리
-  coach, // 코치
-  analysis, // 분석
+  coach, // 직원관리
+  classRecords, //수업일지 피드
+  revenue, // 매출 관리 (준비중)
+  setting // 설정
 }
 
 extension NavigationSectionTypeExtension on NavigationSectionType {
   String get label {
     switch (this) {
       case NavigationSectionType.schedule:
-        return '일정관리';
+        return '일정 관리';
       case NavigationSectionType.coach:
-        return '코치';
-      case NavigationSectionType.analysis:
-        return '분석';
+        return '직원 관리';
+      case NavigationSectionType.classRecords:
+        return '수업일지 피드';
+      case NavigationSectionType.revenue:
+        return '매출 관리 (준비중)';
+      case NavigationSectionType.setting:
+        return '설정';
     }
   }
 
   AssetGenImage get unSelectedIcon {
     switch (this) {
       case NavigationSectionType.schedule:
-        return Assets.images.icCalWhite;
+        return Assets.images.tabHomeUnselected;
       case NavigationSectionType.coach:
-        return Assets.images.icCoachesWhite;
-      case NavigationSectionType.analysis:
-        return Assets.images.icStatisticsWhite;
+        return Assets.images.tabStaffUnselected;
+      case NavigationSectionType.classRecords:
+        return Assets.images.tabSessionUnselected;
+      case NavigationSectionType.revenue:
+        return Assets.images.tabIncomeUnselected;
+      case NavigationSectionType.setting:
+        return Assets.images.tabSettingUnselected;
     }
   }
 
   AssetGenImage get selectedIcon {
     switch (this) {
       case NavigationSectionType.schedule:
-        return Assets.images.icCalBlack;
+        return Assets.images.tabHomeSelected;
       case NavigationSectionType.coach:
-        return Assets.images.icCoachesBlack;
-      case NavigationSectionType.analysis:
-        return Assets.images.icStatisticsBlack;
+        return Assets.images.tabStaffSelected;
+      case NavigationSectionType.classRecords:
+        return Assets.images.tabSessionSelected;
+      case NavigationSectionType.revenue:
+        return Assets.images.tabIncomeSelected;
+      case NavigationSectionType.setting:
+        return Assets.images.tabSettingSelected;
     }
   }
 }

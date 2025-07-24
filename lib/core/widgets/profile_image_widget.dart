@@ -7,20 +7,24 @@ import 'package:ssentif_manager_web/gen/assets.gen.dart';
 class ProfileImageWidget extends StatelessWidget {
   final double size;
   final bool selected;
+  final bool showSelected;
   final String imageURL;
 
   const ProfileImageWidget({
     super.key,
     this.size = 35,
     this.selected = false,
+    this.showSelected = false,
     required this.imageURL
   });
 
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundColor: selected
-          ? AppColors.primary
+      backgroundColor: !showSelected
+          ? AppColors.transparent
+          : selected
+          ? AppColors.green1899
           : AppColors.transparent,
       child:imageURL == Constants.dummyProfileImgUrl || imageURL.isEmpty ?
       Image.asset(

@@ -12,8 +12,13 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 import '../component/schedule_date_cell.dart';
 import 'package:ssentif_manager_web/features/schedule/domain/enumtype/schedule_status_type.dart';
 import 'package:ssentif_manager_web/features/schedule/domain/entity/calendar_schedule_entity.dart';
-import '../component/schedule_header.dart';
+import '../component/date_selection_view.dart';
+import 'package:ssentif_manager_web/shared/enumtype/calendar_type.dart';
 import '../component/selected_date_timeline.dart';
+import '../component/schedule_stat_box.dart';
+import '../component/coach_item.dart';
+import '../component/daily_timeline.dart';
+import '../component/schedule_dialog.dart';
 
 class ScheduleScreen extends ConsumerStatefulWidget {
   final List<UserEntity> coaches;
@@ -35,8 +40,8 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
 
       final viewModelProvider = scheduleViewModelProvider(widget.coaches);
       ref.listen(viewModelProvider, (previous, next) {
-        if (_calendarController.displayDate != next.selectedMonth) {
-          _calendarController.displayDate = next.selectedMonth;
+        if (_calendarController.displayDate != next.calendarDate) {
+          _calendarController.displayDate = next.calendarDate;
         }
       });
     });
@@ -50,95 +55,237 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
         final viewModel = ref.read(viewModelProvider.notifier);
         final state = ref.watch(viewModelProvider);
         final selectedDate = state.selectedDate;
-        final selectedMonth = state.selectedMonth;
+        final selectedMonth = state.calendarDate;
         handleEffect(ref);
 
-        return Column(
-          children: [
-            ScheduleHeader(
-              selectedDate: selectedDate,
-              selectedMonth: selectedMonth,
-              onPrevMonth: () {
-                viewModel
-                    .handleIntent(const ScheduleIntent.clickPreviousMonth());
-              },
-              onNextMonth: () {
-                viewModel.handleIntent(const ScheduleIntent.clickNextMonth());
-              },
-              onToday: () {
-                viewModel.handleIntent(const ScheduleIntent.clickTodayDate());
-              },
-              onSearchFilterChanged: (filter) {
-                viewModel.handleIntent(
-                    ScheduleIntent.updateSearchFilter(filter: filter));
-              },
-            ),
-            Expanded(
-              child: Row(
-                children: [
-                  Container(
-                    width: 200,
-                    decoration: BoxDecoration(
-                        color: AppColors.white,
-                        border: Border(
-                            right:
-                                BorderSide(color: AppColors.grayE4, width: 1))),
-                    child: SelectedDateTimeline(
-                      selectedDate: selectedDate,
-                      selectedDateSchedules: state.selectedDateSchedules,
-                    ),
-                  ),
-                  Expanded(
-                    child: SfCalendar(
-                      controller: _calendarController,
-                      view: CalendarView.month,
-                      initialDisplayDate: selectedMonth,
-                      cellBorderColor: AppColors.grayE4,
-                      onTap: (calendarTapDetails) {
-                        final date = calendarTapDetails.date;
-                        if (date != null) {
-                          viewModel.handleIntent(
-                              ScheduleIntent.selectDate(date: date));
-                        }
-                      },
-                      headerHeight: 0,
-                      viewHeaderHeight: 40,
-                      viewHeaderStyle: ViewHeaderStyle(
-                          dayTextStyle:
-                              ScDreamStyles.medium14(AppColors.gray2)),
-                      todayHighlightColor: AppColors.gray2,
-                      backgroundColor: Colors.white,
-                      monthCellBuilder: (context, details) {
-                        final date = details.date;
-                        final schedules = state.filteredMonthlySchedules
-                            .where((s) =>
-                                s.startTime != null &&
-                                s.startTime!.year == date.year &&
-                                s.startTime!.month == date.month &&
-                                s.startTime!.day == date.day)
-                            .toList();
-                        return ScheduleDateCell(
-                          cellDate: date,
-                          selectedDate: selectedMonth,
-                          schedules: schedules,
-                        );
-                      },
-                      monthViewSettings: MonthViewSettings(
-                        dayFormat: 'EE',
-                      ),
-                      selectionDecoration: BoxDecoration(
-                        border: Border.all(
-                          color: AppColors.primary,
-                          width: 2,
-                        ),
-                        color: Colors.transparent,
-                      ),
-                    ),
-                  ),
-                ],
+        // scheduleDetail이 있으면 다이얼로그 노출
+        if (state.scheduleDetail != null) {
+          Future.delayed(Duration.zero, () async {
+            await showDialog(
+              context: context,
+              builder: (context) => ScheduleDialog(
+                context: context,
+                scheduleDetail: state.scheduleDetail!,
+                navToRoutine: () {},
+                checkClassAttend: () {},
+                deleteSchedule: () {},
+                rollbackClassAttend: () {},
+                acceptRequest: () {},
+                rejectRequest: () {},
+                isTrainer: true,
+                modifyClassSchedule: () {},
+                modifyEtcSchedule: () {},
+                navToClientDetail: (id) {},
               ),
-            ),
-          ],
+            );
+            // 다이얼로그 닫힌 후 상태 초기화
+            viewModel.handleIntent(ScheduleIntent.onRefreshScheduleList());
+          });
+        }
+
+        return Container(
+          color: AppColors.backgroundColor,
+          child: Column(
+            children: [
+              Container(
+                height: 60,
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                ),
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(left: 30, right: 30),
+                        child: DateSelectionView(
+                          selectedDate: selectedDate,
+                          calendarDate:
+                              state.selectedCalendarType == CalendarType.daily
+                                  ? state.getDailyFormatCalendar()
+                                  : state.getMonthlyFormatCalendar(),
+                          onClickPrev: () {
+                            if (state.selectedCalendarType ==
+                                CalendarType.daily) {
+                              viewModel.handleIntent(
+                                  const ScheduleIntent.clickPreviousDay());
+                            } else {
+                              viewModel.handleIntent(
+                                  const ScheduleIntent.clickPreviousMonth());
+                            }
+                          },
+                          onClickNext: () {
+                            if (state.selectedCalendarType ==
+                                CalendarType.daily) {
+                              viewModel.handleIntent(
+                                  const ScheduleIntent.clickNextDay());
+                            } else {
+                              viewModel.handleIntent(
+                                  const ScheduleIntent.clickNextMonth());
+                            }
+                          },
+                          onClickToday: () {
+                            viewModel.handleIntent(
+                                const ScheduleIntent.clickTodayDate());
+                          },
+                          selectedCalendarType: state.selectedCalendarType,
+                          onSelectCalendarType: (type) {
+                            viewModel.handleIntent(
+                              ScheduleIntent.onSelectCalendarType(type: type),
+                            );
+                          },
+                        ),
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 30),
+                            child: Row(
+                              children: [
+                                ScheduleStatBox(
+                                    title: '전체 수업수',
+                                    value: state.totalClassCount.toString()),
+                                const SizedBox(width: 15),
+                                ScheduleStatBox(
+                                    title: '출석 완료',
+                                    value: state.attendanceCount.toString()),
+                                const SizedBox(width: 15),
+                                ScheduleStatBox(
+                                    title: '예약 완료',
+                                    value: state.reservationCount.toString()),
+                                const SizedBox(width: 15),
+                                ScheduleStatBox(
+                                    title: '예약 요청',
+                                    value: state.reservationRequestCount
+                                        .toString()),
+                                const SizedBox(width: 15),
+                                ScheduleStatBox(
+                                    title: '기타 일정',
+                                    value: state.etcCount.toString()),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 30),
+                            child: Divider(
+                              height: 1,
+                              thickness: 1,
+                              color: AppColors.gray9,
+                            ),
+                          ),
+                          Visibility(
+                              visible: state.selectedCalendarType ==
+                                  CalendarType.daily,
+                              child: SizedBox(height: 24)),
+                          Visibility(
+                            visible: state.selectedCalendarType ==
+                                CalendarType.daily,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 30),
+                              child: Row(
+                                children: [
+                                  for (int i = 0;
+                                      i < state.coaches.length;
+                                      i++) ...[
+                                    CoachItem(
+                                      coach: state.coaches[i],
+                                      selected: state.selectedCoaches.any((c) =>
+                                          c.userId == state.coaches[i].userId),
+                                      onTap: () {
+                                        viewModel.handleIntent(
+                                          ScheduleIntent.onToggleCoach(
+                                              coach: state.coaches[i]),
+                                        );
+                                      },
+                                    ),
+                                    if (i != state.coaches.length - 1)
+                                      const SizedBox(width: 12),
+                                  ]
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                          Container(
+                            padding: EdgeInsets.only(left: 30, right: 30),
+                            alignment: Alignment.centerLeft,
+                            child: state.selectedCalendarType ==
+                                    CalendarType.daily
+                                ? DailyTimeline(
+                                    selectedCoaches: state.selectedCoaches,
+                                    selectedDateSchedules:
+                                        state.selectedDateSchedules,
+                                    onScheduleTap: (scheduleId) {
+                                      viewModel.handleIntent(
+                                        ScheduleIntent.clickScheduleItem(
+                                            scheduleId: scheduleId),
+                                      );
+                                    },
+                                  )
+                                : Container(
+                                    height: 900, // 더 큰 높이로 설정하여 셀이 더 커지도록 함
+                                    child: SfCalendar(
+                                      controller: _calendarController,
+                                      view: CalendarView.month,
+                                      initialDisplayDate: selectedMonth,
+                                      cellBorderColor: AppColors.grayE4,
+                                      onTap: (calendarTapDetails) {
+                                        final date = calendarTapDetails.date;
+                                        if (date != null) {
+                                          viewModel.handleIntent(
+                                              ScheduleIntent.selectDate(
+                                                  date: date));
+                                        }
+                                      },
+                                      headerHeight: 0,
+                                      viewHeaderHeight: 40,
+                                      viewHeaderStyle: ViewHeaderStyle(
+                                          dayTextStyle: ScDreamStyles.medium14(
+                                              AppColors.gray2)),
+                                      todayHighlightColor: AppColors.gray2,
+                                      backgroundColor: Colors.white,
+                                      monthCellBuilder: (context, details) {
+                                        final date = details.date;
+                                        final schedules = state
+                                            .schedulesByDateAndStatus.entries
+                                            .where((s) {
+                                          return s.key.year == date.year &&
+                                              s.key.month == date.month &&
+                                              s.key.day == date.day;
+                                        }).toList();
+
+                                        return ScheduleDateCell(
+                                          cellDate: date,
+                                          selectedDate: selectedMonth,
+                                          schedules:
+                                              schedules.firstOrNull?.value ??
+                                                  {},
+                                        );
+                                      },
+                                      monthViewSettings: MonthViewSettings(
+                                        dayFormat: 'EE',
+                                      ),
+                                      selectionDecoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: AppColors.primary,
+                                          width: 2,
+                                        ),
+                                        color: Colors.transparent,
+                                      ),
+                                    ),
+                                  ),
+                          ),
+                          const SizedBox(height: 20),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         );
       },
     );
@@ -156,8 +303,7 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
             _calendarController.displayDate = dateTime;
             _calendarController.selectedDate = selectedDate;
           },
-          updateSelectedDateCell: (DateTime dateTime) {}
-      );
+          updateSelectedDateCell: (DateTime dateTime) {});
     });
   }
 }

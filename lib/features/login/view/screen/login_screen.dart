@@ -6,6 +6,7 @@ import 'package:ssentif_manager_web/core/utils/context_utils.dart';
 import 'package:ssentif_manager_web/gen/assets.gen.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'dart:html' as html;
 import '../effect/login_effect.dart';
 import '../viewmodel/login_view_model.dart';
 import '../intent/login_intent.dart';
@@ -18,95 +19,197 @@ class LoginScreen extends ConsumerWidget {
     final viewModel = ref.read(loginViewModelProvider.notifier);
     final state = ref.watch(loginViewModelProvider);
     handleEffect(ref, context);
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: AppColors.white,
-      body: Center(
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 40),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+      backgroundColor: AppColors.gray8,
+      body: Column(
+        children: [
+          // 상단 Bar
+          Container(
+            width: double.infinity,
+            height: 55,
+            decoration: BoxDecoration(color: AppColors.white),
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Assets.images.icSsentifTextLogo.image(
+                    height: 24,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                Center(
+                  child: Text(
+                    '로그인',
+                    style: SsentifTextStyles.regular18
+                        .copyWith(color: AppColors.gray1),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          // 하단 Divider
+          Container(
+            width: double.infinity,
+            height: 1,
+            color: AppColors.gray4,
+          ),
+          // Bar 밑 Row
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                      height: double.infinity,
+                      constraints: BoxConstraints(minWidth: screenWidth * 0.4),
+                      child: Assets.images.icBackgroundLogin.image(
+                        height: double.infinity,
+                        fit: BoxFit.cover,
+                      )),
+                ),
+                // 우측: 로그인 폼
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 60),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Assets.images.ssentifManagerTextLogo.image(),
-                      const SizedBox(height: 45),
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 10),
-                        child: Text(
-                          '이메일',
-                          style: GmarketSansStyles.medium16(AppColors.gray1),
-                        ),
+                      Assets.images.icSsentifTextLogo.image(
+                        height: 32,
                       ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        child: LoginTextField(
-                          hint: '이메일을 입력하세요',
-                          obscureText: false,
-                          onChanged: (value) => viewModel
-                              .handleIntent(LoginIntent.updateEmail(value)),
-                        ),
-                      ),
-                      const SizedBox(height: 35),
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 10),
-                        child: Text(
-                          '비밀번호',
-                          style: GmarketSansStyles.medium16(AppColors.gray1),
-                        ),
-                      ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        child: LoginTextField(
-                          hint: '비밀번호를 입력하세요',
-                          obscureText: true,
-                          onChanged: (value) => viewModel
-                              .handleIntent(LoginIntent.updatePassword(value)),
-                        ),
-                      ),
-                      const SizedBox(height: 50),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width * 0.5,
-                        child: Row(children: [
-                          const Spacer(),
-                          SizedBox(
-                            height: 48,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                viewModel.handleIntent(LoginIntent.login());
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.primary,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
+                      const SizedBox(height: 65),
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 32, horizontal: 24),
+                        width: 350,
+                        decoration: BoxDecoration(
+                            color: AppColors.white,
+                            borderRadius: BorderRadius.circular(12)),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  width: 75,
+                                  child: Text(
+                                    '이메일 ID',
+                                    style: SsentifTextStyles.regular14
+                                        .copyWith(color: AppColors.gray1),
+                                  ),
                                 ),
-                                elevation: 2,
-                              ),
-                              child: const Text('로그인',
-                                  style: GmarketSansStyles.medium18(
-                                      AppColors.white)),
+                                const SizedBox(width: 6),
+                                Expanded(
+                                  child: LoginTextField(
+                                    hint: '이메일을 입력하세요',
+                                    obscureText: false,
+                                    onChanged: (value) =>
+                                        viewModel.handleIntent(
+                                            LoginIntent.updateEmail(value)),
+                                  ),
+                                ),
+                              ],
                             ),
-                          )
-                        ]),
+                            const SizedBox(height: 40),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  width: 75,
+                                  child: Text(
+                                    '비밀번호',
+                                    style: SsentifTextStyles.regular14
+                                        .copyWith(color: AppColors.gray1),
+                                  ),
+                                ),
+                                const SizedBox(width: 6),
+                                Expanded(
+                                  child: LoginTextField(
+                                    hint: '비밀번호를 입력하세요',
+                                    obscureText: true,
+                                    onChanged: (value) =>
+                                        viewModel.handleIntent(
+                                            LoginIntent.updatePassword(value)),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 50),
+                            SizedBox(
+                              width: double.infinity,
+                              height: 54,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  viewModel.handleIntent(LoginIntent.login());
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppColors.primary,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(27),
+                                  ),
+                                  elevation: 1,
+                                ),
+                                child: Text('로그인',
+                                    style: SsentifTextStyles.bold18
+                                        .copyWith(color: AppColors.white)),
+                              ),
+                            ),
+                            const SizedBox(height: 30),
+                            Container(
+                              height: 1,
+                              width: double.infinity,
+                              color: AppColors.gray4,
+                            ),
+                            const SizedBox(height: 16),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "아이디 찾기",
+                                  style: SsentifTextStyles.medium14
+                                      .copyWith(color: AppColors.gray1),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: Text(
+                                    "/",
+                                    style: SsentifTextStyles.medium14
+                                        .copyWith(color: AppColors.gray1),
+                                  ),
+                                ),
+                                Text(
+                                  "아이디 찾기",
+                                  style: SsentifTextStyles.medium14
+                                      .copyWith(color: AppColors.gray1),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 50),
+                          ],
+                        ),
                       ),
                     ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            if (state.onLoading)
-              Container(
+          ),
+          if (state.onLoading)
+            Positioned.fill(
+              child: Container(
                 color: Colors.black.withOpacity(0.3),
                 child: const Center(
                   child: CircularProgressIndicator(),
                 ),
               ),
-          ],
-        ),
+            ),
+        ],
       ),
     );
   }
@@ -127,34 +230,31 @@ class LoginTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       obscureText: obscureText,
-      style: GmarketSansStyles.medium18(AppColors.black),
+      style: SsentifTextStyles.regular14.copyWith(color: AppColors.black),
       onChanged: onChanged,
       decoration: InputDecoration(
         hintText: hint,
-        hintStyle: GmarketSansStyles.medium18(AppColors.gray2),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+        isDense: true,
+        hintStyle: SsentifTextStyles.regular14.copyWith(color: AppColors.gray2),
+        border: UnderlineInputBorder(
           borderSide: const BorderSide(
-            color: AppColors.gray3,
-            width: 1,
+            color: AppColors.gray4,
+            width: 2,
           ),
         ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+        enabledBorder: UnderlineInputBorder(
           borderSide: const BorderSide(
-            color: AppColors.gray3,
-            width: 1,
+            color: AppColors.gray4,
+            width: 2,
           ),
         ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+        focusedBorder: UnderlineInputBorder(
           borderSide: const BorderSide(
-            color: AppColors.gray3,
-            width: 1,
+            color: AppColors.gray4,
+            width: 2,
           ),
         ),
-        contentPadding:
-            const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 5, vertical: 14),
       ),
     );
   }
@@ -166,7 +266,13 @@ void handleEffect(WidgetRef ref, BuildContext context) {
       current.when(
         navigateToMain: () {
           context.showSnackBar("로그인이 완료되었습니다.");
-          context.pushReplacement(AppRoutePath.main.path);
+          // 웹 브라우저의 히스토리를 완전히 교체
+          context.go(AppRoutePath.main.path, extra: {"replaceAll": true});
+          // 히스토리에서 로그인 페이지 제거
+          if (context.mounted) {
+            // 브라우저의 히스토리 API를 사용하여 현재 페이지를 교체
+            html.window.history.replaceState(null, '', AppRoutePath.main.path);
+          }
         },
         showError: (message) {},
         updateSavedEmail: (String email) {},

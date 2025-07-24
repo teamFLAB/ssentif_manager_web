@@ -77,6 +77,7 @@
   "category_class_reservation_wait" : "Lesson(Request)",
   "category_class_complete" : "Lesson(Complete)",
   "class_complete" : "Lesson(Complete)",
+  "etc_schedule" : "ETC",
   "reservation_complete" : "Lesson(Booked)",
   "label_name_workout" : "Workout",
   "label_name_class" : "Lesson",
@@ -443,5 +444,7 @@
   "representative" : "Representative",
   "manager" : "Manager",
   "employee" : "Employee",
-  "freelancer" : "Freelancer"
+  "freelancer" : "Freelancer",
+  "manage_staff" : "Employee Management",
+  "manage_staff_description" : "View each coach’s member management at a glance."
 }

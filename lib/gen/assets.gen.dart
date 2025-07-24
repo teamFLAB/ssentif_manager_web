@@ -33,6 +33,19 @@ class $AssetsFontsGen {
   /// File path: assets/fonts/SCDreamMedium.otf
   String get sCDreamMedium => 'assets/fonts/SCDreamMedium.otf';
 
+  /// File path: assets/fonts/SpoqaHanSansNeo-Bold.otf
+  String get spoqaHanSansNeoBold => 'assets/fonts/SpoqaHanSansNeo-Bold.otf';
+
+  /// File path: assets/fonts/SpoqaHanSansNeo-Light.otf
+  String get spoqaHanSansNeoLight => 'assets/fonts/SpoqaHanSansNeo-Light.otf';
+
+  /// File path: assets/fonts/SpoqaHanSansNeo-Medium.otf
+  String get spoqaHanSansNeoMedium => 'assets/fonts/SpoqaHanSansNeo-Medium.otf';
+
+  /// File path: assets/fonts/SpoqaHanSansNeo-Regular.otf
+  String get spoqaHanSansNeoRegular =>
+      'assets/fonts/SpoqaHanSansNeo-Regular.otf';
+
   /// List of all assets
   List<String> get values => [
     gmarketSansTTFBold,
@@ -42,6 +55,10 @@ class $AssetsFontsGen {
     sCDreamExtraBold,
     sCDreamExtraLight,
     sCDreamMedium,
+    spoqaHanSansNeoBold,
+    spoqaHanSansNeoLight,
+    spoqaHanSansNeoMedium,
+    spoqaHanSansNeoRegular,
   ];
 }
 
@@ -52,6 +69,10 @@ class $AssetsImagesGen {
   AssetGenImage get btnCloseWhite =>
       const AssetGenImage('assets/images/btn_close_white.png');
 
+  /// File path: assets/images/female_profile.png
+  AssetGenImage get femaleProfile =>
+      const AssetGenImage('assets/images/female_profile.png');
+
   /// File path: assets/images/gym_visual_dummy.png
   AssetGenImage get gymVisualDummy =>
       const AssetGenImage('assets/images/gym_visual_dummy.png');
@@ -59,6 +80,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/ic_back_gray.png
   AssetGenImage get icBackGray =>
       const AssetGenImage('assets/images/ic_back_gray.png');
+
+  /// File path: assets/images/ic_background_login.png
+  AssetGenImage get icBackgroundLogin =>
+      const AssetGenImage('assets/images/ic_background_login.png');
 
   /// File path: assets/images/ic_bookmark_selected.png
   AssetGenImage get icBookmarkSelected =>
@@ -92,9 +117,29 @@ class $AssetsImagesGen {
   AssetGenImage get icCoachesWhite =>
       const AssetGenImage('assets/images/ic_coaches_white.png');
 
+  /// File path: assets/images/ic_day_selected.png
+  AssetGenImage get icDaySelected =>
+      const AssetGenImage('assets/images/ic_day_selected.png');
+
+  /// File path: assets/images/ic_day_unselected.png
+  AssetGenImage get icDayUnselected =>
+      const AssetGenImage('assets/images/ic_day_unselected.png');
+
   /// File path: assets/images/ic_delete.png
   AssetGenImage get icDelete =>
       const AssetGenImage('assets/images/ic_delete.png');
+
+  /// File path: assets/images/ic_month_selected.png
+  AssetGenImage get icMonthSelected =>
+      const AssetGenImage('assets/images/ic_month_selected.png');
+
+  /// File path: assets/images/ic_month_unselected.png
+  AssetGenImage get icMonthUnselected =>
+      const AssetGenImage('assets/images/ic_month_unselected.png');
+
+  /// File path: assets/images/ic_next_button.png
+  AssetGenImage get icNextButton =>
+      const AssetGenImage('assets/images/ic_next_button.png');
 
   /// File path: assets/images/ic_plus_primary.png
   AssetGenImage get icPlusPrimary =>
@@ -104,6 +149,10 @@ class $AssetsImagesGen {
   AssetGenImage get icPlusWhite =>
       const AssetGenImage('assets/images/ic_plus_white.png');
 
+  /// File path: assets/images/ic_previous_button.png
+  AssetGenImage get icPreviousButton =>
+      const AssetGenImage('assets/images/ic_previous_button.png');
+
   /// File path: assets/images/ic_search_gray.png
   AssetGenImage get icSearchGray =>
       const AssetGenImage('assets/images/ic_search_gray.png');
@@ -111,6 +160,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/ic_ssentif_profile.png
   AssetGenImage get icSsentifProfile =>
       const AssetGenImage('assets/images/ic_ssentif_profile.png');
+
+  /// File path: assets/images/ic_ssentif_text_logo.png
+  AssetGenImage get icSsentifTextLogo =>
+      const AssetGenImage('assets/images/ic_ssentif_text_logo.png');
 
   /// File path: assets/images/ic_statistics_black.png
   AssetGenImage get icStatisticsBlack =>
@@ -120,19 +173,69 @@ class $AssetsImagesGen {
   AssetGenImage get icStatisticsWhite =>
       const AssetGenImage('assets/images/ic_statistics_white.png');
 
+  /// File path: assets/images/ic_today_button.png
+  AssetGenImage get icTodayButton =>
+      const AssetGenImage('assets/images/ic_today_button.png');
+
   /// File path: assets/images/ic_user_profile.png
   AssetGenImage get icUserProfile =>
       const AssetGenImage('assets/images/ic_user_profile.png');
+
+  /// File path: assets/images/male_profile.png
+  AssetGenImage get maleProfile =>
+      const AssetGenImage('assets/images/male_profile.png');
 
   /// File path: assets/images/ssentif_manager_text_logo.png
   AssetGenImage get ssentifManagerTextLogo =>
       const AssetGenImage('assets/images/ssentif_manager_text_logo.png');
 
+  /// File path: assets/images/tab_home_selected.png
+  AssetGenImage get tabHomeSelected =>
+      const AssetGenImage('assets/images/tab_home_selected.png');
+
+  /// File path: assets/images/tab_home_unselected.png
+  AssetGenImage get tabHomeUnselected =>
+      const AssetGenImage('assets/images/tab_home_unselected.png');
+
+  /// File path: assets/images/tab_income_selected.png
+  AssetGenImage get tabIncomeSelected =>
+      const AssetGenImage('assets/images/tab_income_selected.png');
+
+  /// File path: assets/images/tab_income_unselected.png
+  AssetGenImage get tabIncomeUnselected =>
+      const AssetGenImage('assets/images/tab_income_unselected.png');
+
+  /// File path: assets/images/tab_session_selected.png
+  AssetGenImage get tabSessionSelected =>
+      const AssetGenImage('assets/images/tab_session_selected.png');
+
+  /// File path: assets/images/tab_session_unselected.png
+  AssetGenImage get tabSessionUnselected =>
+      const AssetGenImage('assets/images/tab_session_unselected.png');
+
+  /// File path: assets/images/tab_setting_selected.png
+  AssetGenImage get tabSettingSelected =>
+      const AssetGenImage('assets/images/tab_setting_selected.png');
+
+  /// File path: assets/images/tab_setting_unselected.png
+  AssetGenImage get tabSettingUnselected =>
+      const AssetGenImage('assets/images/tab_setting_unselected.png');
+
+  /// File path: assets/images/tab_staff_selected.png
+  AssetGenImage get tabStaffSelected =>
+      const AssetGenImage('assets/images/tab_staff_selected.png');
+
+  /// File path: assets/images/tab_staff_unselected.png
+  AssetGenImage get tabStaffUnselected =>
+      const AssetGenImage('assets/images/tab_staff_unselected.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
     btnCloseWhite,
+    femaleProfile,
     gymVisualDummy,
     icBackGray,
+    icBackgroundLogin,
     icBookmarkSelected,
     icBookmarkUnselected,
     icButtonNext,
@@ -141,15 +244,34 @@ class $AssetsImagesGen {
     icCalWhite,
     icCoachesBlack,
     icCoachesWhite,
+    icDaySelected,
+    icDayUnselected,
     icDelete,
+    icMonthSelected,
+    icMonthUnselected,
+    icNextButton,
     icPlusPrimary,
     icPlusWhite,
+    icPreviousButton,
     icSearchGray,
     icSsentifProfile,
+    icSsentifTextLogo,
     icStatisticsBlack,
     icStatisticsWhite,
+    icTodayButton,
     icUserProfile,
+    maleProfile,
     ssentifManagerTextLogo,
+    tabHomeSelected,
+    tabHomeUnselected,
+    tabIncomeSelected,
+    tabIncomeUnselected,
+    tabSessionSelected,
+    tabSessionUnselected,
+    tabSettingSelected,
+    tabSettingUnselected,
+    tabStaffSelected,
+    tabStaffUnselected,
   ];
 }
 

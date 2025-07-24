@@ -99,6 +99,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cheat": MessageLookupByLibrary.simpleMessage("Cheating"),
         "check_account_information": MessageLookupByLibrary.simpleMessage(
             "Please check your account information."),
+        "check_class_attend":
+            MessageLookupByLibrary.simpleMessage("Check Attend"),
         "check_password":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
         "check_repetition": MessageLookupByLibrary.simpleMessage("Check"),
@@ -261,6 +263,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "You don\'t have any issued class vouchers\nPlease ask your coach to issue one."),
         "etc": MessageLookupByLibrary.simpleMessage("ETC"),
         "etcStringResources": MessageLookupByLibrary.simpleMessage(""),
+        "etc_schedule": MessageLookupByLibrary.simpleMessage("ETC"),
         "exerciseAnalysisStringResources":
             MessageLookupByLibrary.simpleMessage(""),
         "exerciseLibraryStringResources":
@@ -406,6 +409,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "male_1char": MessageLookupByLibrary.simpleMessage("M"),
         "manage_account":
             MessageLookupByLibrary.simpleMessage("Manage account"),
+        "manage_staff":
+            MessageLookupByLibrary.simpleMessage("Employee Management"),
+        "manage_staff_description": MessageLookupByLibrary.simpleMessage(
+            "View each coach’s member management at a glance."),
         "manager": MessageLookupByLibrary.simpleMessage("Manager"),
         "matched": MessageLookupByLibrary.simpleMessage("Your matched"),
         "maxReps": MessageLookupByLibrary.simpleMessage("Max Reps"),
@@ -647,6 +654,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "This app is for trainees only. Coaches, please download and use the SSENTIF-Coach from the store!"),
         "toast_empty_class_record": MessageLookupByLibrary.simpleMessage(
             "Please ask your coach to record the class!"),
+        "today_routine":
+            MessageLookupByLibrary.simpleMessage("Today\'s class routine"),
         "totalReps": MessageLookupByLibrary.simpleMessage("Total Reps"),
         "totalTime": MessageLookupByLibrary.simpleMessage("Total Time"),
         "total_class_count":

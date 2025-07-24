@@ -22,6 +22,7 @@ mixin _$CoachesState {
   DateTime? get scheduleStartDate => throw _privateConstructorUsedError;
   List<CalendarScheduleEntity> get schedulesOfSelectedCoach =>
       throw _privateConstructorUsedError;
+  DateTime? get calendarDate => throw _privateConstructorUsedError;
 
   /// Create a copy of CoachesState
   /// with the given fields replaced by the non-null parameter values.
@@ -41,7 +42,8 @@ abstract class $CoachesStateCopyWith<$Res> {
       int selectedTabIdx,
       UserEntity? selectedUser,
       DateTime? scheduleStartDate,
-      List<CalendarScheduleEntity> schedulesOfSelectedCoach});
+      List<CalendarScheduleEntity> schedulesOfSelectedCoach,
+      DateTime? calendarDate});
 
   $UserEntityCopyWith<$Res>? get selectedUser;
 }
@@ -66,6 +68,7 @@ class _$CoachesStateCopyWithImpl<$Res, $Val extends CoachesState>
     Object? selectedUser = freezed,
     Object? scheduleStartDate = freezed,
     Object? schedulesOfSelectedCoach = null,
+    Object? calendarDate = freezed,
   }) {
     return _then(_value.copyWith(
       coaches: null == coaches
@@ -88,6 +91,10 @@ class _$CoachesStateCopyWithImpl<$Res, $Val extends CoachesState>
           ? _value.schedulesOfSelectedCoach
           : schedulesOfSelectedCoach // ignore: cast_nullable_to_non_nullable
               as List<CalendarScheduleEntity>,
+      calendarDate: freezed == calendarDate
+          ? _value.calendarDate
+          : calendarDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 
@@ -119,7 +126,8 @@ abstract class _$$CoachesStateImplCopyWith<$Res>
       int selectedTabIdx,
       UserEntity? selectedUser,
       DateTime? scheduleStartDate,
-      List<CalendarScheduleEntity> schedulesOfSelectedCoach});
+      List<CalendarScheduleEntity> schedulesOfSelectedCoach,
+      DateTime? calendarDate});
 
   @override
   $UserEntityCopyWith<$Res>? get selectedUser;
@@ -143,6 +151,7 @@ class __$$CoachesStateImplCopyWithImpl<$Res>
     Object? selectedUser = freezed,
     Object? scheduleStartDate = freezed,
     Object? schedulesOfSelectedCoach = null,
+    Object? calendarDate = freezed,
   }) {
     return _then(_$CoachesStateImpl(
       coaches: null == coaches
@@ -165,6 +174,10 @@ class __$$CoachesStateImplCopyWithImpl<$Res>
           ? _value._schedulesOfSelectedCoach
           : schedulesOfSelectedCoach // ignore: cast_nullable_to_non_nullable
               as List<CalendarScheduleEntity>,
+      calendarDate: freezed == calendarDate
+          ? _value.calendarDate
+          : calendarDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -177,7 +190,8 @@ class _$CoachesStateImpl implements _CoachesState {
       this.selectedTabIdx = 0,
       this.selectedUser,
       this.scheduleStartDate,
-      final List<CalendarScheduleEntity> schedulesOfSelectedCoach = const []})
+      final List<CalendarScheduleEntity> schedulesOfSelectedCoach = const [],
+      this.calendarDate = null})
       : _coaches = coaches,
         _schedulesOfSelectedCoach = schedulesOfSelectedCoach;
 
@@ -208,8 +222,12 @@ class _$CoachesStateImpl implements _CoachesState {
   }
 
   @override
+  @JsonKey()
+  final DateTime? calendarDate;
+
+  @override
   String toString() {
-    return 'CoachesState(coaches: $coaches, selectedTabIdx: $selectedTabIdx, selectedUser: $selectedUser, scheduleStartDate: $scheduleStartDate, schedulesOfSelectedCoach: $schedulesOfSelectedCoach)';
+    return 'CoachesState(coaches: $coaches, selectedTabIdx: $selectedTabIdx, selectedUser: $selectedUser, scheduleStartDate: $scheduleStartDate, schedulesOfSelectedCoach: $schedulesOfSelectedCoach, calendarDate: $calendarDate)';
   }
 
   @override
@@ -225,7 +243,9 @@ class _$CoachesStateImpl implements _CoachesState {
             (identical(other.scheduleStartDate, scheduleStartDate) ||
                 other.scheduleStartDate == scheduleStartDate) &&
             const DeepCollectionEquality().equals(
-                other._schedulesOfSelectedCoach, _schedulesOfSelectedCoach));
+                other._schedulesOfSelectedCoach, _schedulesOfSelectedCoach) &&
+            (identical(other.calendarDate, calendarDate) ||
+                other.calendarDate == calendarDate));
   }
 
   @override
@@ -235,7 +255,8 @@ class _$CoachesStateImpl implements _CoachesState {
       selectedTabIdx,
       selectedUser,
       scheduleStartDate,
-      const DeepCollectionEquality().hash(_schedulesOfSelectedCoach));
+      const DeepCollectionEquality().hash(_schedulesOfSelectedCoach),
+      calendarDate);
 
   /// Create a copy of CoachesState
   /// with the given fields replaced by the non-null parameter values.
@@ -248,12 +269,12 @@ class _$CoachesStateImpl implements _CoachesState {
 
 abstract class _CoachesState implements CoachesState {
   const factory _CoachesState(
-          {final List<UserEntity> coaches,
-          final int selectedTabIdx,
-          final UserEntity? selectedUser,
-          final DateTime? scheduleStartDate,
-          final List<CalendarScheduleEntity> schedulesOfSelectedCoach}) =
-      _$CoachesStateImpl;
+      {final List<UserEntity> coaches,
+      final int selectedTabIdx,
+      final UserEntity? selectedUser,
+      final DateTime? scheduleStartDate,
+      final List<CalendarScheduleEntity> schedulesOfSelectedCoach,
+      final DateTime? calendarDate}) = _$CoachesStateImpl;
 
   @override
   List<UserEntity> get coaches;
@@ -265,6 +286,8 @@ abstract class _CoachesState implements CoachesState {
   DateTime? get scheduleStartDate;
   @override
   List<CalendarScheduleEntity> get schedulesOfSelectedCoach;
+  @override
+  DateTime? get calendarDate;
 
   /// Create a copy of CoachesState
   /// with the given fields replaced by the non-null parameter values.

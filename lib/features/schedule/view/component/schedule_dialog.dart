@@ -40,7 +40,7 @@ class ScheduleDialog extends Dialog {
     required this.modifyEtcSchedule,
     required this.navToClientDetail,
     this.radius = 15,
-    this.widthPercent = 0.85
+    this.widthPercent = 0.4
   }) : super(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(radius),
@@ -51,6 +51,9 @@ class ScheduleDialog extends Dialog {
       child: Container(
         color: AppColors.white,
         width: MediaQuery.of(context).size.width * widthPercent,
+        constraints: BoxConstraints(
+          minWidth: 200
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -90,24 +93,25 @@ class ScheduleDialog extends Dialog {
                 },
               ),
             ),
-            Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                child: (scheduleDetail.scheduleStatusType == ScheduleStatusType.reservationWait)
-                    ? ReservationWaitButtons(
-                    acceptRequest: acceptRequest,
-                    rejectRequest: rejectRequest)
-                    : (scheduleDetail.scheduleStatusType == ScheduleStatusType.reservationComplete)
-                    ? ReservationCompleteButtons(
-                    navToRoutine: navToRoutine,
-                    checkClassAttend: checkClassAttend,
-                    deleteSchedule:deleteSchedule)
-                    : (scheduleDetail.scheduleStatusType == ScheduleStatusType.classComplete)
-                    ? ClassCompleteButtons(
-                    navToRoutine: navToRoutine,
-                    deleteSchedule: deleteSchedule,
-                    rollbackClassAttend: rollbackClassAttend)
-                    : EtcScheduleButtons(deleteSchedule: deleteSchedule)
-            )
+            const SizedBox(height: 20)
+            // Padding(
+            //     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            //     child: (scheduleDetail.scheduleStatusType == ScheduleStatusType.reservationWait)
+            //         ? ReservationWaitButtons(
+            //         acceptRequest: acceptRequest,
+            //         rejectRequest: rejectRequest)
+            //         : (scheduleDetail.scheduleStatusType == ScheduleStatusType.reservationComplete)
+            //         ? ReservationCompleteButtons(
+            //         navToRoutine: navToRoutine,
+            //         checkClassAttend: checkClassAttend,
+            //         deleteSchedule:deleteSchedule)
+            //         : (scheduleDetail.scheduleStatusType == ScheduleStatusType.classComplete)
+            //         ? ClassCompleteButtons(
+            //         navToRoutine: navToRoutine,
+            //         deleteSchedule: deleteSchedule,
+            //         rollbackClassAttend: rollbackClassAttend)
+            //         : EtcScheduleButtons(deleteSchedule: deleteSchedule)
+            // )
           ],
         ),
       )
@@ -146,7 +150,7 @@ class ScheduleDialogHeader extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(22))
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                    padding: const EdgeInsets.only(top: 4, bottom: 2, left: 8, right: 8),
                     child: Text(
                       statusText,
                       style: ScDreamStyles.medium12(backgroundColor),
@@ -227,22 +231,22 @@ class ClassTypeContent extends StatelessWidget {
                   style: ScDreamStyles.medium18(AppColors.black)
               ),
               const Spacer(),
-              Visibility(
-                visible: isTrainer,
-                child: GestureDetector(
-                  onTap: () {
-                    modifySchedule();
-                  },
-                  child: Text(
-                    "일정편집",
-                    style: ScDreamStyles.medium12(AppColors.gray3).copyWith(
-                        decoration: TextDecoration.underline,
-                        decorationColor: AppColors.gray3,
-                        decorationThickness: 1
-                    ),
-                  ),
-                ),
-              ),
+              // Visibility(
+              //   visible: isTrainer,
+              //   child: GestureDetector(
+              //     onTap: () {
+              //       modifySchedule();
+              //     },
+              //     child: Text(
+              //       "일정편집",
+              //       style: ScDreamStyles.medium12(AppColors.gray3).copyWith(
+              //           decoration: TextDecoration.underline,
+              //           decorationColor: AppColors.gray3,
+              //           decorationThickness: 1
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ]
         ),
         const Padding(padding: EdgeInsets.only(top: 14)),

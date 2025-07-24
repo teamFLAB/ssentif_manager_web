@@ -23,8 +23,11 @@ mixin _$ScheduleIntent {
     required TResult Function() clickPreviousMonth,
     required TResult Function() clickNextMonth,
     required TResult Function() clickTodayDate,
+    required TResult Function() clickPreviousDay,
+    required TResult Function() clickNextDay,
     required TResult Function(DateTime date) selectDate,
-    required TResult Function(String filter) updateSearchFilter,
+    required TResult Function(UserEntity coach) onToggleCoach,
+    required TResult Function(CalendarType type) onSelectCalendarType,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -34,8 +37,11 @@ mixin _$ScheduleIntent {
     TResult? Function()? clickPreviousMonth,
     TResult? Function()? clickNextMonth,
     TResult? Function()? clickTodayDate,
+    TResult? Function()? clickPreviousDay,
+    TResult? Function()? clickNextDay,
     TResult? Function(DateTime date)? selectDate,
-    TResult? Function(String filter)? updateSearchFilter,
+    TResult? Function(UserEntity coach)? onToggleCoach,
+    TResult? Function(CalendarType type)? onSelectCalendarType,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -45,8 +51,11 @@ mixin _$ScheduleIntent {
     TResult Function()? clickPreviousMonth,
     TResult Function()? clickNextMonth,
     TResult Function()? clickTodayDate,
+    TResult Function()? clickPreviousDay,
+    TResult Function()? clickNextDay,
     TResult Function(DateTime date)? selectDate,
-    TResult Function(String filter)? updateSearchFilter,
+    TResult Function(UserEntity coach)? onToggleCoach,
+    TResult Function(CalendarType type)? onSelectCalendarType,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -58,8 +67,11 @@ mixin _$ScheduleIntent {
     required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
     required TResult Function(_ClickNextMonth value) clickNextMonth,
     required TResult Function(_ClickTodayDate value) clickTodayDate,
+    required TResult Function(_ClickPreviousDay value) clickPreviousDay,
+    required TResult Function(_ClickNextDay value) clickNextDay,
     required TResult Function(_SelectDate value) selectDate,
-    required TResult Function(_UpdateSearchFilter value) updateSearchFilter,
+    required TResult Function(_OnToggleCoach value) onToggleCoach,
+    required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,8 +81,11 @@ mixin _$ScheduleIntent {
     TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult? Function(_ClickNextMonth value)? clickNextMonth,
     TResult? Function(_ClickTodayDate value)? clickTodayDate,
+    TResult? Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult? Function(_ClickNextDay value)? clickNextDay,
     TResult? Function(_SelectDate value)? selectDate,
-    TResult? Function(_UpdateSearchFilter value)? updateSearchFilter,
+    TResult? Function(_OnToggleCoach value)? onToggleCoach,
+    TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -80,8 +95,11 @@ mixin _$ScheduleIntent {
     TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult Function(_ClickNextMonth value)? clickNextMonth,
     TResult Function(_ClickTodayDate value)? clickTodayDate,
+    TResult Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult Function(_ClickNextDay value)? clickNextDay,
     TResult Function(_SelectDate value)? selectDate,
-    TResult Function(_UpdateSearchFilter value)? updateSearchFilter,
+    TResult Function(_OnToggleCoach value)? onToggleCoach,
+    TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -183,8 +201,11 @@ class _$ClickScheduleItemImpl implements _ClickScheduleItem {
     required TResult Function() clickPreviousMonth,
     required TResult Function() clickNextMonth,
     required TResult Function() clickTodayDate,
+    required TResult Function() clickPreviousDay,
+    required TResult Function() clickNextDay,
     required TResult Function(DateTime date) selectDate,
-    required TResult Function(String filter) updateSearchFilter,
+    required TResult Function(UserEntity coach) onToggleCoach,
+    required TResult Function(CalendarType type) onSelectCalendarType,
   }) {
     return clickScheduleItem(scheduleId);
   }
@@ -197,8 +218,11 @@ class _$ClickScheduleItemImpl implements _ClickScheduleItem {
     TResult? Function()? clickPreviousMonth,
     TResult? Function()? clickNextMonth,
     TResult? Function()? clickTodayDate,
+    TResult? Function()? clickPreviousDay,
+    TResult? Function()? clickNextDay,
     TResult? Function(DateTime date)? selectDate,
-    TResult? Function(String filter)? updateSearchFilter,
+    TResult? Function(UserEntity coach)? onToggleCoach,
+    TResult? Function(CalendarType type)? onSelectCalendarType,
   }) {
     return clickScheduleItem?.call(scheduleId);
   }
@@ -211,8 +235,11 @@ class _$ClickScheduleItemImpl implements _ClickScheduleItem {
     TResult Function()? clickPreviousMonth,
     TResult Function()? clickNextMonth,
     TResult Function()? clickTodayDate,
+    TResult Function()? clickPreviousDay,
+    TResult Function()? clickNextDay,
     TResult Function(DateTime date)? selectDate,
-    TResult Function(String filter)? updateSearchFilter,
+    TResult Function(UserEntity coach)? onToggleCoach,
+    TResult Function(CalendarType type)? onSelectCalendarType,
     required TResult orElse(),
   }) {
     if (clickScheduleItem != null) {
@@ -230,8 +257,11 @@ class _$ClickScheduleItemImpl implements _ClickScheduleItem {
     required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
     required TResult Function(_ClickNextMonth value) clickNextMonth,
     required TResult Function(_ClickTodayDate value) clickTodayDate,
+    required TResult Function(_ClickPreviousDay value) clickPreviousDay,
+    required TResult Function(_ClickNextDay value) clickNextDay,
     required TResult Function(_SelectDate value) selectDate,
-    required TResult Function(_UpdateSearchFilter value) updateSearchFilter,
+    required TResult Function(_OnToggleCoach value) onToggleCoach,
+    required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
   }) {
     return clickScheduleItem(this);
   }
@@ -244,8 +274,11 @@ class _$ClickScheduleItemImpl implements _ClickScheduleItem {
     TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult? Function(_ClickNextMonth value)? clickNextMonth,
     TResult? Function(_ClickTodayDate value)? clickTodayDate,
+    TResult? Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult? Function(_ClickNextDay value)? clickNextDay,
     TResult? Function(_SelectDate value)? selectDate,
-    TResult? Function(_UpdateSearchFilter value)? updateSearchFilter,
+    TResult? Function(_OnToggleCoach value)? onToggleCoach,
+    TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
   }) {
     return clickScheduleItem?.call(this);
   }
@@ -258,8 +291,11 @@ class _$ClickScheduleItemImpl implements _ClickScheduleItem {
     TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult Function(_ClickNextMonth value)? clickNextMonth,
     TResult Function(_ClickTodayDate value)? clickTodayDate,
+    TResult Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult Function(_ClickNextDay value)? clickNextDay,
     TResult Function(_SelectDate value)? selectDate,
-    TResult Function(_UpdateSearchFilter value)? updateSearchFilter,
+    TResult Function(_OnToggleCoach value)? onToggleCoach,
+    TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
     required TResult orElse(),
   }) {
     if (clickScheduleItem != null) {
@@ -330,8 +366,11 @@ class _$OnRefreshScheduleListImpl implements _OnRefreshScheduleList {
     required TResult Function() clickPreviousMonth,
     required TResult Function() clickNextMonth,
     required TResult Function() clickTodayDate,
+    required TResult Function() clickPreviousDay,
+    required TResult Function() clickNextDay,
     required TResult Function(DateTime date) selectDate,
-    required TResult Function(String filter) updateSearchFilter,
+    required TResult Function(UserEntity coach) onToggleCoach,
+    required TResult Function(CalendarType type) onSelectCalendarType,
   }) {
     return onRefreshScheduleList();
   }
@@ -344,8 +383,11 @@ class _$OnRefreshScheduleListImpl implements _OnRefreshScheduleList {
     TResult? Function()? clickPreviousMonth,
     TResult? Function()? clickNextMonth,
     TResult? Function()? clickTodayDate,
+    TResult? Function()? clickPreviousDay,
+    TResult? Function()? clickNextDay,
     TResult? Function(DateTime date)? selectDate,
-    TResult? Function(String filter)? updateSearchFilter,
+    TResult? Function(UserEntity coach)? onToggleCoach,
+    TResult? Function(CalendarType type)? onSelectCalendarType,
   }) {
     return onRefreshScheduleList?.call();
   }
@@ -358,8 +400,11 @@ class _$OnRefreshScheduleListImpl implements _OnRefreshScheduleList {
     TResult Function()? clickPreviousMonth,
     TResult Function()? clickNextMonth,
     TResult Function()? clickTodayDate,
+    TResult Function()? clickPreviousDay,
+    TResult Function()? clickNextDay,
     TResult Function(DateTime date)? selectDate,
-    TResult Function(String filter)? updateSearchFilter,
+    TResult Function(UserEntity coach)? onToggleCoach,
+    TResult Function(CalendarType type)? onSelectCalendarType,
     required TResult orElse(),
   }) {
     if (onRefreshScheduleList != null) {
@@ -377,8 +422,11 @@ class _$OnRefreshScheduleListImpl implements _OnRefreshScheduleList {
     required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
     required TResult Function(_ClickNextMonth value) clickNextMonth,
     required TResult Function(_ClickTodayDate value) clickTodayDate,
+    required TResult Function(_ClickPreviousDay value) clickPreviousDay,
+    required TResult Function(_ClickNextDay value) clickNextDay,
     required TResult Function(_SelectDate value) selectDate,
-    required TResult Function(_UpdateSearchFilter value) updateSearchFilter,
+    required TResult Function(_OnToggleCoach value) onToggleCoach,
+    required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
   }) {
     return onRefreshScheduleList(this);
   }
@@ -391,8 +439,11 @@ class _$OnRefreshScheduleListImpl implements _OnRefreshScheduleList {
     TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult? Function(_ClickNextMonth value)? clickNextMonth,
     TResult? Function(_ClickTodayDate value)? clickTodayDate,
+    TResult? Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult? Function(_ClickNextDay value)? clickNextDay,
     TResult? Function(_SelectDate value)? selectDate,
-    TResult? Function(_UpdateSearchFilter value)? updateSearchFilter,
+    TResult? Function(_OnToggleCoach value)? onToggleCoach,
+    TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
   }) {
     return onRefreshScheduleList?.call(this);
   }
@@ -405,8 +456,11 @@ class _$OnRefreshScheduleListImpl implements _OnRefreshScheduleList {
     TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult Function(_ClickNextMonth value)? clickNextMonth,
     TResult Function(_ClickTodayDate value)? clickTodayDate,
+    TResult Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult Function(_ClickNextDay value)? clickNextDay,
     TResult Function(_SelectDate value)? selectDate,
-    TResult Function(_UpdateSearchFilter value)? updateSearchFilter,
+    TResult Function(_OnToggleCoach value)? onToggleCoach,
+    TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
     required TResult orElse(),
   }) {
     if (onRefreshScheduleList != null) {
@@ -466,8 +520,11 @@ class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
     required TResult Function() clickPreviousMonth,
     required TResult Function() clickNextMonth,
     required TResult Function() clickTodayDate,
+    required TResult Function() clickPreviousDay,
+    required TResult Function() clickNextDay,
     required TResult Function(DateTime date) selectDate,
-    required TResult Function(String filter) updateSearchFilter,
+    required TResult Function(UserEntity coach) onToggleCoach,
+    required TResult Function(CalendarType type) onSelectCalendarType,
   }) {
     return clickPreviousMonth();
   }
@@ -480,8 +537,11 @@ class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
     TResult? Function()? clickPreviousMonth,
     TResult? Function()? clickNextMonth,
     TResult? Function()? clickTodayDate,
+    TResult? Function()? clickPreviousDay,
+    TResult? Function()? clickNextDay,
     TResult? Function(DateTime date)? selectDate,
-    TResult? Function(String filter)? updateSearchFilter,
+    TResult? Function(UserEntity coach)? onToggleCoach,
+    TResult? Function(CalendarType type)? onSelectCalendarType,
   }) {
     return clickPreviousMonth?.call();
   }
@@ -494,8 +554,11 @@ class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
     TResult Function()? clickPreviousMonth,
     TResult Function()? clickNextMonth,
     TResult Function()? clickTodayDate,
+    TResult Function()? clickPreviousDay,
+    TResult Function()? clickNextDay,
     TResult Function(DateTime date)? selectDate,
-    TResult Function(String filter)? updateSearchFilter,
+    TResult Function(UserEntity coach)? onToggleCoach,
+    TResult Function(CalendarType type)? onSelectCalendarType,
     required TResult orElse(),
   }) {
     if (clickPreviousMonth != null) {
@@ -513,8 +576,11 @@ class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
     required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
     required TResult Function(_ClickNextMonth value) clickNextMonth,
     required TResult Function(_ClickTodayDate value) clickTodayDate,
+    required TResult Function(_ClickPreviousDay value) clickPreviousDay,
+    required TResult Function(_ClickNextDay value) clickNextDay,
     required TResult Function(_SelectDate value) selectDate,
-    required TResult Function(_UpdateSearchFilter value) updateSearchFilter,
+    required TResult Function(_OnToggleCoach value) onToggleCoach,
+    required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
   }) {
     return clickPreviousMonth(this);
   }
@@ -527,8 +593,11 @@ class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
     TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult? Function(_ClickNextMonth value)? clickNextMonth,
     TResult? Function(_ClickTodayDate value)? clickTodayDate,
+    TResult? Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult? Function(_ClickNextDay value)? clickNextDay,
     TResult? Function(_SelectDate value)? selectDate,
-    TResult? Function(_UpdateSearchFilter value)? updateSearchFilter,
+    TResult? Function(_OnToggleCoach value)? onToggleCoach,
+    TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
   }) {
     return clickPreviousMonth?.call(this);
   }
@@ -541,8 +610,11 @@ class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
     TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult Function(_ClickNextMonth value)? clickNextMonth,
     TResult Function(_ClickTodayDate value)? clickTodayDate,
+    TResult Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult Function(_ClickNextDay value)? clickNextDay,
     TResult Function(_SelectDate value)? selectDate,
-    TResult Function(_UpdateSearchFilter value)? updateSearchFilter,
+    TResult Function(_OnToggleCoach value)? onToggleCoach,
+    TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
     required TResult orElse(),
   }) {
     if (clickPreviousMonth != null) {
@@ -602,8 +674,11 @@ class _$ClickNextMonthImpl implements _ClickNextMonth {
     required TResult Function() clickPreviousMonth,
     required TResult Function() clickNextMonth,
     required TResult Function() clickTodayDate,
+    required TResult Function() clickPreviousDay,
+    required TResult Function() clickNextDay,
     required TResult Function(DateTime date) selectDate,
-    required TResult Function(String filter) updateSearchFilter,
+    required TResult Function(UserEntity coach) onToggleCoach,
+    required TResult Function(CalendarType type) onSelectCalendarType,
   }) {
     return clickNextMonth();
   }
@@ -616,8 +691,11 @@ class _$ClickNextMonthImpl implements _ClickNextMonth {
     TResult? Function()? clickPreviousMonth,
     TResult? Function()? clickNextMonth,
     TResult? Function()? clickTodayDate,
+    TResult? Function()? clickPreviousDay,
+    TResult? Function()? clickNextDay,
     TResult? Function(DateTime date)? selectDate,
-    TResult? Function(String filter)? updateSearchFilter,
+    TResult? Function(UserEntity coach)? onToggleCoach,
+    TResult? Function(CalendarType type)? onSelectCalendarType,
   }) {
     return clickNextMonth?.call();
   }
@@ -630,8 +708,11 @@ class _$ClickNextMonthImpl implements _ClickNextMonth {
     TResult Function()? clickPreviousMonth,
     TResult Function()? clickNextMonth,
     TResult Function()? clickTodayDate,
+    TResult Function()? clickPreviousDay,
+    TResult Function()? clickNextDay,
     TResult Function(DateTime date)? selectDate,
-    TResult Function(String filter)? updateSearchFilter,
+    TResult Function(UserEntity coach)? onToggleCoach,
+    TResult Function(CalendarType type)? onSelectCalendarType,
     required TResult orElse(),
   }) {
     if (clickNextMonth != null) {
@@ -649,8 +730,11 @@ class _$ClickNextMonthImpl implements _ClickNextMonth {
     required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
     required TResult Function(_ClickNextMonth value) clickNextMonth,
     required TResult Function(_ClickTodayDate value) clickTodayDate,
+    required TResult Function(_ClickPreviousDay value) clickPreviousDay,
+    required TResult Function(_ClickNextDay value) clickNextDay,
     required TResult Function(_SelectDate value) selectDate,
-    required TResult Function(_UpdateSearchFilter value) updateSearchFilter,
+    required TResult Function(_OnToggleCoach value) onToggleCoach,
+    required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
   }) {
     return clickNextMonth(this);
   }
@@ -663,8 +747,11 @@ class _$ClickNextMonthImpl implements _ClickNextMonth {
     TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult? Function(_ClickNextMonth value)? clickNextMonth,
     TResult? Function(_ClickTodayDate value)? clickTodayDate,
+    TResult? Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult? Function(_ClickNextDay value)? clickNextDay,
     TResult? Function(_SelectDate value)? selectDate,
-    TResult? Function(_UpdateSearchFilter value)? updateSearchFilter,
+    TResult? Function(_OnToggleCoach value)? onToggleCoach,
+    TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
   }) {
     return clickNextMonth?.call(this);
   }
@@ -677,8 +764,11 @@ class _$ClickNextMonthImpl implements _ClickNextMonth {
     TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult Function(_ClickNextMonth value)? clickNextMonth,
     TResult Function(_ClickTodayDate value)? clickTodayDate,
+    TResult Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult Function(_ClickNextDay value)? clickNextDay,
     TResult Function(_SelectDate value)? selectDate,
-    TResult Function(_UpdateSearchFilter value)? updateSearchFilter,
+    TResult Function(_OnToggleCoach value)? onToggleCoach,
+    TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
     required TResult orElse(),
   }) {
     if (clickNextMonth != null) {
@@ -738,8 +828,11 @@ class _$ClickTodayDateImpl implements _ClickTodayDate {
     required TResult Function() clickPreviousMonth,
     required TResult Function() clickNextMonth,
     required TResult Function() clickTodayDate,
+    required TResult Function() clickPreviousDay,
+    required TResult Function() clickNextDay,
     required TResult Function(DateTime date) selectDate,
-    required TResult Function(String filter) updateSearchFilter,
+    required TResult Function(UserEntity coach) onToggleCoach,
+    required TResult Function(CalendarType type) onSelectCalendarType,
   }) {
     return clickTodayDate();
   }
@@ -752,8 +845,11 @@ class _$ClickTodayDateImpl implements _ClickTodayDate {
     TResult? Function()? clickPreviousMonth,
     TResult? Function()? clickNextMonth,
     TResult? Function()? clickTodayDate,
+    TResult? Function()? clickPreviousDay,
+    TResult? Function()? clickNextDay,
     TResult? Function(DateTime date)? selectDate,
-    TResult? Function(String filter)? updateSearchFilter,
+    TResult? Function(UserEntity coach)? onToggleCoach,
+    TResult? Function(CalendarType type)? onSelectCalendarType,
   }) {
     return clickTodayDate?.call();
   }
@@ -766,8 +862,11 @@ class _$ClickTodayDateImpl implements _ClickTodayDate {
     TResult Function()? clickPreviousMonth,
     TResult Function()? clickNextMonth,
     TResult Function()? clickTodayDate,
+    TResult Function()? clickPreviousDay,
+    TResult Function()? clickNextDay,
     TResult Function(DateTime date)? selectDate,
-    TResult Function(String filter)? updateSearchFilter,
+    TResult Function(UserEntity coach)? onToggleCoach,
+    TResult Function(CalendarType type)? onSelectCalendarType,
     required TResult orElse(),
   }) {
     if (clickTodayDate != null) {
@@ -785,8 +884,11 @@ class _$ClickTodayDateImpl implements _ClickTodayDate {
     required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
     required TResult Function(_ClickNextMonth value) clickNextMonth,
     required TResult Function(_ClickTodayDate value) clickTodayDate,
+    required TResult Function(_ClickPreviousDay value) clickPreviousDay,
+    required TResult Function(_ClickNextDay value) clickNextDay,
     required TResult Function(_SelectDate value) selectDate,
-    required TResult Function(_UpdateSearchFilter value) updateSearchFilter,
+    required TResult Function(_OnToggleCoach value) onToggleCoach,
+    required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
   }) {
     return clickTodayDate(this);
   }
@@ -799,8 +901,11 @@ class _$ClickTodayDateImpl implements _ClickTodayDate {
     TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult? Function(_ClickNextMonth value)? clickNextMonth,
     TResult? Function(_ClickTodayDate value)? clickTodayDate,
+    TResult? Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult? Function(_ClickNextDay value)? clickNextDay,
     TResult? Function(_SelectDate value)? selectDate,
-    TResult? Function(_UpdateSearchFilter value)? updateSearchFilter,
+    TResult? Function(_OnToggleCoach value)? onToggleCoach,
+    TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
   }) {
     return clickTodayDate?.call(this);
   }
@@ -813,8 +918,11 @@ class _$ClickTodayDateImpl implements _ClickTodayDate {
     TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult Function(_ClickNextMonth value)? clickNextMonth,
     TResult Function(_ClickTodayDate value)? clickTodayDate,
+    TResult Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult Function(_ClickNextDay value)? clickNextDay,
     TResult Function(_SelectDate value)? selectDate,
-    TResult Function(_UpdateSearchFilter value)? updateSearchFilter,
+    TResult Function(_OnToggleCoach value)? onToggleCoach,
+    TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
     required TResult orElse(),
   }) {
     if (clickTodayDate != null) {
@@ -826,6 +934,314 @@ class _$ClickTodayDateImpl implements _ClickTodayDate {
 
 abstract class _ClickTodayDate implements ScheduleIntent {
   const factory _ClickTodayDate() = _$ClickTodayDateImpl;
+}
+
+/// @nodoc
+abstract class _$$ClickPreviousDayImplCopyWith<$Res> {
+  factory _$$ClickPreviousDayImplCopyWith(_$ClickPreviousDayImpl value,
+          $Res Function(_$ClickPreviousDayImpl) then) =
+      __$$ClickPreviousDayImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClickPreviousDayImplCopyWithImpl<$Res>
+    extends _$ScheduleIntentCopyWithImpl<$Res, _$ClickPreviousDayImpl>
+    implements _$$ClickPreviousDayImplCopyWith<$Res> {
+  __$$ClickPreviousDayImplCopyWithImpl(_$ClickPreviousDayImpl _value,
+      $Res Function(_$ClickPreviousDayImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ScheduleIntent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ClickPreviousDayImpl implements _ClickPreviousDay {
+  const _$ClickPreviousDayImpl();
+
+  @override
+  String toString() {
+    return 'ScheduleIntent.clickPreviousDay()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClickPreviousDayImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int scheduleId) clickScheduleItem,
+    required TResult Function() onRefreshScheduleList,
+    required TResult Function() clickPreviousMonth,
+    required TResult Function() clickNextMonth,
+    required TResult Function() clickTodayDate,
+    required TResult Function() clickPreviousDay,
+    required TResult Function() clickNextDay,
+    required TResult Function(DateTime date) selectDate,
+    required TResult Function(UserEntity coach) onToggleCoach,
+    required TResult Function(CalendarType type) onSelectCalendarType,
+  }) {
+    return clickPreviousDay();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int scheduleId)? clickScheduleItem,
+    TResult? Function()? onRefreshScheduleList,
+    TResult? Function()? clickPreviousMonth,
+    TResult? Function()? clickNextMonth,
+    TResult? Function()? clickTodayDate,
+    TResult? Function()? clickPreviousDay,
+    TResult? Function()? clickNextDay,
+    TResult? Function(DateTime date)? selectDate,
+    TResult? Function(UserEntity coach)? onToggleCoach,
+    TResult? Function(CalendarType type)? onSelectCalendarType,
+  }) {
+    return clickPreviousDay?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int scheduleId)? clickScheduleItem,
+    TResult Function()? onRefreshScheduleList,
+    TResult Function()? clickPreviousMonth,
+    TResult Function()? clickNextMonth,
+    TResult Function()? clickTodayDate,
+    TResult Function()? clickPreviousDay,
+    TResult Function()? clickNextDay,
+    TResult Function(DateTime date)? selectDate,
+    TResult Function(UserEntity coach)? onToggleCoach,
+    TResult Function(CalendarType type)? onSelectCalendarType,
+    required TResult orElse(),
+  }) {
+    if (clickPreviousDay != null) {
+      return clickPreviousDay();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClickScheduleItem value) clickScheduleItem,
+    required TResult Function(_OnRefreshScheduleList value)
+        onRefreshScheduleList,
+    required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
+    required TResult Function(_ClickNextMonth value) clickNextMonth,
+    required TResult Function(_ClickTodayDate value) clickTodayDate,
+    required TResult Function(_ClickPreviousDay value) clickPreviousDay,
+    required TResult Function(_ClickNextDay value) clickNextDay,
+    required TResult Function(_SelectDate value) selectDate,
+    required TResult Function(_OnToggleCoach value) onToggleCoach,
+    required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
+  }) {
+    return clickPreviousDay(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClickScheduleItem value)? clickScheduleItem,
+    TResult? Function(_OnRefreshScheduleList value)? onRefreshScheduleList,
+    TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult? Function(_ClickNextMonth value)? clickNextMonth,
+    TResult? Function(_ClickTodayDate value)? clickTodayDate,
+    TResult? Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult? Function(_ClickNextDay value)? clickNextDay,
+    TResult? Function(_SelectDate value)? selectDate,
+    TResult? Function(_OnToggleCoach value)? onToggleCoach,
+    TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
+  }) {
+    return clickPreviousDay?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClickScheduleItem value)? clickScheduleItem,
+    TResult Function(_OnRefreshScheduleList value)? onRefreshScheduleList,
+    TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult Function(_ClickNextMonth value)? clickNextMonth,
+    TResult Function(_ClickTodayDate value)? clickTodayDate,
+    TResult Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult Function(_ClickNextDay value)? clickNextDay,
+    TResult Function(_SelectDate value)? selectDate,
+    TResult Function(_OnToggleCoach value)? onToggleCoach,
+    TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    required TResult orElse(),
+  }) {
+    if (clickPreviousDay != null) {
+      return clickPreviousDay(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClickPreviousDay implements ScheduleIntent {
+  const factory _ClickPreviousDay() = _$ClickPreviousDayImpl;
+}
+
+/// @nodoc
+abstract class _$$ClickNextDayImplCopyWith<$Res> {
+  factory _$$ClickNextDayImplCopyWith(
+          _$ClickNextDayImpl value, $Res Function(_$ClickNextDayImpl) then) =
+      __$$ClickNextDayImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClickNextDayImplCopyWithImpl<$Res>
+    extends _$ScheduleIntentCopyWithImpl<$Res, _$ClickNextDayImpl>
+    implements _$$ClickNextDayImplCopyWith<$Res> {
+  __$$ClickNextDayImplCopyWithImpl(
+      _$ClickNextDayImpl _value, $Res Function(_$ClickNextDayImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ScheduleIntent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ClickNextDayImpl implements _ClickNextDay {
+  const _$ClickNextDayImpl();
+
+  @override
+  String toString() {
+    return 'ScheduleIntent.clickNextDay()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClickNextDayImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int scheduleId) clickScheduleItem,
+    required TResult Function() onRefreshScheduleList,
+    required TResult Function() clickPreviousMonth,
+    required TResult Function() clickNextMonth,
+    required TResult Function() clickTodayDate,
+    required TResult Function() clickPreviousDay,
+    required TResult Function() clickNextDay,
+    required TResult Function(DateTime date) selectDate,
+    required TResult Function(UserEntity coach) onToggleCoach,
+    required TResult Function(CalendarType type) onSelectCalendarType,
+  }) {
+    return clickNextDay();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int scheduleId)? clickScheduleItem,
+    TResult? Function()? onRefreshScheduleList,
+    TResult? Function()? clickPreviousMonth,
+    TResult? Function()? clickNextMonth,
+    TResult? Function()? clickTodayDate,
+    TResult? Function()? clickPreviousDay,
+    TResult? Function()? clickNextDay,
+    TResult? Function(DateTime date)? selectDate,
+    TResult? Function(UserEntity coach)? onToggleCoach,
+    TResult? Function(CalendarType type)? onSelectCalendarType,
+  }) {
+    return clickNextDay?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int scheduleId)? clickScheduleItem,
+    TResult Function()? onRefreshScheduleList,
+    TResult Function()? clickPreviousMonth,
+    TResult Function()? clickNextMonth,
+    TResult Function()? clickTodayDate,
+    TResult Function()? clickPreviousDay,
+    TResult Function()? clickNextDay,
+    TResult Function(DateTime date)? selectDate,
+    TResult Function(UserEntity coach)? onToggleCoach,
+    TResult Function(CalendarType type)? onSelectCalendarType,
+    required TResult orElse(),
+  }) {
+    if (clickNextDay != null) {
+      return clickNextDay();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClickScheduleItem value) clickScheduleItem,
+    required TResult Function(_OnRefreshScheduleList value)
+        onRefreshScheduleList,
+    required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
+    required TResult Function(_ClickNextMonth value) clickNextMonth,
+    required TResult Function(_ClickTodayDate value) clickTodayDate,
+    required TResult Function(_ClickPreviousDay value) clickPreviousDay,
+    required TResult Function(_ClickNextDay value) clickNextDay,
+    required TResult Function(_SelectDate value) selectDate,
+    required TResult Function(_OnToggleCoach value) onToggleCoach,
+    required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
+  }) {
+    return clickNextDay(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClickScheduleItem value)? clickScheduleItem,
+    TResult? Function(_OnRefreshScheduleList value)? onRefreshScheduleList,
+    TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult? Function(_ClickNextMonth value)? clickNextMonth,
+    TResult? Function(_ClickTodayDate value)? clickTodayDate,
+    TResult? Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult? Function(_ClickNextDay value)? clickNextDay,
+    TResult? Function(_SelectDate value)? selectDate,
+    TResult? Function(_OnToggleCoach value)? onToggleCoach,
+    TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
+  }) {
+    return clickNextDay?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClickScheduleItem value)? clickScheduleItem,
+    TResult Function(_OnRefreshScheduleList value)? onRefreshScheduleList,
+    TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult Function(_ClickNextMonth value)? clickNextMonth,
+    TResult Function(_ClickTodayDate value)? clickTodayDate,
+    TResult Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult Function(_ClickNextDay value)? clickNextDay,
+    TResult Function(_SelectDate value)? selectDate,
+    TResult Function(_OnToggleCoach value)? onToggleCoach,
+    TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    required TResult orElse(),
+  }) {
+    if (clickNextDay != null) {
+      return clickNextDay(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClickNextDay implements ScheduleIntent {
+  const factory _ClickNextDay() = _$ClickNextDayImpl;
 }
 
 /// @nodoc
@@ -901,8 +1317,11 @@ class _$SelectDateImpl implements _SelectDate {
     required TResult Function() clickPreviousMonth,
     required TResult Function() clickNextMonth,
     required TResult Function() clickTodayDate,
+    required TResult Function() clickPreviousDay,
+    required TResult Function() clickNextDay,
     required TResult Function(DateTime date) selectDate,
-    required TResult Function(String filter) updateSearchFilter,
+    required TResult Function(UserEntity coach) onToggleCoach,
+    required TResult Function(CalendarType type) onSelectCalendarType,
   }) {
     return selectDate(date);
   }
@@ -915,8 +1334,11 @@ class _$SelectDateImpl implements _SelectDate {
     TResult? Function()? clickPreviousMonth,
     TResult? Function()? clickNextMonth,
     TResult? Function()? clickTodayDate,
+    TResult? Function()? clickPreviousDay,
+    TResult? Function()? clickNextDay,
     TResult? Function(DateTime date)? selectDate,
-    TResult? Function(String filter)? updateSearchFilter,
+    TResult? Function(UserEntity coach)? onToggleCoach,
+    TResult? Function(CalendarType type)? onSelectCalendarType,
   }) {
     return selectDate?.call(date);
   }
@@ -929,8 +1351,11 @@ class _$SelectDateImpl implements _SelectDate {
     TResult Function()? clickPreviousMonth,
     TResult Function()? clickNextMonth,
     TResult Function()? clickTodayDate,
+    TResult Function()? clickPreviousDay,
+    TResult Function()? clickNextDay,
     TResult Function(DateTime date)? selectDate,
-    TResult Function(String filter)? updateSearchFilter,
+    TResult Function(UserEntity coach)? onToggleCoach,
+    TResult Function(CalendarType type)? onSelectCalendarType,
     required TResult orElse(),
   }) {
     if (selectDate != null) {
@@ -948,8 +1373,11 @@ class _$SelectDateImpl implements _SelectDate {
     required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
     required TResult Function(_ClickNextMonth value) clickNextMonth,
     required TResult Function(_ClickTodayDate value) clickTodayDate,
+    required TResult Function(_ClickPreviousDay value) clickPreviousDay,
+    required TResult Function(_ClickNextDay value) clickNextDay,
     required TResult Function(_SelectDate value) selectDate,
-    required TResult Function(_UpdateSearchFilter value) updateSearchFilter,
+    required TResult Function(_OnToggleCoach value) onToggleCoach,
+    required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
   }) {
     return selectDate(this);
   }
@@ -962,8 +1390,11 @@ class _$SelectDateImpl implements _SelectDate {
     TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult? Function(_ClickNextMonth value)? clickNextMonth,
     TResult? Function(_ClickTodayDate value)? clickTodayDate,
+    TResult? Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult? Function(_ClickNextDay value)? clickNextDay,
     TResult? Function(_SelectDate value)? selectDate,
-    TResult? Function(_UpdateSearchFilter value)? updateSearchFilter,
+    TResult? Function(_OnToggleCoach value)? onToggleCoach,
+    TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
   }) {
     return selectDate?.call(this);
   }
@@ -976,8 +1407,11 @@ class _$SelectDateImpl implements _SelectDate {
     TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult Function(_ClickNextMonth value)? clickNextMonth,
     TResult Function(_ClickTodayDate value)? clickTodayDate,
+    TResult Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult Function(_ClickNextDay value)? clickNextDay,
     TResult Function(_SelectDate value)? selectDate,
-    TResult Function(_UpdateSearchFilter value)? updateSearchFilter,
+    TResult Function(_OnToggleCoach value)? onToggleCoach,
+    TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
     required TResult orElse(),
   }) {
     if (selectDate != null) {
@@ -1000,20 +1434,22 @@ abstract class _SelectDate implements ScheduleIntent {
 }
 
 /// @nodoc
-abstract class _$$UpdateSearchFilterImplCopyWith<$Res> {
-  factory _$$UpdateSearchFilterImplCopyWith(_$UpdateSearchFilterImpl value,
-          $Res Function(_$UpdateSearchFilterImpl) then) =
-      __$$UpdateSearchFilterImplCopyWithImpl<$Res>;
+abstract class _$$OnToggleCoachImplCopyWith<$Res> {
+  factory _$$OnToggleCoachImplCopyWith(
+          _$OnToggleCoachImpl value, $Res Function(_$OnToggleCoachImpl) then) =
+      __$$OnToggleCoachImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String filter});
+  $Res call({UserEntity coach});
+
+  $UserEntityCopyWith<$Res> get coach;
 }
 
 /// @nodoc
-class __$$UpdateSearchFilterImplCopyWithImpl<$Res>
-    extends _$ScheduleIntentCopyWithImpl<$Res, _$UpdateSearchFilterImpl>
-    implements _$$UpdateSearchFilterImplCopyWith<$Res> {
-  __$$UpdateSearchFilterImplCopyWithImpl(_$UpdateSearchFilterImpl _value,
-      $Res Function(_$UpdateSearchFilterImpl) _then)
+class __$$OnToggleCoachImplCopyWithImpl<$Res>
+    extends _$ScheduleIntentCopyWithImpl<$Res, _$OnToggleCoachImpl>
+    implements _$$OnToggleCoachImplCopyWith<$Res> {
+  __$$OnToggleCoachImplCopyWithImpl(
+      _$OnToggleCoachImpl _value, $Res Function(_$OnToggleCoachImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ScheduleIntent
@@ -1021,49 +1457,58 @@ class __$$UpdateSearchFilterImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? filter = null,
+    Object? coach = null,
   }) {
-    return _then(_$UpdateSearchFilterImpl(
-      filter: null == filter
-          ? _value.filter
-          : filter // ignore: cast_nullable_to_non_nullable
-              as String,
+    return _then(_$OnToggleCoachImpl(
+      coach: null == coach
+          ? _value.coach
+          : coach // ignore: cast_nullable_to_non_nullable
+              as UserEntity,
     ));
+  }
+
+  /// Create a copy of ScheduleIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserEntityCopyWith<$Res> get coach {
+    return $UserEntityCopyWith<$Res>(_value.coach, (value) {
+      return _then(_value.copyWith(coach: value));
+    });
   }
 }
 
 /// @nodoc
 
-class _$UpdateSearchFilterImpl implements _UpdateSearchFilter {
-  const _$UpdateSearchFilterImpl({required this.filter});
+class _$OnToggleCoachImpl implements _OnToggleCoach {
+  const _$OnToggleCoachImpl({required this.coach});
 
   @override
-  final String filter;
+  final UserEntity coach;
 
   @override
   String toString() {
-    return 'ScheduleIntent.updateSearchFilter(filter: $filter)';
+    return 'ScheduleIntent.onToggleCoach(coach: $coach)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdateSearchFilterImpl &&
-            (identical(other.filter, filter) || other.filter == filter));
+            other is _$OnToggleCoachImpl &&
+            (identical(other.coach, coach) || other.coach == coach));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, filter);
+  int get hashCode => Object.hash(runtimeType, coach);
 
   /// Create a copy of ScheduleIntent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdateSearchFilterImplCopyWith<_$UpdateSearchFilterImpl> get copyWith =>
-      __$$UpdateSearchFilterImplCopyWithImpl<_$UpdateSearchFilterImpl>(
-          this, _$identity);
+  _$$OnToggleCoachImplCopyWith<_$OnToggleCoachImpl> get copyWith =>
+      __$$OnToggleCoachImplCopyWithImpl<_$OnToggleCoachImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1073,10 +1518,13 @@ class _$UpdateSearchFilterImpl implements _UpdateSearchFilter {
     required TResult Function() clickPreviousMonth,
     required TResult Function() clickNextMonth,
     required TResult Function() clickTodayDate,
+    required TResult Function() clickPreviousDay,
+    required TResult Function() clickNextDay,
     required TResult Function(DateTime date) selectDate,
-    required TResult Function(String filter) updateSearchFilter,
+    required TResult Function(UserEntity coach) onToggleCoach,
+    required TResult Function(CalendarType type) onSelectCalendarType,
   }) {
-    return updateSearchFilter(filter);
+    return onToggleCoach(coach);
   }
 
   @override
@@ -1087,10 +1535,13 @@ class _$UpdateSearchFilterImpl implements _UpdateSearchFilter {
     TResult? Function()? clickPreviousMonth,
     TResult? Function()? clickNextMonth,
     TResult? Function()? clickTodayDate,
+    TResult? Function()? clickPreviousDay,
+    TResult? Function()? clickNextDay,
     TResult? Function(DateTime date)? selectDate,
-    TResult? Function(String filter)? updateSearchFilter,
+    TResult? Function(UserEntity coach)? onToggleCoach,
+    TResult? Function(CalendarType type)? onSelectCalendarType,
   }) {
-    return updateSearchFilter?.call(filter);
+    return onToggleCoach?.call(coach);
   }
 
   @override
@@ -1101,12 +1552,15 @@ class _$UpdateSearchFilterImpl implements _UpdateSearchFilter {
     TResult Function()? clickPreviousMonth,
     TResult Function()? clickNextMonth,
     TResult Function()? clickTodayDate,
+    TResult Function()? clickPreviousDay,
+    TResult Function()? clickNextDay,
     TResult Function(DateTime date)? selectDate,
-    TResult Function(String filter)? updateSearchFilter,
+    TResult Function(UserEntity coach)? onToggleCoach,
+    TResult Function(CalendarType type)? onSelectCalendarType,
     required TResult orElse(),
   }) {
-    if (updateSearchFilter != null) {
-      return updateSearchFilter(filter);
+    if (onToggleCoach != null) {
+      return onToggleCoach(coach);
     }
     return orElse();
   }
@@ -1120,10 +1574,13 @@ class _$UpdateSearchFilterImpl implements _UpdateSearchFilter {
     required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
     required TResult Function(_ClickNextMonth value) clickNextMonth,
     required TResult Function(_ClickTodayDate value) clickTodayDate,
+    required TResult Function(_ClickPreviousDay value) clickPreviousDay,
+    required TResult Function(_ClickNextDay value) clickNextDay,
     required TResult Function(_SelectDate value) selectDate,
-    required TResult Function(_UpdateSearchFilter value) updateSearchFilter,
+    required TResult Function(_OnToggleCoach value) onToggleCoach,
+    required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
   }) {
-    return updateSearchFilter(this);
+    return onToggleCoach(this);
   }
 
   @override
@@ -1134,10 +1591,13 @@ class _$UpdateSearchFilterImpl implements _UpdateSearchFilter {
     TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult? Function(_ClickNextMonth value)? clickNextMonth,
     TResult? Function(_ClickTodayDate value)? clickTodayDate,
+    TResult? Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult? Function(_ClickNextDay value)? clickNextDay,
     TResult? Function(_SelectDate value)? selectDate,
-    TResult? Function(_UpdateSearchFilter value)? updateSearchFilter,
+    TResult? Function(_OnToggleCoach value)? onToggleCoach,
+    TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
   }) {
-    return updateSearchFilter?.call(this);
+    return onToggleCoach?.call(this);
   }
 
   @override
@@ -1148,26 +1608,221 @@ class _$UpdateSearchFilterImpl implements _UpdateSearchFilter {
     TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult Function(_ClickNextMonth value)? clickNextMonth,
     TResult Function(_ClickTodayDate value)? clickTodayDate,
+    TResult Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult Function(_ClickNextDay value)? clickNextDay,
     TResult Function(_SelectDate value)? selectDate,
-    TResult Function(_UpdateSearchFilter value)? updateSearchFilter,
+    TResult Function(_OnToggleCoach value)? onToggleCoach,
+    TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
     required TResult orElse(),
   }) {
-    if (updateSearchFilter != null) {
-      return updateSearchFilter(this);
+    if (onToggleCoach != null) {
+      return onToggleCoach(this);
     }
     return orElse();
   }
 }
 
-abstract class _UpdateSearchFilter implements ScheduleIntent {
-  const factory _UpdateSearchFilter({required final String filter}) =
-      _$UpdateSearchFilterImpl;
+abstract class _OnToggleCoach implements ScheduleIntent {
+  const factory _OnToggleCoach({required final UserEntity coach}) =
+      _$OnToggleCoachImpl;
 
-  String get filter;
+  UserEntity get coach;
 
   /// Create a copy of ScheduleIntent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdateSearchFilterImplCopyWith<_$UpdateSearchFilterImpl> get copyWith =>
+  _$$OnToggleCoachImplCopyWith<_$OnToggleCoachImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$OnSelectCalendarTypeImplCopyWith<$Res> {
+  factory _$$OnSelectCalendarTypeImplCopyWith(_$OnSelectCalendarTypeImpl value,
+          $Res Function(_$OnSelectCalendarTypeImpl) then) =
+      __$$OnSelectCalendarTypeImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({CalendarType type});
+}
+
+/// @nodoc
+class __$$OnSelectCalendarTypeImplCopyWithImpl<$Res>
+    extends _$ScheduleIntentCopyWithImpl<$Res, _$OnSelectCalendarTypeImpl>
+    implements _$$OnSelectCalendarTypeImplCopyWith<$Res> {
+  __$$OnSelectCalendarTypeImplCopyWithImpl(_$OnSelectCalendarTypeImpl _value,
+      $Res Function(_$OnSelectCalendarTypeImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ScheduleIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? type = null,
+  }) {
+    return _then(_$OnSelectCalendarTypeImpl(
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as CalendarType,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OnSelectCalendarTypeImpl implements _OnSelectCalendarType {
+  const _$OnSelectCalendarTypeImpl({required this.type});
+
+  @override
+  final CalendarType type;
+
+  @override
+  String toString() {
+    return 'ScheduleIntent.onSelectCalendarType(type: $type)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OnSelectCalendarTypeImpl &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, type);
+
+  /// Create a copy of ScheduleIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OnSelectCalendarTypeImplCopyWith<_$OnSelectCalendarTypeImpl>
+      get copyWith =>
+          __$$OnSelectCalendarTypeImplCopyWithImpl<_$OnSelectCalendarTypeImpl>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int scheduleId) clickScheduleItem,
+    required TResult Function() onRefreshScheduleList,
+    required TResult Function() clickPreviousMonth,
+    required TResult Function() clickNextMonth,
+    required TResult Function() clickTodayDate,
+    required TResult Function() clickPreviousDay,
+    required TResult Function() clickNextDay,
+    required TResult Function(DateTime date) selectDate,
+    required TResult Function(UserEntity coach) onToggleCoach,
+    required TResult Function(CalendarType type) onSelectCalendarType,
+  }) {
+    return onSelectCalendarType(type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int scheduleId)? clickScheduleItem,
+    TResult? Function()? onRefreshScheduleList,
+    TResult? Function()? clickPreviousMonth,
+    TResult? Function()? clickNextMonth,
+    TResult? Function()? clickTodayDate,
+    TResult? Function()? clickPreviousDay,
+    TResult? Function()? clickNextDay,
+    TResult? Function(DateTime date)? selectDate,
+    TResult? Function(UserEntity coach)? onToggleCoach,
+    TResult? Function(CalendarType type)? onSelectCalendarType,
+  }) {
+    return onSelectCalendarType?.call(type);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int scheduleId)? clickScheduleItem,
+    TResult Function()? onRefreshScheduleList,
+    TResult Function()? clickPreviousMonth,
+    TResult Function()? clickNextMonth,
+    TResult Function()? clickTodayDate,
+    TResult Function()? clickPreviousDay,
+    TResult Function()? clickNextDay,
+    TResult Function(DateTime date)? selectDate,
+    TResult Function(UserEntity coach)? onToggleCoach,
+    TResult Function(CalendarType type)? onSelectCalendarType,
+    required TResult orElse(),
+  }) {
+    if (onSelectCalendarType != null) {
+      return onSelectCalendarType(type);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClickScheduleItem value) clickScheduleItem,
+    required TResult Function(_OnRefreshScheduleList value)
+        onRefreshScheduleList,
+    required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
+    required TResult Function(_ClickNextMonth value) clickNextMonth,
+    required TResult Function(_ClickTodayDate value) clickTodayDate,
+    required TResult Function(_ClickPreviousDay value) clickPreviousDay,
+    required TResult Function(_ClickNextDay value) clickNextDay,
+    required TResult Function(_SelectDate value) selectDate,
+    required TResult Function(_OnToggleCoach value) onToggleCoach,
+    required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
+  }) {
+    return onSelectCalendarType(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClickScheduleItem value)? clickScheduleItem,
+    TResult? Function(_OnRefreshScheduleList value)? onRefreshScheduleList,
+    TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult? Function(_ClickNextMonth value)? clickNextMonth,
+    TResult? Function(_ClickTodayDate value)? clickTodayDate,
+    TResult? Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult? Function(_ClickNextDay value)? clickNextDay,
+    TResult? Function(_SelectDate value)? selectDate,
+    TResult? Function(_OnToggleCoach value)? onToggleCoach,
+    TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
+  }) {
+    return onSelectCalendarType?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClickScheduleItem value)? clickScheduleItem,
+    TResult Function(_OnRefreshScheduleList value)? onRefreshScheduleList,
+    TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult Function(_ClickNextMonth value)? clickNextMonth,
+    TResult Function(_ClickTodayDate value)? clickTodayDate,
+    TResult Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult Function(_ClickNextDay value)? clickNextDay,
+    TResult Function(_SelectDate value)? selectDate,
+    TResult Function(_OnToggleCoach value)? onToggleCoach,
+    TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    required TResult orElse(),
+  }) {
+    if (onSelectCalendarType != null) {
+      return onSelectCalendarType(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OnSelectCalendarType implements ScheduleIntent {
+  const factory _OnSelectCalendarType({required final CalendarType type}) =
+      _$OnSelectCalendarTypeImpl;
+
+  CalendarType get type;
+
+  /// Create a copy of ScheduleIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OnSelectCalendarTypeImplCopyWith<_$OnSelectCalendarTypeImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

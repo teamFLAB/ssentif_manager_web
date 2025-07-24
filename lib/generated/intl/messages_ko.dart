@@ -89,6 +89,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cheat": MessageLookupByLibrary.simpleMessage("치팅"),
         "check_account_information":
             MessageLookupByLibrary.simpleMessage("계정 정보를 확인해주세요."),
+        "check_class_attend": MessageLookupByLibrary.simpleMessage("출석 완료"),
         "check_password": MessageLookupByLibrary.simpleMessage("비밀번호 확인"),
         "check_repetition": MessageLookupByLibrary.simpleMessage("중복 확인"),
         "chest": MessageLookupByLibrary.simpleMessage("가슴"),
@@ -231,6 +232,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "발급받은 수강권이 없습니다.\n코치님께 수강권 발급을 요청해보세요."),
         "etc": MessageLookupByLibrary.simpleMessage("기타"),
         "etcStringResources": MessageLookupByLibrary.simpleMessage(""),
+        "etc_schedule": MessageLookupByLibrary.simpleMessage("기타 일정"),
         "exerciseAnalysisStringResources":
             MessageLookupByLibrary.simpleMessage(""),
         "exerciseLibraryStringResources":
@@ -363,6 +365,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "male": MessageLookupByLibrary.simpleMessage("남성"),
         "male_1char": MessageLookupByLibrary.simpleMessage("남"),
         "manage_account": MessageLookupByLibrary.simpleMessage("계정 관리"),
+        "manage_staff": MessageLookupByLibrary.simpleMessage("직원 관리"),
+        "manage_staff_description": MessageLookupByLibrary.simpleMessage(
+            "각 코치가 담당하는 회원의 관리 현황을 한눈에 확인할 수 있습니다."),
         "manager": MessageLookupByLibrary.simpleMessage("관리자"),
         "matched": MessageLookupByLibrary.simpleMessage("나와 매칭된"),
         "maxReps": MessageLookupByLibrary.simpleMessage("최대 횟수"),
@@ -581,6 +586,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "회원 전용 앱입니다. 코치님께서는 스토어에서 SSENTIF-코치 앱을 다운받아 이용해주세요!"),
         "toast_empty_class_record":
             MessageLookupByLibrary.simpleMessage("코치님께 수업 기록을 요청해보세요!"),
+        "today_routine": MessageLookupByLibrary.simpleMessage("오늘의 수업 내용"),
         "totalReps": MessageLookupByLibrary.simpleMessage("총 횟수"),
         "totalTime": MessageLookupByLibrary.simpleMessage("총 시간"),
         "total_class_count": MessageLookupByLibrary.simpleMessage("총 수업 횟수"),

@@ -10,6 +10,11 @@ class AppTextStyles {
   static const String fontScDreamBold = "SCDreamBold";
   static const String fontScDreamMedium = "SCDreamMedium";
   static const String fontScDreamExtraLight = "SCDreamExtraLight";
+
+  static const String fontSpoqaHanSansNeoBold = "SpoqaHanSansNeoBold";
+  static const String fontSpoqaHanSansNeoRegular = "SpoqaHanSansNeoRegular";
+  static const String fontSpoqaHanSansNeoMedium = "SpoqaHanSansNeoMedium";
+  static const String fontSpoqaHanSansNeoLight = "SpoqaHanSansNeoLight";
 }
 
 class GmarketSansStyles extends TextStyle {
@@ -143,4 +148,47 @@ class ScDreamStyles extends TextStyle {
       : super(fontFamily: AppTextStyles.fontScDreamExtraLight, color: color, fontSize: Sizes.size10);
   const ScDreamStyles.extraLight8(Color color)
       : super(fontFamily: AppTextStyles.fontScDreamExtraLight, color: color, fontSize: Sizes.size8);
+
+
+
+}
+
+
+class SsentifTextStyles extends AppTextStyles {
+  static const medium28 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoMedium, fontSize: 28, height: 1.2);
+
+  static const medium24 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoMedium, fontSize: 24, height: 1.2);
+  static const bold24 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoBold, fontSize: 24, height: 1.2);
+
+  static const bold22 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoBold, fontSize: 22, height: 1.2);
+  static const medium22 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoMedium, fontSize: 22, height: 1.2);
+  static const light22 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoLight, fontSize: 22, height: 1.2);
+
+  static const bold20 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoBold, fontSize: 20, height: 1.2);
+  static const medium20 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoMedium, fontSize: 20, height: 1.2);
+  static const light20 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoLight, fontSize: 20, height: 1.2);
+
+  static const bold18 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoBold, fontSize: 18, height: 1.2);
+  static const regular18 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoRegular, fontSize: 18, height: 1.2);
+  static const medium18 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoMedium, fontSize: 18, height: 1.2);
+
+  static const bold16 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoBold, fontSize: 16, height: 1.2);
+  static const regular16 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoRegular, fontSize: 16, height: 1.2);
+  static const medium16 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoMedium, fontSize: 16, height: 1.2);
+
+  static const bold14 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoBold, fontSize: 14, height: 1.2);
+  static const regular14 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoRegular, fontSize: 14, height: 1.2);
+  static const medium14 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoMedium, fontSize: 14, height: 1.2);
+
+  static const bold12 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoBold, fontSize: 12, height: 1.2);
+  static const regular12 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoRegular, fontSize: 12, height: 1.2);
+  static const medium12 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoMedium, fontSize: 12, height: 1.2);
+
+  static const bold10 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoBold, fontSize: 10, height: 1.2);
+  static const regular10 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoRegular, fontSize: 10, height: 1.2);
+  static const medium10 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoMedium, fontSize: 10, height: 1.2);
+
+  static const medium8 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoMedium, fontWeight: FontWeight.w500, fontSize: 8, height: 1.2);
+  static const medium9 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoMedium, fontWeight: FontWeight.w500, fontSize: 9, height: 1.2);
+
 }

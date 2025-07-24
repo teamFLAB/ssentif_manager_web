@@ -19,3 +19,13 @@ extension DateStringUtils on String {
     }
   }
 }
+
+extension StringExtensions on String {
+  String toHyphenPhoneNumber() {
+    try {
+      return "${substring(0, 3)}-${substring(3, 7)}-${substring(7, 11)}";
+    } catch(e) {
+      return this;
+    }
+  }
+}

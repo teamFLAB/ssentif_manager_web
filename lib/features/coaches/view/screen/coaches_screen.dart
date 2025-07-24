@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:ssentif_manager_web/core/themes/app_colors.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +9,9 @@ import 'package:ssentif_manager_web/features/schedule/view/component/weekly_sche
 import 'package:ssentif_manager_web/features/schedule/view/screen/weekly_schedule_page.dart';
 import '../component/coach_list_item.dart';
 import 'package:ssentif_manager_web/features/coaches/view/viewmodel/coaches_view_model.dart';
+import 'monthly_statistics_screen.dart';
+import 'managed_members_screen.dart';
+import 'ticket_sales_screen.dart';
 
 import '../../../../shared/domain/entity/user_entity.dart';
 
@@ -33,35 +37,30 @@ class _CoachesScreenState extends ConsumerState<CoachesScreen> {
 
       return Column(
         children: [
+          // 고정된 상단 영역
           Container(
             height: 60,
             decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: AppColors.grayE4, width: 1, strokeAlign: BorderSide.strokeAlignInside),
-              ),
+              color: AppColors.white,
             ),
-            clipBehavior: Clip.antiAlias,
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: EdgeInsets.only(left: 24),
-              child: Row(
+          ),
+          // 스크롤 가능한 영역
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
                 children: [
-                  Text(
-                    '근무중인 코치',
-                    style: ScDreamStyles.extraBold18(AppColors.black),
-                  ),
+                  const SizedBox(height: 20),
                   Container(
                     height: 60,
-                    decoration: BoxDecoration(),
-                    alignment: Alignment.centerLeft,
-                    padding: EdgeInsets.only(left: 24),
+                    width: double.infinity,
+                    padding: EdgeInsets.only(left: 30),
                     child: ListView.separated(
                         physics: AlwaysScrollableScrollPhysics(),
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         itemCount: state.coaches.length,
                         separatorBuilder: (BuildContext context, int idx) {
-                          return SizedBox(width: 1.5);
+                          return SizedBox(width: 8);
                         },
                         itemBuilder: (BuildContext context, int idx) {
                           var user = state.coaches[idx];
@@ -71,46 +70,58 @@ class _CoachesScreenState extends ConsumerState<CoachesScreen> {
                             isFirstItem: idx == 0,
                             onClick: () {
                               viewModel.handleIntent(
-                                  CoachesIntent.clickCoachProfile(user: user)
-                              );
+                                  CoachesIntent.clickCoachProfile(user: user));
                             },
                           );
                         }),
                   ),
-
-                ],
-              ),
-            ),
-          ),
-          Container(
-            height: 1,
-            color: AppColors.grayE4,
-          ),
-          const SizedBox(height: 20),
-          _CoachTabBar(
-              selectedTabIdx: state.selectedTabIdx,
-              onSelectTab: (int value) {
-                setState(() {
-                  viewModel.handleIntent(CoachesIntent.selectTab(idx: value));
-                  _tabController.jumpToPage(value);
-                });
-              }),
-          const SizedBox(height: 20),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.only(left: 24),
-              child: PageView(
-                controller: _tabController,
-                physics: const NeverScrollableScrollPhysics(),
-                onPageChanged: (_) {},
-                children: [
-                  WeeklySchedulePage(
-                      key: ValueKey(state.selectedUser),
-                      selectedCoach: state.selectedUser
+                  const SizedBox(height: 20),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    child: Container(
+                      height: 1,
+                      width: double.infinity,
+                      color: AppColors.gray9,
+                    ),
                   ),
-                  Center(child: Text('관리중인 회원 페이지')),
-                  Center(child: Text('월간 수업 페이지')),
-                  Center(child: Text('수강권 매출 페이지')),
+                  const SizedBox(height: 20),
+                  _CoachTabBar(
+                      selectedTabIdx: state.selectedTabIdx,
+                      onSelectTab: (int value) {
+                        setState(() {
+                          viewModel.handleIntent(
+                              CoachesIntent.selectTab(idx: value));
+                          _tabController.jumpToPage(value);
+                        });
+                      }),
+                  const SizedBox(height: 30),
+                  // PageView로 변경
+                  SizedBox(
+                    height: 600, // 고정 높이 설정
+                    child: PageView(
+                      controller: _tabController,
+                      physics: const NeverScrollableScrollPhysics(),
+                      onPageChanged: (int index) {
+                        viewModel
+                            .handleIntent(CoachesIntent.selectTab(idx: index));
+                      },
+                      children: [
+                        MonthlyStatisticsScreen(
+                          selectedCoach: state.selectedUser,
+                          selectedMonth: state.calendarDate ?? DateTime.now(),
+                          onMonthChanged: (newMonth) {
+                            viewModel.handleIntent(
+                                CoachesIntent.updateCalendarDate(newMonth));
+                          },
+                        ),
+                        ManagedMembersScreen(
+                          selectedCoach: state.selectedUser,
+                        ),
+                        TicketSalesScreen(),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 30),
                 ],
               ),
             ),
@@ -134,7 +145,7 @@ class _CoachTabBar extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        const SizedBox(width: 24),
+        const SizedBox(width: 30),
         ...List.generate(tabs.length, (idx) {
           final selected = selectedTabIdx == idx;
           return Padding(
@@ -147,13 +158,20 @@ class _CoachTabBar extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 13, vertical: 6),
                 decoration: BoxDecoration(
-                  color: selected ? AppColors.primary : AppColors.gray4,
-                  borderRadius: BorderRadius.circular(4),
-                ),
+                    color: selected
+                        ? AppColors.backgroundTabSelected
+                        : AppColors.white,
+                    borderRadius: BorderRadius.circular(4),
+                    border: Border.all(
+                        color: selected ? AppColors.green1899 : AppColors.white,
+                        width: 1)),
                 child: Text(
                   tabs[idx].label,
-                  style: ScDreamStyles.medium12(
-                    selected ? AppColors.white : AppColors.gray2,
+                  style: (selected
+                          ? SsentifTextStyles.bold14
+                          : SsentifTextStyles.regular14)
+                      .copyWith(
+                    color: selected ? AppColors.green1899 : AppColors.black,
                   ),
                 ),
               ),

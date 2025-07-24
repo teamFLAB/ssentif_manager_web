@@ -30,4 +30,16 @@ class FontFamily {
 
   /// Font family: SCDreamMedium
   static const String sCDreamMedium = 'SCDreamMedium';
+
+  /// Font family: SpoqaHanSansNeoBold
+  static const String spoqaHanSansNeoBold = 'SpoqaHanSansNeoBold';
+
+  /// Font family: SpoqaHanSansNeoLight
+  static const String spoqaHanSansNeoLight = 'SpoqaHanSansNeoLight';
+
+  /// Font family: SpoqaHanSansNeoMedium
+  static const String spoqaHanSansNeoMedium = 'SpoqaHanSansNeoMedium';
+
+  /// Font family: SpoqaHanSansNeoRegular
+  static const String spoqaHanSansNeoRegular = 'SpoqaHanSansNeoRegular';
 }

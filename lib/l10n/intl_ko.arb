@@ -77,6 +77,7 @@
   "category_class_reservation_wait" : "수업(요청)",
   "category_class_complete" : "수업(출석)",
   "class_complete" : "출석 완료",
+  "etc_schedule" : "기타 일정",
   "reservation_complete" : "예약 완료",
   "label_name_workout" : "개인운동",
   "label_name_class" : "수업",
@@ -444,5 +445,6 @@
   "manager" : "관리자",
   "employee" : "직원",
   "freelancer" : "프리랜서",
-
+  "manage_staff" : "직원 관리",
+  "manage_staff_description" : "각 코치가 담당하는 회원의 관리 현황을 한눈에 확인할 수 있습니다."
 }
