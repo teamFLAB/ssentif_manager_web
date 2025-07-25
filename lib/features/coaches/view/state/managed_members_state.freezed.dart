@@ -19,10 +19,12 @@ mixin _$ManagedMembersState {
   UserEntity? get selectedCoach => throw _privateConstructorUsedError;
   List<ClientListEntity> get managedMembers =>
       throw _privateConstructorUsedError;
-  bool get isLoading => throw _privateConstructorUsedError;
-  String get searchKeyword => throw _privateConstructorUsedError;
-  bool get onlyMatchedClients => throw _privateConstructorUsedError;
-  String get errorMessage => throw _privateConstructorUsedError;
+  ClientListEntity? get selectedClient => throw _privateConstructorUsedError;
+  ClientProfileEntity? get selectedClientProfile =>
+      throw _privateConstructorUsedError;
+  bool get isMembersLoading => throw _privateConstructorUsedError;
+  bool get isProfileLoading => throw _privateConstructorUsedError;
+  String get membersErrorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of ManagedMembersState
   /// with the given fields replaced by the non-null parameter values.
@@ -40,12 +42,15 @@ abstract class $ManagedMembersStateCopyWith<$Res> {
   $Res call(
       {UserEntity? selectedCoach,
       List<ClientListEntity> managedMembers,
-      bool isLoading,
-      String searchKeyword,
-      bool onlyMatchedClients,
-      String errorMessage});
+      ClientListEntity? selectedClient,
+      ClientProfileEntity? selectedClientProfile,
+      bool isMembersLoading,
+      bool isProfileLoading,
+      String membersErrorMessage});
 
   $UserEntityCopyWith<$Res>? get selectedCoach;
+  $ClientListEntityCopyWith<$Res>? get selectedClient;
+  $ClientProfileEntityCopyWith<$Res>? get selectedClientProfile;
 }
 
 /// @nodoc
@@ -65,10 +70,11 @@ class _$ManagedMembersStateCopyWithImpl<$Res, $Val extends ManagedMembersState>
   $Res call({
     Object? selectedCoach = freezed,
     Object? managedMembers = null,
-    Object? isLoading = null,
-    Object? searchKeyword = null,
-    Object? onlyMatchedClients = null,
-    Object? errorMessage = null,
+    Object? selectedClient = freezed,
+    Object? selectedClientProfile = freezed,
+    Object? isMembersLoading = null,
+    Object? isProfileLoading = null,
+    Object? membersErrorMessage = null,
   }) {
     return _then(_value.copyWith(
       selectedCoach: freezed == selectedCoach
@@ -79,21 +85,25 @@ class _$ManagedMembersStateCopyWithImpl<$Res, $Val extends ManagedMembersState>
           ? _value.managedMembers
           : managedMembers // ignore: cast_nullable_to_non_nullable
               as List<ClientListEntity>,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
+      selectedClient: freezed == selectedClient
+          ? _value.selectedClient
+          : selectedClient // ignore: cast_nullable_to_non_nullable
+              as ClientListEntity?,
+      selectedClientProfile: freezed == selectedClientProfile
+          ? _value.selectedClientProfile
+          : selectedClientProfile // ignore: cast_nullable_to_non_nullable
+              as ClientProfileEntity?,
+      isMembersLoading: null == isMembersLoading
+          ? _value.isMembersLoading
+          : isMembersLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      searchKeyword: null == searchKeyword
-          ? _value.searchKeyword
-          : searchKeyword // ignore: cast_nullable_to_non_nullable
-              as String,
-      onlyMatchedClients: null == onlyMatchedClients
-          ? _value.onlyMatchedClients
-          : onlyMatchedClients // ignore: cast_nullable_to_non_nullable
+      isProfileLoading: null == isProfileLoading
+          ? _value.isProfileLoading
+          : isProfileLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      errorMessage: null == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
+      membersErrorMessage: null == membersErrorMessage
+          ? _value.membersErrorMessage
+          : membersErrorMessage // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -111,6 +121,35 @@ class _$ManagedMembersStateCopyWithImpl<$Res, $Val extends ManagedMembersState>
       return _then(_value.copyWith(selectedCoach: value) as $Val);
     });
   }
+
+  /// Create a copy of ManagedMembersState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ClientListEntityCopyWith<$Res>? get selectedClient {
+    if (_value.selectedClient == null) {
+      return null;
+    }
+
+    return $ClientListEntityCopyWith<$Res>(_value.selectedClient!, (value) {
+      return _then(_value.copyWith(selectedClient: value) as $Val);
+    });
+  }
+
+  /// Create a copy of ManagedMembersState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ClientProfileEntityCopyWith<$Res>? get selectedClientProfile {
+    if (_value.selectedClientProfile == null) {
+      return null;
+    }
+
+    return $ClientProfileEntityCopyWith<$Res>(_value.selectedClientProfile!,
+        (value) {
+      return _then(_value.copyWith(selectedClientProfile: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -124,13 +163,18 @@ abstract class _$$ManagedMembersStateImplCopyWith<$Res>
   $Res call(
       {UserEntity? selectedCoach,
       List<ClientListEntity> managedMembers,
-      bool isLoading,
-      String searchKeyword,
-      bool onlyMatchedClients,
-      String errorMessage});
+      ClientListEntity? selectedClient,
+      ClientProfileEntity? selectedClientProfile,
+      bool isMembersLoading,
+      bool isProfileLoading,
+      String membersErrorMessage});
 
   @override
   $UserEntityCopyWith<$Res>? get selectedCoach;
+  @override
+  $ClientListEntityCopyWith<$Res>? get selectedClient;
+  @override
+  $ClientProfileEntityCopyWith<$Res>? get selectedClientProfile;
 }
 
 /// @nodoc
@@ -148,10 +192,11 @@ class __$$ManagedMembersStateImplCopyWithImpl<$Res>
   $Res call({
     Object? selectedCoach = freezed,
     Object? managedMembers = null,
-    Object? isLoading = null,
-    Object? searchKeyword = null,
-    Object? onlyMatchedClients = null,
-    Object? errorMessage = null,
+    Object? selectedClient = freezed,
+    Object? selectedClientProfile = freezed,
+    Object? isMembersLoading = null,
+    Object? isProfileLoading = null,
+    Object? membersErrorMessage = null,
   }) {
     return _then(_$ManagedMembersStateImpl(
       selectedCoach: freezed == selectedCoach
@@ -162,21 +207,25 @@ class __$$ManagedMembersStateImplCopyWithImpl<$Res>
           ? _value._managedMembers
           : managedMembers // ignore: cast_nullable_to_non_nullable
               as List<ClientListEntity>,
-      isLoading: null == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
+      selectedClient: freezed == selectedClient
+          ? _value.selectedClient
+          : selectedClient // ignore: cast_nullable_to_non_nullable
+              as ClientListEntity?,
+      selectedClientProfile: freezed == selectedClientProfile
+          ? _value.selectedClientProfile
+          : selectedClientProfile // ignore: cast_nullable_to_non_nullable
+              as ClientProfileEntity?,
+      isMembersLoading: null == isMembersLoading
+          ? _value.isMembersLoading
+          : isMembersLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      searchKeyword: null == searchKeyword
-          ? _value.searchKeyword
-          : searchKeyword // ignore: cast_nullable_to_non_nullable
-              as String,
-      onlyMatchedClients: null == onlyMatchedClients
-          ? _value.onlyMatchedClients
-          : onlyMatchedClients // ignore: cast_nullable_to_non_nullable
+      isProfileLoading: null == isProfileLoading
+          ? _value.isProfileLoading
+          : isProfileLoading // ignore: cast_nullable_to_non_nullable
               as bool,
-      errorMessage: null == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
+      membersErrorMessage: null == membersErrorMessage
+          ? _value.membersErrorMessage
+          : membersErrorMessage // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -188,10 +237,11 @@ class _$ManagedMembersStateImpl implements _ManagedMembersState {
   const _$ManagedMembersStateImpl(
       {this.selectedCoach,
       final List<ClientListEntity> managedMembers = const [],
-      this.isLoading = false,
-      this.searchKeyword = "",
-      this.onlyMatchedClients = false,
-      this.errorMessage = ""})
+      this.selectedClient,
+      this.selectedClientProfile,
+      this.isMembersLoading = false,
+      this.isProfileLoading = false,
+      this.membersErrorMessage = ""})
       : _managedMembers = managedMembers;
 
   @override
@@ -206,21 +256,22 @@ class _$ManagedMembersStateImpl implements _ManagedMembersState {
   }
 
   @override
-  @JsonKey()
-  final bool isLoading;
+  final ClientListEntity? selectedClient;
+  @override
+  final ClientProfileEntity? selectedClientProfile;
   @override
   @JsonKey()
-  final String searchKeyword;
+  final bool isMembersLoading;
   @override
   @JsonKey()
-  final bool onlyMatchedClients;
+  final bool isProfileLoading;
   @override
   @JsonKey()
-  final String errorMessage;
+  final String membersErrorMessage;
 
   @override
   String toString() {
-    return 'ManagedMembersState(selectedCoach: $selectedCoach, managedMembers: $managedMembers, isLoading: $isLoading, searchKeyword: $searchKeyword, onlyMatchedClients: $onlyMatchedClients, errorMessage: $errorMessage)';
+    return 'ManagedMembersState(selectedCoach: $selectedCoach, managedMembers: $managedMembers, selectedClient: $selectedClient, selectedClientProfile: $selectedClientProfile, isMembersLoading: $isMembersLoading, isProfileLoading: $isProfileLoading, membersErrorMessage: $membersErrorMessage)';
   }
 
   @override
@@ -232,14 +283,16 @@ class _$ManagedMembersStateImpl implements _ManagedMembersState {
                 other.selectedCoach == selectedCoach) &&
             const DeepCollectionEquality()
                 .equals(other._managedMembers, _managedMembers) &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading) &&
-            (identical(other.searchKeyword, searchKeyword) ||
-                other.searchKeyword == searchKeyword) &&
-            (identical(other.onlyMatchedClients, onlyMatchedClients) ||
-                other.onlyMatchedClients == onlyMatchedClients) &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
+            (identical(other.selectedClient, selectedClient) ||
+                other.selectedClient == selectedClient) &&
+            (identical(other.selectedClientProfile, selectedClientProfile) ||
+                other.selectedClientProfile == selectedClientProfile) &&
+            (identical(other.isMembersLoading, isMembersLoading) ||
+                other.isMembersLoading == isMembersLoading) &&
+            (identical(other.isProfileLoading, isProfileLoading) ||
+                other.isProfileLoading == isProfileLoading) &&
+            (identical(other.membersErrorMessage, membersErrorMessage) ||
+                other.membersErrorMessage == membersErrorMessage));
   }
 
   @override
@@ -247,10 +300,11 @@ class _$ManagedMembersStateImpl implements _ManagedMembersState {
       runtimeType,
       selectedCoach,
       const DeepCollectionEquality().hash(_managedMembers),
-      isLoading,
-      searchKeyword,
-      onlyMatchedClients,
-      errorMessage);
+      selectedClient,
+      selectedClientProfile,
+      isMembersLoading,
+      isProfileLoading,
+      membersErrorMessage);
 
   /// Create a copy of ManagedMembersState
   /// with the given fields replaced by the non-null parameter values.
@@ -266,23 +320,26 @@ abstract class _ManagedMembersState implements ManagedMembersState {
   const factory _ManagedMembersState(
       {final UserEntity? selectedCoach,
       final List<ClientListEntity> managedMembers,
-      final bool isLoading,
-      final String searchKeyword,
-      final bool onlyMatchedClients,
-      final String errorMessage}) = _$ManagedMembersStateImpl;
+      final ClientListEntity? selectedClient,
+      final ClientProfileEntity? selectedClientProfile,
+      final bool isMembersLoading,
+      final bool isProfileLoading,
+      final String membersErrorMessage}) = _$ManagedMembersStateImpl;
 
   @override
   UserEntity? get selectedCoach;
   @override
   List<ClientListEntity> get managedMembers;
   @override
-  bool get isLoading;
+  ClientListEntity? get selectedClient;
   @override
-  String get searchKeyword;
+  ClientProfileEntity? get selectedClientProfile;
   @override
-  bool get onlyMatchedClients;
+  bool get isMembersLoading;
   @override
-  String get errorMessage;
+  bool get isProfileLoading;
+  @override
+  String get membersErrorMessage;
 
   /// Create a copy of ManagedMembersState
   /// with the given fields replaced by the non-null parameter values.

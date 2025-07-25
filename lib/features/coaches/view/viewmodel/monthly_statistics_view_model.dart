@@ -2,10 +2,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ssentif_manager_web/features/schedule/domain/enumtype/schedule_status_type.dart';
 import '../intent/monthly_statistics_intent.dart';
 import '../state/monthly_statistics_state.dart';
-import 'package:intl/intl.dart';
 import 'package:ssentif_manager_web/features/schedule/domain/usecase/get_trainer_schedules_usecase.dart';
 import 'package:ssentif_manager_web/features/schedule/domain/entity/calendar_schedule_entity.dart';
 import 'package:ssentif_manager_web/shared/domain/entity/user_entity.dart';
+import 'package:intl/intl.dart';
 
 final monthlyStatisticsViewModelProvider = StateNotifierProvider.autoDispose
     .family<MonthlyStatisticsViewModel, MonthlyStatisticsState,

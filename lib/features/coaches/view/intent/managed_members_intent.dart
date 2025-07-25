@@ -5,10 +5,9 @@ part 'managed_members_intent.freezed.dart';
 
 @freezed
 sealed class ManagedMembersIntent with _$ManagedMembersIntent {
-  const factory ManagedMembersIntent.searchMembers({required String keyword}) =
-      _SearchMembers;
-  const factory ManagedMembersIntent.toggleMatchedClients(
-      {required bool onlyMatched}) = _ToggleMatchedClients;
-  const factory ManagedMembersIntent.clickMemberProfile(
-      {required ClientListEntity member}) = _ClickMemberProfile;
+  const factory ManagedMembersIntent.loadMembers() = _LoadMembers;
+  const factory ManagedMembersIntent.selectClient(
+      {required ClientListEntity client}) = _SelectClient;
+  const factory ManagedMembersIntent.loadClientProfile(
+      {required int clientId}) = _LoadClientProfile;
 }

@@ -7,6 +7,7 @@ import 'package:ssentif_manager_web/features/login/data/model/request_login.dart
 import 'package:ssentif_manager_web/features/login/data/model/response_login.dart';
 import 'package:ssentif_manager_web/features/schedule/data/model/schedule_model.dart';
 import 'package:ssentif_manager_web/features/client/data/model/response_enrolled_clients.dart';
+import 'package:ssentif_manager_web/features/client/data/model/client_profile_model.dart';
 
 import '../../features/schedule/data/model/schedule_detail_model.dart';
 import '../../shared/data/model/work_place_model.dart';
@@ -131,18 +132,34 @@ class ApiService {
   }
 
   /// 수업 중인 회원 목록 조회하기
-  Future<ResponseEnrolledClients> getInClassMembers({
-    required int trainerId
-  }) async {
+  Future<ResponseEnrolledClients> getInClassMembers(
+      {required int trainerId}) async {
     final response = await _dio.get(
       '/api/user/profile/list/class',
-      queryParameters: {
-        'trainerId': trainerId
-      },
+      queryParameters: {'trainerId': trainerId},
       options: Options(
         extra: {'requiresToken': true},
       ),
     );
     return ResponseEnrolledClients.fromJson(response.data);
+  }
+
+  /// 회원 프로필 상세 조회하기
+  Future<ClientProfileModel?> getClientProfile({
+    required int trainerId,
+    required int clientId
+  }) async {
+    final response = await _dio.get(
+      '/api/user/profile/v3',
+      queryParameters: {
+        'trainerId' : trainerId,
+        'clientId': clientId,
+      },
+      options: Options(
+        extra: {'requiresToken': true},
+      ),
+    );
+    // print("afafafafasfasfasfasfasasfasf");
+    return ClientProfileModel.fromJson(response.data);
   }
 }

@@ -18,45 +18,45 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ManagedMembersIntent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String keyword) searchMembers,
-    required TResult Function(bool onlyMatched) toggleMatchedClients,
-    required TResult Function(ClientListEntity member) clickMemberProfile,
+    required TResult Function() loadMembers,
+    required TResult Function(ClientListEntity client) selectClient,
+    required TResult Function(int clientId) loadClientProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String keyword)? searchMembers,
-    TResult? Function(bool onlyMatched)? toggleMatchedClients,
-    TResult? Function(ClientListEntity member)? clickMemberProfile,
+    TResult? Function()? loadMembers,
+    TResult? Function(ClientListEntity client)? selectClient,
+    TResult? Function(int clientId)? loadClientProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String keyword)? searchMembers,
-    TResult Function(bool onlyMatched)? toggleMatchedClients,
-    TResult Function(ClientListEntity member)? clickMemberProfile,
+    TResult Function()? loadMembers,
+    TResult Function(ClientListEntity client)? selectClient,
+    TResult Function(int clientId)? loadClientProfile,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SearchMembers value) searchMembers,
-    required TResult Function(_ToggleMatchedClients value) toggleMatchedClients,
-    required TResult Function(_ClickMemberProfile value) clickMemberProfile,
+    required TResult Function(_LoadMembers value) loadMembers,
+    required TResult Function(_SelectClient value) selectClient,
+    required TResult Function(_LoadClientProfile value) loadClientProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SearchMembers value)? searchMembers,
-    TResult? Function(_ToggleMatchedClients value)? toggleMatchedClients,
-    TResult? Function(_ClickMemberProfile value)? clickMemberProfile,
+    TResult? Function(_LoadMembers value)? loadMembers,
+    TResult? Function(_SelectClient value)? selectClient,
+    TResult? Function(_LoadClientProfile value)? loadClientProfile,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SearchMembers value)? searchMembers,
-    TResult Function(_ToggleMatchedClients value)? toggleMatchedClients,
-    TResult Function(_ClickMemberProfile value)? clickMemberProfile,
+    TResult Function(_LoadMembers value)? loadMembers,
+    TResult Function(_SelectClient value)? selectClient,
+    TResult Function(_LoadClientProfile value)? loadClientProfile,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -85,100 +85,73 @@ class _$ManagedMembersIntentCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$SearchMembersImplCopyWith<$Res> {
-  factory _$$SearchMembersImplCopyWith(
-          _$SearchMembersImpl value, $Res Function(_$SearchMembersImpl) then) =
-      __$$SearchMembersImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String keyword});
+abstract class _$$LoadMembersImplCopyWith<$Res> {
+  factory _$$LoadMembersImplCopyWith(
+          _$LoadMembersImpl value, $Res Function(_$LoadMembersImpl) then) =
+      __$$LoadMembersImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SearchMembersImplCopyWithImpl<$Res>
-    extends _$ManagedMembersIntentCopyWithImpl<$Res, _$SearchMembersImpl>
-    implements _$$SearchMembersImplCopyWith<$Res> {
-  __$$SearchMembersImplCopyWithImpl(
-      _$SearchMembersImpl _value, $Res Function(_$SearchMembersImpl) _then)
+class __$$LoadMembersImplCopyWithImpl<$Res>
+    extends _$ManagedMembersIntentCopyWithImpl<$Res, _$LoadMembersImpl>
+    implements _$$LoadMembersImplCopyWith<$Res> {
+  __$$LoadMembersImplCopyWithImpl(
+      _$LoadMembersImpl _value, $Res Function(_$LoadMembersImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ManagedMembersIntent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? keyword = null,
-  }) {
-    return _then(_$SearchMembersImpl(
-      keyword: null == keyword
-          ? _value.keyword
-          : keyword // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$SearchMembersImpl implements _SearchMembers {
-  const _$SearchMembersImpl({required this.keyword});
-
-  @override
-  final String keyword;
+class _$LoadMembersImpl implements _LoadMembers {
+  const _$LoadMembersImpl();
 
   @override
   String toString() {
-    return 'ManagedMembersIntent.searchMembers(keyword: $keyword)';
+    return 'ManagedMembersIntent.loadMembers()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SearchMembersImpl &&
-            (identical(other.keyword, keyword) || other.keyword == keyword));
+        (other.runtimeType == runtimeType && other is _$LoadMembersImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, keyword);
-
-  /// Create a copy of ManagedMembersIntent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$SearchMembersImplCopyWith<_$SearchMembersImpl> get copyWith =>
-      __$$SearchMembersImplCopyWithImpl<_$SearchMembersImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String keyword) searchMembers,
-    required TResult Function(bool onlyMatched) toggleMatchedClients,
-    required TResult Function(ClientListEntity member) clickMemberProfile,
+    required TResult Function() loadMembers,
+    required TResult Function(ClientListEntity client) selectClient,
+    required TResult Function(int clientId) loadClientProfile,
   }) {
-    return searchMembers(keyword);
+    return loadMembers();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String keyword)? searchMembers,
-    TResult? Function(bool onlyMatched)? toggleMatchedClients,
-    TResult? Function(ClientListEntity member)? clickMemberProfile,
+    TResult? Function()? loadMembers,
+    TResult? Function(ClientListEntity client)? selectClient,
+    TResult? Function(int clientId)? loadClientProfile,
   }) {
-    return searchMembers?.call(keyword);
+    return loadMembers?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String keyword)? searchMembers,
-    TResult Function(bool onlyMatched)? toggleMatchedClients,
-    TResult Function(ClientListEntity member)? clickMemberProfile,
+    TResult Function()? loadMembers,
+    TResult Function(ClientListEntity client)? selectClient,
+    TResult Function(int clientId)? loadClientProfile,
     required TResult orElse(),
   }) {
-    if (searchMembers != null) {
-      return searchMembers(keyword);
+    if (loadMembers != null) {
+      return loadMembers();
     }
     return orElse();
   }
@@ -186,66 +159,59 @@ class _$SearchMembersImpl implements _SearchMembers {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SearchMembers value) searchMembers,
-    required TResult Function(_ToggleMatchedClients value) toggleMatchedClients,
-    required TResult Function(_ClickMemberProfile value) clickMemberProfile,
+    required TResult Function(_LoadMembers value) loadMembers,
+    required TResult Function(_SelectClient value) selectClient,
+    required TResult Function(_LoadClientProfile value) loadClientProfile,
   }) {
-    return searchMembers(this);
+    return loadMembers(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SearchMembers value)? searchMembers,
-    TResult? Function(_ToggleMatchedClients value)? toggleMatchedClients,
-    TResult? Function(_ClickMemberProfile value)? clickMemberProfile,
+    TResult? Function(_LoadMembers value)? loadMembers,
+    TResult? Function(_SelectClient value)? selectClient,
+    TResult? Function(_LoadClientProfile value)? loadClientProfile,
   }) {
-    return searchMembers?.call(this);
+    return loadMembers?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SearchMembers value)? searchMembers,
-    TResult Function(_ToggleMatchedClients value)? toggleMatchedClients,
-    TResult Function(_ClickMemberProfile value)? clickMemberProfile,
+    TResult Function(_LoadMembers value)? loadMembers,
+    TResult Function(_SelectClient value)? selectClient,
+    TResult Function(_LoadClientProfile value)? loadClientProfile,
     required TResult orElse(),
   }) {
-    if (searchMembers != null) {
-      return searchMembers(this);
+    if (loadMembers != null) {
+      return loadMembers(this);
     }
     return orElse();
   }
 }
 
-abstract class _SearchMembers implements ManagedMembersIntent {
-  const factory _SearchMembers({required final String keyword}) =
-      _$SearchMembersImpl;
-
-  String get keyword;
-
-  /// Create a copy of ManagedMembersIntent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SearchMembersImplCopyWith<_$SearchMembersImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _LoadMembers implements ManagedMembersIntent {
+  const factory _LoadMembers() = _$LoadMembersImpl;
 }
 
 /// @nodoc
-abstract class _$$ToggleMatchedClientsImplCopyWith<$Res> {
-  factory _$$ToggleMatchedClientsImplCopyWith(_$ToggleMatchedClientsImpl value,
-          $Res Function(_$ToggleMatchedClientsImpl) then) =
-      __$$ToggleMatchedClientsImplCopyWithImpl<$Res>;
+abstract class _$$SelectClientImplCopyWith<$Res> {
+  factory _$$SelectClientImplCopyWith(
+          _$SelectClientImpl value, $Res Function(_$SelectClientImpl) then) =
+      __$$SelectClientImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({bool onlyMatched});
+  $Res call({ClientListEntity client});
+
+  $ClientListEntityCopyWith<$Res> get client;
 }
 
 /// @nodoc
-class __$$ToggleMatchedClientsImplCopyWithImpl<$Res>
-    extends _$ManagedMembersIntentCopyWithImpl<$Res, _$ToggleMatchedClientsImpl>
-    implements _$$ToggleMatchedClientsImplCopyWith<$Res> {
-  __$$ToggleMatchedClientsImplCopyWithImpl(_$ToggleMatchedClientsImpl _value,
-      $Res Function(_$ToggleMatchedClientsImpl) _then)
+class __$$SelectClientImplCopyWithImpl<$Res>
+    extends _$ManagedMembersIntentCopyWithImpl<$Res, _$SelectClientImpl>
+    implements _$$SelectClientImplCopyWith<$Res> {
+  __$$SelectClientImplCopyWithImpl(
+      _$SelectClientImpl _value, $Res Function(_$SelectClientImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of ManagedMembersIntent
@@ -253,164 +219,12 @@ class __$$ToggleMatchedClientsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? onlyMatched = null,
+    Object? client = null,
   }) {
-    return _then(_$ToggleMatchedClientsImpl(
-      onlyMatched: null == onlyMatched
-          ? _value.onlyMatched
-          : onlyMatched // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ToggleMatchedClientsImpl implements _ToggleMatchedClients {
-  const _$ToggleMatchedClientsImpl({required this.onlyMatched});
-
-  @override
-  final bool onlyMatched;
-
-  @override
-  String toString() {
-    return 'ManagedMembersIntent.toggleMatchedClients(onlyMatched: $onlyMatched)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ToggleMatchedClientsImpl &&
-            (identical(other.onlyMatched, onlyMatched) ||
-                other.onlyMatched == onlyMatched));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, onlyMatched);
-
-  /// Create a copy of ManagedMembersIntent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ToggleMatchedClientsImplCopyWith<_$ToggleMatchedClientsImpl>
-      get copyWith =>
-          __$$ToggleMatchedClientsImplCopyWithImpl<_$ToggleMatchedClientsImpl>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String keyword) searchMembers,
-    required TResult Function(bool onlyMatched) toggleMatchedClients,
-    required TResult Function(ClientListEntity member) clickMemberProfile,
-  }) {
-    return toggleMatchedClients(onlyMatched);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String keyword)? searchMembers,
-    TResult? Function(bool onlyMatched)? toggleMatchedClients,
-    TResult? Function(ClientListEntity member)? clickMemberProfile,
-  }) {
-    return toggleMatchedClients?.call(onlyMatched);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String keyword)? searchMembers,
-    TResult Function(bool onlyMatched)? toggleMatchedClients,
-    TResult Function(ClientListEntity member)? clickMemberProfile,
-    required TResult orElse(),
-  }) {
-    if (toggleMatchedClients != null) {
-      return toggleMatchedClients(onlyMatched);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_SearchMembers value) searchMembers,
-    required TResult Function(_ToggleMatchedClients value) toggleMatchedClients,
-    required TResult Function(_ClickMemberProfile value) clickMemberProfile,
-  }) {
-    return toggleMatchedClients(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SearchMembers value)? searchMembers,
-    TResult? Function(_ToggleMatchedClients value)? toggleMatchedClients,
-    TResult? Function(_ClickMemberProfile value)? clickMemberProfile,
-  }) {
-    return toggleMatchedClients?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SearchMembers value)? searchMembers,
-    TResult Function(_ToggleMatchedClients value)? toggleMatchedClients,
-    TResult Function(_ClickMemberProfile value)? clickMemberProfile,
-    required TResult orElse(),
-  }) {
-    if (toggleMatchedClients != null) {
-      return toggleMatchedClients(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ToggleMatchedClients implements ManagedMembersIntent {
-  const factory _ToggleMatchedClients({required final bool onlyMatched}) =
-      _$ToggleMatchedClientsImpl;
-
-  bool get onlyMatched;
-
-  /// Create a copy of ManagedMembersIntent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ToggleMatchedClientsImplCopyWith<_$ToggleMatchedClientsImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ClickMemberProfileImplCopyWith<$Res> {
-  factory _$$ClickMemberProfileImplCopyWith(_$ClickMemberProfileImpl value,
-          $Res Function(_$ClickMemberProfileImpl) then) =
-      __$$ClickMemberProfileImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({ClientListEntity member});
-
-  $ClientListEntityCopyWith<$Res> get member;
-}
-
-/// @nodoc
-class __$$ClickMemberProfileImplCopyWithImpl<$Res>
-    extends _$ManagedMembersIntentCopyWithImpl<$Res, _$ClickMemberProfileImpl>
-    implements _$$ClickMemberProfileImplCopyWith<$Res> {
-  __$$ClickMemberProfileImplCopyWithImpl(_$ClickMemberProfileImpl _value,
-      $Res Function(_$ClickMemberProfileImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ManagedMembersIntent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? member = null,
-  }) {
-    return _then(_$ClickMemberProfileImpl(
-      member: null == member
-          ? _value.member
-          : member // ignore: cast_nullable_to_non_nullable
+    return _then(_$SelectClientImpl(
+      client: null == client
+          ? _value.client
+          : client // ignore: cast_nullable_to_non_nullable
               as ClientListEntity,
     ));
   }
@@ -419,76 +233,75 @@ class __$$ClickMemberProfileImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $ClientListEntityCopyWith<$Res> get member {
-    return $ClientListEntityCopyWith<$Res>(_value.member, (value) {
-      return _then(_value.copyWith(member: value));
+  $ClientListEntityCopyWith<$Res> get client {
+    return $ClientListEntityCopyWith<$Res>(_value.client, (value) {
+      return _then(_value.copyWith(client: value));
     });
   }
 }
 
 /// @nodoc
 
-class _$ClickMemberProfileImpl implements _ClickMemberProfile {
-  const _$ClickMemberProfileImpl({required this.member});
+class _$SelectClientImpl implements _SelectClient {
+  const _$SelectClientImpl({required this.client});
 
   @override
-  final ClientListEntity member;
+  final ClientListEntity client;
 
   @override
   String toString() {
-    return 'ManagedMembersIntent.clickMemberProfile(member: $member)';
+    return 'ManagedMembersIntent.selectClient(client: $client)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ClickMemberProfileImpl &&
-            (identical(other.member, member) || other.member == member));
+            other is _$SelectClientImpl &&
+            (identical(other.client, client) || other.client == client));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, member);
+  int get hashCode => Object.hash(runtimeType, client);
 
   /// Create a copy of ManagedMembersIntent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ClickMemberProfileImplCopyWith<_$ClickMemberProfileImpl> get copyWith =>
-      __$$ClickMemberProfileImplCopyWithImpl<_$ClickMemberProfileImpl>(
-          this, _$identity);
+  _$$SelectClientImplCopyWith<_$SelectClientImpl> get copyWith =>
+      __$$SelectClientImplCopyWithImpl<_$SelectClientImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String keyword) searchMembers,
-    required TResult Function(bool onlyMatched) toggleMatchedClients,
-    required TResult Function(ClientListEntity member) clickMemberProfile,
+    required TResult Function() loadMembers,
+    required TResult Function(ClientListEntity client) selectClient,
+    required TResult Function(int clientId) loadClientProfile,
   }) {
-    return clickMemberProfile(member);
+    return selectClient(client);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String keyword)? searchMembers,
-    TResult? Function(bool onlyMatched)? toggleMatchedClients,
-    TResult? Function(ClientListEntity member)? clickMemberProfile,
+    TResult? Function()? loadMembers,
+    TResult? Function(ClientListEntity client)? selectClient,
+    TResult? Function(int clientId)? loadClientProfile,
   }) {
-    return clickMemberProfile?.call(member);
+    return selectClient?.call(client);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String keyword)? searchMembers,
-    TResult Function(bool onlyMatched)? toggleMatchedClients,
-    TResult Function(ClientListEntity member)? clickMemberProfile,
+    TResult Function()? loadMembers,
+    TResult Function(ClientListEntity client)? selectClient,
+    TResult Function(int clientId)? loadClientProfile,
     required TResult orElse(),
   }) {
-    if (clickMemberProfile != null) {
-      return clickMemberProfile(member);
+    if (selectClient != null) {
+      return selectClient(client);
     }
     return orElse();
   }
@@ -496,47 +309,196 @@ class _$ClickMemberProfileImpl implements _ClickMemberProfile {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_SearchMembers value) searchMembers,
-    required TResult Function(_ToggleMatchedClients value) toggleMatchedClients,
-    required TResult Function(_ClickMemberProfile value) clickMemberProfile,
+    required TResult Function(_LoadMembers value) loadMembers,
+    required TResult Function(_SelectClient value) selectClient,
+    required TResult Function(_LoadClientProfile value) loadClientProfile,
   }) {
-    return clickMemberProfile(this);
+    return selectClient(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_SearchMembers value)? searchMembers,
-    TResult? Function(_ToggleMatchedClients value)? toggleMatchedClients,
-    TResult? Function(_ClickMemberProfile value)? clickMemberProfile,
+    TResult? Function(_LoadMembers value)? loadMembers,
+    TResult? Function(_SelectClient value)? selectClient,
+    TResult? Function(_LoadClientProfile value)? loadClientProfile,
   }) {
-    return clickMemberProfile?.call(this);
+    return selectClient?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_SearchMembers value)? searchMembers,
-    TResult Function(_ToggleMatchedClients value)? toggleMatchedClients,
-    TResult Function(_ClickMemberProfile value)? clickMemberProfile,
+    TResult Function(_LoadMembers value)? loadMembers,
+    TResult Function(_SelectClient value)? selectClient,
+    TResult Function(_LoadClientProfile value)? loadClientProfile,
     required TResult orElse(),
   }) {
-    if (clickMemberProfile != null) {
-      return clickMemberProfile(this);
+    if (selectClient != null) {
+      return selectClient(this);
     }
     return orElse();
   }
 }
 
-abstract class _ClickMemberProfile implements ManagedMembersIntent {
-  const factory _ClickMemberProfile({required final ClientListEntity member}) =
-      _$ClickMemberProfileImpl;
+abstract class _SelectClient implements ManagedMembersIntent {
+  const factory _SelectClient({required final ClientListEntity client}) =
+      _$SelectClientImpl;
 
-  ClientListEntity get member;
+  ClientListEntity get client;
 
   /// Create a copy of ManagedMembersIntent
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ClickMemberProfileImplCopyWith<_$ClickMemberProfileImpl> get copyWith =>
+  _$$SelectClientImplCopyWith<_$SelectClientImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadClientProfileImplCopyWith<$Res> {
+  factory _$$LoadClientProfileImplCopyWith(_$LoadClientProfileImpl value,
+          $Res Function(_$LoadClientProfileImpl) then) =
+      __$$LoadClientProfileImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int clientId});
+}
+
+/// @nodoc
+class __$$LoadClientProfileImplCopyWithImpl<$Res>
+    extends _$ManagedMembersIntentCopyWithImpl<$Res, _$LoadClientProfileImpl>
+    implements _$$LoadClientProfileImplCopyWith<$Res> {
+  __$$LoadClientProfileImplCopyWithImpl(_$LoadClientProfileImpl _value,
+      $Res Function(_$LoadClientProfileImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ManagedMembersIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? clientId = null,
+  }) {
+    return _then(_$LoadClientProfileImpl(
+      clientId: null == clientId
+          ? _value.clientId
+          : clientId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadClientProfileImpl implements _LoadClientProfile {
+  const _$LoadClientProfileImpl({required this.clientId});
+
+  @override
+  final int clientId;
+
+  @override
+  String toString() {
+    return 'ManagedMembersIntent.loadClientProfile(clientId: $clientId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadClientProfileImpl &&
+            (identical(other.clientId, clientId) ||
+                other.clientId == clientId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, clientId);
+
+  /// Create a copy of ManagedMembersIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadClientProfileImplCopyWith<_$LoadClientProfileImpl> get copyWith =>
+      __$$LoadClientProfileImplCopyWithImpl<_$LoadClientProfileImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadMembers,
+    required TResult Function(ClientListEntity client) selectClient,
+    required TResult Function(int clientId) loadClientProfile,
+  }) {
+    return loadClientProfile(clientId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadMembers,
+    TResult? Function(ClientListEntity client)? selectClient,
+    TResult? Function(int clientId)? loadClientProfile,
+  }) {
+    return loadClientProfile?.call(clientId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadMembers,
+    TResult Function(ClientListEntity client)? selectClient,
+    TResult Function(int clientId)? loadClientProfile,
+    required TResult orElse(),
+  }) {
+    if (loadClientProfile != null) {
+      return loadClientProfile(clientId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadMembers value) loadMembers,
+    required TResult Function(_SelectClient value) selectClient,
+    required TResult Function(_LoadClientProfile value) loadClientProfile,
+  }) {
+    return loadClientProfile(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadMembers value)? loadMembers,
+    TResult? Function(_SelectClient value)? selectClient,
+    TResult? Function(_LoadClientProfile value)? loadClientProfile,
+  }) {
+    return loadClientProfile?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadMembers value)? loadMembers,
+    TResult Function(_SelectClient value)? selectClient,
+    TResult Function(_LoadClientProfile value)? loadClientProfile,
+    required TResult orElse(),
+  }) {
+    if (loadClientProfile != null) {
+      return loadClientProfile(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadClientProfile implements ManagedMembersIntent {
+  const factory _LoadClientProfile({required final int clientId}) =
+      _$LoadClientProfileImpl;
+
+  int get clientId;
+
+  /// Create a copy of ManagedMembersIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadClientProfileImplCopyWith<_$LoadClientProfileImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

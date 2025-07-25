@@ -25,8 +25,6 @@ class CoachesScreen extends ConsumerStatefulWidget {
 }
 
 class _CoachesScreenState extends ConsumerState<CoachesScreen> {
-  final _tabController = PageController(initialPage: 0);
-
   @override
   Widget build(BuildContext context) {
     return Consumer(
@@ -88,31 +86,19 @@ class _CoachesScreenState extends ConsumerState<CoachesScreen> {
                   _CoachTabBar(
                       selectedTabIdx: state.selectedTabIdx,
                       onSelectTab: (int value) {
-                        setState(() {
-                          viewModel.handleIntent(
-                              CoachesIntent.selectTab(idx: value));
-                          _tabController.jumpToPage(value);
-                        });
+                        viewModel
+                            .handleIntent(CoachesIntent.selectTab(idx: value));
                       }),
                   const SizedBox(height: 30),
-                  // PageView로 변경
+                  // IndexedStack으로 변경하여 현재 페이지만 인스턴스 유지
                   SizedBox(
-                    height: 600, // 고정 높이 설정
-                    child: PageView(
-                      controller: _tabController,
-                      physics: const NeverScrollableScrollPhysics(),
-                      onPageChanged: (int index) {
-                        viewModel
-                            .handleIntent(CoachesIntent.selectTab(idx: index));
-                      },
+                    height: 900, // 고정 높이 설정
+                    child: IndexedStack(
+                      index: state.selectedTabIdx,
                       children: [
                         MonthlyStatisticsScreen(
                           selectedCoach: state.selectedUser,
                           selectedMonth: state.calendarDate ?? DateTime.now(),
-                          onMonthChanged: (newMonth) {
-                            viewModel.handleIntent(
-                                CoachesIntent.updateCalendarDate(newMonth));
-                          },
                         ),
                         ManagedMembersScreen(
                           selectedCoach: state.selectedUser,

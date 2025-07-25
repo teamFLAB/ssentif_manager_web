@@ -6,48 +6,30 @@ import 'package:ssentif_manager_web/core/themes/typography.dart';
 import 'package:ssentif_manager_web/gen/assets.gen.dart';
 import 'package:ssentif_manager_web/features/schedule/view/component/schedule_stat_box.dart';
 import 'package:ssentif_manager_web/core/widgets/monthly_calendar.dart';
-import '../intent/monthly_statistics_intent.dart';
-import '../viewmodel/monthly_statistics_view_model.dart';
+import 'package:ssentif_manager_web/features/coaches/view/intent/monthly_statistics_intent.dart';
+import 'package:ssentif_manager_web/features/coaches/view/state/monthly_statistics_state.dart';
+import 'package:ssentif_manager_web/features/coaches/view/viewmodel/monthly_statistics_view_model.dart';
 import 'package:ssentif_manager_web/shared/domain/entity/user_entity.dart';
 
-class MonthlyStatisticsScreen extends ConsumerStatefulWidget {
+class MonthlyStatisticsScreen extends ConsumerWidget {
   final UserEntity? selectedCoach;
   final DateTime selectedMonth;
-  final void Function(DateTime)? onMonthChanged;
+
   const MonthlyStatisticsScreen({
     super.key,
-    this.selectedCoach,
+    required this.selectedCoach,
     required this.selectedMonth,
-    this.onMonthChanged,
   });
 
   @override
-  ConsumerState<MonthlyStatisticsScreen> createState() =>
-      _MonthlyStatisticsScreenState();
-}
-
-class _MonthlyStatisticsScreenState
-    extends ConsumerState<MonthlyStatisticsScreen> {
-  void _handleMonthIntent(MonthlyStatisticsIntent intent, DateTime newMonth) {
-    final viewModelProvider = monthlyStatisticsViewModelProvider((
-      selectedCoach: widget.selectedCoach,
-      selectedMonth: widget.selectedMonth,
-    ));
-    final viewModel = ref.read(viewModelProvider.notifier);
-    viewModel.handleIntent(intent);
-    if (widget.onMonthChanged != null) {
-      widget.onMonthChanged!(newMonth);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final viewModelProvider = monthlyStatisticsViewModelProvider((
-      selectedCoach: widget.selectedCoach,
-      selectedMonth: widget.selectedMonth,
-    ));
-    final viewModel = ref.read(viewModelProvider.notifier);
-    final state = ref.watch(viewModelProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final providerParams = (
+      selectedCoach: selectedCoach,
+      selectedMonth: selectedMonth,
+    );
+    final viewModel =
+        ref.read(monthlyStatisticsViewModelProvider(providerParams).notifier);
+    final state = ref.watch(monthlyStatisticsViewModelProvider(providerParams));
 
     return Container(
       color: AppColors.backgroundColor,
@@ -60,7 +42,7 @@ class _MonthlyStatisticsScreenState
               children: [
                 // 월 표시 텍스트
                 Text(
-                  DateFormat('yyyy년 MM월').format(state.selectedMonth),
+                  DateFormat('yyyy년 MM월').format(selectedMonth),
                   style: SsentifTextStyles.bold24.copyWith(
                     color: AppColors.black,
                   ),
@@ -69,10 +51,8 @@ class _MonthlyStatisticsScreenState
                 // 이번달 버튼
                 GestureDetector(
                   onTap: () {
-                    _handleMonthIntent(
-                      const MonthlyStatisticsIntent.clickThisMonth(),
-                      DateTime.now(),
-                    );
+                    viewModel
+                        .handleIntent(MonthlyStatisticsIntent.clickThisMonth());
                   },
                   child: Container(
                     height: 24,
@@ -96,12 +76,8 @@ class _MonthlyStatisticsScreenState
                 // 이전 버튼
                 GestureDetector(
                   onTap: () {
-                    final prevMonth = DateTime(state.selectedMonth.year,
-                        state.selectedMonth.month - 1, 1);
-                    _handleMonthIntent(
-                      const MonthlyStatisticsIntent.clickPreviousMonth(),
-                      prevMonth,
-                    );
+                    viewModel.handleIntent(
+                        MonthlyStatisticsIntent.clickPreviousMonth());
                   },
                   child: Assets.images.icPreviousButton.image(
                     width: 24,
@@ -112,12 +88,8 @@ class _MonthlyStatisticsScreenState
                 // 다음 버튼
                 GestureDetector(
                   onTap: () {
-                    final nextMonth = DateTime(state.selectedMonth.year,
-                        state.selectedMonth.month + 1, 1);
-                    _handleMonthIntent(
-                      const MonthlyStatisticsIntent.clickNextMonth(),
-                      nextMonth,
-                    );
+                    viewModel
+                        .handleIntent(MonthlyStatisticsIntent.clickNextMonth());
                   },
                   child: Assets.images.icNextButton.image(
                     width: 24,
@@ -149,65 +121,7 @@ class _MonthlyStatisticsScreenState
                             ),
                           ),
                         ),
-                        // 첫 번째 행
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 200,
-                              height: 100,
-                              child: ScheduleStatBox(
-                                title: '전체 수업수',
-                                value: state.totalClassCount.toString(),
-                              ),
-                            ),
-                            const SizedBox(width: 15),
-                            SizedBox(
-                              width: 200,
-                              height: 100,
-                              child: ScheduleStatBox(
-                                title: '출석 완료',
-                                value: state.attendanceCount.toString(),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 15),
-                        // 두 번째 행
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 200,
-                              height: 100,
-                              child: ScheduleStatBox(
-                                title: '예약 완료',
-                                value: state.reservationCount.toString(),
-                              ),
-                            ),
-                            const SizedBox(width: 15),
-                            SizedBox(
-                              width: 200,
-                              height: 100,
-                              child: ScheduleStatBox(
-                                title: '예약 요청',
-                                value: state.reservationRequestCount.toString(),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 15),
-                        // 세 번째 행 (기타 일정만)
-                        Row(
-                          children: [
-                            SizedBox(
-                              width: 200,
-                              height: 100,
-                              child: ScheduleStatBox(
-                                title: '기타 일정',
-                                value: state.etcCount.toString(),
-                              ),
-                            ),
-                          ],
-                        ),
+                        ..._buildStatBoxRows(state),
                       ],
                     ),
                   ),
@@ -232,7 +146,7 @@ class _MonthlyStatisticsScreenState
                           const SizedBox(height: 20),
                           // 캘린더
                           MonthlyCalendar(
-                            selectedMonth: state.selectedMonth,
+                            selectedMonth: selectedMonth,
                             dailyScheduleCounts: state.dailyScheduleCounts,
                             onDayTap: (day) {
                               // TODO: 날짜 클릭 시 처리
@@ -250,5 +164,51 @@ class _MonthlyStatisticsScreenState
         ],
       ),
     );
+  }
+
+  List<Widget> _buildStatBoxRows(MonthlyStatisticsState state) {
+    final statBoxes = [
+      ('전체 수업수', state.totalClassCount.toString()),
+      ('출석 완료', state.attendanceCount.toString()),
+      ('예약 완료', state.reservationCount.toString()),
+      ('예약 요청', state.reservationRequestCount.toString()),
+      ('기타 일정', state.etcCount.toString()),
+    ];
+
+    final List<Widget> rows = [];
+
+    // 2개씩 묶어서 행 생성
+    for (int i = 0; i < statBoxes.length; i += 2) {
+      final row = Row(
+        children: [
+          SizedBox(
+            width: 200,
+            height: 100,
+            child: ScheduleStatBox(
+              title: statBoxes[i].$1,
+              value: statBoxes[i].$2,
+            ),
+          ),
+          if (i + 1 < statBoxes.length) ...[
+            const SizedBox(width: 15),
+            SizedBox(
+              width: 200,
+              height: 100,
+              child: ScheduleStatBox(
+                title: statBoxes[i + 1].$1,
+                value: statBoxes[i + 1].$2,
+              ),
+            ),
+          ],
+        ],
+      );
+
+      rows.add(row);
+      if (i + 2 < statBoxes.length) {
+        rows.add(const SizedBox(height: 15));
+      }
+    }
+
+    return rows;
   }
 }
