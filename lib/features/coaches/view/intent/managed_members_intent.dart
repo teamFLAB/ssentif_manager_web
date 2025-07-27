@@ -10,4 +10,9 @@ sealed class ManagedMembersIntent with _$ManagedMembersIntent {
       {required ClientListEntity client}) = _SelectClient;
   const factory ManagedMembersIntent.loadClientProfile(
       {required int clientId}) = _LoadClientProfile;
+  const factory ManagedMembersIntent.loadClientCalendar({
+    required int year,
+    required int month,
+    required int clientId,
+  }) = _LoadClientCalendar;
 }

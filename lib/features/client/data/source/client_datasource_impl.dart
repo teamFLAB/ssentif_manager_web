@@ -1,6 +1,7 @@
 import 'package:ssentif_manager_web/core/network/api_service.dart';
 import 'package:ssentif_manager_web/features/client/data/model/response_enrolled_clients.dart';
 import 'package:ssentif_manager_web/features/client/data/model/client_profile_model.dart';
+import 'package:ssentif_manager_web/features/client/data/model/client_monthly_calendar_model.dart';
 import 'package:ssentif_manager_web/features/client/data/source/client_datasource.dart';
 
 class ClientDataSourceImpl extends ClientDataSource {
@@ -13,10 +14,24 @@ class ClientDataSourceImpl extends ClientDataSource {
   }
 
   @override
-  Future<ClientProfileModel?> getClientProfile({
+  Future<ClientProfileModel?> getClientProfile(
+      {required int trainerId, required int clientId}) {
+    return apiService.getClientProfile(
+        trainerId: trainerId, clientId: clientId);
+  }
+
+  @override
+  Future<ClientMonthlyCalendarModel> getClientMonthlyEvents({
     required int trainerId,
-    required int clientId
+    required int year,
+    required int month,
+    required int clientId,
   }) {
-    return apiService.getClientProfile(trainerId: trainerId, clientId: clientId);
+    return apiService.getClientMonthlyEvents(
+      trainerId: trainerId,
+      year: year,
+      month: month,
+      clientId: clientId,
+    );
   }
 }

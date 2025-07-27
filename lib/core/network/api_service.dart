@@ -8,6 +8,7 @@ import 'package:ssentif_manager_web/features/login/data/model/response_login.dar
 import 'package:ssentif_manager_web/features/schedule/data/model/schedule_model.dart';
 import 'package:ssentif_manager_web/features/client/data/model/response_enrolled_clients.dart';
 import 'package:ssentif_manager_web/features/client/data/model/client_profile_model.dart';
+import 'package:ssentif_manager_web/features/client/data/model/client_monthly_calendar_model.dart';
 
 import '../../features/schedule/data/model/schedule_detail_model.dart';
 import '../../shared/data/model/work_place_model.dart';
@@ -145,21 +146,40 @@ class ApiService {
   }
 
   /// 회원 프로필 상세 조회하기
-  Future<ClientProfileModel?> getClientProfile({
-    required int trainerId,
-    required int clientId
-  }) async {
+  Future<ClientProfileModel?> getClientProfile(
+      {required int trainerId, required int clientId}) async {
     final response = await _dio.get(
       '/api/user/profile/v3',
       queryParameters: {
-        'trainerId' : trainerId,
+        'trainerId': trainerId,
         'clientId': clientId,
       },
       options: Options(
         extra: {'requiresToken': true},
       ),
     );
-    // print("afafafafasfasfasfasfasasfasf");
     return ClientProfileModel.fromJson(response.data);
+  }
+
+  /// 회원 월간 캘린더 조회하기
+  Future<ClientMonthlyCalendarModel> getClientMonthlyEvents({
+    required int trainerId,
+    required int year,
+    required int month,
+    required int clientId,
+  }) async {
+    final response = await _dio.get(
+      '/api/user/calendar/v2',
+      queryParameters: {
+        'trainerId' : trainerId,
+        'year': year,
+        'month': month,
+        'clientId': clientId
+      },
+      options: Options(
+        extra: {'requiresToken': true},
+      ),
+    );
+    return ClientMonthlyCalendarModel.fromJson(response.data);
   }
 }

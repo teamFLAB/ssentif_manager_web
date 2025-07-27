@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ssentif_manager_web/core/network/api_service.dart';
 import 'package:ssentif_manager_web/features/client/data/mapper/client_list_mapper.dart';
 import 'package:ssentif_manager_web/features/client/data/mapper/client_profile_mapper.dart';
+import 'package:ssentif_manager_web/features/client/data/mapper/client_monthly_calendar_mapper.dart';
 import 'package:ssentif_manager_web/features/client/data/source/client_datasource.dart';
 import 'package:ssentif_manager_web/features/client/data/source/client_datasource_impl.dart';
 import 'package:ssentif_manager_web/features/client/data/repository/client_repository_impl.dart';
@@ -9,6 +10,7 @@ import 'package:ssentif_manager_web/features/client/data/repository/client_repos
 import '../../../../core/network/api_status_entity.dart';
 import '../entity/client_list_entity.dart';
 import '../entity/client_profile_entity.dart';
+import '../entity/client_monthly_calendar_entity.dart';
 
 abstract class ClientRepository {
   Future<ApiStatusEntity<List<ClientListEntity>>> getInClassMembers(
@@ -18,15 +20,25 @@ abstract class ClientRepository {
     required int trainerId,
     required int clientId,
   });
+
+  Future<ApiStatusEntity<ClientMonthlyCalendarEntity>> getClientMonthlyEvents({
+    required int trainerId,
+    required int year,
+    required int month,
+    required int clientId,
+  });
 }
 
 final clientRepositoryProvider = Provider<ClientRepository>((ref) {
   final clientDataSource = ref.read(clientDataSourceProvider);
   final clientListMapper = ref.read(enrolledClientsMapperProvider);
   final clientProfileMapper = ref.read(clientProfileMapperProvider);
+  final clientMonthlyCalendarMapper =
+      ref.read(clientMonthlyCalendarMapperProvider);
   return ClientRepositoryImpl(
     clientDataSource: clientDataSource,
     clientListMapper: clientListMapper,
     clientProfileMapper: clientProfileMapper,
+    clientMonthlyCalendarMapper: clientMonthlyCalendarMapper,
   );
 });

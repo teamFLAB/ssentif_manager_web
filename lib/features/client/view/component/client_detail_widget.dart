@@ -1,24 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:ssentif_manager_web/core/themes/app_colors.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
+import 'package:ssentif_manager_web/core/utils/ext.dart';
 import 'package:ssentif_manager_web/features/client/domain/entity/client_list_entity.dart';
 import 'package:ssentif_manager_web/features/client/domain/entity/client_profile_entity.dart';
+import 'package:ssentif_manager_web/features/client/domain/entity/client_monthly_calendar_entity.dart';
 import 'package:ssentif_manager_web/shared/enumtype/exercise_purpose.dart';
 import 'package:ssentif_manager_web/shared/enumtype/gender_type.dart';
 import 'package:ssentif_manager_web/shared/enumtype/mathcing_status_type.dart';
 import 'package:ssentif_manager_web/features/client/domain/enumtype/event_type.dart';
+import 'package:ssentif_manager_web/features/coaches/view/intent/managed_members_intent.dart';
+import 'package:ssentif_manager_web/shared/enumtype/client_calendar_event_type.dart';
 import 'type_count_widget.dart';
 import 'monthly_calendar_widget.dart';
 
-class ClientDetailWidget extends StatelessWidget {
+class ClientDetailWidget extends ConsumerWidget {
   final ClientListEntity? clientInfo;
   final ClientProfileEntity? clientProfile;
+  final ClientMonthlyCalendarEntity? clientCalendar;
+  final Function(ManagedMembersIntent) onIntent;
 
-  const ClientDetailWidget({super.key, this.clientInfo, this.clientProfile});
+  const ClientDetailWidget({
+    super.key,
+    this.clientInfo,
+    this.clientProfile,
+    this.clientCalendar,
+    required this.onIntent,
+  });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     var genderStringKey = clientInfo != null
         ? GenderType.findGenderOneChar(clientInfo!.gender)
         : "";
@@ -33,8 +46,7 @@ class ClientDetailWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 12),
-          clientInfo != null
-              ? Expanded(
+          if (clientInfo != null) Expanded(
                   child: Container(
                     decoration: BoxDecoration(
                       color: AppColors.white,
@@ -80,10 +92,13 @@ class ClientDetailWidget extends StatelessWidget {
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    '운동 목적',
-                                    style: SsentifTextStyles.medium14.copyWith(
-                                      color: AppColors.black,
+                                  SizedBox(
+                                    width: 60,
+                                    child: Text(
+                                      '운동 목적',
+                                      style: SsentifTextStyles.medium14.copyWith(
+                                        color: AppColors.black,
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(width: 15),
@@ -106,7 +121,7 @@ class ClientDetailWidget extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   SizedBox(
-                                    width: 50,
+                                    width: 60,
                                     child: Text(
                                       '연락처',
                                       style:
@@ -117,7 +132,7 @@ class ClientDetailWidget extends StatelessWidget {
                                   ),
                                   const SizedBox(width: 15),
                                   Text(
-                                    clientInfo!.phoneNumber,
+                                    clientInfo!.phoneNumber.toHyphenPhoneNumber(),
                                     style: SsentifTextStyles.medium14.copyWith(
                                       color: AppColors.gray2,
                                     ),
@@ -142,27 +157,31 @@ class ClientDetailWidget extends StatelessWidget {
                             TypeCountWidget(
                               color: AppColors.subColorBlue,
                               typeText: '출석완료',
-                              count: 12, // 더미 데이터
+                              count: clientCalendar?.classCompleteCounts ?? 0,
                             ),
                             TypeCountWidget(
                               color: AppColors.primary,
                               typeText: '예약완료',
-                              count: 8, // 더미 데이터
+                              count: clientCalendar
+                                      ?.classReservationCompleteCounts ??
+                                  0,
                             ),
                             TypeCountWidget(
                               color: AppColors.subColorOrange,
                               typeText: '예약요청',
-                              count: 3, // 더미 데이터
+                              count:
+                                  clientCalendar?.classReservationWaitCounts ??
+                                      0,
                             ),
                             TypeCountWidget(
                               color: AppColors.subColorRed,
                               typeText: '개인운동',
-                              count: 5, // 더미 데이터
+                              count: clientCalendar?.workoutCounts ?? 0,
                             ),
                             TypeCountWidget(
                               color: AppColors.subColorPurple,
                               typeText: '식단',
-                              count: 2, // 더미 데이터
+                              count: clientCalendar?.dietCounts ?? 0,
                             ),
                           ],
                         ),
@@ -170,7 +189,7 @@ class ClientDetailWidget extends StatelessWidget {
                         // 월간 캘린더
                         MonthlyCalendarWidget(
                           selectedMonth: DateTime.now(),
-                          eventsByDate: _getDummyEvents(),
+                          eventsByDate: _getEventsFromCalendar(),
                           onDayTap: (date) {
                             print('Selected date: $date');
                           },
@@ -178,8 +197,7 @@ class ClientDetailWidget extends StatelessWidget {
                       ],
                     ),
                   ),
-                )
-              : Container(
+                ) else Container(
                   width: double.infinity,
                   height: 300,
                   alignment: Alignment.center,
@@ -202,33 +220,44 @@ class ClientDetailWidget extends StatelessWidget {
     );
   }
 
-  Map<DateTime, List<EventType>> _getDummyEvents() {
-    final now = DateTime.now();
-    final currentMonth = DateTime(now.year, now.month, 1);
+  Map<DateTime, List<EventType>> _getEventsFromCalendar() {
+    if (clientCalendar?.events == null) {
+      return {};
+    }
 
-    return {
-      // 15일에 식단과 개인운동
-      DateTime(now.year, now.month, 15): [
-        EventType.diet,
-        EventType.personalExercise,
-      ],
-      // 18일에 출석완료와 예약완료
-      DateTime(now.year, now.month, 18): [
-        EventType.attendance,
-        EventType.reservation,
-      ],
-      // 22일에 예약요청
-      DateTime(now.year, now.month, 22): [
-        EventType.reservationRequest,
-      ],
-      // 25일에 개인운동
-      DateTime(now.year, now.month, 25): [
-        EventType.personalExercise,
-      ],
-      // 28일에 식단
-      DateTime(now.year, now.month, 28): [
-        EventType.diet,
-      ],
-    };
+    Map<DateTime, List<EventType>> eventsByDate = {};
+
+    for (var event in clientCalendar!.events) {
+      final date = DateTime(event.startDateTime.year, event.startDateTime.month,
+          event.startDateTime.day);
+
+      if (!eventsByDate.containsKey(date)) {
+        eventsByDate[date] = [];
+      }
+
+      // CalendarEventEntity의 eventType을 EventType으로 변환
+      switch (event.eventType) {
+        case ClientCalendarEventType.classEvent:
+        case ClientCalendarEventType.reservationCompleteEvent:
+          eventsByDate[date]!.add(EventType.reservationComplete);
+        case ClientCalendarEventType.classCompleteEvent:
+          eventsByDate[date]!.add(EventType.attendance);
+          break;
+        case ClientCalendarEventType.classRequestEvent:
+          eventsByDate[date]!.add(EventType.reservationRequest);
+          break;
+        case ClientCalendarEventType.workoutEvent:
+          eventsByDate[date]!.add(EventType.personalExercise);
+          break;
+        case ClientCalendarEventType.dietEvent:
+          eventsByDate[date]!.add(EventType.diet);
+          break;
+        case ClientCalendarEventType.clientEtcEvent:
+          // 기타 이벤트는 무시
+          break;
+      }
+    }
+
+    return eventsByDate;
   }
 }

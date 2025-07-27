@@ -21,6 +21,8 @@ mixin _$ManagedMembersIntent {
     required TResult Function() loadMembers,
     required TResult Function(ClientListEntity client) selectClient,
     required TResult Function(int clientId) loadClientProfile,
+    required TResult Function(int year, int month, int clientId)
+        loadClientCalendar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +30,7 @@ mixin _$ManagedMembersIntent {
     TResult? Function()? loadMembers,
     TResult? Function(ClientListEntity client)? selectClient,
     TResult? Function(int clientId)? loadClientProfile,
+    TResult? Function(int year, int month, int clientId)? loadClientCalendar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +38,7 @@ mixin _$ManagedMembersIntent {
     TResult Function()? loadMembers,
     TResult Function(ClientListEntity client)? selectClient,
     TResult Function(int clientId)? loadClientProfile,
+    TResult Function(int year, int month, int clientId)? loadClientCalendar,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +47,7 @@ mixin _$ManagedMembersIntent {
     required TResult Function(_LoadMembers value) loadMembers,
     required TResult Function(_SelectClient value) selectClient,
     required TResult Function(_LoadClientProfile value) loadClientProfile,
+    required TResult Function(_LoadClientCalendar value) loadClientCalendar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +55,7 @@ mixin _$ManagedMembersIntent {
     TResult? Function(_LoadMembers value)? loadMembers,
     TResult? Function(_SelectClient value)? selectClient,
     TResult? Function(_LoadClientProfile value)? loadClientProfile,
+    TResult? Function(_LoadClientCalendar value)? loadClientCalendar,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +63,7 @@ mixin _$ManagedMembersIntent {
     TResult Function(_LoadMembers value)? loadMembers,
     TResult Function(_SelectClient value)? selectClient,
     TResult Function(_LoadClientProfile value)? loadClientProfile,
+    TResult Function(_LoadClientCalendar value)? loadClientCalendar,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -128,6 +135,8 @@ class _$LoadMembersImpl implements _LoadMembers {
     required TResult Function() loadMembers,
     required TResult Function(ClientListEntity client) selectClient,
     required TResult Function(int clientId) loadClientProfile,
+    required TResult Function(int year, int month, int clientId)
+        loadClientCalendar,
   }) {
     return loadMembers();
   }
@@ -138,6 +147,7 @@ class _$LoadMembersImpl implements _LoadMembers {
     TResult? Function()? loadMembers,
     TResult? Function(ClientListEntity client)? selectClient,
     TResult? Function(int clientId)? loadClientProfile,
+    TResult? Function(int year, int month, int clientId)? loadClientCalendar,
   }) {
     return loadMembers?.call();
   }
@@ -148,6 +158,7 @@ class _$LoadMembersImpl implements _LoadMembers {
     TResult Function()? loadMembers,
     TResult Function(ClientListEntity client)? selectClient,
     TResult Function(int clientId)? loadClientProfile,
+    TResult Function(int year, int month, int clientId)? loadClientCalendar,
     required TResult orElse(),
   }) {
     if (loadMembers != null) {
@@ -162,6 +173,7 @@ class _$LoadMembersImpl implements _LoadMembers {
     required TResult Function(_LoadMembers value) loadMembers,
     required TResult Function(_SelectClient value) selectClient,
     required TResult Function(_LoadClientProfile value) loadClientProfile,
+    required TResult Function(_LoadClientCalendar value) loadClientCalendar,
   }) {
     return loadMembers(this);
   }
@@ -172,6 +184,7 @@ class _$LoadMembersImpl implements _LoadMembers {
     TResult? Function(_LoadMembers value)? loadMembers,
     TResult? Function(_SelectClient value)? selectClient,
     TResult? Function(_LoadClientProfile value)? loadClientProfile,
+    TResult? Function(_LoadClientCalendar value)? loadClientCalendar,
   }) {
     return loadMembers?.call(this);
   }
@@ -182,6 +195,7 @@ class _$LoadMembersImpl implements _LoadMembers {
     TResult Function(_LoadMembers value)? loadMembers,
     TResult Function(_SelectClient value)? selectClient,
     TResult Function(_LoadClientProfile value)? loadClientProfile,
+    TResult Function(_LoadClientCalendar value)? loadClientCalendar,
     required TResult orElse(),
   }) {
     if (loadMembers != null) {
@@ -278,6 +292,8 @@ class _$SelectClientImpl implements _SelectClient {
     required TResult Function() loadMembers,
     required TResult Function(ClientListEntity client) selectClient,
     required TResult Function(int clientId) loadClientProfile,
+    required TResult Function(int year, int month, int clientId)
+        loadClientCalendar,
   }) {
     return selectClient(client);
   }
@@ -288,6 +304,7 @@ class _$SelectClientImpl implements _SelectClient {
     TResult? Function()? loadMembers,
     TResult? Function(ClientListEntity client)? selectClient,
     TResult? Function(int clientId)? loadClientProfile,
+    TResult? Function(int year, int month, int clientId)? loadClientCalendar,
   }) {
     return selectClient?.call(client);
   }
@@ -298,6 +315,7 @@ class _$SelectClientImpl implements _SelectClient {
     TResult Function()? loadMembers,
     TResult Function(ClientListEntity client)? selectClient,
     TResult Function(int clientId)? loadClientProfile,
+    TResult Function(int year, int month, int clientId)? loadClientCalendar,
     required TResult orElse(),
   }) {
     if (selectClient != null) {
@@ -312,6 +330,7 @@ class _$SelectClientImpl implements _SelectClient {
     required TResult Function(_LoadMembers value) loadMembers,
     required TResult Function(_SelectClient value) selectClient,
     required TResult Function(_LoadClientProfile value) loadClientProfile,
+    required TResult Function(_LoadClientCalendar value) loadClientCalendar,
   }) {
     return selectClient(this);
   }
@@ -322,6 +341,7 @@ class _$SelectClientImpl implements _SelectClient {
     TResult? Function(_LoadMembers value)? loadMembers,
     TResult? Function(_SelectClient value)? selectClient,
     TResult? Function(_LoadClientProfile value)? loadClientProfile,
+    TResult? Function(_LoadClientCalendar value)? loadClientCalendar,
   }) {
     return selectClient?.call(this);
   }
@@ -332,6 +352,7 @@ class _$SelectClientImpl implements _SelectClient {
     TResult Function(_LoadMembers value)? loadMembers,
     TResult Function(_SelectClient value)? selectClient,
     TResult Function(_LoadClientProfile value)? loadClientProfile,
+    TResult Function(_LoadClientCalendar value)? loadClientCalendar,
     required TResult orElse(),
   }) {
     if (selectClient != null) {
@@ -427,6 +448,8 @@ class _$LoadClientProfileImpl implements _LoadClientProfile {
     required TResult Function() loadMembers,
     required TResult Function(ClientListEntity client) selectClient,
     required TResult Function(int clientId) loadClientProfile,
+    required TResult Function(int year, int month, int clientId)
+        loadClientCalendar,
   }) {
     return loadClientProfile(clientId);
   }
@@ -437,6 +460,7 @@ class _$LoadClientProfileImpl implements _LoadClientProfile {
     TResult? Function()? loadMembers,
     TResult? Function(ClientListEntity client)? selectClient,
     TResult? Function(int clientId)? loadClientProfile,
+    TResult? Function(int year, int month, int clientId)? loadClientCalendar,
   }) {
     return loadClientProfile?.call(clientId);
   }
@@ -447,6 +471,7 @@ class _$LoadClientProfileImpl implements _LoadClientProfile {
     TResult Function()? loadMembers,
     TResult Function(ClientListEntity client)? selectClient,
     TResult Function(int clientId)? loadClientProfile,
+    TResult Function(int year, int month, int clientId)? loadClientCalendar,
     required TResult orElse(),
   }) {
     if (loadClientProfile != null) {
@@ -461,6 +486,7 @@ class _$LoadClientProfileImpl implements _LoadClientProfile {
     required TResult Function(_LoadMembers value) loadMembers,
     required TResult Function(_SelectClient value) selectClient,
     required TResult Function(_LoadClientProfile value) loadClientProfile,
+    required TResult Function(_LoadClientCalendar value) loadClientCalendar,
   }) {
     return loadClientProfile(this);
   }
@@ -471,6 +497,7 @@ class _$LoadClientProfileImpl implements _LoadClientProfile {
     TResult? Function(_LoadMembers value)? loadMembers,
     TResult? Function(_SelectClient value)? selectClient,
     TResult? Function(_LoadClientProfile value)? loadClientProfile,
+    TResult? Function(_LoadClientCalendar value)? loadClientCalendar,
   }) {
     return loadClientProfile?.call(this);
   }
@@ -481,6 +508,7 @@ class _$LoadClientProfileImpl implements _LoadClientProfile {
     TResult Function(_LoadMembers value)? loadMembers,
     TResult Function(_SelectClient value)? selectClient,
     TResult Function(_LoadClientProfile value)? loadClientProfile,
+    TResult Function(_LoadClientCalendar value)? loadClientCalendar,
     required TResult orElse(),
   }) {
     if (loadClientProfile != null) {
@@ -500,5 +528,182 @@ abstract class _LoadClientProfile implements ManagedMembersIntent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadClientProfileImplCopyWith<_$LoadClientProfileImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LoadClientCalendarImplCopyWith<$Res> {
+  factory _$$LoadClientCalendarImplCopyWith(_$LoadClientCalendarImpl value,
+          $Res Function(_$LoadClientCalendarImpl) then) =
+      __$$LoadClientCalendarImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int year, int month, int clientId});
+}
+
+/// @nodoc
+class __$$LoadClientCalendarImplCopyWithImpl<$Res>
+    extends _$ManagedMembersIntentCopyWithImpl<$Res, _$LoadClientCalendarImpl>
+    implements _$$LoadClientCalendarImplCopyWith<$Res> {
+  __$$LoadClientCalendarImplCopyWithImpl(_$LoadClientCalendarImpl _value,
+      $Res Function(_$LoadClientCalendarImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ManagedMembersIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? year = null,
+    Object? month = null,
+    Object? clientId = null,
+  }) {
+    return _then(_$LoadClientCalendarImpl(
+      year: null == year
+          ? _value.year
+          : year // ignore: cast_nullable_to_non_nullable
+              as int,
+      month: null == month
+          ? _value.month
+          : month // ignore: cast_nullable_to_non_nullable
+              as int,
+      clientId: null == clientId
+          ? _value.clientId
+          : clientId // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadClientCalendarImpl implements _LoadClientCalendar {
+  const _$LoadClientCalendarImpl(
+      {required this.year, required this.month, required this.clientId});
+
+  @override
+  final int year;
+  @override
+  final int month;
+  @override
+  final int clientId;
+
+  @override
+  String toString() {
+    return 'ManagedMembersIntent.loadClientCalendar(year: $year, month: $month, clientId: $clientId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadClientCalendarImpl &&
+            (identical(other.year, year) || other.year == year) &&
+            (identical(other.month, month) || other.month == month) &&
+            (identical(other.clientId, clientId) ||
+                other.clientId == clientId));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, year, month, clientId);
+
+  /// Create a copy of ManagedMembersIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadClientCalendarImplCopyWith<_$LoadClientCalendarImpl> get copyWith =>
+      __$$LoadClientCalendarImplCopyWithImpl<_$LoadClientCalendarImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadMembers,
+    required TResult Function(ClientListEntity client) selectClient,
+    required TResult Function(int clientId) loadClientProfile,
+    required TResult Function(int year, int month, int clientId)
+        loadClientCalendar,
+  }) {
+    return loadClientCalendar(year, month, clientId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadMembers,
+    TResult? Function(ClientListEntity client)? selectClient,
+    TResult? Function(int clientId)? loadClientProfile,
+    TResult? Function(int year, int month, int clientId)? loadClientCalendar,
+  }) {
+    return loadClientCalendar?.call(year, month, clientId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadMembers,
+    TResult Function(ClientListEntity client)? selectClient,
+    TResult Function(int clientId)? loadClientProfile,
+    TResult Function(int year, int month, int clientId)? loadClientCalendar,
+    required TResult orElse(),
+  }) {
+    if (loadClientCalendar != null) {
+      return loadClientCalendar(year, month, clientId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadMembers value) loadMembers,
+    required TResult Function(_SelectClient value) selectClient,
+    required TResult Function(_LoadClientProfile value) loadClientProfile,
+    required TResult Function(_LoadClientCalendar value) loadClientCalendar,
+  }) {
+    return loadClientCalendar(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadMembers value)? loadMembers,
+    TResult? Function(_SelectClient value)? selectClient,
+    TResult? Function(_LoadClientProfile value)? loadClientProfile,
+    TResult? Function(_LoadClientCalendar value)? loadClientCalendar,
+  }) {
+    return loadClientCalendar?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadMembers value)? loadMembers,
+    TResult Function(_SelectClient value)? selectClient,
+    TResult Function(_LoadClientProfile value)? loadClientProfile,
+    TResult Function(_LoadClientCalendar value)? loadClientCalendar,
+    required TResult orElse(),
+  }) {
+    if (loadClientCalendar != null) {
+      return loadClientCalendar(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadClientCalendar implements ManagedMembersIntent {
+  const factory _LoadClientCalendar(
+      {required final int year,
+      required final int month,
+      required final int clientId}) = _$LoadClientCalendarImpl;
+
+  int get year;
+  int get month;
+  int get clientId;
+
+  /// Create a copy of ManagedMembersIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoadClientCalendarImplCopyWith<_$LoadClientCalendarImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -59,6 +59,10 @@ class ManagedMembersScreen extends ConsumerWidget {
                     child: ClientDetailWidget(
                       clientInfo: state.selectedClient,
                       clientProfile: state.selectedClientProfile,
+                      clientCalendar: state.selectedClientCalendar,
+                      onIntent: (intent) {
+                        viewModel.handleIntent(intent);
+                      },
                     ),
                   ),
                 ],
