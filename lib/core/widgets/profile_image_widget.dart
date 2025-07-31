@@ -26,7 +26,7 @@ class ProfileImageWidget extends StatelessWidget {
           : selected
           ? AppColors.green1899
           : AppColors.transparent,
-      child:imageURL == Constants.dummyProfileImgUrl || imageURL.isEmpty ?
+      child:imageURL == Constants.dummyProfileImgUrl || imageURL == Constants.dummyProfileImgUrl2 || imageURL.isEmpty ?
       Image.asset(
           width: size,
           height: size,

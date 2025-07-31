@@ -23,6 +23,7 @@ mixin _$ScheduleEffect {
     required TResult Function(DateTime dateTime, DateTime selectedDate)
         updateCalendarView,
     required TResult Function(DateTime dateTime) updateSelectedDateCell,
+    required TResult Function(DateTime selectedDate) showDateScheduleDialog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$ScheduleEffect {
     TResult? Function(DateTime dateTime, DateTime selectedDate)?
         updateCalendarView,
     TResult? Function(DateTime dateTime)? updateSelectedDateCell,
+    TResult? Function(DateTime selectedDate)? showDateScheduleDialog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$ScheduleEffect {
     TResult Function(DateTime dateTime, DateTime selectedDate)?
         updateCalendarView,
     TResult Function(DateTime dateTime)? updateSelectedDateCell,
+    TResult Function(DateTime selectedDate)? showDateScheduleDialog,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -52,6 +55,8 @@ mixin _$ScheduleEffect {
     required TResult Function(_UpdateCalendarView value) updateCalendarView,
     required TResult Function(_UpdateSelectedDateCell value)
         updateSelectedDateCell,
+    required TResult Function(_ShowDateScheduleDialog value)
+        showDateScheduleDialog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -61,6 +66,7 @@ mixin _$ScheduleEffect {
     TResult? Function(_ShowErrorDialog value)? showErrorDialog,
     TResult? Function(_UpdateCalendarView value)? updateCalendarView,
     TResult? Function(_UpdateSelectedDateCell value)? updateSelectedDateCell,
+    TResult? Function(_ShowDateScheduleDialog value)? showDateScheduleDialog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +75,7 @@ mixin _$ScheduleEffect {
     TResult Function(_ShowErrorDialog value)? showErrorDialog,
     TResult Function(_UpdateCalendarView value)? updateCalendarView,
     TResult Function(_UpdateSelectedDateCell value)? updateSelectedDateCell,
+    TResult Function(_ShowDateScheduleDialog value)? showDateScheduleDialog,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -172,6 +179,7 @@ class _$NavigateToScheduleDetailImpl implements _NavigateToScheduleDetail {
     required TResult Function(DateTime dateTime, DateTime selectedDate)
         updateCalendarView,
     required TResult Function(DateTime dateTime) updateSelectedDateCell,
+    required TResult Function(DateTime selectedDate) showDateScheduleDialog,
   }) {
     return navigateToScheduleDetail(scheduleId);
   }
@@ -184,6 +192,7 @@ class _$NavigateToScheduleDetailImpl implements _NavigateToScheduleDetail {
     TResult? Function(DateTime dateTime, DateTime selectedDate)?
         updateCalendarView,
     TResult? Function(DateTime dateTime)? updateSelectedDateCell,
+    TResult? Function(DateTime selectedDate)? showDateScheduleDialog,
   }) {
     return navigateToScheduleDetail?.call(scheduleId);
   }
@@ -196,6 +205,7 @@ class _$NavigateToScheduleDetailImpl implements _NavigateToScheduleDetail {
     TResult Function(DateTime dateTime, DateTime selectedDate)?
         updateCalendarView,
     TResult Function(DateTime dateTime)? updateSelectedDateCell,
+    TResult Function(DateTime selectedDate)? showDateScheduleDialog,
     required TResult orElse(),
   }) {
     if (navigateToScheduleDetail != null) {
@@ -213,6 +223,8 @@ class _$NavigateToScheduleDetailImpl implements _NavigateToScheduleDetail {
     required TResult Function(_UpdateCalendarView value) updateCalendarView,
     required TResult Function(_UpdateSelectedDateCell value)
         updateSelectedDateCell,
+    required TResult Function(_ShowDateScheduleDialog value)
+        showDateScheduleDialog,
   }) {
     return navigateToScheduleDetail(this);
   }
@@ -225,6 +237,7 @@ class _$NavigateToScheduleDetailImpl implements _NavigateToScheduleDetail {
     TResult? Function(_ShowErrorDialog value)? showErrorDialog,
     TResult? Function(_UpdateCalendarView value)? updateCalendarView,
     TResult? Function(_UpdateSelectedDateCell value)? updateSelectedDateCell,
+    TResult? Function(_ShowDateScheduleDialog value)? showDateScheduleDialog,
   }) {
     return navigateToScheduleDetail?.call(this);
   }
@@ -236,6 +249,7 @@ class _$NavigateToScheduleDetailImpl implements _NavigateToScheduleDetail {
     TResult Function(_ShowErrorDialog value)? showErrorDialog,
     TResult Function(_UpdateCalendarView value)? updateCalendarView,
     TResult Function(_UpdateSelectedDateCell value)? updateSelectedDateCell,
+    TResult Function(_ShowDateScheduleDialog value)? showDateScheduleDialog,
     required TResult orElse(),
   }) {
     if (navigateToScheduleDetail != null) {
@@ -332,6 +346,7 @@ class _$ShowErrorDialogImpl implements _ShowErrorDialog {
     required TResult Function(DateTime dateTime, DateTime selectedDate)
         updateCalendarView,
     required TResult Function(DateTime dateTime) updateSelectedDateCell,
+    required TResult Function(DateTime selectedDate) showDateScheduleDialog,
   }) {
     return showErrorDialog(message);
   }
@@ -344,6 +359,7 @@ class _$ShowErrorDialogImpl implements _ShowErrorDialog {
     TResult? Function(DateTime dateTime, DateTime selectedDate)?
         updateCalendarView,
     TResult? Function(DateTime dateTime)? updateSelectedDateCell,
+    TResult? Function(DateTime selectedDate)? showDateScheduleDialog,
   }) {
     return showErrorDialog?.call(message);
   }
@@ -356,6 +372,7 @@ class _$ShowErrorDialogImpl implements _ShowErrorDialog {
     TResult Function(DateTime dateTime, DateTime selectedDate)?
         updateCalendarView,
     TResult Function(DateTime dateTime)? updateSelectedDateCell,
+    TResult Function(DateTime selectedDate)? showDateScheduleDialog,
     required TResult orElse(),
   }) {
     if (showErrorDialog != null) {
@@ -373,6 +390,8 @@ class _$ShowErrorDialogImpl implements _ShowErrorDialog {
     required TResult Function(_UpdateCalendarView value) updateCalendarView,
     required TResult Function(_UpdateSelectedDateCell value)
         updateSelectedDateCell,
+    required TResult Function(_ShowDateScheduleDialog value)
+        showDateScheduleDialog,
   }) {
     return showErrorDialog(this);
   }
@@ -385,6 +404,7 @@ class _$ShowErrorDialogImpl implements _ShowErrorDialog {
     TResult? Function(_ShowErrorDialog value)? showErrorDialog,
     TResult? Function(_UpdateCalendarView value)? updateCalendarView,
     TResult? Function(_UpdateSelectedDateCell value)? updateSelectedDateCell,
+    TResult? Function(_ShowDateScheduleDialog value)? showDateScheduleDialog,
   }) {
     return showErrorDialog?.call(this);
   }
@@ -396,6 +416,7 @@ class _$ShowErrorDialogImpl implements _ShowErrorDialog {
     TResult Function(_ShowErrorDialog value)? showErrorDialog,
     TResult Function(_UpdateCalendarView value)? updateCalendarView,
     TResult Function(_UpdateSelectedDateCell value)? updateSelectedDateCell,
+    TResult Function(_ShowDateScheduleDialog value)? showDateScheduleDialog,
     required TResult orElse(),
   }) {
     if (showErrorDialog != null) {
@@ -503,6 +524,7 @@ class _$UpdateCalendarViewImpl implements _UpdateCalendarView {
     required TResult Function(DateTime dateTime, DateTime selectedDate)
         updateCalendarView,
     required TResult Function(DateTime dateTime) updateSelectedDateCell,
+    required TResult Function(DateTime selectedDate) showDateScheduleDialog,
   }) {
     return updateCalendarView(dateTime, selectedDate);
   }
@@ -515,6 +537,7 @@ class _$UpdateCalendarViewImpl implements _UpdateCalendarView {
     TResult? Function(DateTime dateTime, DateTime selectedDate)?
         updateCalendarView,
     TResult? Function(DateTime dateTime)? updateSelectedDateCell,
+    TResult? Function(DateTime selectedDate)? showDateScheduleDialog,
   }) {
     return updateCalendarView?.call(dateTime, selectedDate);
   }
@@ -527,6 +550,7 @@ class _$UpdateCalendarViewImpl implements _UpdateCalendarView {
     TResult Function(DateTime dateTime, DateTime selectedDate)?
         updateCalendarView,
     TResult Function(DateTime dateTime)? updateSelectedDateCell,
+    TResult Function(DateTime selectedDate)? showDateScheduleDialog,
     required TResult orElse(),
   }) {
     if (updateCalendarView != null) {
@@ -544,6 +568,8 @@ class _$UpdateCalendarViewImpl implements _UpdateCalendarView {
     required TResult Function(_UpdateCalendarView value) updateCalendarView,
     required TResult Function(_UpdateSelectedDateCell value)
         updateSelectedDateCell,
+    required TResult Function(_ShowDateScheduleDialog value)
+        showDateScheduleDialog,
   }) {
     return updateCalendarView(this);
   }
@@ -556,6 +582,7 @@ class _$UpdateCalendarViewImpl implements _UpdateCalendarView {
     TResult? Function(_ShowErrorDialog value)? showErrorDialog,
     TResult? Function(_UpdateCalendarView value)? updateCalendarView,
     TResult? Function(_UpdateSelectedDateCell value)? updateSelectedDateCell,
+    TResult? Function(_ShowDateScheduleDialog value)? showDateScheduleDialog,
   }) {
     return updateCalendarView?.call(this);
   }
@@ -567,6 +594,7 @@ class _$UpdateCalendarViewImpl implements _UpdateCalendarView {
     TResult Function(_ShowErrorDialog value)? showErrorDialog,
     TResult Function(_UpdateCalendarView value)? updateCalendarView,
     TResult Function(_UpdateSelectedDateCell value)? updateSelectedDateCell,
+    TResult Function(_ShowDateScheduleDialog value)? showDateScheduleDialog,
     required TResult orElse(),
   }) {
     if (updateCalendarView != null) {
@@ -668,6 +696,7 @@ class _$UpdateSelectedDateCellImpl implements _UpdateSelectedDateCell {
     required TResult Function(DateTime dateTime, DateTime selectedDate)
         updateCalendarView,
     required TResult Function(DateTime dateTime) updateSelectedDateCell,
+    required TResult Function(DateTime selectedDate) showDateScheduleDialog,
   }) {
     return updateSelectedDateCell(dateTime);
   }
@@ -680,6 +709,7 @@ class _$UpdateSelectedDateCellImpl implements _UpdateSelectedDateCell {
     TResult? Function(DateTime dateTime, DateTime selectedDate)?
         updateCalendarView,
     TResult? Function(DateTime dateTime)? updateSelectedDateCell,
+    TResult? Function(DateTime selectedDate)? showDateScheduleDialog,
   }) {
     return updateSelectedDateCell?.call(dateTime);
   }
@@ -692,6 +722,7 @@ class _$UpdateSelectedDateCellImpl implements _UpdateSelectedDateCell {
     TResult Function(DateTime dateTime, DateTime selectedDate)?
         updateCalendarView,
     TResult Function(DateTime dateTime)? updateSelectedDateCell,
+    TResult Function(DateTime selectedDate)? showDateScheduleDialog,
     required TResult orElse(),
   }) {
     if (updateSelectedDateCell != null) {
@@ -709,6 +740,8 @@ class _$UpdateSelectedDateCellImpl implements _UpdateSelectedDateCell {
     required TResult Function(_UpdateCalendarView value) updateCalendarView,
     required TResult Function(_UpdateSelectedDateCell value)
         updateSelectedDateCell,
+    required TResult Function(_ShowDateScheduleDialog value)
+        showDateScheduleDialog,
   }) {
     return updateSelectedDateCell(this);
   }
@@ -721,6 +754,7 @@ class _$UpdateSelectedDateCellImpl implements _UpdateSelectedDateCell {
     TResult? Function(_ShowErrorDialog value)? showErrorDialog,
     TResult? Function(_UpdateCalendarView value)? updateCalendarView,
     TResult? Function(_UpdateSelectedDateCell value)? updateSelectedDateCell,
+    TResult? Function(_ShowDateScheduleDialog value)? showDateScheduleDialog,
   }) {
     return updateSelectedDateCell?.call(this);
   }
@@ -732,6 +766,7 @@ class _$UpdateSelectedDateCellImpl implements _UpdateSelectedDateCell {
     TResult Function(_ShowErrorDialog value)? showErrorDialog,
     TResult Function(_UpdateCalendarView value)? updateCalendarView,
     TResult Function(_UpdateSelectedDateCell value)? updateSelectedDateCell,
+    TResult Function(_ShowDateScheduleDialog value)? showDateScheduleDialog,
     required TResult orElse(),
   }) {
     if (updateSelectedDateCell != null) {
@@ -751,5 +786,175 @@ abstract class _UpdateSelectedDateCell implements ScheduleEffect {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdateSelectedDateCellImplCopyWith<_$UpdateSelectedDateCellImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ShowDateScheduleDialogImplCopyWith<$Res> {
+  factory _$$ShowDateScheduleDialogImplCopyWith(
+          _$ShowDateScheduleDialogImpl value,
+          $Res Function(_$ShowDateScheduleDialogImpl) then) =
+      __$$ShowDateScheduleDialogImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({DateTime selectedDate});
+}
+
+/// @nodoc
+class __$$ShowDateScheduleDialogImplCopyWithImpl<$Res>
+    extends _$ScheduleEffectCopyWithImpl<$Res, _$ShowDateScheduleDialogImpl>
+    implements _$$ShowDateScheduleDialogImplCopyWith<$Res> {
+  __$$ShowDateScheduleDialogImplCopyWithImpl(
+      _$ShowDateScheduleDialogImpl _value,
+      $Res Function(_$ShowDateScheduleDialogImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ScheduleEffect
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectedDate = null,
+  }) {
+    return _then(_$ShowDateScheduleDialogImpl(
+      selectedDate: null == selectedDate
+          ? _value.selectedDate
+          : selectedDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ShowDateScheduleDialogImpl implements _ShowDateScheduleDialog {
+  const _$ShowDateScheduleDialogImpl({required this.selectedDate});
+
+  @override
+  final DateTime selectedDate;
+
+  @override
+  String toString() {
+    return 'ScheduleEffect.showDateScheduleDialog(selectedDate: $selectedDate)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ShowDateScheduleDialogImpl &&
+            (identical(other.selectedDate, selectedDate) ||
+                other.selectedDate == selectedDate));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, selectedDate);
+
+  /// Create a copy of ScheduleEffect
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ShowDateScheduleDialogImplCopyWith<_$ShowDateScheduleDialogImpl>
+      get copyWith => __$$ShowDateScheduleDialogImplCopyWithImpl<
+          _$ShowDateScheduleDialogImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int scheduleId) navigateToScheduleDetail,
+    required TResult Function(String message) showErrorDialog,
+    required TResult Function(DateTime dateTime, DateTime selectedDate)
+        updateCalendarView,
+    required TResult Function(DateTime dateTime) updateSelectedDateCell,
+    required TResult Function(DateTime selectedDate) showDateScheduleDialog,
+  }) {
+    return showDateScheduleDialog(selectedDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int scheduleId)? navigateToScheduleDetail,
+    TResult? Function(String message)? showErrorDialog,
+    TResult? Function(DateTime dateTime, DateTime selectedDate)?
+        updateCalendarView,
+    TResult? Function(DateTime dateTime)? updateSelectedDateCell,
+    TResult? Function(DateTime selectedDate)? showDateScheduleDialog,
+  }) {
+    return showDateScheduleDialog?.call(selectedDate);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int scheduleId)? navigateToScheduleDetail,
+    TResult Function(String message)? showErrorDialog,
+    TResult Function(DateTime dateTime, DateTime selectedDate)?
+        updateCalendarView,
+    TResult Function(DateTime dateTime)? updateSelectedDateCell,
+    TResult Function(DateTime selectedDate)? showDateScheduleDialog,
+    required TResult orElse(),
+  }) {
+    if (showDateScheduleDialog != null) {
+      return showDateScheduleDialog(selectedDate);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NavigateToScheduleDetail value)
+        navigateToScheduleDetail,
+    required TResult Function(_ShowErrorDialog value) showErrorDialog,
+    required TResult Function(_UpdateCalendarView value) updateCalendarView,
+    required TResult Function(_UpdateSelectedDateCell value)
+        updateSelectedDateCell,
+    required TResult Function(_ShowDateScheduleDialog value)
+        showDateScheduleDialog,
+  }) {
+    return showDateScheduleDialog(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_NavigateToScheduleDetail value)?
+        navigateToScheduleDetail,
+    TResult? Function(_ShowErrorDialog value)? showErrorDialog,
+    TResult? Function(_UpdateCalendarView value)? updateCalendarView,
+    TResult? Function(_UpdateSelectedDateCell value)? updateSelectedDateCell,
+    TResult? Function(_ShowDateScheduleDialog value)? showDateScheduleDialog,
+  }) {
+    return showDateScheduleDialog?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NavigateToScheduleDetail value)? navigateToScheduleDetail,
+    TResult Function(_ShowErrorDialog value)? showErrorDialog,
+    TResult Function(_UpdateCalendarView value)? updateCalendarView,
+    TResult Function(_UpdateSelectedDateCell value)? updateSelectedDateCell,
+    TResult Function(_ShowDateScheduleDialog value)? showDateScheduleDialog,
+    required TResult orElse(),
+  }) {
+    if (showDateScheduleDialog != null) {
+      return showDateScheduleDialog(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ShowDateScheduleDialog implements ScheduleEffect {
+  const factory _ShowDateScheduleDialog(
+      {required final DateTime selectedDate}) = _$ShowDateScheduleDialogImpl;
+
+  DateTime get selectedDate;
+
+  /// Create a copy of ScheduleEffect
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ShowDateScheduleDialogImplCopyWith<_$ShowDateScheduleDialogImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../viewmodel/main_view_model.dart';
 import 'package:ssentif_manager_web/features/schedule/view/screen/schedule_screen.dart';
 import 'package:ssentif_manager_web/features/coaches/view/screen/coaches_screen.dart';
+import 'package:ssentif_manager_web/features/classRecords/view/screen/class_records_feed_screen.dart';
 import 'package:ssentif_manager_web/features/main/domain/enumtype/navigation_section_type.dart';
 
 class MainScreen extends ConsumerStatefulWidget {
@@ -19,7 +20,7 @@ class MainScreen extends ConsumerStatefulWidget {
 class _MainScreenState extends ConsumerState<MainScreen> {
   @override
   Widget build(BuildContext context) {
-    return Consumer(builder:  (context, ref, _) {
+    return Consumer(builder: (context, ref, _) {
       final state = ref.watch(mainViewModelProvider);
       final viewModel = ref.read(mainViewModelProvider.notifier);
 
@@ -32,20 +33,17 @@ class _MainScreenState extends ConsumerState<MainScreen> {
               onSectionSelected: viewModel.setSection,
             ),
             Expanded(
-                child: state.selectedSection == NavigationSectionType.schedule ?
-                ScheduleScreen(
-                    coaches: state.coaches
-                ) : state.selectedSection == NavigationSectionType.coach ?
-                CoachesScreen(
-                    coaches: state.coaches
-                ) : Center(child: Text('분석 화면 준비중'))
-            )
-            ,
+                child: state.selectedSection == NavigationSectionType.schedule
+                    ? ScheduleScreen(coaches: state.coaches)
+                    : state.selectedSection == NavigationSectionType.coach
+                        ? CoachesScreen(coaches: state.coaches)
+                        : state.selectedSection ==
+                                NavigationSectionType.classRecords
+                            ? ClassRecordsFeedScreen(coaches: state.coaches)
+                            : Center(child: Text('분석 화면 준비중'))),
           ],
         ),
       );
-
     });
-
   }
 }

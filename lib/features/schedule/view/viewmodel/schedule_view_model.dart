@@ -16,7 +16,8 @@ import '../state/schedule_state.dart';
 
 final scheduleViewModelProvider = StateNotifierProvider.autoDispose
     .family<ScheduleViewModel, ScheduleState, List<UserEntity>>((ref, coaches) {
-  final getTrainerSchedulesUseCase = ref.read(getTrainerSchedulesUseCaseProvider);
+  final getTrainerSchedulesUseCase =
+      ref.read(getTrainerSchedulesUseCaseProvider);
   final getScheduleDetailUseCase = ref.read(getScheduleDetailUseCaseProvider);
   final scheduleEffect = ref.read(scheduleEffectProvider.notifier);
 
@@ -42,12 +43,12 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
   final StateController<ScheduleEffect?> scheduleEffect;
   final ScheduleState initialState;
 
-  ScheduleViewModel({
-    required this.getTrainerSchedulesUseCase,
-    required this.getScheduleDetailUseCase,
-    required this.initialState,
-    required this.scheduleEffect
-  }) : super(initialState) {
+  ScheduleViewModel(
+      {required this.getTrainerSchedulesUseCase,
+      required this.getScheduleDetailUseCase,
+      required this.initialState,
+      required this.scheduleEffect})
+      : super(initialState) {
     _getCachedInfo();
   }
 
@@ -98,6 +99,12 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
           } else {
             _updateSelectedDate(date);
           }
+
+          // CalendarType.monthly일 때 다이얼로그 노출
+          if (state.selectedCalendarType == CalendarType.monthly) {
+            scheduleEffect.state =
+                ScheduleEffect.showDateScheduleDialog(selectedDate: date);
+          }
         },
         onToggleCoach: (coach) {
           final current = List<UserEntity>.from(state.selectedCoaches);
@@ -112,10 +119,11 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
         },
         onSelectCalendarType: (type) {
           state = state.copyWith(selectedCalendarType: type);
-          if(type == CalendarType.monthly) {
+          if (type == CalendarType.monthly) {
             getSchedulesByStatus(state.monthlySchedules);
           } else {
-            var schedules = _filterBySelectedDate(state.monthlySchedules, state.calendarDate);
+            var schedules = _filterBySelectedDate(
+                state.monthlySchedules, state.calendarDate);
             state = state.copyWith(selectedDateSchedules: schedules);
             getSelectedDateSchedulesByStatus(schedules);
           }
@@ -128,8 +136,10 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
             state = state.copyWith(calendarDate: prevDay);
             _loadSchedules(state.coaches);
           } else {
-            var schedules = _filterBySelectedDate(state.monthlySchedules, prevDay);
-            state = state.copyWith(calendarDate: prevDay, selectedDateSchedules: schedules);
+            var schedules =
+                _filterBySelectedDate(state.monthlySchedules, prevDay);
+            state = state.copyWith(
+                calendarDate: prevDay, selectedDateSchedules: schedules);
             getSelectedDateSchedulesByStatus(schedules);
           }
         },
@@ -197,17 +207,15 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
 
   void _getScheduleDetail(int scheduleId) async {
     (await getScheduleDetailUseCase(scheduleId: scheduleId)).handleStatus(
-      onSuccess: (response) {
-        if(response != null) {
-          state = state.copyWith(scheduleDetail: response);
-        } else {
-          scheduleEffect.state = ScheduleEffect.showErrorDialog(message: "일정 상세 정보를 불러올 수 없습니다.");
-        }
-      },
-      onError: (errCode, errMsg) {
-
-      }
-    );
+        onSuccess: (response) {
+          if (response != null) {
+            state = state.copyWith(scheduleDetail: response);
+          } else {
+            scheduleEffect.state = ScheduleEffect.showErrorDialog(
+                message: "일정 상세 정보를 불러올 수 없습니다.");
+          }
+        },
+        onError: (errCode, errMsg) {});
   }
 
   void _loadSchedules(List<UserEntity> coaches) async {
@@ -341,7 +349,8 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
   }
 
   /// 선택된 날짜에 대해서만 ScheduleStatusType별로 그룹핑하고 state에 업데이트하는 메서드 (Daily 모드용)
-  void getSelectedDateSchedulesByStatus(List<CalendarScheduleEntity> schedules) {
+  void getSelectedDateSchedulesByStatus(
+      List<CalendarScheduleEntity> schedules) {
     if (state.selectedCalendarType != CalendarType.daily) return;
 
     final attendanceCount = schedules.where((e) {
@@ -369,8 +378,6 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
         etcCount: etcCount // 선택된 날짜의 기타 스케줄
         );
   }
-
-
 
 // void _loadDummySchedules() {
 //   final now = DateTime.now();

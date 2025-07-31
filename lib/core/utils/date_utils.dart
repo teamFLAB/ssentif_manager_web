@@ -15,6 +15,14 @@ extension CustomDateUtils on DateTime {
     return DateFormat(Constants.dateFormat).format(this);
   }
 
+  String formatLocalFullFormat() {
+    return DateFormat(Constants.localizationDateFormat()).format(this);
+  }
+
+  String formatYM() {
+    return DateFormat(Constants.yearMonthFormat).format(this);
+  }
+
   String formatHM() {
     return DateFormat('HH:mm').format(this);
   }

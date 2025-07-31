@@ -19,6 +19,7 @@ import '../component/schedule_stat_box.dart';
 import '../component/coach_item.dart';
 import '../component/daily_timeline.dart';
 import '../component/schedule_dialog.dart';
+import '../component/daily_schedules_dialog.dart';
 
 class ScheduleScreen extends ConsumerStatefulWidget {
   final List<UserEntity> coaches;
@@ -303,7 +304,25 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
             _calendarController.displayDate = dateTime;
             _calendarController.selectedDate = selectedDate;
           },
-          updateSelectedDateCell: (DateTime dateTime) {});
+          updateSelectedDateCell: (DateTime dateTime) {},
+          showDateScheduleDialog: (DateTime selectedDate) {
+            _showDateScheduleDialog(selectedDate);
+          });
     });
+  }
+
+  void _showDateScheduleDialog(DateTime selectedDate) {
+    final state = ref.read(scheduleViewModelProvider(widget.coaches));
+    final schedulesForDate = state.schedulesByDateAndStatus[selectedDate] ?? {};
+
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) => DailySchedulesDialog(
+        selectedDate: selectedDate,
+        schedulesForDate: schedulesForDate,
+        selectedDateSchedules: state.selectedDateSchedules
+      ),
+    );
   }
 }

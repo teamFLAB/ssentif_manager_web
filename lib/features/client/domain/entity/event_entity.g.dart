@@ -24,7 +24,7 @@ Map<String, dynamic> _$$EventEntityImplToJson(_$EventEntityImpl instance) =>
 
 const _$EventTypeEnumMap = {
   EventType.attendance: 'attendance',
-  EventType.reservationComplete: 'reservation',
+  EventType.reservationComplete: 'reservationComplete',
   EventType.reservationRequest: 'reservationRequest',
   EventType.personalExercise: 'personalExercise',
   EventType.diet: 'diet',

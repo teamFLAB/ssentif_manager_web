@@ -9,6 +9,7 @@ import 'package:ssentif_manager_web/features/schedule/data/model/schedule_model.
 import 'package:ssentif_manager_web/features/client/data/model/response_enrolled_clients.dart';
 import 'package:ssentif_manager_web/features/client/data/model/client_profile_model.dart';
 import 'package:ssentif_manager_web/features/client/data/model/client_monthly_calendar_model.dart';
+import 'package:ssentif_manager_web/features/routine/data/model/routine_history_model.dart';
 
 import '../../features/schedule/data/model/schedule_detail_model.dart';
 import '../../shared/data/model/work_place_model.dart';
@@ -171,7 +172,7 @@ class ApiService {
     final response = await _dio.get(
       '/api/user/calendar/v2',
       queryParameters: {
-        'trainerId' : trainerId,
+        'trainerId': trainerId,
         'year': year,
         'month': month,
         'clientId': clientId
@@ -181,5 +182,27 @@ class ApiService {
       ),
     );
     return ClientMonthlyCalendarModel.fromJson(response.data);
+  }
+
+  /// 수업 기록 조회하기
+  Future<ClassHistoriesResponse> getClassRecords({
+    required String trainerIds,
+    int? lastScheduleId,
+    required int count,
+    required String yearMonth,
+  }) async {
+    final response = await _dio.get(
+      '/api/matching/classInfo/list/all/v2',
+      queryParameters: {
+        'trainerIds': trainerIds,
+        if (lastScheduleId != null) 'lastScheduleId': lastScheduleId,
+        'count': count,
+        'yearMonth': yearMonth,
+      },
+      options: Options(
+        extra: {'requiresToken': true},
+      ),
+    );
+    return ClassHistoriesResponse.fromJson(response.data);
   }
 }

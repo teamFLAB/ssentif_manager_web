@@ -153,6 +153,14 @@ class $AssetsImagesGen {
   AssetGenImage get icPreviousButton =>
       const AssetGenImage('assets/images/ic_previous_button.png');
 
+  /// File path: assets/images/ic_right_gray.png
+  AssetGenImage get icRightGray =>
+      const AssetGenImage('assets/images/ic_right_gray.png');
+
+  /// File path: assets/images/ic_right_primary.png
+  AssetGenImage get icRightPrimary =>
+      const AssetGenImage('assets/images/ic_right_primary.png');
+
   /// File path: assets/images/ic_search_gray.png
   AssetGenImage get icSearchGray =>
       const AssetGenImage('assets/images/ic_search_gray.png');
@@ -253,6 +261,8 @@ class $AssetsImagesGen {
     icPlusPrimary,
     icPlusWhite,
     icPreviousButton,
+    icRightGray,
+    icRightPrimary,
     icSearchGray,
     icSsentifProfile,
     icSsentifTextLogo,
