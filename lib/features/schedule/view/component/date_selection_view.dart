@@ -37,37 +37,37 @@ class DateSelectionView extends StatelessWidget {
             Text(
               formattedDate,
               style:
-                  SsentifTextStyles.medium28.copyWith(color: AppColors.black),
+                  SsentifTextStyles.medium24.copyWith(color: AppColors.black),
             ),
             const SizedBox(width: 24),
             GestureDetector(
               onTap: onClickToday,
-              child: Assets.images.icTodayButton.image(height: 24),
+              child: Assets.images.icTodayButton.image(height: 26),
             ),
             const SizedBox(width: 12),
             GestureDetector(
               onTap: onClickPrev,
               child:
-                  Assets.images.icPreviousButton.image(width: 24, height: 24),
+                  Assets.images.icPreviousButton.image(width: 26, height: 26),
             ),
             const SizedBox(width: 6),
             GestureDetector(
               onTap: onClickNext,
-              child: Assets.images.icNextButton.image(width: 24, height: 24),
+              child: Assets.images.icNextButton.image(width: 26, height: 26),
             ),
             Spacer(),
             GestureDetector(
               onTap: () => onSelectCalendarType(CalendarType.daily),
               child: selectedCalendarType == CalendarType.daily
-                  ? Assets.images.icDaySelected.image(height: 32)
-                  : Assets.images.icDayUnselected.image(height: 32),
+                  ? Assets.images.icDaySelected.image(height: 26)
+                  : Assets.images.icDayUnselected.image(height: 26),
             ),
             const SizedBox(width: 10),
             GestureDetector(
               onTap: () => onSelectCalendarType(CalendarType.monthly),
               child: selectedCalendarType == CalendarType.monthly
-                  ? Assets.images.icMonthSelected.image(height: 32)
-                  : Assets.images.icMonthUnselected.image(height: 32),
+                  ? Assets.images.icMonthSelected.image(height: 26)
+                  : Assets.images.icMonthUnselected.image(height: 26),
             ),
           ],
         ),
@@ -98,10 +98,10 @@ class ScheduleSearchField extends StatelessWidget {
           Expanded(
             child: TextField(
               cursorColor: AppColors.primary,
-              style: ScDreamStyles.medium14(AppColors.black),
+              style: SsentifTextStyles.medium14.copyWith(color: AppColors.black),
               decoration: InputDecoration(
                 hintText: '코치/회원 이름으로 검색',
-                hintStyle: ScDreamStyles.extraLight14(AppColors.gray3),
+                hintStyle: SsentifTextStyles.regular14.copyWith(color: AppColors.gray3),
                 border: InputBorder.none,
                 isDense: true,
                 contentPadding: EdgeInsets.zero,

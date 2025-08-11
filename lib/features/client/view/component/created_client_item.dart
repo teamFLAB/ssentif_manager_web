@@ -11,6 +11,7 @@ import '../../domain/entity/client_list_entity.dart';
 
 class CreatedClientItem extends StatelessWidget {
   final ClientListEntity client;
+  final bool isSelected;
   final Function() onClickMatch;
   final Function(int clientId) onClickClientProfile;
 
@@ -18,6 +19,7 @@ class CreatedClientItem extends StatelessWidget {
   const CreatedClientItem({
     super.key,
     required this.client,
+    required this.isSelected,
     required this.onClickMatch,
     required this.onClickClientProfile
   });
@@ -30,7 +32,7 @@ class CreatedClientItem extends StatelessWidget {
           width: double.infinity,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(6),
-              color: AppColors.white
+              color: isSelected ? AppColors.backgroundTabSelected : AppColors.white
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
@@ -38,7 +40,7 @@ class CreatedClientItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CircleAvatar(
-                    radius: 24,
+                    radius: 18,
                     child: (client.profileImage.isNotEmpty)
                         ? Image.network(client.profileImage)
                         : (client.gender == GenderType.male)

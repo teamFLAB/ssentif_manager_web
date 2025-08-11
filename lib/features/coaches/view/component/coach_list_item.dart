@@ -11,10 +11,12 @@ class CoachListItem extends StatelessWidget {
   final UserEntity user;
   final bool selected;
   final bool isFirstItem;
+  final int profileImgSize;
   final VoidCallback onClick;
   const CoachListItem({
     super.key,
     required this.user,
+    this.profileImgSize = 35,
     required this.selected,
     required this.isFirstItem,
     required this.onClick
@@ -27,7 +29,7 @@ class CoachListItem extends StatelessWidget {
       child: Container(
         height: 60,
         constraints: BoxConstraints(
-          minWidth: 130,
+          minWidth: 115,
         ),
         padding: const EdgeInsets.symmetric(horizontal: 12),
         decoration: BoxDecoration(
@@ -44,8 +46,9 @@ class CoachListItem extends StatelessWidget {
             // 프로필 이미지
             ProfileImageWidget(
                 selected: selected,
+                size: profileImgSize.toDouble(),
                 imageURL: user.imageUrl,
-                showSelected: false,
+                showSelected: true,
             ),
             const SizedBox(width: 10),
             // 이름/직책
@@ -55,14 +58,14 @@ class CoachListItem extends StatelessWidget {
               children: [
                 Text(
                   user.userName,
-                  style: ScDreamStyles.medium14(AppColors.black),
+                  style: SsentifTextStyles.medium14.copyWith(color: AppColors.black),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   user.workPosition != null
                       ? Intl.message(user.workPosition!.getIntlKey())
                       : '',
-                  style: ScDreamStyles.medium12(AppColors.gray2),
+                  style: SsentifTextStyles.medium12.copyWith(color: AppColors.gray2),
                 ),
               ],
             )

@@ -5,7 +5,7 @@ enum NavigationSectionType {
   coach, // 직원관리
   classRecords, //수업일지 피드
   revenue, // 매출 관리 (준비중)
-  setting // 설정
+  // setting // 설정
 }
 
 extension NavigationSectionTypeExtension on NavigationSectionType {
@@ -19,8 +19,8 @@ extension NavigationSectionTypeExtension on NavigationSectionType {
         return '수업일지 피드';
       case NavigationSectionType.revenue:
         return '매출 관리 (준비중)';
-      case NavigationSectionType.setting:
-        return '설정';
+      // case NavigationSectionType.setting:
+      //   return '설정';
     }
   }
 
@@ -34,8 +34,8 @@ extension NavigationSectionTypeExtension on NavigationSectionType {
         return Assets.images.tabSessionUnselected;
       case NavigationSectionType.revenue:
         return Assets.images.tabIncomeUnselected;
-      case NavigationSectionType.setting:
-        return Assets.images.tabSettingUnselected;
+      // case NavigationSectionType.setting:
+      //   return Assets.images.tabSettingUnselected;
     }
   }
 
@@ -49,8 +49,8 @@ extension NavigationSectionTypeExtension on NavigationSectionType {
         return Assets.images.tabSessionSelected;
       case NavigationSectionType.revenue:
         return Assets.images.tabIncomeSelected;
-      case NavigationSectionType.setting:
-        return Assets.images.tabSettingSelected;
+      // case NavigationSectionType.setting:
+      //   return Assets.images.tabSettingSelected;
     }
   }
 }

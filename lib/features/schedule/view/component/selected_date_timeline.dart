@@ -66,7 +66,7 @@ class _SelectedDateTimelineState extends State<SelectedDateTimeline> {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
             selectedDate.formatDotYMDWithWeekday(),
-            style: ScDreamStyles.extraBold14(AppColors.black),
+            style: SsentifTextStyles.bold14.copyWith(color: AppColors.black),
           ),
         ),
         const Divider(height: 1, color: AppColors.grayE4),
@@ -75,7 +75,7 @@ class _SelectedDateTimelineState extends State<SelectedDateTimeline> {
               ? Center(
                   child: Text(
                     '오늘 일정 없음',
-                    style: ScDreamStyles.medium14(AppColors.gray2),
+                    style: SsentifTextStyles.medium14.copyWith(color: AppColors.gray2),
                   ),
                 )
               : _buildGroupedScheduleList(selectedDateSchedules),
@@ -107,8 +107,8 @@ class _SelectedDateTimelineState extends State<SelectedDateTimeline> {
               Text(
                 hourStr,
                 style: hour == DateTime.now().hour
-                    ? ScDreamStyles.bold12(AppColors.modalTextRed)
-                    : ScDreamStyles.medium12(AppColors.gray2),
+                    ? SsentifTextStyles.bold12.copyWith(color: AppColors.modalTextRed)
+                    : SsentifTextStyles.medium12.copyWith(color: AppColors.gray2),
               ),
               const SizedBox(width: 8),
               if (hourSchedules.isEmpty)
@@ -141,14 +141,14 @@ class _SelectedDateTimelineState extends State<SelectedDateTimeline> {
                               s.startTime != null
                                   ? s.startTime!.formatM() + '분'
                                   : '',
-                              style: ScDreamStyles.medium10(AppColors.white),
+                              style: SsentifTextStyles.medium10.copyWith(color: AppColors.white),
                             ),
                             const SizedBox(width: 8),
                             Text(
                               (s.trainerName ?? '') +
                                   ' 코치님' +
                                   '\n${scheduleTitle}',
-                              style: ScDreamStyles.medium10(AppColors.white)
+                              style: SsentifTextStyles.medium10.copyWith(color: AppColors.white)
                                   .copyWith(height: 1.5)
                             ),
                           ],

@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ssentif_manager_web/shared/domain/entity/user_entity.dart';
+import 'package:ssentif_manager_web/shared/enumtype/file_type.dart';
 
 part 'routine_history_entity.freezed.dart';
 
@@ -19,7 +20,8 @@ class RoutineHistoryEntity with _$RoutineHistoryEntity {
     @Default("") String feedBack,
     @Default("") String routineStatus,
     UserEntity? trainerInfo,
-    UserEntity? clientInfo
+    UserEntity? clientInfo,
+    @Default("") String runningTime
   }) = _RoutineHistoryEntity;
 }
 
@@ -56,6 +58,7 @@ class ExerciseSetEntity with _$ExerciseSetEntity {
 class FileUrlEntity with _$FileUrlEntity {
   const factory FileUrlEntity({
     @Default("") String fileUrl,
-    @Default("") String fileType,
+    @Default(FileType.image) FileType fileType,
+    @Default("") String thumbnailUrl
   }) = _FileUrlEntity;
 }

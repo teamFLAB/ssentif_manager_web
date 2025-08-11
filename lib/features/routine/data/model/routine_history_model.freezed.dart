@@ -872,6 +872,7 @@ mixin _$RoutineHistoryModel {
   int? get clientId => throw _privateConstructorUsedError;
   String? get clientName => throw _privateConstructorUsedError;
   String? get clientProfile => throw _privateConstructorUsedError;
+  String? get runningTime => throw _privateConstructorUsedError;
 
   /// Serializes this RoutineHistoryModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -907,7 +908,8 @@ abstract class $RoutineHistoryModelCopyWith<$Res> {
       String? trainerProfile,
       int? clientId,
       String? clientName,
-      String? clientProfile});
+      String? clientProfile,
+      String? runningTime});
 }
 
 /// @nodoc
@@ -943,6 +945,7 @@ class _$RoutineHistoryModelCopyWithImpl<$Res, $Val extends RoutineHistoryModel>
     Object? clientId = freezed,
     Object? clientName = freezed,
     Object? clientProfile = freezed,
+    Object? runningTime = freezed,
   }) {
     return _then(_value.copyWith(
       routineId: null == routineId
@@ -1017,6 +1020,10 @@ class _$RoutineHistoryModelCopyWithImpl<$Res, $Val extends RoutineHistoryModel>
           ? _value.clientProfile
           : clientProfile // ignore: cast_nullable_to_non_nullable
               as String?,
+      runningTime: freezed == runningTime
+          ? _value.runningTime
+          : runningTime // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -1047,7 +1054,8 @@ abstract class _$$RoutineHistoryModelImplCopyWith<$Res>
       String? trainerProfile,
       int? clientId,
       String? clientName,
-      String? clientProfile});
+      String? clientProfile,
+      String? runningTime});
 }
 
 /// @nodoc
@@ -1081,6 +1089,7 @@ class __$$RoutineHistoryModelImplCopyWithImpl<$Res>
     Object? clientId = freezed,
     Object? clientName = freezed,
     Object? clientProfile = freezed,
+    Object? runningTime = freezed,
   }) {
     return _then(_$RoutineHistoryModelImpl(
       routineId: null == routineId
@@ -1155,6 +1164,10 @@ class __$$RoutineHistoryModelImplCopyWithImpl<$Res>
           ? _value.clientProfile
           : clientProfile // ignore: cast_nullable_to_non_nullable
               as String?,
+      runningTime: freezed == runningTime
+          ? _value.runningTime
+          : runningTime // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -1180,7 +1193,8 @@ class _$RoutineHistoryModelImpl implements _RoutineHistoryModel {
       this.trainerProfile = "",
       this.clientId = -1,
       this.clientName = "",
-      this.clientProfile = ""})
+      this.clientProfile = "",
+      this.runningTime = ""})
       : _exercisePartsList = exercisePartsList,
         _routinesExerciseDtos = routinesExerciseDtos;
 
@@ -1255,10 +1269,13 @@ class _$RoutineHistoryModelImpl implements _RoutineHistoryModel {
   @override
   @JsonKey()
   final String? clientProfile;
+  @override
+  @JsonKey()
+  final String? runningTime;
 
   @override
   String toString() {
-    return 'RoutineHistoryModel(routineId: $routineId, routineName: $routineName, clientMemo: $clientMemo, routineNumberOfExercise: $routineNumberOfExercise, exercisePartsList: $exercisePartsList, exerciseIntensity: $exerciseIntensity, exerciseComment: $exerciseComment, routinesExerciseDtos: $routinesExerciseDtos, classStartDate: $classStartDate, daysAgo: $daysAgo, feedBack: $feedBack, routineStatus: $routineStatus, trainerId: $trainerId, trainerName: $trainerName, trainerProfile: $trainerProfile, clientId: $clientId, clientName: $clientName, clientProfile: $clientProfile)';
+    return 'RoutineHistoryModel(routineId: $routineId, routineName: $routineName, clientMemo: $clientMemo, routineNumberOfExercise: $routineNumberOfExercise, exercisePartsList: $exercisePartsList, exerciseIntensity: $exerciseIntensity, exerciseComment: $exerciseComment, routinesExerciseDtos: $routinesExerciseDtos, classStartDate: $classStartDate, daysAgo: $daysAgo, feedBack: $feedBack, routineStatus: $routineStatus, trainerId: $trainerId, trainerName: $trainerName, trainerProfile: $trainerProfile, clientId: $clientId, clientName: $clientName, clientProfile: $clientProfile, runningTime: $runningTime)';
   }
 
   @override
@@ -1301,31 +1318,35 @@ class _$RoutineHistoryModelImpl implements _RoutineHistoryModel {
             (identical(other.clientName, clientName) ||
                 other.clientName == clientName) &&
             (identical(other.clientProfile, clientProfile) ||
-                other.clientProfile == clientProfile));
+                other.clientProfile == clientProfile) &&
+            (identical(other.runningTime, runningTime) ||
+                other.runningTime == runningTime));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      routineId,
-      routineName,
-      clientMemo,
-      routineNumberOfExercise,
-      const DeepCollectionEquality().hash(_exercisePartsList),
-      exerciseIntensity,
-      exerciseComment,
-      const DeepCollectionEquality().hash(_routinesExerciseDtos),
-      classStartDate,
-      daysAgo,
-      feedBack,
-      routineStatus,
-      trainerId,
-      trainerName,
-      trainerProfile,
-      clientId,
-      clientName,
-      clientProfile);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        routineId,
+        routineName,
+        clientMemo,
+        routineNumberOfExercise,
+        const DeepCollectionEquality().hash(_exercisePartsList),
+        exerciseIntensity,
+        exerciseComment,
+        const DeepCollectionEquality().hash(_routinesExerciseDtos),
+        classStartDate,
+        daysAgo,
+        feedBack,
+        routineStatus,
+        trainerId,
+        trainerName,
+        trainerProfile,
+        clientId,
+        clientName,
+        clientProfile,
+        runningTime
+      ]);
 
   /// Create a copy of RoutineHistoryModel
   /// with the given fields replaced by the non-null parameter values.
@@ -1363,7 +1384,8 @@ abstract class _RoutineHistoryModel implements RoutineHistoryModel {
       final String? trainerProfile,
       final int? clientId,
       final String? clientName,
-      final String? clientProfile}) = _$RoutineHistoryModelImpl;
+      final String? clientProfile,
+      final String? runningTime}) = _$RoutineHistoryModelImpl;
 
   factory _RoutineHistoryModel.fromJson(Map<String, dynamic> json) =
       _$RoutineHistoryModelImpl.fromJson;
@@ -1404,6 +1426,8 @@ abstract class _RoutineHistoryModel implements RoutineHistoryModel {
   String? get clientName;
   @override
   String? get clientProfile;
+  @override
+  String? get runningTime;
 
   /// Create a copy of RoutineHistoryModel
   /// with the given fields replaced by the non-null parameter values.

@@ -19,7 +19,7 @@ class NavigationSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 280,
+      width: 240,
       color: AppColors.backgroundColor,
       height: double.infinity,
       child: Column(
@@ -30,7 +30,7 @@ class NavigationSection extends StatelessWidget {
             decoration: BoxDecoration(color: AppColors.white),
             alignment: Alignment.centerLeft,
             child: Padding(
-              padding: EdgeInsets.only(left: 20),
+              padding: EdgeInsets.only(left: 20, right: 20),
               child: Text(
                 gymName,
                 style:
@@ -70,11 +70,11 @@ class NavigationSection extends StatelessWidget {
                             children: [
                               SizedBox(width: 20),
                               (selected ? type.selectedIcon : type.unSelectedIcon)
-                                  .image(width: 28, height: 28),
+                                  .image(width: 24, height: 24),
                               SizedBox(width: 12),
                               Text(
                                 type.label,
-                                style: SsentifTextStyles.regular18.copyWith(
+                                style: SsentifTextStyles.regular16.copyWith(
                                   color: selected
                                       ? AppColors.backgroundTabSelectedText
                                       : AppColors.gray1,

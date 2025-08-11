@@ -155,6 +155,9 @@ class ScDreamStyles extends TextStyle {
 
 
 class SsentifTextStyles extends AppTextStyles {
+  static const bold38 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoBold, fontSize: 38, height: 1.2);
+
+  static const bold28 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoBold, fontSize: 28, height: 1.2);
   static const medium28 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoMedium, fontSize: 28, height: 1.2);
 
   static const medium24 = TextStyle(fontFamily: AppTextStyles.fontSpoqaHanSansNeoMedium, fontSize: 24, height: 1.2);

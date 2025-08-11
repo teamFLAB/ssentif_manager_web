@@ -24,25 +24,25 @@ class CoachItem extends StatelessWidget {
             width: 1,
           ),
         ),
-        padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 5),
+        padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 10),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             ProfileImageWidget(
               imageURL: coach.imageUrl,
-              size: 30,
-              selected: false,
+              size: 24,
+              selected: selected,
+              showSelected: true,
             ),
-            const SizedBox(width: 6),
+            SizedBox(width: 6),
             Text(
               coach.userName,
               style: selected
-                  ? SsentifTextStyles.bold18
+                  ? SsentifTextStyles.bold14
                       .copyWith(color: AppColors.green1899)
-                  : SsentifTextStyles.regular18
+                  : SsentifTextStyles.regular14
                       .copyWith(color: AppColors.black),
             ),
-            const SizedBox(width: 5)
           ],
         ),
       ),

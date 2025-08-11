@@ -19,5 +19,6 @@ class ManagedMembersState with _$ManagedMembersState {
     @Default(false) bool isCalendarLoading,
     @Default("") String membersErrorMessage,
     @Default("") String calendarErrorMessage,
+    required DateTime selectedMonth,
   }) = _ManagedMembersState;
 }

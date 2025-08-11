@@ -40,8 +40,8 @@ class ScheduleDateCell extends StatelessWidget {
         children: [
           isToday
               ? Container(
-                  width: 31,
-                  height: 31,
+                  width: 26,
+                  height: 26,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: AppColors.primary,
@@ -49,17 +49,19 @@ class ScheduleDateCell extends StatelessWidget {
                   ),
                   child: Text(
                     '${cellDate.day}',
-                    style: ScDreamStyles.medium18(AppColors.white),
+                    style: SsentifTextStyles.medium14.copyWith(color: AppColors.white),
                   ),
                 )
               : Text(
                   '${cellDate.day}',
-                  style: ScDreamStyles.medium18(
+                  style: SsentifTextStyles.medium14.copyWith(color:
                     cellDate.month == selectedDate.month
                         ? Colors.black
                         : Colors.grey,
                   ),
                 ),
+          if(schedules.isNotEmpty)
+            SizedBox(height: 6),
           if (schedules.isNotEmpty)
             Expanded(
               child: ListView.builder(
@@ -89,14 +91,14 @@ class ScheduleDateCell extends StatelessWidget {
                         Expanded(
                           child: Text(
                             Intl.message(scheduleType.findScheduleDetailStringKey()),
-                            style: ScDreamStyles.medium14(AppColors.gray2),
+                            style: SsentifTextStyles.medium12.copyWith(color: AppColors.gray2),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         // 스케줄 개수
                         Text(
                           '$scheduleCount',
-                          style: ScDreamStyles.medium14(AppColors.black),
+                          style: SsentifTextStyles.medium12.copyWith(color: AppColors.black),
                         ),
                       ],
                     ),

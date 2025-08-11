@@ -35,9 +35,12 @@ class ScheduleRepositoryImpl extends ScheduleRepository {
 
       var scheduleInfo = scheduleMapper.map(response);
 
-      var trainerNameUpdatedSchedules= scheduleInfo.schedules.map((schedule) {
+      var trainerNameUpdatedSchedules = scheduleInfo.schedules.map((schedule) {
         return schedule.copyWith(trainerName: trainerName);
       }).toList();
+
+      print("=========>${trainerName}");
+
 
       return ApiStatusEntity(
           data: scheduleInfo.copyWith(

@@ -8,6 +8,7 @@ import 'package:ssentif_manager_web/features/client/domain/entity/client_list_en
 
 class ClientListWidget extends StatelessWidget {
   final List<ClientListEntity> managedMembers;
+  final ClientListEntity? selectedClient;
   final bool isLoading;
   final String errorMessage;
   final Function(ClientListEntity) onClientSelected;
@@ -15,6 +16,7 @@ class ClientListWidget extends StatelessWidget {
   const ClientListWidget({
     super.key,
     required this.managedMembers,
+    required this.selectedClient,
     required this.isLoading,
     required this.errorMessage,
     required this.onClientSelected,
@@ -54,6 +56,7 @@ class ClientListWidget extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 8),
                           child: MatchedClientItem(
                             client: member,
+                            isSelected: selectedClient == member,
                             onClickClientProfile: (clientId) {
                               // 회원 선택
                               onClientSelected(member);
@@ -61,7 +64,7 @@ class ClientListWidget extends StatelessWidget {
                           ),
                         ))
                     .toList(),
-                const SizedBox(height: 40)
+                const SizedBox(height: 25)
               ],
             ),
           ),
@@ -83,6 +86,7 @@ class ClientListWidget extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 8),
                           child: CreatedClientItem(
                             client: member,
+                            isSelected: selectedClient == member,
                             onClickMatch: () {
                               // TODO: 매칭 로직 구현
                             },

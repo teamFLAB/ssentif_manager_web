@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'login_effect.freezed.dart';
 
-final loginEffectProvider = StateProvider.autoDispose<LoginEffect?>((ref) => null);
+final loginEffectProvider = StateProvider<LoginEffect?>((ref) => null);
 
 @freezed
 class LoginEffect with _$LoginEffect {

@@ -88,6 +88,8 @@ class MonthlyStatisticsViewModel extends StateNotifier<MonthlyStatisticsState> {
       }
       state = state.copyWith(
           dailyScheduleCounts: dailyCounts,
+          totalClassCount: response.data!.scheduleStatus.reservationCompleteCount
+              + response.data!.scheduleStatus.classCompleteCount,
           reservationCount:
               response.data!.scheduleStatus.reservationCompleteCount,
           reservationRequestCount:

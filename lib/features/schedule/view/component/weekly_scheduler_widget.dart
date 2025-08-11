@@ -35,27 +35,27 @@ class WeeklySchedulerWidget extends StatelessWidget {
       headerStyle: CalendarHeaderStyle(
           backgroundColor: AppColors.white,
           textAlign: TextAlign.center,
-          textStyle: ScDreamStyles.medium20(AppColors.black),
+          textStyle: SsentifTextStyles.medium20.copyWith(color: AppColors.black),
       ),
-      todayTextStyle: ScDreamStyles.medium12(AppColors.black),
+      todayTextStyle: SsentifTextStyles.medium12.copyWith(color: AppColors.black),
       showCurrentTimeIndicator: true,
       initialDisplayDate: startDate,
       firstDayOfWeek: 1,
       todayHighlightColor: AppColors.subColorRed,
       viewHeaderStyle: ViewHeaderStyle(
-        dateTextStyle: ScDreamStyles.medium12(AppColors.gray1),
-        dayTextStyle: ScDreamStyles.medium10(AppColors.gray1),
+        dateTextStyle: SsentifTextStyles.medium12.copyWith(color: AppColors.gray1),
+        dayTextStyle: SsentifTextStyles.medium10.copyWith(color: AppColors.gray1),
       ),
-      timeSlotViewSettings: const TimeSlotViewSettings(
+      timeSlotViewSettings: TimeSlotViewSettings(
         startHour: 0,
         endHour: 24,
-        timeTextStyle: ScDreamStyles.medium12(AppColors.black),
+        timeTextStyle: SsentifTextStyles.medium12.copyWith(color: AppColors.black),
         timeFormat: 'a h',
         dateFormat: 'dd',
         dayFormat: 'E',
       ),
       backgroundColor: AppColors.white,
-      appointmentTextStyle: ScDreamStyles.medium12(AppColors.white),
+      appointmentTextStyle: SsentifTextStyles.medium12.copyWith(color: AppColors.white),
       cellEndPadding: 0,
       selectionDecoration: BoxDecoration(
           border: Border.all(color: AppColors.subColorRed, width: 1),
@@ -73,7 +73,7 @@ class WeeklySchedulerWidget extends StatelessWidget {
           child: Center(
             child: Text(
               calendarAppointmentDetails.appointments.first.scheduleName,
-              style: ScDreamStyles.bold12(AppColors.white),
+              style: SsentifTextStyles.bold12.copyWith(color: AppColors.white),
               textAlign: TextAlign.center,
             ),
           ),

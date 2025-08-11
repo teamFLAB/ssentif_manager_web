@@ -5,25 +5,31 @@ import 'package:ssentif_manager_web/shared/domain/usecase/get_coach_list_usecase
 import '../state/main_state.dart';
 import 'package:ssentif_manager_web/features/main/domain/enumtype/navigation_section_type.dart';
 
-final mainViewModelProvider = StateNotifierProvider.autoDispose<MainViewModel, MainState>((ref) {
+final mainViewModelProvider =
+    StateNotifierProvider.autoDispose<MainViewModel, MainState>((ref) {
   var getCoachListUseCase = ref.read(getCoachListUseCaseProvider);
   return MainViewModel(getCoachListUseCase: getCoachListUseCase);
 });
 
 class MainViewModel extends StateNotifier<MainState> {
   final GetCoachListUseCase getCoachListUseCase;
-  MainViewModel({
-    required this.getCoachListUseCase
-  }): super(MainState(coaches: [])) {
-    _loadCachedWorkPlaceInfo();
+  bool _isInitialized = false;
+  bool _isLoadingCoaches = false;
+
+  MainViewModel({required this.getCoachListUseCase})
+      : super(MainState(coaches: [])) {
+
   }
 
-  void _loadCachedWorkPlaceInfo() {
+  void loadCachedWorkPlaceInfo(Function() retryLogin) {
+    if (_isInitialized) return; // 이미 초기화되었으면 중복 호출 방지
+
     var workplaceInfo = StorageManager.getWorkPlaceInfo();
-    if(workplaceInfo != null) {
+    if (workplaceInfo != null) {
       _setGymName(workplaceInfo.name);
-      _loadCoaches(workPlaceId: workplaceInfo.id);
+      _loadCoaches(workPlaceId: workplaceInfo.id, retryLogin: retryLogin);
     }
+    _isInitialized = true;
   }
 
   void _setGymName(String name) {
@@ -34,17 +40,26 @@ class MainViewModel extends StateNotifier<MainState> {
     state = state.copyWith(selectedSection: section);
   }
 
-  void _loadCoaches({required int workPlaceId}) async {
+  void _loadCoaches({required int workPlaceId, required Function() retryLogin }) async {
+    if (_isLoadingCoaches) return; // 이미 로딩 중이면 중복 호출 방지
+
+    _isLoadingCoaches = true;
+
     (await getCoachListUseCase(workPlaceId: workPlaceId)).handleStatus(
         onSuccess: (data) {
-          if (data != null) {
-            StorageManager.setCoachList(data);
-            state = state.copyWith(coaches: data);
-          }
-        },
-        onError: (errCode, errMsg) {
-
-        }
+      if (data != null) {
+        StorageManager.setCoachList(data);
+        state = state.copyWith(coaches: data);
+      }
+      _isLoadingCoaches = false;
+    }, onError: (errCode, errMsg) {
+      retryLogin();
+      _isLoadingCoaches = false;
+    },
+      onUnauthorized: () {
+        retryLogin();
+        _isLoadingCoaches = false;
+      }
     );
   }
 }

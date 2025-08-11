@@ -4,11 +4,13 @@ import 'package:ssentif_manager_web/core/themes/typography.dart';
 
 class EventLabelWidget extends StatelessWidget {
   final String text;
+  final TextStyle textStyle;
   final Color backgroundColor;
 
-  const EventLabelWidget({
+  EventLabelWidget({
     super.key,
     required this.text,
+    this.textStyle = SsentifTextStyles.regular18,
     required this.backgroundColor,
   });
 
@@ -23,7 +25,7 @@ class EventLabelWidget extends StatelessWidget {
       ),
       child: Text(
         text,
-        style: SsentifTextStyles.regular10.copyWith(
+        style: textStyle.copyWith(
           color: AppColors.white,
         ),
         overflow: TextOverflow.ellipsis,

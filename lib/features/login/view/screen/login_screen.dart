@@ -16,6 +16,11 @@ class LoginScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // 로그인 화면 진입 시 Provider 상태 초기화
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(loginEffectProvider.notifier).state = null;
+    });
+
     final viewModel = ref.read(loginViewModelProvider.notifier);
     final state = ref.watch(loginViewModelProvider);
     handleEffect(ref, context);
@@ -62,13 +67,36 @@ class LoginScreen extends ConsumerWidget {
             child: Row(
               children: [
                 Expanded(
-                  child: Container(
-                      height: double.infinity,
-                      constraints: BoxConstraints(minWidth: screenWidth * 0.4),
-                      child: Assets.images.icBackgroundLogin.image(
-                        height: double.infinity,
-                        fit: BoxFit.cover,
-                      )),
+                  child: Stack(
+                    children: [
+                      Container(
+                          height: double.infinity,
+                          constraints: BoxConstraints(minWidth: screenWidth * 0.4),
+                          child: Assets.images.icBackgroundLogin.image(
+                            height: double.infinity,
+                            fit: BoxFit.cover,
+                          )
+                      ),
+                      Positioned(
+                          top: 100,
+                          left: 90,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "신뢰받는 센터 운영의 시작",
+                                style: SsentifTextStyles.bold38.copyWith(color: AppColors.black)
+                              ),
+                              SizedBox(height: 10),
+                              Text(
+                                  "센티프와 함께 더 나은 회원관리 경험을 제공하세요.",
+                                  style: SsentifTextStyles.medium16.copyWith(color: AppColors.black)
+                              )
+                            ],
+                          )
+                      )
+                    ],
+                  ),
                 ),
                 // 우측: 로그인 폼
                 Padding(

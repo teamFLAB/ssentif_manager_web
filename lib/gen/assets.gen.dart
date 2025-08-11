@@ -129,6 +129,10 @@ class $AssetsImagesGen {
   AssetGenImage get icDelete =>
       const AssetGenImage('assets/images/ic_delete.png');
 
+  /// File path: assets/images/ic_index_circle.png
+  AssetGenImage get icIndexCircle =>
+      const AssetGenImage('assets/images/ic_index_circle.png');
+
   /// File path: assets/images/ic_month_selected.png
   AssetGenImage get icMonthSelected =>
       const AssetGenImage('assets/images/ic_month_selected.png');
@@ -141,6 +145,18 @@ class $AssetsImagesGen {
   AssetGenImage get icNextButton =>
       const AssetGenImage('assets/images/ic_next_button.png');
 
+  /// File path: assets/images/ic_pause_primary.png
+  AssetGenImage get icPausePrimary =>
+      const AssetGenImage('assets/images/ic_pause_primary.png');
+
+  /// File path: assets/images/ic_play_primary.png
+  AssetGenImage get icPlayPrimary =>
+      const AssetGenImage('assets/images/ic_play_primary.png');
+
+  /// File path: assets/images/ic_play_video.png
+  AssetGenImage get icPlayVideo =>
+      const AssetGenImage('assets/images/ic_play_video.png');
+
   /// File path: assets/images/ic_plus_primary.png
   AssetGenImage get icPlusPrimary =>
       const AssetGenImage('assets/images/ic_plus_primary.png');
@@ -152,6 +168,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/ic_previous_button.png
   AssetGenImage get icPreviousButton =>
       const AssetGenImage('assets/images/ic_previous_button.png');
+
+  /// File path: assets/images/ic_profile_empty.png
+  AssetGenImage get icProfileEmpty =>
+      const AssetGenImage('assets/images/ic_profile_empty.png');
+
+  /// File path: assets/images/ic_profile_selected.png
+  AssetGenImage get icProfileSelected =>
+      const AssetGenImage('assets/images/ic_profile_selected.png');
 
   /// File path: assets/images/ic_right_gray.png
   AssetGenImage get icRightGray =>
@@ -255,12 +279,18 @@ class $AssetsImagesGen {
     icDaySelected,
     icDayUnselected,
     icDelete,
+    icIndexCircle,
     icMonthSelected,
     icMonthUnselected,
     icNextButton,
+    icPausePrimary,
+    icPlayPrimary,
+    icPlayVideo,
     icPlusPrimary,
     icPlusWhite,
     icPreviousButton,
+    icProfileEmpty,
+    icProfileSelected,
     icRightGray,
     icRightPrimary,
     icSearchGray,

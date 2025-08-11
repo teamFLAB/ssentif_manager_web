@@ -19,4 +19,8 @@ sealed class ScheduleIntent with _$ScheduleIntent {
       _OnToggleCoach;
   const factory ScheduleIntent.onSelectCalendarType(
       {required CalendarType type}) = _OnSelectCalendarType;
+
+  const factory ScheduleIntent.clickLogout() = _ClickLogout;
+  const factory ScheduleIntent.clickLogoutDoubleCheck() = _ClickLogoutDoubleCheck;
+
 }

@@ -49,7 +49,7 @@ class _CoachesScreenState extends ConsumerState<CoachesScreen> {
                 children: [
                   const SizedBox(height: 20),
                   Container(
-                    height: 60,
+                    height: 50,
                     width: double.infinity,
                     padding: EdgeInsets.only(left: 30),
                     child: ListView.separated(
@@ -64,6 +64,7 @@ class _CoachesScreenState extends ConsumerState<CoachesScreen> {
                           var user = state.coaches[idx];
                           return CoachListItem(
                             user: user,
+                            profileImgSize: 30,
                             selected: state.selectedUser?.userId == user.userId,
                             isFirstItem: idx == 0,
                             onClick: () {
@@ -82,26 +83,26 @@ class _CoachesScreenState extends ConsumerState<CoachesScreen> {
                       color: AppColors.gray9,
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 15),
                   _CoachTabBar(
                       selectedTabIdx: state.selectedTabIdx,
                       onSelectTab: (int value) {
                         viewModel
                             .handleIntent(CoachesIntent.selectTab(idx: value));
                       }),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 20),
                   // IndexedStack으로 변경하여 현재 페이지만 인스턴스 유지
                   SizedBox(
                     height: 900, // 고정 높이 설정
                     child: IndexedStack(
                       index: state.selectedTabIdx,
                       children: [
+                        ManagedMembersScreen(
+                          selectedCoach: state.selectedUser,
+                        ),
                         MonthlyStatisticsScreen(
                           selectedCoach: state.selectedUser,
                           selectedMonth: state.calendarDate ?? DateTime.now(),
-                        ),
-                        ManagedMembersScreen(
-                          selectedCoach: state.selectedUser,
                         ),
                         TicketSalesScreen(),
                       ],
@@ -142,7 +143,7 @@ class _CoachTabBar extends StatelessWidget {
               },
               child: Container(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 13, vertical: 6),
+                    const EdgeInsets.symmetric(horizontal: 13, vertical: 5),
                 decoration: BoxDecoration(
                     color: selected
                         ? AppColors.backgroundTabSelected
@@ -154,8 +155,8 @@ class _CoachTabBar extends StatelessWidget {
                 child: Text(
                   tabs[idx].label,
                   style: (selected
-                          ? SsentifTextStyles.bold14
-                          : SsentifTextStyles.regular14)
+                          ? SsentifTextStyles.bold12
+                          : SsentifTextStyles.regular12)
                       .copyWith(
                     color: selected ? AppColors.green1899 : AppColors.black,
                   ),

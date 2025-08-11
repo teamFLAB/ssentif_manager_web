@@ -29,6 +29,7 @@ mixin _$ManagedMembersState {
   bool get isCalendarLoading => throw _privateConstructorUsedError;
   String get membersErrorMessage => throw _privateConstructorUsedError;
   String get calendarErrorMessage => throw _privateConstructorUsedError;
+  DateTime get selectedMonth => throw _privateConstructorUsedError;
 
   /// Create a copy of ManagedMembersState
   /// with the given fields replaced by the non-null parameter values.
@@ -53,7 +54,8 @@ abstract class $ManagedMembersStateCopyWith<$Res> {
       bool isProfileLoading,
       bool isCalendarLoading,
       String membersErrorMessage,
-      String calendarErrorMessage});
+      String calendarErrorMessage,
+      DateTime selectedMonth});
 
   $UserEntityCopyWith<$Res>? get selectedCoach;
   $ClientListEntityCopyWith<$Res>? get selectedClient;
@@ -86,6 +88,7 @@ class _$ManagedMembersStateCopyWithImpl<$Res, $Val extends ManagedMembersState>
     Object? isCalendarLoading = null,
     Object? membersErrorMessage = null,
     Object? calendarErrorMessage = null,
+    Object? selectedMonth = null,
   }) {
     return _then(_value.copyWith(
       selectedCoach: freezed == selectedCoach
@@ -128,6 +131,10 @@ class _$ManagedMembersStateCopyWithImpl<$Res, $Val extends ManagedMembersState>
           ? _value.calendarErrorMessage
           : calendarErrorMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      selectedMonth: null == selectedMonth
+          ? _value.selectedMonth
+          : selectedMonth // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 
@@ -208,7 +215,8 @@ abstract class _$$ManagedMembersStateImplCopyWith<$Res>
       bool isProfileLoading,
       bool isCalendarLoading,
       String membersErrorMessage,
-      String calendarErrorMessage});
+      String calendarErrorMessage,
+      DateTime selectedMonth});
 
   @override
   $UserEntityCopyWith<$Res>? get selectedCoach;
@@ -243,6 +251,7 @@ class __$$ManagedMembersStateImplCopyWithImpl<$Res>
     Object? isCalendarLoading = null,
     Object? membersErrorMessage = null,
     Object? calendarErrorMessage = null,
+    Object? selectedMonth = null,
   }) {
     return _then(_$ManagedMembersStateImpl(
       selectedCoach: freezed == selectedCoach
@@ -285,6 +294,10 @@ class __$$ManagedMembersStateImplCopyWithImpl<$Res>
           ? _value.calendarErrorMessage
           : calendarErrorMessage // ignore: cast_nullable_to_non_nullable
               as String,
+      selectedMonth: null == selectedMonth
+          ? _value.selectedMonth
+          : selectedMonth // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -302,7 +315,8 @@ class _$ManagedMembersStateImpl implements _ManagedMembersState {
       this.isProfileLoading = false,
       this.isCalendarLoading = false,
       this.membersErrorMessage = "",
-      this.calendarErrorMessage = ""})
+      this.calendarErrorMessage = "",
+      required this.selectedMonth})
       : _managedMembers = managedMembers;
 
   @override
@@ -337,10 +351,12 @@ class _$ManagedMembersStateImpl implements _ManagedMembersState {
   @override
   @JsonKey()
   final String calendarErrorMessage;
+  @override
+  final DateTime selectedMonth;
 
   @override
   String toString() {
-    return 'ManagedMembersState(selectedCoach: $selectedCoach, managedMembers: $managedMembers, selectedClient: $selectedClient, selectedClientProfile: $selectedClientProfile, selectedClientCalendar: $selectedClientCalendar, isMembersLoading: $isMembersLoading, isProfileLoading: $isProfileLoading, isCalendarLoading: $isCalendarLoading, membersErrorMessage: $membersErrorMessage, calendarErrorMessage: $calendarErrorMessage)';
+    return 'ManagedMembersState(selectedCoach: $selectedCoach, managedMembers: $managedMembers, selectedClient: $selectedClient, selectedClientProfile: $selectedClientProfile, selectedClientCalendar: $selectedClientCalendar, isMembersLoading: $isMembersLoading, isProfileLoading: $isProfileLoading, isCalendarLoading: $isCalendarLoading, membersErrorMessage: $membersErrorMessage, calendarErrorMessage: $calendarErrorMessage, selectedMonth: $selectedMonth)';
   }
 
   @override
@@ -367,7 +383,9 @@ class _$ManagedMembersStateImpl implements _ManagedMembersState {
             (identical(other.membersErrorMessage, membersErrorMessage) ||
                 other.membersErrorMessage == membersErrorMessage) &&
             (identical(other.calendarErrorMessage, calendarErrorMessage) ||
-                other.calendarErrorMessage == calendarErrorMessage));
+                other.calendarErrorMessage == calendarErrorMessage) &&
+            (identical(other.selectedMonth, selectedMonth) ||
+                other.selectedMonth == selectedMonth));
   }
 
   @override
@@ -382,7 +400,8 @@ class _$ManagedMembersStateImpl implements _ManagedMembersState {
       isProfileLoading,
       isCalendarLoading,
       membersErrorMessage,
-      calendarErrorMessage);
+      calendarErrorMessage,
+      selectedMonth);
 
   /// Create a copy of ManagedMembersState
   /// with the given fields replaced by the non-null parameter values.
@@ -405,7 +424,8 @@ abstract class _ManagedMembersState implements ManagedMembersState {
       final bool isProfileLoading,
       final bool isCalendarLoading,
       final String membersErrorMessage,
-      final String calendarErrorMessage}) = _$ManagedMembersStateImpl;
+      final String calendarErrorMessage,
+      required final DateTime selectedMonth}) = _$ManagedMembersStateImpl;
 
   @override
   UserEntity? get selectedCoach;
@@ -427,6 +447,8 @@ abstract class _ManagedMembersState implements ManagedMembersState {
   String get membersErrorMessage;
   @override
   String get calendarErrorMessage;
+  @override
+  DateTime get selectedMonth;
 
   /// Create a copy of ManagedMembersState
   /// with the given fields replaced by the non-null parameter values.

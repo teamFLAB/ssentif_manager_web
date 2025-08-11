@@ -31,6 +31,7 @@ mixin _$RoutineHistoryEntity {
   String get routineStatus => throw _privateConstructorUsedError;
   UserEntity? get trainerInfo => throw _privateConstructorUsedError;
   UserEntity? get clientInfo => throw _privateConstructorUsedError;
+  String get runningTime => throw _privateConstructorUsedError;
 
   /// Create a copy of RoutineHistoryEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -59,7 +60,8 @@ abstract class $RoutineHistoryEntityCopyWith<$Res> {
       String feedBack,
       String routineStatus,
       UserEntity? trainerInfo,
-      UserEntity? clientInfo});
+      UserEntity? clientInfo,
+      String runningTime});
 
   $UserEntityCopyWith<$Res>? get trainerInfo;
   $UserEntityCopyWith<$Res>? get clientInfo;
@@ -95,6 +97,7 @@ class _$RoutineHistoryEntityCopyWithImpl<$Res,
     Object? routineStatus = null,
     Object? trainerInfo = freezed,
     Object? clientInfo = freezed,
+    Object? runningTime = null,
   }) {
     return _then(_value.copyWith(
       routineId: null == routineId
@@ -153,6 +156,10 @@ class _$RoutineHistoryEntityCopyWithImpl<$Res,
           ? _value.clientInfo
           : clientInfo // ignore: cast_nullable_to_non_nullable
               as UserEntity?,
+      runningTime: null == runningTime
+          ? _value.runningTime
+          : runningTime // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -207,7 +214,8 @@ abstract class _$$RoutineHistoryEntityImplCopyWith<$Res>
       String feedBack,
       String routineStatus,
       UserEntity? trainerInfo,
-      UserEntity? clientInfo});
+      UserEntity? clientInfo,
+      String runningTime});
 
   @override
   $UserEntityCopyWith<$Res>? get trainerInfo;
@@ -242,6 +250,7 @@ class __$$RoutineHistoryEntityImplCopyWithImpl<$Res>
     Object? routineStatus = null,
     Object? trainerInfo = freezed,
     Object? clientInfo = freezed,
+    Object? runningTime = null,
   }) {
     return _then(_$RoutineHistoryEntityImpl(
       routineId: null == routineId
@@ -300,6 +309,10 @@ class __$$RoutineHistoryEntityImplCopyWithImpl<$Res>
           ? _value.clientInfo
           : clientInfo // ignore: cast_nullable_to_non_nullable
               as UserEntity?,
+      runningTime: null == runningTime
+          ? _value.runningTime
+          : runningTime // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -321,7 +334,8 @@ class _$RoutineHistoryEntityImpl implements _RoutineHistoryEntity {
       this.feedBack = "",
       this.routineStatus = "",
       this.trainerInfo,
-      this.clientInfo})
+      this.clientInfo,
+      this.runningTime = ""})
       : _exercisePartsList = exercisePartsList,
         _routinesExerciseDtos = routinesExerciseDtos;
 
@@ -379,10 +393,13 @@ class _$RoutineHistoryEntityImpl implements _RoutineHistoryEntity {
   final UserEntity? trainerInfo;
   @override
   final UserEntity? clientInfo;
+  @override
+  @JsonKey()
+  final String runningTime;
 
   @override
   String toString() {
-    return 'RoutineHistoryEntity(routineId: $routineId, routineName: $routineName, clientMemo: $clientMemo, routineNumberOfExercise: $routineNumberOfExercise, exercisePartsList: $exercisePartsList, exerciseIntensity: $exerciseIntensity, exerciseComment: $exerciseComment, routinesExerciseDtos: $routinesExerciseDtos, classStartDate: $classStartDate, daysAgo: $daysAgo, feedBack: $feedBack, routineStatus: $routineStatus, trainerInfo: $trainerInfo, clientInfo: $clientInfo)';
+    return 'RoutineHistoryEntity(routineId: $routineId, routineName: $routineName, clientMemo: $clientMemo, routineNumberOfExercise: $routineNumberOfExercise, exercisePartsList: $exercisePartsList, exerciseIntensity: $exerciseIntensity, exerciseComment: $exerciseComment, routinesExerciseDtos: $routinesExerciseDtos, classStartDate: $classStartDate, daysAgo: $daysAgo, feedBack: $feedBack, routineStatus: $routineStatus, trainerInfo: $trainerInfo, clientInfo: $clientInfo, runningTime: $runningTime)';
   }
 
   @override
@@ -417,7 +434,9 @@ class _$RoutineHistoryEntityImpl implements _RoutineHistoryEntity {
             (identical(other.trainerInfo, trainerInfo) ||
                 other.trainerInfo == trainerInfo) &&
             (identical(other.clientInfo, clientInfo) ||
-                other.clientInfo == clientInfo));
+                other.clientInfo == clientInfo) &&
+            (identical(other.runningTime, runningTime) ||
+                other.runningTime == runningTime));
   }
 
   @override
@@ -436,7 +455,8 @@ class _$RoutineHistoryEntityImpl implements _RoutineHistoryEntity {
       feedBack,
       routineStatus,
       trainerInfo,
-      clientInfo);
+      clientInfo,
+      runningTime);
 
   /// Create a copy of RoutineHistoryEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -464,7 +484,8 @@ abstract class _RoutineHistoryEntity implements RoutineHistoryEntity {
       final String feedBack,
       final String routineStatus,
       final UserEntity? trainerInfo,
-      final UserEntity? clientInfo}) = _$RoutineHistoryEntityImpl;
+      final UserEntity? clientInfo,
+      final String runningTime}) = _$RoutineHistoryEntityImpl;
 
   @override
   int get routineId;
@@ -494,6 +515,8 @@ abstract class _RoutineHistoryEntity implements RoutineHistoryEntity {
   UserEntity? get trainerInfo;
   @override
   UserEntity? get clientInfo;
+  @override
+  String get runningTime;
 
   /// Create a copy of RoutineHistoryEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -1151,7 +1174,8 @@ abstract class _ExerciseSetEntity implements ExerciseSetEntity {
 /// @nodoc
 mixin _$FileUrlEntity {
   String get fileUrl => throw _privateConstructorUsedError;
-  String get fileType => throw _privateConstructorUsedError;
+  FileType get fileType => throw _privateConstructorUsedError;
+  String get thumbnailUrl => throw _privateConstructorUsedError;
 
   /// Create a copy of FileUrlEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -1166,7 +1190,7 @@ abstract class $FileUrlEntityCopyWith<$Res> {
           FileUrlEntity value, $Res Function(FileUrlEntity) then) =
       _$FileUrlEntityCopyWithImpl<$Res, FileUrlEntity>;
   @useResult
-  $Res call({String fileUrl, String fileType});
+  $Res call({String fileUrl, FileType fileType, String thumbnailUrl});
 }
 
 /// @nodoc
@@ -1186,6 +1210,7 @@ class _$FileUrlEntityCopyWithImpl<$Res, $Val extends FileUrlEntity>
   $Res call({
     Object? fileUrl = null,
     Object? fileType = null,
+    Object? thumbnailUrl = null,
   }) {
     return _then(_value.copyWith(
       fileUrl: null == fileUrl
@@ -1195,6 +1220,10 @@ class _$FileUrlEntityCopyWithImpl<$Res, $Val extends FileUrlEntity>
       fileType: null == fileType
           ? _value.fileType
           : fileType // ignore: cast_nullable_to_non_nullable
+              as FileType,
+      thumbnailUrl: null == thumbnailUrl
+          ? _value.thumbnailUrl
+          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -1208,7 +1237,7 @@ abstract class _$$FileUrlEntityImplCopyWith<$Res>
       __$$FileUrlEntityImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String fileUrl, String fileType});
+  $Res call({String fileUrl, FileType fileType, String thumbnailUrl});
 }
 
 /// @nodoc
@@ -1226,6 +1255,7 @@ class __$$FileUrlEntityImplCopyWithImpl<$Res>
   $Res call({
     Object? fileUrl = null,
     Object? fileType = null,
+    Object? thumbnailUrl = null,
   }) {
     return _then(_$FileUrlEntityImpl(
       fileUrl: null == fileUrl
@@ -1235,6 +1265,10 @@ class __$$FileUrlEntityImplCopyWithImpl<$Res>
       fileType: null == fileType
           ? _value.fileType
           : fileType // ignore: cast_nullable_to_non_nullable
+              as FileType,
+      thumbnailUrl: null == thumbnailUrl
+          ? _value.thumbnailUrl
+          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -1243,18 +1277,24 @@ class __$$FileUrlEntityImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FileUrlEntityImpl implements _FileUrlEntity {
-  const _$FileUrlEntityImpl({this.fileUrl = "", this.fileType = ""});
+  const _$FileUrlEntityImpl(
+      {this.fileUrl = "",
+      this.fileType = FileType.image,
+      this.thumbnailUrl = ""});
 
   @override
   @JsonKey()
   final String fileUrl;
   @override
   @JsonKey()
-  final String fileType;
+  final FileType fileType;
+  @override
+  @JsonKey()
+  final String thumbnailUrl;
 
   @override
   String toString() {
-    return 'FileUrlEntity(fileUrl: $fileUrl, fileType: $fileType)';
+    return 'FileUrlEntity(fileUrl: $fileUrl, fileType: $fileType, thumbnailUrl: $thumbnailUrl)';
   }
 
   @override
@@ -1264,11 +1304,13 @@ class _$FileUrlEntityImpl implements _FileUrlEntity {
             other is _$FileUrlEntityImpl &&
             (identical(other.fileUrl, fileUrl) || other.fileUrl == fileUrl) &&
             (identical(other.fileType, fileType) ||
-                other.fileType == fileType));
+                other.fileType == fileType) &&
+            (identical(other.thumbnailUrl, thumbnailUrl) ||
+                other.thumbnailUrl == thumbnailUrl));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, fileUrl, fileType);
+  int get hashCode => Object.hash(runtimeType, fileUrl, fileType, thumbnailUrl);
 
   /// Create a copy of FileUrlEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -1280,13 +1322,17 @@ class _$FileUrlEntityImpl implements _FileUrlEntity {
 }
 
 abstract class _FileUrlEntity implements FileUrlEntity {
-  const factory _FileUrlEntity({final String fileUrl, final String fileType}) =
-      _$FileUrlEntityImpl;
+  const factory _FileUrlEntity(
+      {final String fileUrl,
+      final FileType fileType,
+      final String thumbnailUrl}) = _$FileUrlEntityImpl;
 
   @override
   String get fileUrl;
   @override
-  String get fileType;
+  FileType get fileType;
+  @override
+  String get thumbnailUrl;
 
   /// Create a copy of FileUrlEntity
   /// with the given fields replaced by the non-null parameter values.

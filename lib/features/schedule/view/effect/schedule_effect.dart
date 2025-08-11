@@ -19,4 +19,6 @@ class ScheduleEffect with _$ScheduleEffect {
       {required DateTime dateTime}) = _UpdateSelectedDateCell;
   const factory ScheduleEffect.showDateScheduleDialog(
       {required DateTime selectedDate}) = _ShowDateScheduleDialog;
+  const factory ScheduleEffect.showLogoutDialog() = _ShowLogoutDialog;
+  const factory ScheduleEffect.navToLogin() = _NavToLogin;
 }

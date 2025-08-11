@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ssentif_manager_web/core/network/api_status_entity.dart';
 import 'package:ssentif_manager_web/core/network/status_type.dart';
@@ -11,7 +12,8 @@ import '../effect/login_effect.dart';
 import '../intent/login_intent.dart';
 import '../state/login_state.dart';
 
-final loginViewModelProvider = StateNotifierProvider<LoginViewModel, LoginState>((ref) {
+final loginViewModelProvider =
+    StateNotifierProvider.autoDispose<LoginViewModel, LoginState>((ref) {
   final loginUseCase = ref.read(loginUseCaseProvider);
   var getUserInfoUseCase = ref.read(getUserInfoUseCaseProvider);
   var searchWorkplacesUseCase = ref.read(searchWorkplacesUseCaseProvider);
@@ -21,8 +23,7 @@ final loginViewModelProvider = StateNotifierProvider<LoginViewModel, LoginState>
       loginUseCase: loginUseCase,
       getUserInfoUseCase: getUserInfoUseCase,
       searchWorkplacesUseCase: searchWorkplacesUseCase,
-      loginEffectStateController: loginEffectStateController
-  );
+      loginEffectStateController: loginEffectStateController);
 });
 
 class LoginViewModel extends StateNotifier<LoginState> {
@@ -32,23 +33,19 @@ class LoginViewModel extends StateNotifier<LoginState> {
 
   final StateController<LoginEffect?> loginEffectStateController;
 
-
-  LoginViewModel({
-    required this.loginUseCase,
-    required this.getUserInfoUseCase,
-    required this.searchWorkplacesUseCase,
-    required this.loginEffectStateController
-  }) : super(const LoginState());
+  LoginViewModel(
+      {required this.loginUseCase,
+      required this.getUserInfoUseCase,
+      required this.searchWorkplacesUseCase,
+      required this.loginEffectStateController})
+      : super(const LoginState());
 
   void handleIntent(LoginIntent intent) async {
     intent.when(
         login: _login,
         updateEmail: _setEmail,
         updatePassword: _setPassword,
-        checkRememberEmail: () {
-
-        }
-    );
+        checkRememberEmail: () {});
   }
 
   void _setEmail(String email) {
@@ -60,24 +57,27 @@ class LoginViewModel extends StateNotifier<LoginState> {
   }
 
   Future<void> _login() async {
-    if(state.email.isEmpty) {
-      loginEffectStateController.state = LoginEffect.showMessage("이메일을 입력해주세요.");
+    if (state.email.isEmpty) {
+      loginEffectStateController.state =
+          LoginEffect.showMessage("이메일을 입력해주세요.");
       return;
     }
-    if(state.password.isEmpty) {
-      loginEffectStateController.state = LoginEffect.showMessage("비밀번호를 입력해주세요.");
+    if (state.password.isEmpty) {
+      loginEffectStateController.state =
+          LoginEffect.showMessage("비밀번호를 입력해주세요.");
       return;
     }
 
     state = state.copyWith(isLoading: true);
 
-    var loginResponse = await loginUseCase(email: state.email, password: state.password);
+    var loginResponse =
+        await loginUseCase(email: state.email, password: state.password);
 
-    if(loginResponse.statusType == StatusType.SUCCESS) {
-      if(loginResponse.data?.accessToken?.isNotEmpty == true) {
+    if (loginResponse.statusType == StatusType.SUCCESS) {
+      if (loginResponse.data?.accessToken?.isNotEmpty == true) {
         StorageManager.setAccessToken(loginResponse.data?.accessToken ?? "");
       }
-      if(loginResponse.data?.refreshToken?.isNotEmpty == true) {
+      if (loginResponse.data?.refreshToken?.isNotEmpty == true) {
         StorageManager.setRefreshToken(loginResponse.data?.refreshToken ?? "");
       }
 
@@ -88,38 +88,40 @@ class LoginViewModel extends StateNotifier<LoginState> {
     } else {
       state = state.copyWith(isLoading: false);
 
-      loginEffectStateController.state = LoginEffect.showMessage(loginResponse.errMsg);
+      loginEffectStateController.state =
+          LoginEffect.showMessage(loginResponse.errMsg);
     }
   }
 
   void _updateUserInfo() async {
-    var userInfo = await getUserInfoUseCase();
-    if(userInfo.statusType == StatusType.SUCCESS) {
-      var data = userInfo.data;
-      if(data?.workPlaceAddress.isNotEmpty == true) {
-        _updateWorkplace(data!.workPlaceName);
-      } else {
-        state = state.copyWith(isLoading: false);
+    (await getUserInfoUseCase()).handleStatus(
+        onSuccess: (userInfo) {
+          if (userInfo?.workPlaceAddress.isNotEmpty == true) {
+            _updateWorkplace(userInfo!.workPlaceName);
+          } else {
+            _showInValidWorkPlace();
+            state = state.copyWith(isLoading: false);
+          }
+        },
+      onUnauthorized: () {
+        _showInValidWorkPlace();
       }
-    } else {
-      state = state.copyWith(isLoading: false);
-    }
+    );
   }
 
   void _updateWorkplace(String keyword) async {
     var workplaces = await searchWorkplacesUseCase(keyword: keyword);
-    if(workplaces.statusType == StatusType.SUCCESS) {
-      if(workplaces.data?.isNotEmpty == true) {
+    if (workplaces.statusType == StatusType.SUCCESS) {
+      if (workplaces.data?.isNotEmpty == true) {
         var myWorkPlace = workplaces.data!.where((workplace) {
           return workplace.name == keyword;
         }).firstOrNull;
-        if(myWorkPlace != null) {
+        if (myWorkPlace != null) {
           StorageManager.setWorkPlace(
               workPlaceId: myWorkPlace.id,
               workPlaceName: myWorkPlace.name,
               workPlaceAddress: myWorkPlace.address,
-              workPlaceAddressDetail: myWorkPlace.addressDetail
-          );
+              workPlaceAddressDetail: myWorkPlace.addressDetail);
           loginEffectStateController.state = LoginEffect.navigateToMain();
         } else {
           _showInValidWorkPlace();
@@ -134,7 +136,7 @@ class LoginViewModel extends StateNotifier<LoginState> {
 
   void _showInValidWorkPlace() {
     state = state.copyWith(isLoading: false);
-    loginEffectStateController.state = LoginEffect.showMessage("관리자 서비스를 이용할 수 없습니다. 센티프 카카오톡 채널로 문의해주세요.");
+    loginEffectStateController.state =
+        LoginEffect.showMessage("관리자 서비스를 이용할 수 없습니다. 센티프 카카오톡 채널로 문의해주세요.");
   }
 }
-

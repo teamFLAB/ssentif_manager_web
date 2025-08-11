@@ -5,10 +5,12 @@ import 'package:ssentif_manager_web/features/routine/domain/usecase/get_class_re
 import 'package:ssentif_manager_web/shared/domain/entity/user_entity.dart';
 import '../state/class_records_state.dart';
 import '../intent/class_records_intent.dart';
+import '../effect/class_records_effect.dart';
 
 class ClassRecordsViewModel extends StateNotifier<ClassRecordsState> {
   final List<UserEntity> coaches;
   final GetClassRecordsUseCase getClassRecordsUseCase;
+  Function(ClassRecordsEffect)? onEffect;
 
   ClassRecordsViewModel(
       {required this.coaches, required this.getClassRecordsUseCase})
@@ -19,10 +21,18 @@ class ClassRecordsViewModel extends StateNotifier<ClassRecordsState> {
     _updateClassRecords();
   }
 
+  void setEffectHandler(Function(ClassRecordsEffect) handler) {
+    onEffect = handler;
+  }
+
   void handleIntent(ClassRecordsIntent intent) {
     intent.when(
       initialize: _initialize,
-      clickThisMonth: () {},
+      clickThisMonth: () {
+        final today = DateTime.now();
+        _updateSelectedMonth(DateTime(today.year, today.month, 1));
+        _updateClassRecords();
+      },
       clickPreviousMonth: () {
         final currentMonth = state.selectedMonth;
         final previousMonth =
@@ -52,6 +62,10 @@ class ClassRecordsViewModel extends StateNotifier<ClassRecordsState> {
         state = state.copyWith(selectedCoaches: currentSelectedCoaches);
         _updateClassRecords();
       },
+      showRoutineDetailDialog: (record) {
+        onEffect
+            ?.call(ClassRecordsEffect.showRoutineDetailDialog(record: record));
+      },
     );
   }
 
@@ -74,7 +88,8 @@ class ClassRecordsViewModel extends StateNotifier<ClassRecordsState> {
         trainerIds: state.selectedCoaches.map((e) => e.userId).toList(),
         lastScheduleId: isLoadMore ? state.lastScheduleId : null,
         yearMonth: state.selectedMonth.formatYM(),
-        count: 20);
+        count: 50
+    );
 
     result.handleStatus(
       onSuccess: (data) {

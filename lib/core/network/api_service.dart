@@ -16,8 +16,12 @@ import '../../shared/data/model/work_place_model.dart';
 import '../../shared/data/model/user_profile_model.dart';
 import 'api_interceptor.dart';
 
+// 싱글톤 인스턴스
+ApiService? _apiServiceInstance;
+
 final apiServiceProvider = Provider<ApiService>((ref) {
-  return ApiService();
+  _apiServiceInstance ??= ApiService();
+  return _apiServiceInstance!;
 });
 
 class ApiService {
@@ -33,17 +37,66 @@ class ApiService {
 
   ApiService({Dio? dio}) : _dio = dio ?? Dio() {
     _dio.options.baseUrl = apiBaseUrl;
-    _dio.interceptors
-        .add(ApiInterceptor(dio: _dio, refreshToken: refreshToken));
-    _dio.interceptors.add(LogInterceptor(
-      requestBody: true,
-      responseBody: true,
-    ));
+
+    // 인터셉터가 이미 추가되어 있는지 확인
+    final hasApiInterceptor =
+        _dio.interceptors.any((interceptor) => interceptor is ApiInterceptor);
+    if (!hasApiInterceptor) {
+      _dio.interceptors
+          .add(ApiInterceptor(dio: _dio, refreshToken: refreshToken));
+    }
+
+    // 개발 환경에서만 로깅 활성화
+    if (kDebugMode) {
+      final hasLogInterceptor =
+          _dio.interceptors.any((interceptor) => interceptor is LogInterceptor);
+      if (!hasLogInterceptor) {
+        _dio.interceptors.add(LogInterceptor(
+          requestBody: true,
+          responseBody: true,
+        ));
+      }
+    }
   }
 
   /// 토큰 재발급
   Future<bool> refreshToken() async {
-    return true;
+    try {
+      final refreshToken = StorageManager.getRefreshToken();
+      if (refreshToken == null || refreshToken.isEmpty) {
+        return false;
+      }
+
+      // 인터셉터를 거치지 않도록 새로운 Dio 인스턴스 사용
+      final tempDio = Dio();
+      tempDio.options.baseUrl = _dio.options.baseUrl;
+
+      final response = await tempDio.get(
+        '/api/auth/reissue',
+        queryParameters: {'refreshToken': refreshToken},
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        ),
+      );
+
+      final updatedAccessToken = response.data['accessToken'];
+      final updatedRefreshToken = response.data['refreshToken'];
+
+      if (updatedAccessToken != null && updatedRefreshToken != null) {
+        StorageManager.setAccessToken(updatedAccessToken);
+        StorageManager.setRefreshToken(updatedRefreshToken);
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print('[DEBUG] Token refresh failed: $e');
+      }
+      return false;
+    }
   }
 
   /// 로그인 API
@@ -88,16 +141,14 @@ class ApiService {
     final response = await _dio.get(
       '/api/workplace/$workPlaceId/trainers',
       options: Options(
-        extra: {'requiresToken': false},
+        extra: {'requiresToken': true},
       ),
     );
+    print("=======리스트 조회 성공");
     final data = response.data;
-    if (data is List) {
-      return data
-          .map((e) => UserProfileModel.fromJson(e as Map<String, dynamic>))
-          .toList();
-    }
-    return [];
+    return data
+        .map((e) => UserProfileModel.fromJson(e as Map<String, dynamic>))
+        .toList();
   }
 
   /// 트레이너별 주간 스케줄 조회하기

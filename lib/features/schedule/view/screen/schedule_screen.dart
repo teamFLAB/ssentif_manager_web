@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:ssentif_manager_web/core/navigation/app_router.dart';
 import 'package:ssentif_manager_web/core/themes/app_colors.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ssentif_manager_web/core/utils/context_utils.dart';
 import 'package:ssentif_manager_web/core/utils/date_utils.dart';
 import 'package:ssentif_manager_web/features/schedule/view/effect/schedule_effect.dart';
 import 'package:ssentif_manager_web/features/schedule/view/intent/schedule_intent.dart';
@@ -20,6 +23,7 @@ import '../component/coach_item.dart';
 import '../component/daily_timeline.dart';
 import '../component/schedule_dialog.dart';
 import '../component/daily_schedules_dialog.dart';
+import 'dart:html' as html;
 
 class ScheduleScreen extends ConsumerStatefulWidget {
   final List<UserEntity> coaches;
@@ -32,6 +36,8 @@ class ScheduleScreen extends ConsumerStatefulWidget {
 
 class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
   final CalendarController _calendarController = CalendarController();
+  final ScrollController _scrollController = ScrollController();
+  bool _hasScrolledToCurrentTime = false;
 
   @override
   void initState() {
@@ -48,6 +54,28 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
     });
   }
 
+  void _scrollToCurrentTime() {
+    if (_scrollController.hasClients) {
+      _scrollController.animateTo(
+        300.0,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut,
+      );
+    } else {
+      Future.delayed(const Duration(milliseconds: 500), () {
+        if (mounted) {
+          _scrollToCurrentTime();
+        }
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer(
@@ -57,7 +85,17 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
         final state = ref.watch(viewModelProvider);
         final selectedDate = state.selectedDate;
         final selectedMonth = state.calendarDate;
-        handleEffect(ref);
+        handleEffect(ref, onLogout: () {
+          viewModel.handleIntent(ScheduleIntent.clickLogoutDoubleCheck());
+        });
+
+        // 한 번만 현재 시간으로 스크롤
+        if (!_hasScrolledToCurrentTime) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            _scrollToCurrentTime();
+            _hasScrolledToCurrentTime = true;
+          });
+        }
 
         // scheduleDetail이 있으면 다이얼로그 노출
         if (state.scheduleDetail != null) {
@@ -93,9 +131,26 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
                 decoration: BoxDecoration(
                   color: AppColors.white,
                 ),
+                child: Row(
+                  children: [
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () {
+                        viewModel.handleIntent(ScheduleIntent.clickLogout());
+                      },
+                      child: Text(
+                        "로그아웃",
+                        style: SsentifTextStyles.medium14
+                            .copyWith(color: AppColors.gray1),
+                      ),
+                    ),
+                    const SizedBox(width: 20)
+                  ],
+                ),
               ),
               Expanded(
                 child: SingleChildScrollView(
+                  controller: _scrollController,
                   child: Column(
                     children: [
                       Container(
@@ -145,7 +200,7 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
                             child: Row(
                               children: [
                                 ScheduleStatBox(
-                                    title: '전체 수업수',
+                                    title: '전체 수업',
                                     value: state.totalClassCount.toString()),
                                 const SizedBox(width: 15),
                                 ScheduleStatBox(
@@ -210,7 +265,12 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
                           ),
                           const SizedBox(height: 20),
                           Container(
-                            padding: EdgeInsets.only(left: 30, right: 30),
+                            padding: EdgeInsets.only(
+                                left: 30,
+                                right: state.selectedCalendarType ==
+                                        CalendarType.daily
+                                    ? 0
+                                    : 30),
                             alignment: Alignment.centerLeft,
                             child: state.selectedCalendarType ==
                                     CalendarType.daily
@@ -226,7 +286,7 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
                                     },
                                   )
                                 : Container(
-                                    height: 900, // 더 큰 높이로 설정하여 셀이 더 커지도록 함
+                                    height: 800, // 더 큰 높이로 설정하여 셀이 더 커지도록 함
                                     child: SfCalendar(
                                       controller: _calendarController,
                                       view: CalendarView.month,
@@ -241,9 +301,9 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
                                         }
                                       },
                                       headerHeight: 0,
-                                      viewHeaderHeight: 40,
+                                      viewHeaderHeight: 30,
                                       viewHeaderStyle: ViewHeaderStyle(
-                                          dayTextStyle: ScDreamStyles.medium14(
+                                          dayTextStyle: ScDreamStyles.medium12(
                                               AppColors.gray2)),
                                       todayHighlightColor: AppColors.gray2,
                                       backgroundColor: Colors.white,
@@ -292,7 +352,7 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
     );
   }
 
-  void handleEffect(WidgetRef ref) {
+  void handleEffect(WidgetRef ref, {required Function() onLogout}) {
     ref.listen(scheduleEffectProvider, (previous, next) {
       if (next == null) return;
       ref.read(scheduleEffectProvider.notifier).state = null;
@@ -307,6 +367,16 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
           updateSelectedDateCell: (DateTime dateTime) {},
           showDateScheduleDialog: (DateTime selectedDate) {
             _showDateScheduleDialog(selectedDate);
+          },
+          showLogoutDialog: () {
+            _showLogoutDialog(onLogout: () {
+              onLogout();
+            });
+          },
+          navToLogin: () {
+            context.showSnackBar("로그아웃 되었습니다.");
+            context.go(AppRoutePath.login.path, extra: {"replaceAll": true});
+            html.window.history.replaceState(null, '', AppRoutePath.login.path);
           });
     });
   }
@@ -319,9 +389,80 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
       context: context,
       barrierDismissible: true,
       builder: (context) => DailySchedulesDialog(
-        selectedDate: selectedDate,
-        schedulesForDate: schedulesForDate,
-        selectedDateSchedules: state.selectedDateSchedules
+          selectedDate: selectedDate,
+          schedulesForDate: schedulesForDate,
+          selectedDateSchedules: state.selectedDateSchedules),
+    );
+  }
+
+  void _showLogoutDialog({required Function() onLogout}) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        backgroundColor: AppColors.white,
+        title: Text(
+          '로그아웃 하시겠습니다?',
+          style: SsentifTextStyles.bold16.copyWith(
+            color: AppColors.black,
+          ),
+          textAlign: TextAlign.start,
+        ),
+        actions: [
+          Row(
+            children: [
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: AppColors.gray4,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Center(
+                      child: Text(
+                        '취소',
+                        style: SsentifTextStyles.medium14.copyWith(
+                          color: AppColors.gray555,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    onLogout();
+                  },
+                  child: Container(
+                    height: 44,
+                    decoration: BoxDecoration(
+                      color: AppColors.primary,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Center(
+                      child: Text(
+                        '로그아웃',
+                        style: SsentifTextStyles.medium14.copyWith(
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+        actionsPadding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
       ),
     );
   }

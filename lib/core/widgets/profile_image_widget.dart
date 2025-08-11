@@ -21,16 +21,13 @@ class ProfileImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CircleAvatar(
-      backgroundColor: !showSelected
-          ? AppColors.transparent
-          : selected
-          ? AppColors.green1899
-          : AppColors.transparent,
+      backgroundColor: AppColors.transparent,
+      radius: size / 2,
       child:imageURL == Constants.dummyProfileImgUrl || imageURL == Constants.dummyProfileImgUrl2 || imageURL.isEmpty ?
       Image.asset(
           width: size,
           height: size,
-          Assets.images.icSsentifProfile.path,
+          showSelected && selected ? Assets.images.icProfileSelected.path : Assets.images.icProfileEmpty.path,
         fit: BoxFit.cover,
       ) : Image.network(
         imageURL,

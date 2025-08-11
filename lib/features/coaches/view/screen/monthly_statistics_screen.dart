@@ -37,13 +37,13 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
         children: [
           // 상단 헤더 영역
           Container(
-            padding: const EdgeInsets.only(right: 30, left: 30, bottom: 20),
+            padding: const EdgeInsets.only(right: 30, left: 30, bottom: 15),
             child: Row(
               children: [
                 // 월 표시 텍스트
                 Text(
                   DateFormat('yyyy년 MM월').format(selectedMonth),
-                  style: SsentifTextStyles.bold24.copyWith(
+                  style: SsentifTextStyles.medium24.copyWith(
                     color: AppColors.black,
                   ),
                 ),
@@ -55,7 +55,7 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
                         .handleIntent(MonthlyStatisticsIntent.clickThisMonth());
                   },
                   child: Container(
-                    height: 24,
+                    height: 22,
                     padding: const EdgeInsets.symmetric(
                       horizontal: 12,
                     ),
@@ -66,7 +66,7 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
                     alignment: Alignment.center,
                     child: Text(
                       '이번달',
-                      style: SsentifTextStyles.medium14.copyWith(
+                      style: SsentifTextStyles.medium12.copyWith(
                         color: AppColors.gray555,
                       ),
                     ),
@@ -80,8 +80,8 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
                         MonthlyStatisticsIntent.clickPreviousMonth());
                   },
                   child: Assets.images.icPreviousButton.image(
-                    width: 24,
-                    height: 24,
+                    width: 22,
+                    height: 22,
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -92,8 +92,8 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
                         .handleIntent(MonthlyStatisticsIntent.clickNextMonth());
                   },
                   child: Assets.images.icNextButton.image(
-                    width: 24,
-                    height: 24,
+                    width: 22,
+                    height: 22,
                   ),
                 ),
               ],
@@ -116,7 +116,7 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
                           padding: const EdgeInsets.only(bottom: 20),
                           child: Text(
                             '수업일정',
-                            style: SsentifTextStyles.medium16.copyWith(
+                            style: SsentifTextStyles.medium14.copyWith(
                               color: AppColors.black,
                             ),
                           ),
@@ -139,7 +139,7 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
                           // 날짜별 일정 확인 텍스트
                           Text(
                             '날짜별 일정 확인',
-                            style: SsentifTextStyles.medium16.copyWith(
+                            style: SsentifTextStyles.medium14.copyWith(
                               color: AppColors.black,
                             ),
                           ),
@@ -168,7 +168,7 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
 
   List<Widget> _buildStatBoxRows(MonthlyStatisticsState state) {
     final statBoxes = [
-      ('전체 수업수', state.totalClassCount.toString()),
+      ('전체 수업', state.totalClassCount.toString()),
       ('출석 완료', state.attendanceCount.toString()),
       ('예약 완료', state.reservationCount.toString()),
       ('예약 요청', state.reservationRequestCount.toString()),
@@ -183,7 +183,6 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
         children: [
           SizedBox(
             width: 200,
-            height: 100,
             child: ScheduleStatBox(
               title: statBoxes[i].$1,
               value: statBoxes[i].$2,
@@ -193,7 +192,6 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
             const SizedBox(width: 15),
             SizedBox(
               width: 200,
-              height: 100,
               child: ScheduleStatBox(
                 title: statBoxes[i + 1].$1,
                 value: statBoxes[i + 1].$2,

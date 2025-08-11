@@ -1,4 +1,5 @@
 import 'package:ssentif_manager_web/shared/domain/entity/user_entity.dart';
+import 'package:ssentif_manager_web/shared/enumtype/file_type.dart';
 
 import '../../domain/entity/routine_histories_with_page_info_entity.dart';
 import '../../domain/entity/routine_history_entity.dart';
@@ -45,7 +46,8 @@ class RoutineHistoryMapper {
         userId: model.clientId ?? -1,
         userName: model.clientName ?? "",
         imageUrl: model.clientProfile ?? ""
-      )
+      ),
+      runningTime: model.runningTime ?? ""
     );
   }
 }
@@ -90,7 +92,8 @@ class FileUrlMapper {
   static FileUrlEntity toEntity(FileUrlModel model) {
     return FileUrlEntity(
       fileUrl: model.url,
-      fileType: model.fileType,
+      fileType: FileType.findFileType(model.fileType),
+      thumbnailUrl: model.thumbnailUrl
     );
   }
 }

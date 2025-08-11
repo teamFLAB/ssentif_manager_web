@@ -14,8 +14,8 @@ import 'package:ssentif_manager_web/shared/enumtype/calendar_type.dart';
 
 import '../state/schedule_state.dart';
 
-final scheduleViewModelProvider = StateNotifierProvider.autoDispose
-    .family<ScheduleViewModel, ScheduleState, List<UserEntity>>((ref, coaches) {
+final scheduleViewModelProvider = StateNotifierProvider.family<
+    ScheduleViewModel, ScheduleState, List<UserEntity>>((ref, coaches) {
   final getTrainerSchedulesUseCase =
       ref.read(getTrainerSchedulesUseCaseProvider);
   final getScheduleDetailUseCase = ref.read(getScheduleDetailUseCaseProvider);
@@ -157,6 +157,12 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
                 calendarDate: nextDay, selectedDateSchedules: schedules);
             getSelectedDateSchedulesByStatus(schedules);
           }
+        },
+        clickLogout: () {
+          scheduleEffect.state = ScheduleEffect.showLogoutDialog();
+        },
+        clickLogoutDoubleCheck: () {
+          _logout();
         });
   }
 
@@ -195,13 +201,11 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
 
     if (workplaceInfo != null) {
       final now = DateTime.now();
-      // final firstDayOfMonth = DateTime(now.year, now.month, 1);
       state = state.copyWith(
         workPlace: workplaceInfo,
         calendarDate: now,
       );
       _loadSchedules(state.coaches);
-      // _loadDummySchedules();
     }
   }
 
@@ -230,31 +234,35 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
           startDate: firstDay.formatYMD(),
           endDate: lastDay.formatYMD(),
           trainerId: coach.userId,
-          trainerName: coach.userName);
-
-      schedules.handleStatus(
-        onSuccess: (data) {
-          if (data != null) {
-            allSchedules.addAll(data.schedules);
-            state = state.copyWith(
-              monthlySchedules: List.from(allSchedules),
-              selectedDateSchedules: _filterBySelectedDate(
-                List.from(allSchedules),
-                state.selectedDate,
-              ),
-            );
-          }
-        },
-        onError: (errCode, errMsg) {
-          // 에러 처리 필요시 추가
-        },
+          trainerName: coach.userName
       );
+
+      schedules.handleStatus(onSuccess: (data) {
+        if (data != null) {
+          allSchedules.addAll(data.schedules);
+          data.schedules.forEach((e){
+            print("========> ${e.trainerName} / ${e.scheduleName}");
+          });
+
+          state = state.copyWith(
+            monthlySchedules: List.from(allSchedules),
+            selectedDateSchedules: _filterBySelectedDate(
+              List.from(allSchedules),
+              state.selectedDate,
+            ),
+          );
+        }
+      }, onError: (errCode, errMsg) {
+        _logout();
+      }, onUnauthorized: () {
+        _logout();
+      });
 
       if (state.selectedCalendarType == CalendarType.monthly) {
         getSchedulesByStatus(allSchedules);
       } else {
-        /// 현재 날짜 스케줄 필터링 필요
-        var filteredSchedules = _filterBySelectedDate(allSchedules, state.calendarDate);
+        var filteredSchedules =
+            _filterBySelectedDate(allSchedules, state.calendarDate);
         getSelectedDateSchedulesByStatus(filteredSchedules);
       }
       getSchedulesByDateAndStatus(allSchedules);
@@ -263,6 +271,7 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
 
   List<CalendarScheduleEntity> _filterBySelectedDate(
       List<CalendarScheduleEntity> schedules, DateTime selectedDate) {
+
     return schedules
         .where((s) =>
             s.startTime != null &&
@@ -377,6 +386,12 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
         reservationRequestCount: reservationWaitCount, // 선택된 날짜의 예약 대기
         etcCount: etcCount // 선택된 날짜의 기타 스케줄
         );
+  }
+
+  void _logout() {
+    StorageManager.clearAll();
+    StorageManager.clearAllCookies();
+    scheduleEffect.state = ScheduleEffect.navToLogin();
   }
 
 // void _loadDummySchedules() {

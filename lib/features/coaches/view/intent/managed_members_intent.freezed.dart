@@ -23,6 +23,9 @@ mixin _$ManagedMembersIntent {
     required TResult Function(int clientId) loadClientProfile,
     required TResult Function(int year, int month, int clientId)
         loadClientCalendar,
+    required TResult Function() clickThisMonth,
+    required TResult Function() clickPreviousMonth,
+    required TResult Function() clickNextMonth,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -31,6 +34,9 @@ mixin _$ManagedMembersIntent {
     TResult? Function(ClientListEntity client)? selectClient,
     TResult? Function(int clientId)? loadClientProfile,
     TResult? Function(int year, int month, int clientId)? loadClientCalendar,
+    TResult? Function()? clickThisMonth,
+    TResult? Function()? clickPreviousMonth,
+    TResult? Function()? clickNextMonth,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,6 +45,9 @@ mixin _$ManagedMembersIntent {
     TResult Function(ClientListEntity client)? selectClient,
     TResult Function(int clientId)? loadClientProfile,
     TResult Function(int year, int month, int clientId)? loadClientCalendar,
+    TResult Function()? clickThisMonth,
+    TResult Function()? clickPreviousMonth,
+    TResult Function()? clickNextMonth,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,6 +57,9 @@ mixin _$ManagedMembersIntent {
     required TResult Function(_SelectClient value) selectClient,
     required TResult Function(_LoadClientProfile value) loadClientProfile,
     required TResult Function(_LoadClientCalendar value) loadClientCalendar,
+    required TResult Function(_ClickThisMonth value) clickThisMonth,
+    required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
+    required TResult Function(_ClickNextMonth value) clickNextMonth,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +68,9 @@ mixin _$ManagedMembersIntent {
     TResult? Function(_SelectClient value)? selectClient,
     TResult? Function(_LoadClientProfile value)? loadClientProfile,
     TResult? Function(_LoadClientCalendar value)? loadClientCalendar,
+    TResult? Function(_ClickThisMonth value)? clickThisMonth,
+    TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult? Function(_ClickNextMonth value)? clickNextMonth,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -64,6 +79,9 @@ mixin _$ManagedMembersIntent {
     TResult Function(_SelectClient value)? selectClient,
     TResult Function(_LoadClientProfile value)? loadClientProfile,
     TResult Function(_LoadClientCalendar value)? loadClientCalendar,
+    TResult Function(_ClickThisMonth value)? clickThisMonth,
+    TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult Function(_ClickNextMonth value)? clickNextMonth,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -137,6 +155,9 @@ class _$LoadMembersImpl implements _LoadMembers {
     required TResult Function(int clientId) loadClientProfile,
     required TResult Function(int year, int month, int clientId)
         loadClientCalendar,
+    required TResult Function() clickThisMonth,
+    required TResult Function() clickPreviousMonth,
+    required TResult Function() clickNextMonth,
   }) {
     return loadMembers();
   }
@@ -148,6 +169,9 @@ class _$LoadMembersImpl implements _LoadMembers {
     TResult? Function(ClientListEntity client)? selectClient,
     TResult? Function(int clientId)? loadClientProfile,
     TResult? Function(int year, int month, int clientId)? loadClientCalendar,
+    TResult? Function()? clickThisMonth,
+    TResult? Function()? clickPreviousMonth,
+    TResult? Function()? clickNextMonth,
   }) {
     return loadMembers?.call();
   }
@@ -159,6 +183,9 @@ class _$LoadMembersImpl implements _LoadMembers {
     TResult Function(ClientListEntity client)? selectClient,
     TResult Function(int clientId)? loadClientProfile,
     TResult Function(int year, int month, int clientId)? loadClientCalendar,
+    TResult Function()? clickThisMonth,
+    TResult Function()? clickPreviousMonth,
+    TResult Function()? clickNextMonth,
     required TResult orElse(),
   }) {
     if (loadMembers != null) {
@@ -174,6 +201,9 @@ class _$LoadMembersImpl implements _LoadMembers {
     required TResult Function(_SelectClient value) selectClient,
     required TResult Function(_LoadClientProfile value) loadClientProfile,
     required TResult Function(_LoadClientCalendar value) loadClientCalendar,
+    required TResult Function(_ClickThisMonth value) clickThisMonth,
+    required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
+    required TResult Function(_ClickNextMonth value) clickNextMonth,
   }) {
     return loadMembers(this);
   }
@@ -185,6 +215,9 @@ class _$LoadMembersImpl implements _LoadMembers {
     TResult? Function(_SelectClient value)? selectClient,
     TResult? Function(_LoadClientProfile value)? loadClientProfile,
     TResult? Function(_LoadClientCalendar value)? loadClientCalendar,
+    TResult? Function(_ClickThisMonth value)? clickThisMonth,
+    TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult? Function(_ClickNextMonth value)? clickNextMonth,
   }) {
     return loadMembers?.call(this);
   }
@@ -196,6 +229,9 @@ class _$LoadMembersImpl implements _LoadMembers {
     TResult Function(_SelectClient value)? selectClient,
     TResult Function(_LoadClientProfile value)? loadClientProfile,
     TResult Function(_LoadClientCalendar value)? loadClientCalendar,
+    TResult Function(_ClickThisMonth value)? clickThisMonth,
+    TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult Function(_ClickNextMonth value)? clickNextMonth,
     required TResult orElse(),
   }) {
     if (loadMembers != null) {
@@ -294,6 +330,9 @@ class _$SelectClientImpl implements _SelectClient {
     required TResult Function(int clientId) loadClientProfile,
     required TResult Function(int year, int month, int clientId)
         loadClientCalendar,
+    required TResult Function() clickThisMonth,
+    required TResult Function() clickPreviousMonth,
+    required TResult Function() clickNextMonth,
   }) {
     return selectClient(client);
   }
@@ -305,6 +344,9 @@ class _$SelectClientImpl implements _SelectClient {
     TResult? Function(ClientListEntity client)? selectClient,
     TResult? Function(int clientId)? loadClientProfile,
     TResult? Function(int year, int month, int clientId)? loadClientCalendar,
+    TResult? Function()? clickThisMonth,
+    TResult? Function()? clickPreviousMonth,
+    TResult? Function()? clickNextMonth,
   }) {
     return selectClient?.call(client);
   }
@@ -316,6 +358,9 @@ class _$SelectClientImpl implements _SelectClient {
     TResult Function(ClientListEntity client)? selectClient,
     TResult Function(int clientId)? loadClientProfile,
     TResult Function(int year, int month, int clientId)? loadClientCalendar,
+    TResult Function()? clickThisMonth,
+    TResult Function()? clickPreviousMonth,
+    TResult Function()? clickNextMonth,
     required TResult orElse(),
   }) {
     if (selectClient != null) {
@@ -331,6 +376,9 @@ class _$SelectClientImpl implements _SelectClient {
     required TResult Function(_SelectClient value) selectClient,
     required TResult Function(_LoadClientProfile value) loadClientProfile,
     required TResult Function(_LoadClientCalendar value) loadClientCalendar,
+    required TResult Function(_ClickThisMonth value) clickThisMonth,
+    required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
+    required TResult Function(_ClickNextMonth value) clickNextMonth,
   }) {
     return selectClient(this);
   }
@@ -342,6 +390,9 @@ class _$SelectClientImpl implements _SelectClient {
     TResult? Function(_SelectClient value)? selectClient,
     TResult? Function(_LoadClientProfile value)? loadClientProfile,
     TResult? Function(_LoadClientCalendar value)? loadClientCalendar,
+    TResult? Function(_ClickThisMonth value)? clickThisMonth,
+    TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult? Function(_ClickNextMonth value)? clickNextMonth,
   }) {
     return selectClient?.call(this);
   }
@@ -353,6 +404,9 @@ class _$SelectClientImpl implements _SelectClient {
     TResult Function(_SelectClient value)? selectClient,
     TResult Function(_LoadClientProfile value)? loadClientProfile,
     TResult Function(_LoadClientCalendar value)? loadClientCalendar,
+    TResult Function(_ClickThisMonth value)? clickThisMonth,
+    TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult Function(_ClickNextMonth value)? clickNextMonth,
     required TResult orElse(),
   }) {
     if (selectClient != null) {
@@ -450,6 +504,9 @@ class _$LoadClientProfileImpl implements _LoadClientProfile {
     required TResult Function(int clientId) loadClientProfile,
     required TResult Function(int year, int month, int clientId)
         loadClientCalendar,
+    required TResult Function() clickThisMonth,
+    required TResult Function() clickPreviousMonth,
+    required TResult Function() clickNextMonth,
   }) {
     return loadClientProfile(clientId);
   }
@@ -461,6 +518,9 @@ class _$LoadClientProfileImpl implements _LoadClientProfile {
     TResult? Function(ClientListEntity client)? selectClient,
     TResult? Function(int clientId)? loadClientProfile,
     TResult? Function(int year, int month, int clientId)? loadClientCalendar,
+    TResult? Function()? clickThisMonth,
+    TResult? Function()? clickPreviousMonth,
+    TResult? Function()? clickNextMonth,
   }) {
     return loadClientProfile?.call(clientId);
   }
@@ -472,6 +532,9 @@ class _$LoadClientProfileImpl implements _LoadClientProfile {
     TResult Function(ClientListEntity client)? selectClient,
     TResult Function(int clientId)? loadClientProfile,
     TResult Function(int year, int month, int clientId)? loadClientCalendar,
+    TResult Function()? clickThisMonth,
+    TResult Function()? clickPreviousMonth,
+    TResult Function()? clickNextMonth,
     required TResult orElse(),
   }) {
     if (loadClientProfile != null) {
@@ -487,6 +550,9 @@ class _$LoadClientProfileImpl implements _LoadClientProfile {
     required TResult Function(_SelectClient value) selectClient,
     required TResult Function(_LoadClientProfile value) loadClientProfile,
     required TResult Function(_LoadClientCalendar value) loadClientCalendar,
+    required TResult Function(_ClickThisMonth value) clickThisMonth,
+    required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
+    required TResult Function(_ClickNextMonth value) clickNextMonth,
   }) {
     return loadClientProfile(this);
   }
@@ -498,6 +564,9 @@ class _$LoadClientProfileImpl implements _LoadClientProfile {
     TResult? Function(_SelectClient value)? selectClient,
     TResult? Function(_LoadClientProfile value)? loadClientProfile,
     TResult? Function(_LoadClientCalendar value)? loadClientCalendar,
+    TResult? Function(_ClickThisMonth value)? clickThisMonth,
+    TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult? Function(_ClickNextMonth value)? clickNextMonth,
   }) {
     return loadClientProfile?.call(this);
   }
@@ -509,6 +578,9 @@ class _$LoadClientProfileImpl implements _LoadClientProfile {
     TResult Function(_SelectClient value)? selectClient,
     TResult Function(_LoadClientProfile value)? loadClientProfile,
     TResult Function(_LoadClientCalendar value)? loadClientCalendar,
+    TResult Function(_ClickThisMonth value)? clickThisMonth,
+    TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult Function(_ClickNextMonth value)? clickNextMonth,
     required TResult orElse(),
   }) {
     if (loadClientProfile != null) {
@@ -623,6 +695,9 @@ class _$LoadClientCalendarImpl implements _LoadClientCalendar {
     required TResult Function(int clientId) loadClientProfile,
     required TResult Function(int year, int month, int clientId)
         loadClientCalendar,
+    required TResult Function() clickThisMonth,
+    required TResult Function() clickPreviousMonth,
+    required TResult Function() clickNextMonth,
   }) {
     return loadClientCalendar(year, month, clientId);
   }
@@ -634,6 +709,9 @@ class _$LoadClientCalendarImpl implements _LoadClientCalendar {
     TResult? Function(ClientListEntity client)? selectClient,
     TResult? Function(int clientId)? loadClientProfile,
     TResult? Function(int year, int month, int clientId)? loadClientCalendar,
+    TResult? Function()? clickThisMonth,
+    TResult? Function()? clickPreviousMonth,
+    TResult? Function()? clickNextMonth,
   }) {
     return loadClientCalendar?.call(year, month, clientId);
   }
@@ -645,6 +723,9 @@ class _$LoadClientCalendarImpl implements _LoadClientCalendar {
     TResult Function(ClientListEntity client)? selectClient,
     TResult Function(int clientId)? loadClientProfile,
     TResult Function(int year, int month, int clientId)? loadClientCalendar,
+    TResult Function()? clickThisMonth,
+    TResult Function()? clickPreviousMonth,
+    TResult Function()? clickNextMonth,
     required TResult orElse(),
   }) {
     if (loadClientCalendar != null) {
@@ -660,6 +741,9 @@ class _$LoadClientCalendarImpl implements _LoadClientCalendar {
     required TResult Function(_SelectClient value) selectClient,
     required TResult Function(_LoadClientProfile value) loadClientProfile,
     required TResult Function(_LoadClientCalendar value) loadClientCalendar,
+    required TResult Function(_ClickThisMonth value) clickThisMonth,
+    required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
+    required TResult Function(_ClickNextMonth value) clickNextMonth,
   }) {
     return loadClientCalendar(this);
   }
@@ -671,6 +755,9 @@ class _$LoadClientCalendarImpl implements _LoadClientCalendar {
     TResult? Function(_SelectClient value)? selectClient,
     TResult? Function(_LoadClientProfile value)? loadClientProfile,
     TResult? Function(_LoadClientCalendar value)? loadClientCalendar,
+    TResult? Function(_ClickThisMonth value)? clickThisMonth,
+    TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult? Function(_ClickNextMonth value)? clickNextMonth,
   }) {
     return loadClientCalendar?.call(this);
   }
@@ -682,6 +769,9 @@ class _$LoadClientCalendarImpl implements _LoadClientCalendar {
     TResult Function(_SelectClient value)? selectClient,
     TResult Function(_LoadClientProfile value)? loadClientProfile,
     TResult Function(_LoadClientCalendar value)? loadClientCalendar,
+    TResult Function(_ClickThisMonth value)? clickThisMonth,
+    TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult Function(_ClickNextMonth value)? clickNextMonth,
     required TResult orElse(),
   }) {
     if (loadClientCalendar != null) {
@@ -706,4 +796,412 @@ abstract class _LoadClientCalendar implements ManagedMembersIntent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadClientCalendarImplCopyWith<_$LoadClientCalendarImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClickThisMonthImplCopyWith<$Res> {
+  factory _$$ClickThisMonthImplCopyWith(_$ClickThisMonthImpl value,
+          $Res Function(_$ClickThisMonthImpl) then) =
+      __$$ClickThisMonthImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClickThisMonthImplCopyWithImpl<$Res>
+    extends _$ManagedMembersIntentCopyWithImpl<$Res, _$ClickThisMonthImpl>
+    implements _$$ClickThisMonthImplCopyWith<$Res> {
+  __$$ClickThisMonthImplCopyWithImpl(
+      _$ClickThisMonthImpl _value, $Res Function(_$ClickThisMonthImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ManagedMembersIntent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ClickThisMonthImpl implements _ClickThisMonth {
+  const _$ClickThisMonthImpl();
+
+  @override
+  String toString() {
+    return 'ManagedMembersIntent.clickThisMonth()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClickThisMonthImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadMembers,
+    required TResult Function(ClientListEntity client) selectClient,
+    required TResult Function(int clientId) loadClientProfile,
+    required TResult Function(int year, int month, int clientId)
+        loadClientCalendar,
+    required TResult Function() clickThisMonth,
+    required TResult Function() clickPreviousMonth,
+    required TResult Function() clickNextMonth,
+  }) {
+    return clickThisMonth();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadMembers,
+    TResult? Function(ClientListEntity client)? selectClient,
+    TResult? Function(int clientId)? loadClientProfile,
+    TResult? Function(int year, int month, int clientId)? loadClientCalendar,
+    TResult? Function()? clickThisMonth,
+    TResult? Function()? clickPreviousMonth,
+    TResult? Function()? clickNextMonth,
+  }) {
+    return clickThisMonth?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadMembers,
+    TResult Function(ClientListEntity client)? selectClient,
+    TResult Function(int clientId)? loadClientProfile,
+    TResult Function(int year, int month, int clientId)? loadClientCalendar,
+    TResult Function()? clickThisMonth,
+    TResult Function()? clickPreviousMonth,
+    TResult Function()? clickNextMonth,
+    required TResult orElse(),
+  }) {
+    if (clickThisMonth != null) {
+      return clickThisMonth();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadMembers value) loadMembers,
+    required TResult Function(_SelectClient value) selectClient,
+    required TResult Function(_LoadClientProfile value) loadClientProfile,
+    required TResult Function(_LoadClientCalendar value) loadClientCalendar,
+    required TResult Function(_ClickThisMonth value) clickThisMonth,
+    required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
+    required TResult Function(_ClickNextMonth value) clickNextMonth,
+  }) {
+    return clickThisMonth(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadMembers value)? loadMembers,
+    TResult? Function(_SelectClient value)? selectClient,
+    TResult? Function(_LoadClientProfile value)? loadClientProfile,
+    TResult? Function(_LoadClientCalendar value)? loadClientCalendar,
+    TResult? Function(_ClickThisMonth value)? clickThisMonth,
+    TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult? Function(_ClickNextMonth value)? clickNextMonth,
+  }) {
+    return clickThisMonth?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadMembers value)? loadMembers,
+    TResult Function(_SelectClient value)? selectClient,
+    TResult Function(_LoadClientProfile value)? loadClientProfile,
+    TResult Function(_LoadClientCalendar value)? loadClientCalendar,
+    TResult Function(_ClickThisMonth value)? clickThisMonth,
+    TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult Function(_ClickNextMonth value)? clickNextMonth,
+    required TResult orElse(),
+  }) {
+    if (clickThisMonth != null) {
+      return clickThisMonth(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClickThisMonth implements ManagedMembersIntent {
+  const factory _ClickThisMonth() = _$ClickThisMonthImpl;
+}
+
+/// @nodoc
+abstract class _$$ClickPreviousMonthImplCopyWith<$Res> {
+  factory _$$ClickPreviousMonthImplCopyWith(_$ClickPreviousMonthImpl value,
+          $Res Function(_$ClickPreviousMonthImpl) then) =
+      __$$ClickPreviousMonthImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClickPreviousMonthImplCopyWithImpl<$Res>
+    extends _$ManagedMembersIntentCopyWithImpl<$Res, _$ClickPreviousMonthImpl>
+    implements _$$ClickPreviousMonthImplCopyWith<$Res> {
+  __$$ClickPreviousMonthImplCopyWithImpl(_$ClickPreviousMonthImpl _value,
+      $Res Function(_$ClickPreviousMonthImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ManagedMembersIntent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
+  const _$ClickPreviousMonthImpl();
+
+  @override
+  String toString() {
+    return 'ManagedMembersIntent.clickPreviousMonth()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClickPreviousMonthImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadMembers,
+    required TResult Function(ClientListEntity client) selectClient,
+    required TResult Function(int clientId) loadClientProfile,
+    required TResult Function(int year, int month, int clientId)
+        loadClientCalendar,
+    required TResult Function() clickThisMonth,
+    required TResult Function() clickPreviousMonth,
+    required TResult Function() clickNextMonth,
+  }) {
+    return clickPreviousMonth();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadMembers,
+    TResult? Function(ClientListEntity client)? selectClient,
+    TResult? Function(int clientId)? loadClientProfile,
+    TResult? Function(int year, int month, int clientId)? loadClientCalendar,
+    TResult? Function()? clickThisMonth,
+    TResult? Function()? clickPreviousMonth,
+    TResult? Function()? clickNextMonth,
+  }) {
+    return clickPreviousMonth?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadMembers,
+    TResult Function(ClientListEntity client)? selectClient,
+    TResult Function(int clientId)? loadClientProfile,
+    TResult Function(int year, int month, int clientId)? loadClientCalendar,
+    TResult Function()? clickThisMonth,
+    TResult Function()? clickPreviousMonth,
+    TResult Function()? clickNextMonth,
+    required TResult orElse(),
+  }) {
+    if (clickPreviousMonth != null) {
+      return clickPreviousMonth();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadMembers value) loadMembers,
+    required TResult Function(_SelectClient value) selectClient,
+    required TResult Function(_LoadClientProfile value) loadClientProfile,
+    required TResult Function(_LoadClientCalendar value) loadClientCalendar,
+    required TResult Function(_ClickThisMonth value) clickThisMonth,
+    required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
+    required TResult Function(_ClickNextMonth value) clickNextMonth,
+  }) {
+    return clickPreviousMonth(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadMembers value)? loadMembers,
+    TResult? Function(_SelectClient value)? selectClient,
+    TResult? Function(_LoadClientProfile value)? loadClientProfile,
+    TResult? Function(_LoadClientCalendar value)? loadClientCalendar,
+    TResult? Function(_ClickThisMonth value)? clickThisMonth,
+    TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult? Function(_ClickNextMonth value)? clickNextMonth,
+  }) {
+    return clickPreviousMonth?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadMembers value)? loadMembers,
+    TResult Function(_SelectClient value)? selectClient,
+    TResult Function(_LoadClientProfile value)? loadClientProfile,
+    TResult Function(_LoadClientCalendar value)? loadClientCalendar,
+    TResult Function(_ClickThisMonth value)? clickThisMonth,
+    TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult Function(_ClickNextMonth value)? clickNextMonth,
+    required TResult orElse(),
+  }) {
+    if (clickPreviousMonth != null) {
+      return clickPreviousMonth(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClickPreviousMonth implements ManagedMembersIntent {
+  const factory _ClickPreviousMonth() = _$ClickPreviousMonthImpl;
+}
+
+/// @nodoc
+abstract class _$$ClickNextMonthImplCopyWith<$Res> {
+  factory _$$ClickNextMonthImplCopyWith(_$ClickNextMonthImpl value,
+          $Res Function(_$ClickNextMonthImpl) then) =
+      __$$ClickNextMonthImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClickNextMonthImplCopyWithImpl<$Res>
+    extends _$ManagedMembersIntentCopyWithImpl<$Res, _$ClickNextMonthImpl>
+    implements _$$ClickNextMonthImplCopyWith<$Res> {
+  __$$ClickNextMonthImplCopyWithImpl(
+      _$ClickNextMonthImpl _value, $Res Function(_$ClickNextMonthImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ManagedMembersIntent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ClickNextMonthImpl implements _ClickNextMonth {
+  const _$ClickNextMonthImpl();
+
+  @override
+  String toString() {
+    return 'ManagedMembersIntent.clickNextMonth()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClickNextMonthImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadMembers,
+    required TResult Function(ClientListEntity client) selectClient,
+    required TResult Function(int clientId) loadClientProfile,
+    required TResult Function(int year, int month, int clientId)
+        loadClientCalendar,
+    required TResult Function() clickThisMonth,
+    required TResult Function() clickPreviousMonth,
+    required TResult Function() clickNextMonth,
+  }) {
+    return clickNextMonth();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadMembers,
+    TResult? Function(ClientListEntity client)? selectClient,
+    TResult? Function(int clientId)? loadClientProfile,
+    TResult? Function(int year, int month, int clientId)? loadClientCalendar,
+    TResult? Function()? clickThisMonth,
+    TResult? Function()? clickPreviousMonth,
+    TResult? Function()? clickNextMonth,
+  }) {
+    return clickNextMonth?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadMembers,
+    TResult Function(ClientListEntity client)? selectClient,
+    TResult Function(int clientId)? loadClientProfile,
+    TResult Function(int year, int month, int clientId)? loadClientCalendar,
+    TResult Function()? clickThisMonth,
+    TResult Function()? clickPreviousMonth,
+    TResult Function()? clickNextMonth,
+    required TResult orElse(),
+  }) {
+    if (clickNextMonth != null) {
+      return clickNextMonth();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadMembers value) loadMembers,
+    required TResult Function(_SelectClient value) selectClient,
+    required TResult Function(_LoadClientProfile value) loadClientProfile,
+    required TResult Function(_LoadClientCalendar value) loadClientCalendar,
+    required TResult Function(_ClickThisMonth value) clickThisMonth,
+    required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
+    required TResult Function(_ClickNextMonth value) clickNextMonth,
+  }) {
+    return clickNextMonth(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadMembers value)? loadMembers,
+    TResult? Function(_SelectClient value)? selectClient,
+    TResult? Function(_LoadClientProfile value)? loadClientProfile,
+    TResult? Function(_LoadClientCalendar value)? loadClientCalendar,
+    TResult? Function(_ClickThisMonth value)? clickThisMonth,
+    TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult? Function(_ClickNextMonth value)? clickNextMonth,
+  }) {
+    return clickNextMonth?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadMembers value)? loadMembers,
+    TResult Function(_SelectClient value)? selectClient,
+    TResult Function(_LoadClientProfile value)? loadClientProfile,
+    TResult Function(_LoadClientCalendar value)? loadClientCalendar,
+    TResult Function(_ClickThisMonth value)? clickThisMonth,
+    TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult Function(_ClickNextMonth value)? clickNextMonth,
+    required TResult orElse(),
+  }) {
+    if (clickNextMonth != null) {
+      return clickNextMonth(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClickNextMonth implements ManagedMembersIntent {
+  const factory _ClickNextMonth() = _$ClickNextMonthImpl;
 }

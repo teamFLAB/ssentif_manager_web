@@ -109,7 +109,7 @@ class _WeeklySchedulePageState extends ConsumerState<WeeklySchedulePage> {
                   ) : Center(
                     child: Text(
                       "일정을 선택해주세요.",
-                      style: ScDreamStyles.medium16(AppColors.gray3)
+                      style: SsentifTextStyles.medium16.copyWith(color: AppColors.gray3)
                     ),
                   ),
                 )

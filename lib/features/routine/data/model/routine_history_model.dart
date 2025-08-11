@@ -68,7 +68,8 @@ class RoutineHistoryModel with _$RoutineHistoryModel {
     @Default("") String? trainerProfile,
     @Default(-1) int? clientId,
     @Default("") String? clientName,
-    @Default("") String? clientProfile
+    @Default("") String? clientProfile,
+    @Default("") String? runningTime
   }) = _RoutineHistoryModel;
 
   factory RoutineHistoryModel.fromJson(Map<String, dynamic> json) => _$RoutineHistoryModelFromJson(json);

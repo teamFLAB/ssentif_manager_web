@@ -93,7 +93,7 @@ class MonthlyCalendarWidget extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 7,
-        childAspectRatio: 1,
+        childAspectRatio: 1.1,
       ),
       itemCount: totalCells,
       itemBuilder: (context, index) {
@@ -125,8 +125,8 @@ class MonthlyCalendarWidget extends StatelessWidget {
               child: Align(
                 alignment: Alignment.topRight,
                 child: Container(
-                  width: 24,
-                  height: 24,
+                  width: 20,
+                  height: 20,
                   decoration: BoxDecoration(
                     color: isToday ? AppColors.primary : Colors.transparent,
                     shape: BoxShape.circle,
@@ -134,7 +134,7 @@ class MonthlyCalendarWidget extends StatelessWidget {
                   child: Center(
                     child: Text(
                       '${date.day}',
-                      style: SsentifTextStyles.medium12.copyWith(
+                      style: SsentifTextStyles.medium10.copyWith(
                         color: _getDateTextColor(date, isCurrentMonth, isToday),
                       ),
                     ),
@@ -166,6 +166,7 @@ class MonthlyCalendarWidget extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 1),
         child: EventLabelWidget(
           text: eventType.label,
+          textStyle: SsentifTextStyles.regular10,
           backgroundColor: eventType.color,
         ),
       );

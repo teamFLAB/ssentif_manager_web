@@ -13,14 +13,20 @@ class TicketSalesScreen extends ConsumerStatefulWidget {
 class _TicketSalesScreenState extends ConsumerState<TicketSalesScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.backgroundColor,
-      child: Center(
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 30),
+      child: Container(
+        height: 200,
+        width: double.infinity,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: AppColors.gray4),
+        ),
         child: Text(
-          '수강권 매출 (준비중)',
-          style: SsentifTextStyles.regular16.copyWith(
-            color: AppColors.gray2,
-          ),
+          '수강권 매출/분석 기능이 곧 제공될 예정이예요!',
+          style: SsentifTextStyles.regular16,
         ),
       ),
     );

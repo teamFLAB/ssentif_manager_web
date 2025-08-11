@@ -6,6 +6,7 @@ import 'package:ssentif_manager_web/features/client/domain/entity/client_monthly
 import 'package:ssentif_manager_web/features/client/domain/usecase/get_client_profile_usecase.dart';
 import 'package:ssentif_manager_web/features/client/domain/usecase/get_in_class_members_usecase.dart';
 import 'package:ssentif_manager_web/features/client/domain/usecase/get_client_monthly_events_usecase.dart';
+import 'package:ssentif_manager_web/features/coaches/view/effect/managed_members_effect.dart';
 import 'package:ssentif_manager_web/features/coaches/view/intent/managed_members_intent.dart';
 import 'package:ssentif_manager_web/features/coaches/view/state/managed_members_state.dart';
 import 'package:ssentif_manager_web/shared/domain/entity/user_entity.dart';
@@ -14,13 +15,18 @@ class ManagedMembersViewModel extends StateNotifier<ManagedMembersState> {
   final GetInClassMembersUseCase getInClassMembersUseCase;
   final GetClientProfileUseCase getClientProfileUseCase;
   final GetClientMonthlyEventsUseCase getClientMonthlyEventsUseCase;
+  final StateController<ManagedMembersEffect?> managedMembersEffect;
 
   ManagedMembersViewModel({
     required UserEntity? selectedCoach,
     required this.getInClassMembersUseCase,
     required this.getClientProfileUseCase,
     required this.getClientMonthlyEventsUseCase,
-  }) : super(ManagedMembersState(selectedCoach: selectedCoach)) {
+    required this.managedMembersEffect
+  }) : super(ManagedMembersState(
+          selectedCoach: selectedCoach,
+          selectedMonth: DateTime.now(),
+        )) {
     if (selectedCoach != null) {
       _loadMembers();
     }
@@ -39,6 +45,21 @@ class ManagedMembersViewModel extends StateNotifier<ManagedMembersState> {
       },
       loadClientCalendar: (year, month, clientId) {
         _loadClientCalendar(year, month, clientId);
+      },
+      clickThisMonth: () {
+        _updateSelectedMonth(DateTime.now());
+      },
+      clickPreviousMonth: () {
+        final currentMonth = state.selectedMonth;
+        final previousMonth =
+            DateTime(currentMonth.year, currentMonth.month - 1, 1);
+        _updateSelectedMonth(previousMonth);
+      },
+      clickNextMonth: () {
+        final currentMonth = state.selectedMonth;
+        final nextMonth =
+            DateTime(currentMonth.year, currentMonth.month + 1, 1);
+        _updateSelectedMonth(nextMonth);
       },
     );
   }
@@ -63,7 +84,7 @@ class ManagedMembersViewModel extends StateNotifier<ManagedMembersState> {
               isMembersLoading: false,
             );
 
-            if(data?.firstOrNull?.clientId != null) {
+            if (data?.firstOrNull?.clientId != null) {
               _selectClient(data!.first);
             }
           },
@@ -73,6 +94,9 @@ class ManagedMembersViewModel extends StateNotifier<ManagedMembersState> {
               membersErrorMessage: errMsg,
             );
           },
+          onUnauthorized: () {
+            managedMembersEffect.state = ManagedMembersEffect.navToLogin();
+          }
         );
       } else {
         state = state.copyWith(
@@ -89,10 +113,8 @@ class ManagedMembersViewModel extends StateNotifier<ManagedMembersState> {
   }
 
   void _selectClient(ClientListEntity client) {
-    print("sdafasfasfasfasf ${state.selectedClient?.clientId}");
-    print("sdafasfasfasfasf ${client.clientId}");
-
-    if (state.selectedClient?.clientId != null && state.selectedClient?.clientId == client.clientId) {
+    if (state.selectedClient?.clientId != null &&
+        state.selectedClient?.clientId == client.clientId) {
       return;
     }
     state = state.copyWith(
@@ -102,7 +124,6 @@ class ManagedMembersViewModel extends StateNotifier<ManagedMembersState> {
       isProfileLoading: false,
       isCalendarLoading: false,
     );
-    print("1243154312412341234");
 
     // 프로필과 캘린더를 동시에 로드
     handleIntent(
@@ -182,6 +203,14 @@ class ManagedMembersViewModel extends StateNotifier<ManagedMembersState> {
       );
     }
   }
+
+  void _updateSelectedMonth(DateTime month) {
+    state = state.copyWith(selectedMonth: month);
+    if (state.selectedClient != null) {
+      _loadClientCalendar(
+          month.year, month.month, state.selectedClient!.clientId);
+    }
+  }
 }
 
 final managedMembersViewModelProvider = StateNotifierProvider.family<
@@ -190,12 +219,14 @@ final managedMembersViewModelProvider = StateNotifierProvider.family<
     UserEntity?>((ref, selectedCoach) {
   final getInClassMembersUseCase = ref.read(getInClassMembersUseCaseProvider);
   final getClientProfileUseCase = ref.read(getClientProfileUseCaseProvider);
-  final getClientMonthlyEventsUseCase =
-      ref.read(getClientMonthlyEventsUseCaseProvider);
+  final getClientMonthlyEventsUseCase = ref.read(getClientMonthlyEventsUseCaseProvider);
+  final managedMembersEffect = ref.read(managedMembersEffectProvider.notifier);
+
   return ManagedMembersViewModel(
     selectedCoach: selectedCoach,
     getInClassMembersUseCase: getInClassMembersUseCase,
     getClientProfileUseCase: getClientProfileUseCase,
     getClientMonthlyEventsUseCase: getClientMonthlyEventsUseCase,
+    managedMembersEffect: managedMembersEffect
   );
 });

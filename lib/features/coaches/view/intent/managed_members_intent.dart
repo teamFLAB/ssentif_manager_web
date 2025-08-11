@@ -15,4 +15,7 @@ sealed class ManagedMembersIntent with _$ManagedMembersIntent {
     required int month,
     required int clientId,
   }) = _LoadClientCalendar;
+  const factory ManagedMembersIntent.clickThisMonth() = _ClickThisMonth;
+  const factory ManagedMembersIntent.clickPreviousMonth() = _ClickPreviousMonth;
+  const factory ManagedMembersIntent.clickNextMonth() = _ClickNextMonth;
 }

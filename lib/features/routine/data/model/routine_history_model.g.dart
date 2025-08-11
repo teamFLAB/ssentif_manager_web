@@ -108,6 +108,7 @@ _$RoutineHistoryModelImpl _$$RoutineHistoryModelImplFromJson(
       clientId: (json['clientId'] as num?)?.toInt() ?? -1,
       clientName: json['clientName'] as String? ?? "",
       clientProfile: json['clientProfile'] as String? ?? "",
+      runningTime: json['runningTime'] as String? ?? "",
     );
 
 Map<String, dynamic> _$$RoutineHistoryModelImplToJson(
@@ -131,6 +132,7 @@ Map<String, dynamic> _$$RoutineHistoryModelImplToJson(
       'clientId': instance.clientId,
       'clientName': instance.clientName,
       'clientProfile': instance.clientProfile,
+      'runningTime': instance.runningTime,
     };
 
 _$RoutineHistoryExerciseModelImpl _$$RoutineHistoryExerciseModelImplFromJson(

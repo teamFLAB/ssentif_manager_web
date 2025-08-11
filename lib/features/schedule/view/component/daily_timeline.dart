@@ -17,12 +17,13 @@ class DailyTimeline extends StatelessWidget {
   final List<UserEntity> selectedCoaches;
   final List<CalendarScheduleEntity> selectedDateSchedules;
   final void Function(int scheduleId)? onScheduleTap;
-  const DailyTimeline({
+   DailyTimeline({
     super.key,
     required this.selectedCoaches,
     required this.selectedDateSchedules,
     this.onScheduleTap,
-  });
+  }) {
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -184,7 +185,7 @@ class _CoachTimeline extends StatelessWidget {
             ),
             child: Text(
               coach.userName,
-              style: SsentifTextStyles.bold20.copyWith(color: AppColors.black),
+              style: SsentifTextStyles.bold18.copyWith(color: AppColors.black),
               overflow: TextOverflow.ellipsis,
             ),
           ),

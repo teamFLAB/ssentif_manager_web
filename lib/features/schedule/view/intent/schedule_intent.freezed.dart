@@ -28,6 +28,8 @@ mixin _$ScheduleIntent {
     required TResult Function(DateTime date) selectDate,
     required TResult Function(UserEntity coach) onToggleCoach,
     required TResult Function(CalendarType type) onSelectCalendarType,
+    required TResult Function() clickLogout,
+    required TResult Function() clickLogoutDoubleCheck,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +44,8 @@ mixin _$ScheduleIntent {
     TResult? Function(DateTime date)? selectDate,
     TResult? Function(UserEntity coach)? onToggleCoach,
     TResult? Function(CalendarType type)? onSelectCalendarType,
+    TResult? Function()? clickLogout,
+    TResult? Function()? clickLogoutDoubleCheck,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +60,8 @@ mixin _$ScheduleIntent {
     TResult Function(DateTime date)? selectDate,
     TResult Function(UserEntity coach)? onToggleCoach,
     TResult Function(CalendarType type)? onSelectCalendarType,
+    TResult Function()? clickLogout,
+    TResult Function()? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,6 +78,9 @@ mixin _$ScheduleIntent {
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_OnToggleCoach value) onToggleCoach,
     required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
+    required TResult Function(_ClickLogout value) clickLogout,
+    required TResult Function(_ClickLogoutDoubleCheck value)
+        clickLogoutDoubleCheck,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -86,6 +95,8 @@ mixin _$ScheduleIntent {
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_OnToggleCoach value)? onToggleCoach,
     TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult? Function(_ClickLogout value)? clickLogout,
+    TResult? Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -100,6 +111,8 @@ mixin _$ScheduleIntent {
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_OnToggleCoach value)? onToggleCoach,
     TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult Function(_ClickLogout value)? clickLogout,
+    TResult Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -206,6 +219,8 @@ class _$ClickScheduleItemImpl implements _ClickScheduleItem {
     required TResult Function(DateTime date) selectDate,
     required TResult Function(UserEntity coach) onToggleCoach,
     required TResult Function(CalendarType type) onSelectCalendarType,
+    required TResult Function() clickLogout,
+    required TResult Function() clickLogoutDoubleCheck,
   }) {
     return clickScheduleItem(scheduleId);
   }
@@ -223,6 +238,8 @@ class _$ClickScheduleItemImpl implements _ClickScheduleItem {
     TResult? Function(DateTime date)? selectDate,
     TResult? Function(UserEntity coach)? onToggleCoach,
     TResult? Function(CalendarType type)? onSelectCalendarType,
+    TResult? Function()? clickLogout,
+    TResult? Function()? clickLogoutDoubleCheck,
   }) {
     return clickScheduleItem?.call(scheduleId);
   }
@@ -240,6 +257,8 @@ class _$ClickScheduleItemImpl implements _ClickScheduleItem {
     TResult Function(DateTime date)? selectDate,
     TResult Function(UserEntity coach)? onToggleCoach,
     TResult Function(CalendarType type)? onSelectCalendarType,
+    TResult Function()? clickLogout,
+    TResult Function()? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (clickScheduleItem != null) {
@@ -262,6 +281,9 @@ class _$ClickScheduleItemImpl implements _ClickScheduleItem {
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_OnToggleCoach value) onToggleCoach,
     required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
+    required TResult Function(_ClickLogout value) clickLogout,
+    required TResult Function(_ClickLogoutDoubleCheck value)
+        clickLogoutDoubleCheck,
   }) {
     return clickScheduleItem(this);
   }
@@ -279,6 +301,8 @@ class _$ClickScheduleItemImpl implements _ClickScheduleItem {
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_OnToggleCoach value)? onToggleCoach,
     TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult? Function(_ClickLogout value)? clickLogout,
+    TResult? Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
   }) {
     return clickScheduleItem?.call(this);
   }
@@ -296,6 +320,8 @@ class _$ClickScheduleItemImpl implements _ClickScheduleItem {
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_OnToggleCoach value)? onToggleCoach,
     TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult Function(_ClickLogout value)? clickLogout,
+    TResult Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (clickScheduleItem != null) {
@@ -371,6 +397,8 @@ class _$OnRefreshScheduleListImpl implements _OnRefreshScheduleList {
     required TResult Function(DateTime date) selectDate,
     required TResult Function(UserEntity coach) onToggleCoach,
     required TResult Function(CalendarType type) onSelectCalendarType,
+    required TResult Function() clickLogout,
+    required TResult Function() clickLogoutDoubleCheck,
   }) {
     return onRefreshScheduleList();
   }
@@ -388,6 +416,8 @@ class _$OnRefreshScheduleListImpl implements _OnRefreshScheduleList {
     TResult? Function(DateTime date)? selectDate,
     TResult? Function(UserEntity coach)? onToggleCoach,
     TResult? Function(CalendarType type)? onSelectCalendarType,
+    TResult? Function()? clickLogout,
+    TResult? Function()? clickLogoutDoubleCheck,
   }) {
     return onRefreshScheduleList?.call();
   }
@@ -405,6 +435,8 @@ class _$OnRefreshScheduleListImpl implements _OnRefreshScheduleList {
     TResult Function(DateTime date)? selectDate,
     TResult Function(UserEntity coach)? onToggleCoach,
     TResult Function(CalendarType type)? onSelectCalendarType,
+    TResult Function()? clickLogout,
+    TResult Function()? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (onRefreshScheduleList != null) {
@@ -427,6 +459,9 @@ class _$OnRefreshScheduleListImpl implements _OnRefreshScheduleList {
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_OnToggleCoach value) onToggleCoach,
     required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
+    required TResult Function(_ClickLogout value) clickLogout,
+    required TResult Function(_ClickLogoutDoubleCheck value)
+        clickLogoutDoubleCheck,
   }) {
     return onRefreshScheduleList(this);
   }
@@ -444,6 +479,8 @@ class _$OnRefreshScheduleListImpl implements _OnRefreshScheduleList {
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_OnToggleCoach value)? onToggleCoach,
     TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult? Function(_ClickLogout value)? clickLogout,
+    TResult? Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
   }) {
     return onRefreshScheduleList?.call(this);
   }
@@ -461,6 +498,8 @@ class _$OnRefreshScheduleListImpl implements _OnRefreshScheduleList {
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_OnToggleCoach value)? onToggleCoach,
     TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult Function(_ClickLogout value)? clickLogout,
+    TResult Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (onRefreshScheduleList != null) {
@@ -525,6 +564,8 @@ class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
     required TResult Function(DateTime date) selectDate,
     required TResult Function(UserEntity coach) onToggleCoach,
     required TResult Function(CalendarType type) onSelectCalendarType,
+    required TResult Function() clickLogout,
+    required TResult Function() clickLogoutDoubleCheck,
   }) {
     return clickPreviousMonth();
   }
@@ -542,6 +583,8 @@ class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
     TResult? Function(DateTime date)? selectDate,
     TResult? Function(UserEntity coach)? onToggleCoach,
     TResult? Function(CalendarType type)? onSelectCalendarType,
+    TResult? Function()? clickLogout,
+    TResult? Function()? clickLogoutDoubleCheck,
   }) {
     return clickPreviousMonth?.call();
   }
@@ -559,6 +602,8 @@ class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
     TResult Function(DateTime date)? selectDate,
     TResult Function(UserEntity coach)? onToggleCoach,
     TResult Function(CalendarType type)? onSelectCalendarType,
+    TResult Function()? clickLogout,
+    TResult Function()? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (clickPreviousMonth != null) {
@@ -581,6 +626,9 @@ class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_OnToggleCoach value) onToggleCoach,
     required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
+    required TResult Function(_ClickLogout value) clickLogout,
+    required TResult Function(_ClickLogoutDoubleCheck value)
+        clickLogoutDoubleCheck,
   }) {
     return clickPreviousMonth(this);
   }
@@ -598,6 +646,8 @@ class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_OnToggleCoach value)? onToggleCoach,
     TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult? Function(_ClickLogout value)? clickLogout,
+    TResult? Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
   }) {
     return clickPreviousMonth?.call(this);
   }
@@ -615,6 +665,8 @@ class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_OnToggleCoach value)? onToggleCoach,
     TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult Function(_ClickLogout value)? clickLogout,
+    TResult Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (clickPreviousMonth != null) {
@@ -679,6 +731,8 @@ class _$ClickNextMonthImpl implements _ClickNextMonth {
     required TResult Function(DateTime date) selectDate,
     required TResult Function(UserEntity coach) onToggleCoach,
     required TResult Function(CalendarType type) onSelectCalendarType,
+    required TResult Function() clickLogout,
+    required TResult Function() clickLogoutDoubleCheck,
   }) {
     return clickNextMonth();
   }
@@ -696,6 +750,8 @@ class _$ClickNextMonthImpl implements _ClickNextMonth {
     TResult? Function(DateTime date)? selectDate,
     TResult? Function(UserEntity coach)? onToggleCoach,
     TResult? Function(CalendarType type)? onSelectCalendarType,
+    TResult? Function()? clickLogout,
+    TResult? Function()? clickLogoutDoubleCheck,
   }) {
     return clickNextMonth?.call();
   }
@@ -713,6 +769,8 @@ class _$ClickNextMonthImpl implements _ClickNextMonth {
     TResult Function(DateTime date)? selectDate,
     TResult Function(UserEntity coach)? onToggleCoach,
     TResult Function(CalendarType type)? onSelectCalendarType,
+    TResult Function()? clickLogout,
+    TResult Function()? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (clickNextMonth != null) {
@@ -735,6 +793,9 @@ class _$ClickNextMonthImpl implements _ClickNextMonth {
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_OnToggleCoach value) onToggleCoach,
     required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
+    required TResult Function(_ClickLogout value) clickLogout,
+    required TResult Function(_ClickLogoutDoubleCheck value)
+        clickLogoutDoubleCheck,
   }) {
     return clickNextMonth(this);
   }
@@ -752,6 +813,8 @@ class _$ClickNextMonthImpl implements _ClickNextMonth {
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_OnToggleCoach value)? onToggleCoach,
     TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult? Function(_ClickLogout value)? clickLogout,
+    TResult? Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
   }) {
     return clickNextMonth?.call(this);
   }
@@ -769,6 +832,8 @@ class _$ClickNextMonthImpl implements _ClickNextMonth {
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_OnToggleCoach value)? onToggleCoach,
     TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult Function(_ClickLogout value)? clickLogout,
+    TResult Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (clickNextMonth != null) {
@@ -833,6 +898,8 @@ class _$ClickTodayDateImpl implements _ClickTodayDate {
     required TResult Function(DateTime date) selectDate,
     required TResult Function(UserEntity coach) onToggleCoach,
     required TResult Function(CalendarType type) onSelectCalendarType,
+    required TResult Function() clickLogout,
+    required TResult Function() clickLogoutDoubleCheck,
   }) {
     return clickTodayDate();
   }
@@ -850,6 +917,8 @@ class _$ClickTodayDateImpl implements _ClickTodayDate {
     TResult? Function(DateTime date)? selectDate,
     TResult? Function(UserEntity coach)? onToggleCoach,
     TResult? Function(CalendarType type)? onSelectCalendarType,
+    TResult? Function()? clickLogout,
+    TResult? Function()? clickLogoutDoubleCheck,
   }) {
     return clickTodayDate?.call();
   }
@@ -867,6 +936,8 @@ class _$ClickTodayDateImpl implements _ClickTodayDate {
     TResult Function(DateTime date)? selectDate,
     TResult Function(UserEntity coach)? onToggleCoach,
     TResult Function(CalendarType type)? onSelectCalendarType,
+    TResult Function()? clickLogout,
+    TResult Function()? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (clickTodayDate != null) {
@@ -889,6 +960,9 @@ class _$ClickTodayDateImpl implements _ClickTodayDate {
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_OnToggleCoach value) onToggleCoach,
     required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
+    required TResult Function(_ClickLogout value) clickLogout,
+    required TResult Function(_ClickLogoutDoubleCheck value)
+        clickLogoutDoubleCheck,
   }) {
     return clickTodayDate(this);
   }
@@ -906,6 +980,8 @@ class _$ClickTodayDateImpl implements _ClickTodayDate {
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_OnToggleCoach value)? onToggleCoach,
     TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult? Function(_ClickLogout value)? clickLogout,
+    TResult? Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
   }) {
     return clickTodayDate?.call(this);
   }
@@ -923,6 +999,8 @@ class _$ClickTodayDateImpl implements _ClickTodayDate {
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_OnToggleCoach value)? onToggleCoach,
     TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult Function(_ClickLogout value)? clickLogout,
+    TResult Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (clickTodayDate != null) {
@@ -987,6 +1065,8 @@ class _$ClickPreviousDayImpl implements _ClickPreviousDay {
     required TResult Function(DateTime date) selectDate,
     required TResult Function(UserEntity coach) onToggleCoach,
     required TResult Function(CalendarType type) onSelectCalendarType,
+    required TResult Function() clickLogout,
+    required TResult Function() clickLogoutDoubleCheck,
   }) {
     return clickPreviousDay();
   }
@@ -1004,6 +1084,8 @@ class _$ClickPreviousDayImpl implements _ClickPreviousDay {
     TResult? Function(DateTime date)? selectDate,
     TResult? Function(UserEntity coach)? onToggleCoach,
     TResult? Function(CalendarType type)? onSelectCalendarType,
+    TResult? Function()? clickLogout,
+    TResult? Function()? clickLogoutDoubleCheck,
   }) {
     return clickPreviousDay?.call();
   }
@@ -1021,6 +1103,8 @@ class _$ClickPreviousDayImpl implements _ClickPreviousDay {
     TResult Function(DateTime date)? selectDate,
     TResult Function(UserEntity coach)? onToggleCoach,
     TResult Function(CalendarType type)? onSelectCalendarType,
+    TResult Function()? clickLogout,
+    TResult Function()? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (clickPreviousDay != null) {
@@ -1043,6 +1127,9 @@ class _$ClickPreviousDayImpl implements _ClickPreviousDay {
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_OnToggleCoach value) onToggleCoach,
     required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
+    required TResult Function(_ClickLogout value) clickLogout,
+    required TResult Function(_ClickLogoutDoubleCheck value)
+        clickLogoutDoubleCheck,
   }) {
     return clickPreviousDay(this);
   }
@@ -1060,6 +1147,8 @@ class _$ClickPreviousDayImpl implements _ClickPreviousDay {
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_OnToggleCoach value)? onToggleCoach,
     TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult? Function(_ClickLogout value)? clickLogout,
+    TResult? Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
   }) {
     return clickPreviousDay?.call(this);
   }
@@ -1077,6 +1166,8 @@ class _$ClickPreviousDayImpl implements _ClickPreviousDay {
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_OnToggleCoach value)? onToggleCoach,
     TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult Function(_ClickLogout value)? clickLogout,
+    TResult Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (clickPreviousDay != null) {
@@ -1141,6 +1232,8 @@ class _$ClickNextDayImpl implements _ClickNextDay {
     required TResult Function(DateTime date) selectDate,
     required TResult Function(UserEntity coach) onToggleCoach,
     required TResult Function(CalendarType type) onSelectCalendarType,
+    required TResult Function() clickLogout,
+    required TResult Function() clickLogoutDoubleCheck,
   }) {
     return clickNextDay();
   }
@@ -1158,6 +1251,8 @@ class _$ClickNextDayImpl implements _ClickNextDay {
     TResult? Function(DateTime date)? selectDate,
     TResult? Function(UserEntity coach)? onToggleCoach,
     TResult? Function(CalendarType type)? onSelectCalendarType,
+    TResult? Function()? clickLogout,
+    TResult? Function()? clickLogoutDoubleCheck,
   }) {
     return clickNextDay?.call();
   }
@@ -1175,6 +1270,8 @@ class _$ClickNextDayImpl implements _ClickNextDay {
     TResult Function(DateTime date)? selectDate,
     TResult Function(UserEntity coach)? onToggleCoach,
     TResult Function(CalendarType type)? onSelectCalendarType,
+    TResult Function()? clickLogout,
+    TResult Function()? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (clickNextDay != null) {
@@ -1197,6 +1294,9 @@ class _$ClickNextDayImpl implements _ClickNextDay {
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_OnToggleCoach value) onToggleCoach,
     required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
+    required TResult Function(_ClickLogout value) clickLogout,
+    required TResult Function(_ClickLogoutDoubleCheck value)
+        clickLogoutDoubleCheck,
   }) {
     return clickNextDay(this);
   }
@@ -1214,6 +1314,8 @@ class _$ClickNextDayImpl implements _ClickNextDay {
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_OnToggleCoach value)? onToggleCoach,
     TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult? Function(_ClickLogout value)? clickLogout,
+    TResult? Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
   }) {
     return clickNextDay?.call(this);
   }
@@ -1231,6 +1333,8 @@ class _$ClickNextDayImpl implements _ClickNextDay {
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_OnToggleCoach value)? onToggleCoach,
     TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult Function(_ClickLogout value)? clickLogout,
+    TResult Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (clickNextDay != null) {
@@ -1322,6 +1426,8 @@ class _$SelectDateImpl implements _SelectDate {
     required TResult Function(DateTime date) selectDate,
     required TResult Function(UserEntity coach) onToggleCoach,
     required TResult Function(CalendarType type) onSelectCalendarType,
+    required TResult Function() clickLogout,
+    required TResult Function() clickLogoutDoubleCheck,
   }) {
     return selectDate(date);
   }
@@ -1339,6 +1445,8 @@ class _$SelectDateImpl implements _SelectDate {
     TResult? Function(DateTime date)? selectDate,
     TResult? Function(UserEntity coach)? onToggleCoach,
     TResult? Function(CalendarType type)? onSelectCalendarType,
+    TResult? Function()? clickLogout,
+    TResult? Function()? clickLogoutDoubleCheck,
   }) {
     return selectDate?.call(date);
   }
@@ -1356,6 +1464,8 @@ class _$SelectDateImpl implements _SelectDate {
     TResult Function(DateTime date)? selectDate,
     TResult Function(UserEntity coach)? onToggleCoach,
     TResult Function(CalendarType type)? onSelectCalendarType,
+    TResult Function()? clickLogout,
+    TResult Function()? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (selectDate != null) {
@@ -1378,6 +1488,9 @@ class _$SelectDateImpl implements _SelectDate {
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_OnToggleCoach value) onToggleCoach,
     required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
+    required TResult Function(_ClickLogout value) clickLogout,
+    required TResult Function(_ClickLogoutDoubleCheck value)
+        clickLogoutDoubleCheck,
   }) {
     return selectDate(this);
   }
@@ -1395,6 +1508,8 @@ class _$SelectDateImpl implements _SelectDate {
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_OnToggleCoach value)? onToggleCoach,
     TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult? Function(_ClickLogout value)? clickLogout,
+    TResult? Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
   }) {
     return selectDate?.call(this);
   }
@@ -1412,6 +1527,8 @@ class _$SelectDateImpl implements _SelectDate {
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_OnToggleCoach value)? onToggleCoach,
     TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult Function(_ClickLogout value)? clickLogout,
+    TResult Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (selectDate != null) {
@@ -1523,6 +1640,8 @@ class _$OnToggleCoachImpl implements _OnToggleCoach {
     required TResult Function(DateTime date) selectDate,
     required TResult Function(UserEntity coach) onToggleCoach,
     required TResult Function(CalendarType type) onSelectCalendarType,
+    required TResult Function() clickLogout,
+    required TResult Function() clickLogoutDoubleCheck,
   }) {
     return onToggleCoach(coach);
   }
@@ -1540,6 +1659,8 @@ class _$OnToggleCoachImpl implements _OnToggleCoach {
     TResult? Function(DateTime date)? selectDate,
     TResult? Function(UserEntity coach)? onToggleCoach,
     TResult? Function(CalendarType type)? onSelectCalendarType,
+    TResult? Function()? clickLogout,
+    TResult? Function()? clickLogoutDoubleCheck,
   }) {
     return onToggleCoach?.call(coach);
   }
@@ -1557,6 +1678,8 @@ class _$OnToggleCoachImpl implements _OnToggleCoach {
     TResult Function(DateTime date)? selectDate,
     TResult Function(UserEntity coach)? onToggleCoach,
     TResult Function(CalendarType type)? onSelectCalendarType,
+    TResult Function()? clickLogout,
+    TResult Function()? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (onToggleCoach != null) {
@@ -1579,6 +1702,9 @@ class _$OnToggleCoachImpl implements _OnToggleCoach {
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_OnToggleCoach value) onToggleCoach,
     required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
+    required TResult Function(_ClickLogout value) clickLogout,
+    required TResult Function(_ClickLogoutDoubleCheck value)
+        clickLogoutDoubleCheck,
   }) {
     return onToggleCoach(this);
   }
@@ -1596,6 +1722,8 @@ class _$OnToggleCoachImpl implements _OnToggleCoach {
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_OnToggleCoach value)? onToggleCoach,
     TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult? Function(_ClickLogout value)? clickLogout,
+    TResult? Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
   }) {
     return onToggleCoach?.call(this);
   }
@@ -1613,6 +1741,8 @@ class _$OnToggleCoachImpl implements _OnToggleCoach {
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_OnToggleCoach value)? onToggleCoach,
     TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult Function(_ClickLogout value)? clickLogout,
+    TResult Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (onToggleCoach != null) {
@@ -1715,6 +1845,8 @@ class _$OnSelectCalendarTypeImpl implements _OnSelectCalendarType {
     required TResult Function(DateTime date) selectDate,
     required TResult Function(UserEntity coach) onToggleCoach,
     required TResult Function(CalendarType type) onSelectCalendarType,
+    required TResult Function() clickLogout,
+    required TResult Function() clickLogoutDoubleCheck,
   }) {
     return onSelectCalendarType(type);
   }
@@ -1732,6 +1864,8 @@ class _$OnSelectCalendarTypeImpl implements _OnSelectCalendarType {
     TResult? Function(DateTime date)? selectDate,
     TResult? Function(UserEntity coach)? onToggleCoach,
     TResult? Function(CalendarType type)? onSelectCalendarType,
+    TResult? Function()? clickLogout,
+    TResult? Function()? clickLogoutDoubleCheck,
   }) {
     return onSelectCalendarType?.call(type);
   }
@@ -1749,6 +1883,8 @@ class _$OnSelectCalendarTypeImpl implements _OnSelectCalendarType {
     TResult Function(DateTime date)? selectDate,
     TResult Function(UserEntity coach)? onToggleCoach,
     TResult Function(CalendarType type)? onSelectCalendarType,
+    TResult Function()? clickLogout,
+    TResult Function()? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (onSelectCalendarType != null) {
@@ -1771,6 +1907,9 @@ class _$OnSelectCalendarTypeImpl implements _OnSelectCalendarType {
     required TResult Function(_SelectDate value) selectDate,
     required TResult Function(_OnToggleCoach value) onToggleCoach,
     required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
+    required TResult Function(_ClickLogout value) clickLogout,
+    required TResult Function(_ClickLogoutDoubleCheck value)
+        clickLogoutDoubleCheck,
   }) {
     return onSelectCalendarType(this);
   }
@@ -1788,6 +1927,8 @@ class _$OnSelectCalendarTypeImpl implements _OnSelectCalendarType {
     TResult? Function(_SelectDate value)? selectDate,
     TResult? Function(_OnToggleCoach value)? onToggleCoach,
     TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult? Function(_ClickLogout value)? clickLogout,
+    TResult? Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
   }) {
     return onSelectCalendarType?.call(this);
   }
@@ -1805,6 +1946,8 @@ class _$OnSelectCalendarTypeImpl implements _OnSelectCalendarType {
     TResult Function(_SelectDate value)? selectDate,
     TResult Function(_OnToggleCoach value)? onToggleCoach,
     TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult Function(_ClickLogout value)? clickLogout,
+    TResult Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
     required TResult orElse(),
   }) {
     if (onSelectCalendarType != null) {
@@ -1825,4 +1968,341 @@ abstract class _OnSelectCalendarType implements ScheduleIntent {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OnSelectCalendarTypeImplCopyWith<_$OnSelectCalendarTypeImpl>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ClickLogoutImplCopyWith<$Res> {
+  factory _$$ClickLogoutImplCopyWith(
+          _$ClickLogoutImpl value, $Res Function(_$ClickLogoutImpl) then) =
+      __$$ClickLogoutImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClickLogoutImplCopyWithImpl<$Res>
+    extends _$ScheduleIntentCopyWithImpl<$Res, _$ClickLogoutImpl>
+    implements _$$ClickLogoutImplCopyWith<$Res> {
+  __$$ClickLogoutImplCopyWithImpl(
+      _$ClickLogoutImpl _value, $Res Function(_$ClickLogoutImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ScheduleIntent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ClickLogoutImpl implements _ClickLogout {
+  const _$ClickLogoutImpl();
+
+  @override
+  String toString() {
+    return 'ScheduleIntent.clickLogout()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ClickLogoutImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int scheduleId) clickScheduleItem,
+    required TResult Function() onRefreshScheduleList,
+    required TResult Function() clickPreviousMonth,
+    required TResult Function() clickNextMonth,
+    required TResult Function() clickTodayDate,
+    required TResult Function() clickPreviousDay,
+    required TResult Function() clickNextDay,
+    required TResult Function(DateTime date) selectDate,
+    required TResult Function(UserEntity coach) onToggleCoach,
+    required TResult Function(CalendarType type) onSelectCalendarType,
+    required TResult Function() clickLogout,
+    required TResult Function() clickLogoutDoubleCheck,
+  }) {
+    return clickLogout();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int scheduleId)? clickScheduleItem,
+    TResult? Function()? onRefreshScheduleList,
+    TResult? Function()? clickPreviousMonth,
+    TResult? Function()? clickNextMonth,
+    TResult? Function()? clickTodayDate,
+    TResult? Function()? clickPreviousDay,
+    TResult? Function()? clickNextDay,
+    TResult? Function(DateTime date)? selectDate,
+    TResult? Function(UserEntity coach)? onToggleCoach,
+    TResult? Function(CalendarType type)? onSelectCalendarType,
+    TResult? Function()? clickLogout,
+    TResult? Function()? clickLogoutDoubleCheck,
+  }) {
+    return clickLogout?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int scheduleId)? clickScheduleItem,
+    TResult Function()? onRefreshScheduleList,
+    TResult Function()? clickPreviousMonth,
+    TResult Function()? clickNextMonth,
+    TResult Function()? clickTodayDate,
+    TResult Function()? clickPreviousDay,
+    TResult Function()? clickNextDay,
+    TResult Function(DateTime date)? selectDate,
+    TResult Function(UserEntity coach)? onToggleCoach,
+    TResult Function(CalendarType type)? onSelectCalendarType,
+    TResult Function()? clickLogout,
+    TResult Function()? clickLogoutDoubleCheck,
+    required TResult orElse(),
+  }) {
+    if (clickLogout != null) {
+      return clickLogout();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClickScheduleItem value) clickScheduleItem,
+    required TResult Function(_OnRefreshScheduleList value)
+        onRefreshScheduleList,
+    required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
+    required TResult Function(_ClickNextMonth value) clickNextMonth,
+    required TResult Function(_ClickTodayDate value) clickTodayDate,
+    required TResult Function(_ClickPreviousDay value) clickPreviousDay,
+    required TResult Function(_ClickNextDay value) clickNextDay,
+    required TResult Function(_SelectDate value) selectDate,
+    required TResult Function(_OnToggleCoach value) onToggleCoach,
+    required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
+    required TResult Function(_ClickLogout value) clickLogout,
+    required TResult Function(_ClickLogoutDoubleCheck value)
+        clickLogoutDoubleCheck,
+  }) {
+    return clickLogout(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClickScheduleItem value)? clickScheduleItem,
+    TResult? Function(_OnRefreshScheduleList value)? onRefreshScheduleList,
+    TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult? Function(_ClickNextMonth value)? clickNextMonth,
+    TResult? Function(_ClickTodayDate value)? clickTodayDate,
+    TResult? Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult? Function(_ClickNextDay value)? clickNextDay,
+    TResult? Function(_SelectDate value)? selectDate,
+    TResult? Function(_OnToggleCoach value)? onToggleCoach,
+    TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult? Function(_ClickLogout value)? clickLogout,
+    TResult? Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
+  }) {
+    return clickLogout?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClickScheduleItem value)? clickScheduleItem,
+    TResult Function(_OnRefreshScheduleList value)? onRefreshScheduleList,
+    TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult Function(_ClickNextMonth value)? clickNextMonth,
+    TResult Function(_ClickTodayDate value)? clickTodayDate,
+    TResult Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult Function(_ClickNextDay value)? clickNextDay,
+    TResult Function(_SelectDate value)? selectDate,
+    TResult Function(_OnToggleCoach value)? onToggleCoach,
+    TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult Function(_ClickLogout value)? clickLogout,
+    TResult Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
+    required TResult orElse(),
+  }) {
+    if (clickLogout != null) {
+      return clickLogout(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClickLogout implements ScheduleIntent {
+  const factory _ClickLogout() = _$ClickLogoutImpl;
+}
+
+/// @nodoc
+abstract class _$$ClickLogoutDoubleCheckImplCopyWith<$Res> {
+  factory _$$ClickLogoutDoubleCheckImplCopyWith(
+          _$ClickLogoutDoubleCheckImpl value,
+          $Res Function(_$ClickLogoutDoubleCheckImpl) then) =
+      __$$ClickLogoutDoubleCheckImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ClickLogoutDoubleCheckImplCopyWithImpl<$Res>
+    extends _$ScheduleIntentCopyWithImpl<$Res, _$ClickLogoutDoubleCheckImpl>
+    implements _$$ClickLogoutDoubleCheckImplCopyWith<$Res> {
+  __$$ClickLogoutDoubleCheckImplCopyWithImpl(
+      _$ClickLogoutDoubleCheckImpl _value,
+      $Res Function(_$ClickLogoutDoubleCheckImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ScheduleIntent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+
+class _$ClickLogoutDoubleCheckImpl implements _ClickLogoutDoubleCheck {
+  const _$ClickLogoutDoubleCheckImpl();
+
+  @override
+  String toString() {
+    return 'ScheduleIntent.clickLogoutDoubleCheck()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ClickLogoutDoubleCheckImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int scheduleId) clickScheduleItem,
+    required TResult Function() onRefreshScheduleList,
+    required TResult Function() clickPreviousMonth,
+    required TResult Function() clickNextMonth,
+    required TResult Function() clickTodayDate,
+    required TResult Function() clickPreviousDay,
+    required TResult Function() clickNextDay,
+    required TResult Function(DateTime date) selectDate,
+    required TResult Function(UserEntity coach) onToggleCoach,
+    required TResult Function(CalendarType type) onSelectCalendarType,
+    required TResult Function() clickLogout,
+    required TResult Function() clickLogoutDoubleCheck,
+  }) {
+    return clickLogoutDoubleCheck();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int scheduleId)? clickScheduleItem,
+    TResult? Function()? onRefreshScheduleList,
+    TResult? Function()? clickPreviousMonth,
+    TResult? Function()? clickNextMonth,
+    TResult? Function()? clickTodayDate,
+    TResult? Function()? clickPreviousDay,
+    TResult? Function()? clickNextDay,
+    TResult? Function(DateTime date)? selectDate,
+    TResult? Function(UserEntity coach)? onToggleCoach,
+    TResult? Function(CalendarType type)? onSelectCalendarType,
+    TResult? Function()? clickLogout,
+    TResult? Function()? clickLogoutDoubleCheck,
+  }) {
+    return clickLogoutDoubleCheck?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int scheduleId)? clickScheduleItem,
+    TResult Function()? onRefreshScheduleList,
+    TResult Function()? clickPreviousMonth,
+    TResult Function()? clickNextMonth,
+    TResult Function()? clickTodayDate,
+    TResult Function()? clickPreviousDay,
+    TResult Function()? clickNextDay,
+    TResult Function(DateTime date)? selectDate,
+    TResult Function(UserEntity coach)? onToggleCoach,
+    TResult Function(CalendarType type)? onSelectCalendarType,
+    TResult Function()? clickLogout,
+    TResult Function()? clickLogoutDoubleCheck,
+    required TResult orElse(),
+  }) {
+    if (clickLogoutDoubleCheck != null) {
+      return clickLogoutDoubleCheck();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClickScheduleItem value) clickScheduleItem,
+    required TResult Function(_OnRefreshScheduleList value)
+        onRefreshScheduleList,
+    required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
+    required TResult Function(_ClickNextMonth value) clickNextMonth,
+    required TResult Function(_ClickTodayDate value) clickTodayDate,
+    required TResult Function(_ClickPreviousDay value) clickPreviousDay,
+    required TResult Function(_ClickNextDay value) clickNextDay,
+    required TResult Function(_SelectDate value) selectDate,
+    required TResult Function(_OnToggleCoach value) onToggleCoach,
+    required TResult Function(_OnSelectCalendarType value) onSelectCalendarType,
+    required TResult Function(_ClickLogout value) clickLogout,
+    required TResult Function(_ClickLogoutDoubleCheck value)
+        clickLogoutDoubleCheck,
+  }) {
+    return clickLogoutDoubleCheck(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClickScheduleItem value)? clickScheduleItem,
+    TResult? Function(_OnRefreshScheduleList value)? onRefreshScheduleList,
+    TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult? Function(_ClickNextMonth value)? clickNextMonth,
+    TResult? Function(_ClickTodayDate value)? clickTodayDate,
+    TResult? Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult? Function(_ClickNextDay value)? clickNextDay,
+    TResult? Function(_SelectDate value)? selectDate,
+    TResult? Function(_OnToggleCoach value)? onToggleCoach,
+    TResult? Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult? Function(_ClickLogout value)? clickLogout,
+    TResult? Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
+  }) {
+    return clickLogoutDoubleCheck?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClickScheduleItem value)? clickScheduleItem,
+    TResult Function(_OnRefreshScheduleList value)? onRefreshScheduleList,
+    TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult Function(_ClickNextMonth value)? clickNextMonth,
+    TResult Function(_ClickTodayDate value)? clickTodayDate,
+    TResult Function(_ClickPreviousDay value)? clickPreviousDay,
+    TResult Function(_ClickNextDay value)? clickNextDay,
+    TResult Function(_SelectDate value)? selectDate,
+    TResult Function(_OnToggleCoach value)? onToggleCoach,
+    TResult Function(_OnSelectCalendarType value)? onSelectCalendarType,
+    TResult Function(_ClickLogout value)? clickLogout,
+    TResult Function(_ClickLogoutDoubleCheck value)? clickLogoutDoubleCheck,
+    required TResult orElse(),
+  }) {
+    if (clickLogoutDoubleCheck != null) {
+      return clickLogoutDoubleCheck(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ClickLogoutDoubleCheck implements ScheduleIntent {
+  const factory _ClickLogoutDoubleCheck() = _$ClickLogoutDoubleCheckImpl;
 }

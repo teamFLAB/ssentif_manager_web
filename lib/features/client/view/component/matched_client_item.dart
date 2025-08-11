@@ -13,12 +13,14 @@ import '../../domain/entity/client_list_entity.dart';
 
 class MatchedClientItem extends StatelessWidget {
   final ClientListEntity client;
+  final bool isSelected;
   final Function(int clientId) onClickClientProfile;
 
 
   const MatchedClientItem({
     super.key,
     required this.client,
+    required this.isSelected,
     required this.onClickClientProfile
   });
 
@@ -30,35 +32,23 @@ class MatchedClientItem extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6),
-            color: AppColors.white
+            color: isSelected ? AppColors.backgroundTabSelected : AppColors.white
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Container(
-                  width: 48,
-                  height: 48,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: const BoxDecoration(
-                      shape: BoxShape.circle
-                  ),
-                  child: (client.profileImage.isNotEmpty && client.profileImage != Constants.dummyProfileImgUrl)
-                      ? Image.network(
-                      client.profileImage
-                  ) : client.profileImage.isNotEmpty
+              CircleAvatar(
+                  radius: 18,
+                  child: (client.gender == GenderType.male)
                       ? Image.asset(
-                      fit: BoxFit.cover,
-                      Assets.images.icSsentifProfile.path
-                  ) : (client.gender == GenderType.male)
-                      ? Image.asset(
-                      Assets.images.maleProfile.path
+                      Assets.images.maleProfile.path,
                   ) : Image.asset(
                       Assets.images.femaleProfile.path
                   )
               ),
-              const Padding(padding: EdgeInsets.only(right: 11)),
+              const Padding(padding: EdgeInsets.only(right: 14)),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

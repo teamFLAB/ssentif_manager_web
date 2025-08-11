@@ -5,8 +5,8 @@ import 'package:ssentif_manager_web/shared/domain/entity/user_entity.dart';
 
 import '../state/coaches_state.dart';
 
-final coachesViewModelProvider = StateNotifierProvider.autoDispose
-    .family<CoachesViewModel, CoachesState, List<UserEntity>>((ref, coaches) {
+final coachesViewModelProvider = StateNotifierProvider.family<CoachesViewModel,
+    CoachesState, List<UserEntity>>((ref, coaches) {
   final getTrainerSchedulesUseCase =
       ref.read(getTrainerSchedulesUseCaseProvider);
   return CoachesViewModel(

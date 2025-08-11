@@ -23,6 +23,8 @@ mixin _$ClassRecordsIntent {
     required TResult Function() clickPreviousMonth,
     required TResult Function() clickNextMonth,
     required TResult Function(UserEntity user) toggleCoachSelection,
+    required TResult Function(RoutineHistoryEntity record)
+        showRoutineDetailDialog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +34,7 @@ mixin _$ClassRecordsIntent {
     TResult? Function()? clickPreviousMonth,
     TResult? Function()? clickNextMonth,
     TResult? Function(UserEntity user)? toggleCoachSelection,
+    TResult? Function(RoutineHistoryEntity record)? showRoutineDetailDialog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +44,7 @@ mixin _$ClassRecordsIntent {
     TResult Function()? clickPreviousMonth,
     TResult Function()? clickNextMonth,
     TResult Function(UserEntity user)? toggleCoachSelection,
+    TResult Function(RoutineHistoryEntity record)? showRoutineDetailDialog,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +55,8 @@ mixin _$ClassRecordsIntent {
     required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
     required TResult Function(_ClickNextMonth value) clickNextMonth,
     required TResult Function(_ToggleCoachSelection value) toggleCoachSelection,
+    required TResult Function(_ShowRoutineDetailDialog value)
+        showRoutineDetailDialog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +66,7 @@ mixin _$ClassRecordsIntent {
     TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult? Function(_ClickNextMonth value)? clickNextMonth,
     TResult? Function(_ToggleCoachSelection value)? toggleCoachSelection,
+    TResult? Function(_ShowRoutineDetailDialog value)? showRoutineDetailDialog,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +76,7 @@ mixin _$ClassRecordsIntent {
     TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult Function(_ClickNextMonth value)? clickNextMonth,
     TResult Function(_ToggleCoachSelection value)? toggleCoachSelection,
+    TResult Function(_ShowRoutineDetailDialog value)? showRoutineDetailDialog,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -141,6 +149,8 @@ class _$InitializeImpl implements _Initialize {
     required TResult Function() clickPreviousMonth,
     required TResult Function() clickNextMonth,
     required TResult Function(UserEntity user) toggleCoachSelection,
+    required TResult Function(RoutineHistoryEntity record)
+        showRoutineDetailDialog,
   }) {
     return initialize();
   }
@@ -153,6 +163,7 @@ class _$InitializeImpl implements _Initialize {
     TResult? Function()? clickPreviousMonth,
     TResult? Function()? clickNextMonth,
     TResult? Function(UserEntity user)? toggleCoachSelection,
+    TResult? Function(RoutineHistoryEntity record)? showRoutineDetailDialog,
   }) {
     return initialize?.call();
   }
@@ -165,6 +176,7 @@ class _$InitializeImpl implements _Initialize {
     TResult Function()? clickPreviousMonth,
     TResult Function()? clickNextMonth,
     TResult Function(UserEntity user)? toggleCoachSelection,
+    TResult Function(RoutineHistoryEntity record)? showRoutineDetailDialog,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -181,6 +193,8 @@ class _$InitializeImpl implements _Initialize {
     required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
     required TResult Function(_ClickNextMonth value) clickNextMonth,
     required TResult Function(_ToggleCoachSelection value) toggleCoachSelection,
+    required TResult Function(_ShowRoutineDetailDialog value)
+        showRoutineDetailDialog,
   }) {
     return initialize(this);
   }
@@ -193,6 +207,7 @@ class _$InitializeImpl implements _Initialize {
     TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult? Function(_ClickNextMonth value)? clickNextMonth,
     TResult? Function(_ToggleCoachSelection value)? toggleCoachSelection,
+    TResult? Function(_ShowRoutineDetailDialog value)? showRoutineDetailDialog,
   }) {
     return initialize?.call(this);
   }
@@ -205,6 +220,7 @@ class _$InitializeImpl implements _Initialize {
     TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult Function(_ClickNextMonth value)? clickNextMonth,
     TResult Function(_ToggleCoachSelection value)? toggleCoachSelection,
+    TResult Function(_ShowRoutineDetailDialog value)? showRoutineDetailDialog,
     required TResult orElse(),
   }) {
     if (initialize != null) {
@@ -264,6 +280,8 @@ class _$ClickThisMonthImpl implements _ClickThisMonth {
     required TResult Function() clickPreviousMonth,
     required TResult Function() clickNextMonth,
     required TResult Function(UserEntity user) toggleCoachSelection,
+    required TResult Function(RoutineHistoryEntity record)
+        showRoutineDetailDialog,
   }) {
     return clickThisMonth();
   }
@@ -276,6 +294,7 @@ class _$ClickThisMonthImpl implements _ClickThisMonth {
     TResult? Function()? clickPreviousMonth,
     TResult? Function()? clickNextMonth,
     TResult? Function(UserEntity user)? toggleCoachSelection,
+    TResult? Function(RoutineHistoryEntity record)? showRoutineDetailDialog,
   }) {
     return clickThisMonth?.call();
   }
@@ -288,6 +307,7 @@ class _$ClickThisMonthImpl implements _ClickThisMonth {
     TResult Function()? clickPreviousMonth,
     TResult Function()? clickNextMonth,
     TResult Function(UserEntity user)? toggleCoachSelection,
+    TResult Function(RoutineHistoryEntity record)? showRoutineDetailDialog,
     required TResult orElse(),
   }) {
     if (clickThisMonth != null) {
@@ -304,6 +324,8 @@ class _$ClickThisMonthImpl implements _ClickThisMonth {
     required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
     required TResult Function(_ClickNextMonth value) clickNextMonth,
     required TResult Function(_ToggleCoachSelection value) toggleCoachSelection,
+    required TResult Function(_ShowRoutineDetailDialog value)
+        showRoutineDetailDialog,
   }) {
     return clickThisMonth(this);
   }
@@ -316,6 +338,7 @@ class _$ClickThisMonthImpl implements _ClickThisMonth {
     TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult? Function(_ClickNextMonth value)? clickNextMonth,
     TResult? Function(_ToggleCoachSelection value)? toggleCoachSelection,
+    TResult? Function(_ShowRoutineDetailDialog value)? showRoutineDetailDialog,
   }) {
     return clickThisMonth?.call(this);
   }
@@ -328,6 +351,7 @@ class _$ClickThisMonthImpl implements _ClickThisMonth {
     TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult Function(_ClickNextMonth value)? clickNextMonth,
     TResult Function(_ToggleCoachSelection value)? toggleCoachSelection,
+    TResult Function(_ShowRoutineDetailDialog value)? showRoutineDetailDialog,
     required TResult orElse(),
   }) {
     if (clickThisMonth != null) {
@@ -387,6 +411,8 @@ class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
     required TResult Function() clickPreviousMonth,
     required TResult Function() clickNextMonth,
     required TResult Function(UserEntity user) toggleCoachSelection,
+    required TResult Function(RoutineHistoryEntity record)
+        showRoutineDetailDialog,
   }) {
     return clickPreviousMonth();
   }
@@ -399,6 +425,7 @@ class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
     TResult? Function()? clickPreviousMonth,
     TResult? Function()? clickNextMonth,
     TResult? Function(UserEntity user)? toggleCoachSelection,
+    TResult? Function(RoutineHistoryEntity record)? showRoutineDetailDialog,
   }) {
     return clickPreviousMonth?.call();
   }
@@ -411,6 +438,7 @@ class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
     TResult Function()? clickPreviousMonth,
     TResult Function()? clickNextMonth,
     TResult Function(UserEntity user)? toggleCoachSelection,
+    TResult Function(RoutineHistoryEntity record)? showRoutineDetailDialog,
     required TResult orElse(),
   }) {
     if (clickPreviousMonth != null) {
@@ -427,6 +455,8 @@ class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
     required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
     required TResult Function(_ClickNextMonth value) clickNextMonth,
     required TResult Function(_ToggleCoachSelection value) toggleCoachSelection,
+    required TResult Function(_ShowRoutineDetailDialog value)
+        showRoutineDetailDialog,
   }) {
     return clickPreviousMonth(this);
   }
@@ -439,6 +469,7 @@ class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
     TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult? Function(_ClickNextMonth value)? clickNextMonth,
     TResult? Function(_ToggleCoachSelection value)? toggleCoachSelection,
+    TResult? Function(_ShowRoutineDetailDialog value)? showRoutineDetailDialog,
   }) {
     return clickPreviousMonth?.call(this);
   }
@@ -451,6 +482,7 @@ class _$ClickPreviousMonthImpl implements _ClickPreviousMonth {
     TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult Function(_ClickNextMonth value)? clickNextMonth,
     TResult Function(_ToggleCoachSelection value)? toggleCoachSelection,
+    TResult Function(_ShowRoutineDetailDialog value)? showRoutineDetailDialog,
     required TResult orElse(),
   }) {
     if (clickPreviousMonth != null) {
@@ -510,6 +542,8 @@ class _$ClickNextMonthImpl implements _ClickNextMonth {
     required TResult Function() clickPreviousMonth,
     required TResult Function() clickNextMonth,
     required TResult Function(UserEntity user) toggleCoachSelection,
+    required TResult Function(RoutineHistoryEntity record)
+        showRoutineDetailDialog,
   }) {
     return clickNextMonth();
   }
@@ -522,6 +556,7 @@ class _$ClickNextMonthImpl implements _ClickNextMonth {
     TResult? Function()? clickPreviousMonth,
     TResult? Function()? clickNextMonth,
     TResult? Function(UserEntity user)? toggleCoachSelection,
+    TResult? Function(RoutineHistoryEntity record)? showRoutineDetailDialog,
   }) {
     return clickNextMonth?.call();
   }
@@ -534,6 +569,7 @@ class _$ClickNextMonthImpl implements _ClickNextMonth {
     TResult Function()? clickPreviousMonth,
     TResult Function()? clickNextMonth,
     TResult Function(UserEntity user)? toggleCoachSelection,
+    TResult Function(RoutineHistoryEntity record)? showRoutineDetailDialog,
     required TResult orElse(),
   }) {
     if (clickNextMonth != null) {
@@ -550,6 +586,8 @@ class _$ClickNextMonthImpl implements _ClickNextMonth {
     required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
     required TResult Function(_ClickNextMonth value) clickNextMonth,
     required TResult Function(_ToggleCoachSelection value) toggleCoachSelection,
+    required TResult Function(_ShowRoutineDetailDialog value)
+        showRoutineDetailDialog,
   }) {
     return clickNextMonth(this);
   }
@@ -562,6 +600,7 @@ class _$ClickNextMonthImpl implements _ClickNextMonth {
     TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult? Function(_ClickNextMonth value)? clickNextMonth,
     TResult? Function(_ToggleCoachSelection value)? toggleCoachSelection,
+    TResult? Function(_ShowRoutineDetailDialog value)? showRoutineDetailDialog,
   }) {
     return clickNextMonth?.call(this);
   }
@@ -574,6 +613,7 @@ class _$ClickNextMonthImpl implements _ClickNextMonth {
     TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult Function(_ClickNextMonth value)? clickNextMonth,
     TResult Function(_ToggleCoachSelection value)? toggleCoachSelection,
+    TResult Function(_ShowRoutineDetailDialog value)? showRoutineDetailDialog,
     required TResult orElse(),
   }) {
     if (clickNextMonth != null) {
@@ -674,6 +714,8 @@ class _$ToggleCoachSelectionImpl implements _ToggleCoachSelection {
     required TResult Function() clickPreviousMonth,
     required TResult Function() clickNextMonth,
     required TResult Function(UserEntity user) toggleCoachSelection,
+    required TResult Function(RoutineHistoryEntity record)
+        showRoutineDetailDialog,
   }) {
     return toggleCoachSelection(user);
   }
@@ -686,6 +728,7 @@ class _$ToggleCoachSelectionImpl implements _ToggleCoachSelection {
     TResult? Function()? clickPreviousMonth,
     TResult? Function()? clickNextMonth,
     TResult? Function(UserEntity user)? toggleCoachSelection,
+    TResult? Function(RoutineHistoryEntity record)? showRoutineDetailDialog,
   }) {
     return toggleCoachSelection?.call(user);
   }
@@ -698,6 +741,7 @@ class _$ToggleCoachSelectionImpl implements _ToggleCoachSelection {
     TResult Function()? clickPreviousMonth,
     TResult Function()? clickNextMonth,
     TResult Function(UserEntity user)? toggleCoachSelection,
+    TResult Function(RoutineHistoryEntity record)? showRoutineDetailDialog,
     required TResult orElse(),
   }) {
     if (toggleCoachSelection != null) {
@@ -714,6 +758,8 @@ class _$ToggleCoachSelectionImpl implements _ToggleCoachSelection {
     required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
     required TResult Function(_ClickNextMonth value) clickNextMonth,
     required TResult Function(_ToggleCoachSelection value) toggleCoachSelection,
+    required TResult Function(_ShowRoutineDetailDialog value)
+        showRoutineDetailDialog,
   }) {
     return toggleCoachSelection(this);
   }
@@ -726,6 +772,7 @@ class _$ToggleCoachSelectionImpl implements _ToggleCoachSelection {
     TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult? Function(_ClickNextMonth value)? clickNextMonth,
     TResult? Function(_ToggleCoachSelection value)? toggleCoachSelection,
+    TResult? Function(_ShowRoutineDetailDialog value)? showRoutineDetailDialog,
   }) {
     return toggleCoachSelection?.call(this);
   }
@@ -738,6 +785,7 @@ class _$ToggleCoachSelectionImpl implements _ToggleCoachSelection {
     TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
     TResult Function(_ClickNextMonth value)? clickNextMonth,
     TResult Function(_ToggleCoachSelection value)? toggleCoachSelection,
+    TResult Function(_ShowRoutineDetailDialog value)? showRoutineDetailDialog,
     required TResult orElse(),
   }) {
     if (toggleCoachSelection != null) {
@@ -757,5 +805,189 @@ abstract class _ToggleCoachSelection implements ClassRecordsIntent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ToggleCoachSelectionImplCopyWith<_$ToggleCoachSelectionImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ShowRoutineDetailDialogImplCopyWith<$Res> {
+  factory _$$ShowRoutineDetailDialogImplCopyWith(
+          _$ShowRoutineDetailDialogImpl value,
+          $Res Function(_$ShowRoutineDetailDialogImpl) then) =
+      __$$ShowRoutineDetailDialogImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({RoutineHistoryEntity record});
+
+  $RoutineHistoryEntityCopyWith<$Res> get record;
+}
+
+/// @nodoc
+class __$$ShowRoutineDetailDialogImplCopyWithImpl<$Res>
+    extends _$ClassRecordsIntentCopyWithImpl<$Res,
+        _$ShowRoutineDetailDialogImpl>
+    implements _$$ShowRoutineDetailDialogImplCopyWith<$Res> {
+  __$$ShowRoutineDetailDialogImplCopyWithImpl(
+      _$ShowRoutineDetailDialogImpl _value,
+      $Res Function(_$ShowRoutineDetailDialogImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ClassRecordsIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? record = null,
+  }) {
+    return _then(_$ShowRoutineDetailDialogImpl(
+      record: null == record
+          ? _value.record
+          : record // ignore: cast_nullable_to_non_nullable
+              as RoutineHistoryEntity,
+    ));
+  }
+
+  /// Create a copy of ClassRecordsIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RoutineHistoryEntityCopyWith<$Res> get record {
+    return $RoutineHistoryEntityCopyWith<$Res>(_value.record, (value) {
+      return _then(_value.copyWith(record: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$ShowRoutineDetailDialogImpl implements _ShowRoutineDetailDialog {
+  const _$ShowRoutineDetailDialogImpl({required this.record});
+
+  @override
+  final RoutineHistoryEntity record;
+
+  @override
+  String toString() {
+    return 'ClassRecordsIntent.showRoutineDetailDialog(record: $record)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ShowRoutineDetailDialogImpl &&
+            (identical(other.record, record) || other.record == record));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, record);
+
+  /// Create a copy of ClassRecordsIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ShowRoutineDetailDialogImplCopyWith<_$ShowRoutineDetailDialogImpl>
+      get copyWith => __$$ShowRoutineDetailDialogImplCopyWithImpl<
+          _$ShowRoutineDetailDialogImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initialize,
+    required TResult Function() clickThisMonth,
+    required TResult Function() clickPreviousMonth,
+    required TResult Function() clickNextMonth,
+    required TResult Function(UserEntity user) toggleCoachSelection,
+    required TResult Function(RoutineHistoryEntity record)
+        showRoutineDetailDialog,
+  }) {
+    return showRoutineDetailDialog(record);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initialize,
+    TResult? Function()? clickThisMonth,
+    TResult? Function()? clickPreviousMonth,
+    TResult? Function()? clickNextMonth,
+    TResult? Function(UserEntity user)? toggleCoachSelection,
+    TResult? Function(RoutineHistoryEntity record)? showRoutineDetailDialog,
+  }) {
+    return showRoutineDetailDialog?.call(record);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initialize,
+    TResult Function()? clickThisMonth,
+    TResult Function()? clickPreviousMonth,
+    TResult Function()? clickNextMonth,
+    TResult Function(UserEntity user)? toggleCoachSelection,
+    TResult Function(RoutineHistoryEntity record)? showRoutineDetailDialog,
+    required TResult orElse(),
+  }) {
+    if (showRoutineDetailDialog != null) {
+      return showRoutineDetailDialog(record);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initialize value) initialize,
+    required TResult Function(_ClickThisMonth value) clickThisMonth,
+    required TResult Function(_ClickPreviousMonth value) clickPreviousMonth,
+    required TResult Function(_ClickNextMonth value) clickNextMonth,
+    required TResult Function(_ToggleCoachSelection value) toggleCoachSelection,
+    required TResult Function(_ShowRoutineDetailDialog value)
+        showRoutineDetailDialog,
+  }) {
+    return showRoutineDetailDialog(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initialize value)? initialize,
+    TResult? Function(_ClickThisMonth value)? clickThisMonth,
+    TResult? Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult? Function(_ClickNextMonth value)? clickNextMonth,
+    TResult? Function(_ToggleCoachSelection value)? toggleCoachSelection,
+    TResult? Function(_ShowRoutineDetailDialog value)? showRoutineDetailDialog,
+  }) {
+    return showRoutineDetailDialog?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initialize value)? initialize,
+    TResult Function(_ClickThisMonth value)? clickThisMonth,
+    TResult Function(_ClickPreviousMonth value)? clickPreviousMonth,
+    TResult Function(_ClickNextMonth value)? clickNextMonth,
+    TResult Function(_ToggleCoachSelection value)? toggleCoachSelection,
+    TResult Function(_ShowRoutineDetailDialog value)? showRoutineDetailDialog,
+    required TResult orElse(),
+  }) {
+    if (showRoutineDetailDialog != null) {
+      return showRoutineDetailDialog(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ShowRoutineDetailDialog implements ClassRecordsIntent {
+  const factory _ShowRoutineDetailDialog(
+          {required final RoutineHistoryEntity record}) =
+      _$ShowRoutineDetailDialogImpl;
+
+  RoutineHistoryEntity get record;
+
+  /// Create a copy of ClassRecordsIntent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ShowRoutineDetailDialogImplCopyWith<_$ShowRoutineDetailDialogImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
