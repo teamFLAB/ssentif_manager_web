@@ -3,6 +3,7 @@ import 'package:ssentif_manager_web/core/network/api_status_entity.dart';
 import 'package:ssentif_manager_web/core/utils/date_utils.dart';
 import 'package:ssentif_manager_web/features/routine/domain/usecase/get_class_records_usecase.dart';
 import 'package:ssentif_manager_web/shared/domain/entity/user_entity.dart';
+import '../../../routine/domain/entity/routine_history_entity.dart';
 import '../state/class_records_state.dart';
 import '../intent/class_records_intent.dart';
 import '../effect/class_records_effect.dart';
@@ -78,6 +79,18 @@ class ClassRecordsViewModel extends StateNotifier<ClassRecordsState> {
   }
 
   void _updateClassRecords({bool isLoadMore = false}) async {
+    if(state.selectedCoaches.isEmpty) {
+      state = state.copyWith(
+        classRecords: [],
+        lastScheduleId: null,
+        hasNext: false,
+        isLoading: false,
+        isLoadingMore: false,
+        errorMessage: '',
+      );
+      return;
+    }
+
     if (isLoadMore) {
       state = state.copyWith(isLoadingMore: true);
     } else {
