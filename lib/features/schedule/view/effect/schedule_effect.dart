@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'schedule_effect.freezed.dart';
 
 final scheduleEffectProvider =
-    StateProvider.autoDispose<ScheduleEffect?>((ref) => null);
+    StateProvider<ScheduleEffect?>((ref) => null);
 
 @freezed
 class ScheduleEffect with _$ScheduleEffect {

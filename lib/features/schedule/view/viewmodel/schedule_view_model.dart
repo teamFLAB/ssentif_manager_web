@@ -52,6 +52,12 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
     _getCachedInfo();
   }
 
+  @override
+  void dispose() {
+    scheduleEffect.state = null;
+    super.dispose();
+  }
+
   void handleIntent(ScheduleIntent scheduleIntent) {
     scheduleIntent.when(
         clickScheduleItem: (int scheduleId) {
@@ -234,29 +240,25 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
           startDate: firstDay.formatYMD(),
           endDate: lastDay.formatYMD(),
           trainerId: coach.userId,
-          trainerName: coach.userName
-      );
+          trainerName: coach.userName);
 
-      schedules.handleStatus(onSuccess: (data) {
-        if (data != null) {
-          allSchedules.addAll(data.schedules);
-          data.schedules.forEach((e){
-            print("========> ${e.trainerName} / ${e.scheduleName}");
+      schedules.handleStatus(
+          onSuccess: (data) {
+            if (data != null) {
+              allSchedules.addAll(data.schedules);
+              state = state.copyWith(
+                monthlySchedules: List.from(allSchedules),
+                selectedDateSchedules: _filterBySelectedDate(
+                  List.from(allSchedules),
+                  state.selectedDate,
+                ),
+              );
+            }
+          },
+          onError: (errCode, errMsg) {},
+          onUnauthorized: () {
+            _logout();
           });
-
-          state = state.copyWith(
-            monthlySchedules: List.from(allSchedules),
-            selectedDateSchedules: _filterBySelectedDate(
-              List.from(allSchedules),
-              state.selectedDate,
-            ),
-          );
-        }
-      }, onError: (errCode, errMsg) {
-        _logout();
-      }, onUnauthorized: () {
-        _logout();
-      });
 
       if (state.selectedCalendarType == CalendarType.monthly) {
         getSchedulesByStatus(allSchedules);
@@ -271,7 +273,6 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
 
   List<CalendarScheduleEntity> _filterBySelectedDate(
       List<CalendarScheduleEntity> schedules, DateTime selectedDate) {
-
     return schedules
         .where((s) =>
             s.startTime != null &&

@@ -42,7 +42,7 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
               children: [
                 // 월 표시 텍스트
                 Text(
-                  DateFormat('yyyy년 MM월').format(selectedMonth),
+                  DateFormat('yyyy년 MM월').format(state.selectedMonth),
                   style: SsentifTextStyles.medium24.copyWith(
                     color: AppColors.black,
                   ),

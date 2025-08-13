@@ -46,11 +46,11 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
       _calendarController.selectedDate = DateTime.now();
 
       final viewModelProvider = scheduleViewModelProvider(widget.coaches);
-      ref.listen(viewModelProvider, (previous, next) {
-        if (_calendarController.displayDate != next.calendarDate) {
-          _calendarController.displayDate = next.calendarDate;
-        }
-      });
+      // ref.listen(viewModelProvider, (previous, next) {
+      //   if (_calendarController.displayDate != next.calendarDate) {
+      //     _calendarController.displayDate = next.calendarDate;
+      //   }
+      // });
     });
   }
 

@@ -145,10 +145,8 @@ class ApiService {
       ),
     );
     print("=======리스트 조회 성공");
-    final data = response.data;
-    return data
-        .map((e) => UserProfileModel.fromJson(e as Map<String, dynamic>))
-        .toList();
+    final data = response.data as List<dynamic>;
+    return data.map((e) => UserProfileModel.fromJson(e)).toList();
   }
 
   /// 트레이너별 주간 스케줄 조회하기
