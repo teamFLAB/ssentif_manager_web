@@ -39,9 +39,6 @@ class ScheduleRepositoryImpl extends ScheduleRepository {
         return schedule.copyWith(trainerName: trainerName);
       }).toList();
 
-      print("=========>${trainerName}");
-
-
       return ApiStatusEntity(
           data: scheduleInfo.copyWith(
               schedules: trainerNameUpdatedSchedules

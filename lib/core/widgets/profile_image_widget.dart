@@ -20,9 +20,14 @@ class ProfileImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CircleAvatar(
-      backgroundColor: AppColors.transparent,
-      radius: size / 2,
+    return Container(
+      width: size,
+      height: size,
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+        color: AppColors.transparent,
+      ),
+      clipBehavior: Clip.hardEdge,
       child:imageURL == Constants.dummyProfileImgUrl || imageURL == Constants.dummyProfileImgUrl2 || imageURL.isEmpty ?
       Image.asset(
           width: size,

@@ -13,6 +13,7 @@ class UserProfileModel with _$UserProfileModel {
     @Default("") String name,
     @Default("") String birthDate,
     @Default("") String phoneNumber,
+    @Default(-1) int workplaceId,
     @Default("") String workplaceName,
     @Default("") String workplaceAddress,
     @Default("") String workplaceAddressDetail,

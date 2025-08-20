@@ -61,6 +61,8 @@ class ApiService {
 
   /// 토큰 재발급
   Future<bool> refreshToken() async {
+    var tempRefreshToken = "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MzcxMDAsImlhdCI6MTc1Mzk1NDMxNiwiZXhwIjoxNzU2NTQ2MzE2LCJqdGkiOiIzNmZlY2M5Yy1lOGQ4LTQ1MWMtOGVhNS1lMDI5YmIxMDUyMzEifQ.odBOd1Li4uhLtgS1UZwpLlKaN8xHdcMPkvMBpq77598";
+
     try {
       final refreshToken = StorageManager.getRefreshToken();
       if (refreshToken == null || refreshToken.isEmpty) {
@@ -139,12 +141,11 @@ class ApiService {
   Future<List<UserProfileModel>> getCoachList(
       {required int workPlaceId}) async {
     final response = await _dio.get(
-      '/api/workplace/$workPlaceId/trainers',
+      '/api/workplace/${workPlaceId}/trainers',
       options: Options(
         extra: {'requiresToken': true},
       ),
     );
-    print("=======리스트 조회 성공");
     final data = response.data as List<dynamic>;
     return data.map((e) => UserProfileModel.fromJson(e)).toList();
   }

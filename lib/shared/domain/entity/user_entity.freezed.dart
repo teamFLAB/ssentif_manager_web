@@ -26,6 +26,7 @@ mixin _$UserEntity {
   String get email => throw _privateConstructorUsedError;
   MatchingStatusType get matchingStatus => throw _privateConstructorUsedError;
   List<String> get exercisePurposes => throw _privateConstructorUsedError;
+  int get workPlaceId => throw _privateConstructorUsedError;
   String get workPlaceName => throw _privateConstructorUsedError;
   String get workPlaceAddress => throw _privateConstructorUsedError;
   String get workPlaceAddressDetail => throw _privateConstructorUsedError;
@@ -55,6 +56,7 @@ abstract class $UserEntityCopyWith<$Res> {
       String email,
       MatchingStatusType matchingStatus,
       List<String> exercisePurposes,
+      int workPlaceId,
       String workPlaceName,
       String workPlaceAddress,
       String workPlaceAddressDetail,
@@ -86,6 +88,7 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
     Object? email = null,
     Object? matchingStatus = null,
     Object? exercisePurposes = null,
+    Object? workPlaceId = null,
     Object? workPlaceName = null,
     Object? workPlaceAddress = null,
     Object? workPlaceAddressDetail = null,
@@ -132,6 +135,10 @@ class _$UserEntityCopyWithImpl<$Res, $Val extends UserEntity>
           ? _value.exercisePurposes
           : exercisePurposes // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      workPlaceId: null == workPlaceId
+          ? _value.workPlaceId
+          : workPlaceId // ignore: cast_nullable_to_non_nullable
+              as int,
       workPlaceName: null == workPlaceName
           ? _value.workPlaceName
           : workPlaceName // ignore: cast_nullable_to_non_nullable
@@ -171,6 +178,7 @@ abstract class _$$UserEntityImplCopyWith<$Res>
       String email,
       MatchingStatusType matchingStatus,
       List<String> exercisePurposes,
+      int workPlaceId,
       String workPlaceName,
       String workPlaceAddress,
       String workPlaceAddressDetail,
@@ -200,6 +208,7 @@ class __$$UserEntityImplCopyWithImpl<$Res>
     Object? email = null,
     Object? matchingStatus = null,
     Object? exercisePurposes = null,
+    Object? workPlaceId = null,
     Object? workPlaceName = null,
     Object? workPlaceAddress = null,
     Object? workPlaceAddressDetail = null,
@@ -246,6 +255,10 @@ class __$$UserEntityImplCopyWithImpl<$Res>
           ? _value._exercisePurposes
           : exercisePurposes // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      workPlaceId: null == workPlaceId
+          ? _value.workPlaceId
+          : workPlaceId // ignore: cast_nullable_to_non_nullable
+              as int,
       workPlaceName: null == workPlaceName
           ? _value.workPlaceName
           : workPlaceName // ignore: cast_nullable_to_non_nullable
@@ -280,6 +293,7 @@ class _$UserEntityImpl implements _UserEntity {
       this.email = "",
       this.matchingStatus = MatchingStatusType.none,
       final List<String> exercisePurposes = const [],
+      this.workPlaceId = -1,
       this.workPlaceName = "",
       this.workPlaceAddress = "",
       this.workPlaceAddressDetail = "",
@@ -325,6 +339,9 @@ class _$UserEntityImpl implements _UserEntity {
 
   @override
   @JsonKey()
+  final int workPlaceId;
+  @override
+  @JsonKey()
   final String workPlaceName;
   @override
   @JsonKey()
@@ -337,7 +354,7 @@ class _$UserEntityImpl implements _UserEntity {
 
   @override
   String toString() {
-    return 'UserEntity(userId: $userId, imageUrl: $imageUrl, userName: $userName, phoneNumber: $phoneNumber, birthDate: $birthDate, gender: $gender, age: $age, email: $email, matchingStatus: $matchingStatus, exercisePurposes: $exercisePurposes, workPlaceName: $workPlaceName, workPlaceAddress: $workPlaceAddress, workPlaceAddressDetail: $workPlaceAddressDetail, workPosition: $workPosition)';
+    return 'UserEntity(userId: $userId, imageUrl: $imageUrl, userName: $userName, phoneNumber: $phoneNumber, birthDate: $birthDate, gender: $gender, age: $age, email: $email, matchingStatus: $matchingStatus, exercisePurposes: $exercisePurposes, workPlaceId: $workPlaceId, workPlaceName: $workPlaceName, workPlaceAddress: $workPlaceAddress, workPlaceAddressDetail: $workPlaceAddressDetail, workPosition: $workPosition)';
   }
 
   @override
@@ -361,6 +378,8 @@ class _$UserEntityImpl implements _UserEntity {
                 other.matchingStatus == matchingStatus) &&
             const DeepCollectionEquality()
                 .equals(other._exercisePurposes, _exercisePurposes) &&
+            (identical(other.workPlaceId, workPlaceId) ||
+                other.workPlaceId == workPlaceId) &&
             (identical(other.workPlaceName, workPlaceName) ||
                 other.workPlaceName == workPlaceName) &&
             (identical(other.workPlaceAddress, workPlaceAddress) ||
@@ -384,6 +403,7 @@ class _$UserEntityImpl implements _UserEntity {
       email,
       matchingStatus,
       const DeepCollectionEquality().hash(_exercisePurposes),
+      workPlaceId,
       workPlaceName,
       workPlaceAddress,
       workPlaceAddressDetail,
@@ -410,6 +430,7 @@ abstract class _UserEntity implements UserEntity {
       final String email,
       final MatchingStatusType matchingStatus,
       final List<String> exercisePurposes,
+      final int workPlaceId,
       final String workPlaceName,
       final String workPlaceAddress,
       final String workPlaceAddressDetail,
@@ -435,6 +456,8 @@ abstract class _UserEntity implements UserEntity {
   MatchingStatusType get matchingStatus;
   @override
   List<String> get exercisePurposes;
+  @override
+  int get workPlaceId;
   @override
   String get workPlaceName;
   @override

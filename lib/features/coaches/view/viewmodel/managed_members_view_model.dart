@@ -117,12 +117,15 @@ class ManagedMembersViewModel extends StateNotifier<ManagedMembersState> {
         state.selectedClient?.clientId == client.clientId) {
       return;
     }
+    final now = DateTime.now();
+
     state = state.copyWith(
       selectedClient: client,
       selectedClientProfile: null,
       selectedClientCalendar: null,
       isProfileLoading: false,
       isCalendarLoading: false,
+      selectedMonth: now
     );
 
     // 프로필과 캘린더를 동시에 로드
@@ -130,7 +133,6 @@ class ManagedMembersViewModel extends StateNotifier<ManagedMembersState> {
         ManagedMembersIntent.loadClientProfile(clientId: client.clientId));
 
     // 현재 월의 캘린더 데이터 로드
-    final now = DateTime.now();
     handleIntent(ManagedMembersIntent.loadClientCalendar(
       year: now.year,
       month: now.month,

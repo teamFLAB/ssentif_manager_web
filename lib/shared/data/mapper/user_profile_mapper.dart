@@ -23,6 +23,7 @@ class UserProfileMapper extends BaseMapper<UserProfileModel, UserEntity> {
         imageUrl: data.imgUrl,
         email: data.email,
         phoneNumber: data.phoneNumber,
+        workPlaceId: data.workplaceId,
         workPosition: data.workType.isNotEmpty
             ? WorkPosition.getWorkPositionFromDTO(data.workType)
             : null,

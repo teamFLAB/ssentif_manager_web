@@ -98,6 +98,13 @@ class LoginViewModel extends StateNotifier<LoginState> {
         onSuccess: (userInfo) {
           if (userInfo?.workPlaceAddress.isNotEmpty == true) {
             _updateWorkplace(userInfo!.workPlaceName);
+            StorageManager.setWorkPlace(
+                workPlaceId: userInfo.workPlaceId,
+                workPlaceName: userInfo.workPlaceName,
+                workPlaceAddress: userInfo.workPlaceAddress,
+                workPlaceAddressDetail: userInfo.workPlaceAddressDetail
+            );
+            loginEffectStateController.state = LoginEffect.navigateToMain();
           } else {
             _showInValidWorkPlace();
             state = state.copyWith(isLoading: false);

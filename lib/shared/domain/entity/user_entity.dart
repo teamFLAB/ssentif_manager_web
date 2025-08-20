@@ -21,6 +21,7 @@ class UserEntity with _$UserEntity {
     @Default("") String email,
     @Default(MatchingStatusType.none) MatchingStatusType matchingStatus,
     @Default([]) List<String> exercisePurposes,
+    @Default(-1) int workPlaceId,
     @Default("") String workPlaceName,
     @Default("") String workPlaceAddress,
     @Default("") String workPlaceAddressDetail,

@@ -26,6 +26,7 @@ mixin _$UserProfileModel {
   String get name => throw _privateConstructorUsedError;
   String get birthDate => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
+  int get workplaceId => throw _privateConstructorUsedError;
   String get workplaceName => throw _privateConstructorUsedError;
   String get workplaceAddress => throw _privateConstructorUsedError;
   String get workplaceAddressDetail => throw _privateConstructorUsedError;
@@ -55,6 +56,7 @@ abstract class $UserProfileModelCopyWith<$Res> {
       String name,
       String birthDate,
       String phoneNumber,
+      int workplaceId,
       String workplaceName,
       String workplaceAddress,
       String workplaceAddressDetail,
@@ -83,6 +85,7 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
     Object? name = null,
     Object? birthDate = null,
     Object? phoneNumber = null,
+    Object? workplaceId = null,
     Object? workplaceName = null,
     Object? workplaceAddress = null,
     Object? workplaceAddressDetail = null,
@@ -114,6 +117,10 @@ class _$UserProfileModelCopyWithImpl<$Res, $Val extends UserProfileModel>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      workplaceId: null == workplaceId
+          ? _value.workplaceId
+          : workplaceId // ignore: cast_nullable_to_non_nullable
+              as int,
       workplaceName: null == workplaceName
           ? _value.workplaceName
           : workplaceName // ignore: cast_nullable_to_non_nullable
@@ -153,6 +160,7 @@ abstract class _$$UserProfileModelImplCopyWith<$Res>
       String name,
       String birthDate,
       String phoneNumber,
+      int workplaceId,
       String workplaceName,
       String workplaceAddress,
       String workplaceAddressDetail,
@@ -179,6 +187,7 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
     Object? name = null,
     Object? birthDate = null,
     Object? phoneNumber = null,
+    Object? workplaceId = null,
     Object? workplaceName = null,
     Object? workplaceAddress = null,
     Object? workplaceAddressDetail = null,
@@ -210,6 +219,10 @@ class __$$UserProfileModelImplCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      workplaceId: null == workplaceId
+          ? _value.workplaceId
+          : workplaceId // ignore: cast_nullable_to_non_nullable
+              as int,
       workplaceName: null == workplaceName
           ? _value.workplaceName
           : workplaceName // ignore: cast_nullable_to_non_nullable
@@ -244,6 +257,7 @@ class _$UserProfileModelImpl implements _UserProfileModel {
       this.name = "",
       this.birthDate = "",
       this.phoneNumber = "",
+      this.workplaceId = -1,
       this.workplaceName = "",
       this.workplaceAddress = "",
       this.workplaceAddressDetail = "",
@@ -273,6 +287,9 @@ class _$UserProfileModelImpl implements _UserProfileModel {
   final String phoneNumber;
   @override
   @JsonKey()
+  final int workplaceId;
+  @override
+  @JsonKey()
   final String workplaceName;
   @override
   @JsonKey()
@@ -289,7 +306,7 @@ class _$UserProfileModelImpl implements _UserProfileModel {
 
   @override
   String toString() {
-    return 'UserProfileModel(id: $id, imgUrl: $imgUrl, email: $email, name: $name, birthDate: $birthDate, phoneNumber: $phoneNumber, workplaceName: $workplaceName, workplaceAddress: $workplaceAddress, workplaceAddressDetail: $workplaceAddressDetail, workType: $workType, sex: $sex)';
+    return 'UserProfileModel(id: $id, imgUrl: $imgUrl, email: $email, name: $name, birthDate: $birthDate, phoneNumber: $phoneNumber, workplaceId: $workplaceId, workplaceName: $workplaceName, workplaceAddress: $workplaceAddress, workplaceAddressDetail: $workplaceAddressDetail, workType: $workType, sex: $sex)';
   }
 
   @override
@@ -305,6 +322,8 @@ class _$UserProfileModelImpl implements _UserProfileModel {
                 other.birthDate == birthDate) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
+            (identical(other.workplaceId, workplaceId) ||
+                other.workplaceId == workplaceId) &&
             (identical(other.workplaceName, workplaceName) ||
                 other.workplaceName == workplaceName) &&
             (identical(other.workplaceAddress, workplaceAddress) ||
@@ -326,6 +345,7 @@ class _$UserProfileModelImpl implements _UserProfileModel {
       name,
       birthDate,
       phoneNumber,
+      workplaceId,
       workplaceName,
       workplaceAddress,
       workplaceAddressDetail,
@@ -357,6 +377,7 @@ abstract class _UserProfileModel implements UserProfileModel {
       final String name,
       final String birthDate,
       final String phoneNumber,
+      final int workplaceId,
       final String workplaceName,
       final String workplaceAddress,
       final String workplaceAddressDetail,
@@ -378,6 +399,8 @@ abstract class _UserProfileModel implements UserProfileModel {
   String get birthDate;
   @override
   String get phoneNumber;
+  @override
+  int get workplaceId;
   @override
   String get workplaceName;
   @override
