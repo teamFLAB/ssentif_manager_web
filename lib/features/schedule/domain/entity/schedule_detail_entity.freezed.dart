@@ -35,6 +35,7 @@ mixin _$ScheduleDetailEntity {
   int get voucherMatchingId => throw _privateConstructorUsedError;
   VoucherInfoEntity get voucherInfoEntity => throw _privateConstructorUsedError;
   UserInfoEntity get userInfo => throw _privateConstructorUsedError;
+  List<UserInfoEntity> get groupClients => throw _privateConstructorUsedError;
 
   /// Create a copy of ScheduleDetailEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -67,7 +68,8 @@ abstract class $ScheduleDetailEntityCopyWith<$Res> {
       String repeatName,
       int voucherMatchingId,
       VoucherInfoEntity voucherInfoEntity,
-      UserInfoEntity userInfo});
+      UserInfoEntity userInfo,
+      List<UserInfoEntity> groupClients});
 
   $VoucherInfoEntityCopyWith<$Res> get voucherInfoEntity;
   $UserInfoEntityCopyWith<$Res> get userInfo;
@@ -107,6 +109,7 @@ class _$ScheduleDetailEntityCopyWithImpl<$Res,
     Object? voucherMatchingId = null,
     Object? voucherInfoEntity = null,
     Object? userInfo = null,
+    Object? groupClients = null,
   }) {
     return _then(_value.copyWith(
       scheduleId: null == scheduleId
@@ -181,6 +184,10 @@ class _$ScheduleDetailEntityCopyWithImpl<$Res,
           ? _value.userInfo
           : userInfo // ignore: cast_nullable_to_non_nullable
               as UserInfoEntity,
+      groupClients: null == groupClients
+          ? _value.groupClients
+          : groupClients // ignore: cast_nullable_to_non_nullable
+              as List<UserInfoEntity>,
     ) as $Val);
   }
 
@@ -231,7 +238,8 @@ abstract class _$$ScheduleDetailEntityImplCopyWith<$Res>
       String repeatName,
       int voucherMatchingId,
       VoucherInfoEntity voucherInfoEntity,
-      UserInfoEntity userInfo});
+      UserInfoEntity userInfo,
+      List<UserInfoEntity> groupClients});
 
   @override
   $VoucherInfoEntityCopyWith<$Res> get voucherInfoEntity;
@@ -270,6 +278,7 @@ class __$$ScheduleDetailEntityImplCopyWithImpl<$Res>
     Object? voucherMatchingId = null,
     Object? voucherInfoEntity = null,
     Object? userInfo = null,
+    Object? groupClients = null,
   }) {
     return _then(_$ScheduleDetailEntityImpl(
       scheduleId: null == scheduleId
@@ -344,6 +353,10 @@ class __$$ScheduleDetailEntityImplCopyWithImpl<$Res>
           ? _value.userInfo
           : userInfo // ignore: cast_nullable_to_non_nullable
               as UserInfoEntity,
+      groupClients: null == groupClients
+          ? _value._groupClients
+          : groupClients // ignore: cast_nullable_to_non_nullable
+              as List<UserInfoEntity>,
     ));
   }
 }
@@ -369,7 +382,9 @@ class _$ScheduleDetailEntityImpl implements _ScheduleDetailEntity {
       this.repeatName = "",
       this.voucherMatchingId = -1,
       this.voucherInfoEntity = const VoucherInfoEntity(),
-      this.userInfo = const UserInfoEntity()});
+      this.userInfo = const UserInfoEntity(),
+      final List<UserInfoEntity> groupClients = const []})
+      : _groupClients = groupClients;
 
   @override
   @JsonKey()
@@ -425,10 +440,18 @@ class _$ScheduleDetailEntityImpl implements _ScheduleDetailEntity {
   @override
   @JsonKey()
   final UserInfoEntity userInfo;
+  final List<UserInfoEntity> _groupClients;
+  @override
+  @JsonKey()
+  List<UserInfoEntity> get groupClients {
+    if (_groupClients is EqualUnmodifiableListView) return _groupClients;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_groupClients);
+  }
 
   @override
   String toString() {
-    return 'ScheduleDetailEntity(scheduleId: $scheduleId, startDate: $startDate, endDate: $endDate, startTime: $startTime, endTime: $endTime, runningTime: $runningTime, scheduleTitle: $scheduleTitle, scheduleMemo: $scheduleMemo, scheduleStatusType: $scheduleStatusType, scheduleType: $scheduleType, totalNumberOfTime: $totalNumberOfTime, leftNumberOfTime: $leftNumberOfTime, schedulePrecautions: $schedulePrecautions, classInfoId: $classInfoId, repeatName: $repeatName, voucherMatchingId: $voucherMatchingId, voucherInfoEntity: $voucherInfoEntity, userInfo: $userInfo)';
+    return 'ScheduleDetailEntity(scheduleId: $scheduleId, startDate: $startDate, endDate: $endDate, startTime: $startTime, endTime: $endTime, runningTime: $runningTime, scheduleTitle: $scheduleTitle, scheduleMemo: $scheduleMemo, scheduleStatusType: $scheduleStatusType, scheduleType: $scheduleType, totalNumberOfTime: $totalNumberOfTime, leftNumberOfTime: $leftNumberOfTime, schedulePrecautions: $schedulePrecautions, classInfoId: $classInfoId, repeatName: $repeatName, voucherMatchingId: $voucherMatchingId, voucherInfoEntity: $voucherInfoEntity, userInfo: $userInfo, groupClients: $groupClients)';
   }
 
   @override
@@ -469,30 +492,34 @@ class _$ScheduleDetailEntityImpl implements _ScheduleDetailEntity {
             (identical(other.voucherInfoEntity, voucherInfoEntity) ||
                 other.voucherInfoEntity == voucherInfoEntity) &&
             (identical(other.userInfo, userInfo) ||
-                other.userInfo == userInfo));
+                other.userInfo == userInfo) &&
+            const DeepCollectionEquality()
+                .equals(other._groupClients, _groupClients));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      scheduleId,
-      startDate,
-      endDate,
-      startTime,
-      endTime,
-      runningTime,
-      scheduleTitle,
-      scheduleMemo,
-      scheduleStatusType,
-      scheduleType,
-      totalNumberOfTime,
-      leftNumberOfTime,
-      schedulePrecautions,
-      classInfoId,
-      repeatName,
-      voucherMatchingId,
-      voucherInfoEntity,
-      userInfo);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        scheduleId,
+        startDate,
+        endDate,
+        startTime,
+        endTime,
+        runningTime,
+        scheduleTitle,
+        scheduleMemo,
+        scheduleStatusType,
+        scheduleType,
+        totalNumberOfTime,
+        leftNumberOfTime,
+        schedulePrecautions,
+        classInfoId,
+        repeatName,
+        voucherMatchingId,
+        voucherInfoEntity,
+        userInfo,
+        const DeepCollectionEquality().hash(_groupClients)
+      ]);
 
   /// Create a copy of ScheduleDetailEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -524,7 +551,8 @@ abstract class _ScheduleDetailEntity implements ScheduleDetailEntity {
       final String repeatName,
       final int voucherMatchingId,
       final VoucherInfoEntity voucherInfoEntity,
-      final UserInfoEntity userInfo}) = _$ScheduleDetailEntityImpl;
+      final UserInfoEntity userInfo,
+      final List<UserInfoEntity> groupClients}) = _$ScheduleDetailEntityImpl;
 
   @override
   int get scheduleId;
@@ -562,6 +590,8 @@ abstract class _ScheduleDetailEntity implements ScheduleDetailEntity {
   VoucherInfoEntity get voucherInfoEntity;
   @override
   UserInfoEntity get userInfo;
+  @override
+  List<UserInfoEntity> get groupClients;
 
   /// Create a copy of ScheduleDetailEntity
   /// with the given fields replaced by the non-null parameter values.

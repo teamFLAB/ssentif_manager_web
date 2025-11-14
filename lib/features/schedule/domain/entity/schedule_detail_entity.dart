@@ -5,6 +5,7 @@ import 'package:ssentif_manager_web/features/schedule/domain/entity/voucher_info
 import 'package:ssentif_manager_web/shared/domain/entity/user_entity.dart';
 import 'package:ssentif_manager_web/shared/domain/entity/user_info_entity.dart';
 
+import '../../../../shared/data/model/user_info_model.dart';
 import '../../../../shared/enumtype/schedule_type.dart';
 import '../enumtype/schedule_status_type.dart';
 
@@ -30,6 +31,7 @@ class ScheduleDetailEntity with _$ScheduleDetailEntity {
     @Default("") String repeatName,
     @Default(-1) int voucherMatchingId,
     @Default(VoucherInfoEntity()) VoucherInfoEntity voucherInfoEntity,
-    @Default(UserInfoEntity()) UserInfoEntity userInfo
+    @Default(UserInfoEntity()) UserInfoEntity userInfo,
+    @Default([]) List<UserInfoEntity> groupClients,
   }) = _ScheduleDetailEntity;
 }

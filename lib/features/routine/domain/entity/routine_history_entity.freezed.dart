@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$RoutineHistoryEntity {
   int get routineId => throw _privateConstructorUsedError;
   String get routineName => throw _privateConstructorUsedError;
+  List<UserInfoEntity> get groupClients => throw _privateConstructorUsedError;
   String get clientMemo => throw _privateConstructorUsedError;
   int get routineNumberOfExercise => throw _privateConstructorUsedError;
   List<String> get exercisePartsList => throw _privateConstructorUsedError;
@@ -49,6 +50,7 @@ abstract class $RoutineHistoryEntityCopyWith<$Res> {
   $Res call(
       {int routineId,
       String routineName,
+      List<UserInfoEntity> groupClients,
       String clientMemo,
       int routineNumberOfExercise,
       List<String> exercisePartsList,
@@ -85,6 +87,7 @@ class _$RoutineHistoryEntityCopyWithImpl<$Res,
   $Res call({
     Object? routineId = null,
     Object? routineName = null,
+    Object? groupClients = null,
     Object? clientMemo = null,
     Object? routineNumberOfExercise = null,
     Object? exercisePartsList = null,
@@ -108,6 +111,10 @@ class _$RoutineHistoryEntityCopyWithImpl<$Res,
           ? _value.routineName
           : routineName // ignore: cast_nullable_to_non_nullable
               as String,
+      groupClients: null == groupClients
+          ? _value.groupClients
+          : groupClients // ignore: cast_nullable_to_non_nullable
+              as List<UserInfoEntity>,
       clientMemo: null == clientMemo
           ? _value.clientMemo
           : clientMemo // ignore: cast_nullable_to_non_nullable
@@ -203,6 +210,7 @@ abstract class _$$RoutineHistoryEntityImplCopyWith<$Res>
   $Res call(
       {int routineId,
       String routineName,
+      List<UserInfoEntity> groupClients,
       String clientMemo,
       int routineNumberOfExercise,
       List<String> exercisePartsList,
@@ -238,6 +246,7 @@ class __$$RoutineHistoryEntityImplCopyWithImpl<$Res>
   $Res call({
     Object? routineId = null,
     Object? routineName = null,
+    Object? groupClients = null,
     Object? clientMemo = null,
     Object? routineNumberOfExercise = null,
     Object? exercisePartsList = null,
@@ -261,6 +270,10 @@ class __$$RoutineHistoryEntityImplCopyWithImpl<$Res>
           ? _value.routineName
           : routineName // ignore: cast_nullable_to_non_nullable
               as String,
+      groupClients: null == groupClients
+          ? _value._groupClients
+          : groupClients // ignore: cast_nullable_to_non_nullable
+              as List<UserInfoEntity>,
       clientMemo: null == clientMemo
           ? _value.clientMemo
           : clientMemo // ignore: cast_nullable_to_non_nullable
@@ -323,6 +336,7 @@ class _$RoutineHistoryEntityImpl implements _RoutineHistoryEntity {
   const _$RoutineHistoryEntityImpl(
       {this.routineId = -1,
       this.routineName = "",
+      final List<UserInfoEntity> groupClients = const [],
       this.clientMemo = "",
       this.routineNumberOfExercise = 0,
       final List<String> exercisePartsList = const [],
@@ -336,7 +350,8 @@ class _$RoutineHistoryEntityImpl implements _RoutineHistoryEntity {
       this.trainerInfo,
       this.clientInfo,
       this.runningTime = ""})
-      : _exercisePartsList = exercisePartsList,
+      : _groupClients = groupClients,
+        _exercisePartsList = exercisePartsList,
         _routinesExerciseDtos = routinesExerciseDtos;
 
   @override
@@ -345,6 +360,15 @@ class _$RoutineHistoryEntityImpl implements _RoutineHistoryEntity {
   @override
   @JsonKey()
   final String routineName;
+  final List<UserInfoEntity> _groupClients;
+  @override
+  @JsonKey()
+  List<UserInfoEntity> get groupClients {
+    if (_groupClients is EqualUnmodifiableListView) return _groupClients;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_groupClients);
+  }
+
   @override
   @JsonKey()
   final String clientMemo;
@@ -399,7 +423,7 @@ class _$RoutineHistoryEntityImpl implements _RoutineHistoryEntity {
 
   @override
   String toString() {
-    return 'RoutineHistoryEntity(routineId: $routineId, routineName: $routineName, clientMemo: $clientMemo, routineNumberOfExercise: $routineNumberOfExercise, exercisePartsList: $exercisePartsList, exerciseIntensity: $exerciseIntensity, exerciseComment: $exerciseComment, routinesExerciseDtos: $routinesExerciseDtos, classStartDate: $classStartDate, daysAgo: $daysAgo, feedBack: $feedBack, routineStatus: $routineStatus, trainerInfo: $trainerInfo, clientInfo: $clientInfo, runningTime: $runningTime)';
+    return 'RoutineHistoryEntity(routineId: $routineId, routineName: $routineName, groupClients: $groupClients, clientMemo: $clientMemo, routineNumberOfExercise: $routineNumberOfExercise, exercisePartsList: $exercisePartsList, exerciseIntensity: $exerciseIntensity, exerciseComment: $exerciseComment, routinesExerciseDtos: $routinesExerciseDtos, classStartDate: $classStartDate, daysAgo: $daysAgo, feedBack: $feedBack, routineStatus: $routineStatus, trainerInfo: $trainerInfo, clientInfo: $clientInfo, runningTime: $runningTime)';
   }
 
   @override
@@ -411,6 +435,8 @@ class _$RoutineHistoryEntityImpl implements _RoutineHistoryEntity {
                 other.routineId == routineId) &&
             (identical(other.routineName, routineName) ||
                 other.routineName == routineName) &&
+            const DeepCollectionEquality()
+                .equals(other._groupClients, _groupClients) &&
             (identical(other.clientMemo, clientMemo) ||
                 other.clientMemo == clientMemo) &&
             (identical(
@@ -444,6 +470,7 @@ class _$RoutineHistoryEntityImpl implements _RoutineHistoryEntity {
       runtimeType,
       routineId,
       routineName,
+      const DeepCollectionEquality().hash(_groupClients),
       clientMemo,
       routineNumberOfExercise,
       const DeepCollectionEquality().hash(_exercisePartsList),
@@ -473,6 +500,7 @@ abstract class _RoutineHistoryEntity implements RoutineHistoryEntity {
   const factory _RoutineHistoryEntity(
       {final int routineId,
       final String routineName,
+      final List<UserInfoEntity> groupClients,
       final String clientMemo,
       final int routineNumberOfExercise,
       final List<String> exercisePartsList,
@@ -491,6 +519,8 @@ abstract class _RoutineHistoryEntity implements RoutineHistoryEntity {
   int get routineId;
   @override
   String get routineName;
+  @override
+  List<UserInfoEntity> get groupClients;
   @override
   String get clientMemo;
   @override

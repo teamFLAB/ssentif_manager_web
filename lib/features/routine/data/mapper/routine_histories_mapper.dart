@@ -1,4 +1,6 @@
+import 'package:ssentif_manager_web/shared/data/mapper/user_info_mapper.dart';
 import 'package:ssentif_manager_web/shared/domain/entity/user_entity.dart';
+import 'package:ssentif_manager_web/shared/domain/entity/user_info_entity.dart';
 import 'package:ssentif_manager_web/shared/enumtype/file_type.dart';
 
 import '../../domain/entity/routine_histories_with_page_info_entity.dart';
@@ -8,12 +10,17 @@ import '../model/exercise_set_model.dart';
 import '../../../../shared/data/model/file_url_model.dart';
 
 class RoutineHistoriesMapper {
-  static RoutineHistoriesWithPageInfoEntity toEntity(
-      ClassHistoriesResponse model) {
+  static RoutineHistoriesWithPageInfoEntity toEntity(ClassHistoriesResponse model) {
     return RoutineHistoriesWithPageInfoEntity(
       classInfoDetailOfDateList: model.classInfoDetailOfDateList
-          .map((wrapper) => RoutineHistoryMapper.toEntity(wrapper.routineDto))
-          .toList(),
+          .map((wrapper) =>
+          RoutineHistoryMapper.toEntity(wrapper.routineDto)
+              .copyWith(
+            groupClients: wrapper.groupClients?.map((userInfoModel) {
+              return UserInfoMapper().map(userInfoModel);
+            }).toList() ?? []
+          )
+      ).toList(),
       lastScheduleId: model.lastScheduleId,
       hasNext: model.hasNext,
     );

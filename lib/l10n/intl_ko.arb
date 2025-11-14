@@ -446,5 +446,18 @@
   "employee" : "직원",
   "freelancer" : "프리랜서",
   "manage_staff" : "직원 관리",
-  "manage_staff_description" : "각 코치가 담당하는 회원의 관리 현황을 한눈에 확인할 수 있습니다."
+  "manage_staff_description" : "각 코치가 담당하는 회원의 관리 현황을 한눈에 확인할 수 있습니다.",
+  "schedule_name_with_others" : "{firstName} 외 {count} 명",
+  "@schedule_name_with_others" : {
+    "placeholders" : {
+      "firstName" : {
+        "type": "String",
+        "example": "김철수"
+      },
+      "count" : {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  }
 }

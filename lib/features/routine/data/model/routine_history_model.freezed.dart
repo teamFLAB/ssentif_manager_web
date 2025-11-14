@@ -683,6 +683,7 @@ RoutineDtoWrapperModel _$RoutineDtoWrapperModelFromJson(
 /// @nodoc
 mixin _$RoutineDtoWrapperModel {
   RoutineHistoryModel get routineDto => throw _privateConstructorUsedError;
+  List<UserInfoModel>? get groupClients => throw _privateConstructorUsedError;
 
   /// Serializes this RoutineDtoWrapperModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -700,7 +701,8 @@ abstract class $RoutineDtoWrapperModelCopyWith<$Res> {
           $Res Function(RoutineDtoWrapperModel) then) =
       _$RoutineDtoWrapperModelCopyWithImpl<$Res, RoutineDtoWrapperModel>;
   @useResult
-  $Res call({RoutineHistoryModel routineDto});
+  $Res call(
+      {RoutineHistoryModel routineDto, List<UserInfoModel>? groupClients});
 
   $RoutineHistoryModelCopyWith<$Res> get routineDto;
 }
@@ -722,12 +724,17 @@ class _$RoutineDtoWrapperModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? routineDto = null,
+    Object? groupClients = freezed,
   }) {
     return _then(_value.copyWith(
       routineDto: null == routineDto
           ? _value.routineDto
           : routineDto // ignore: cast_nullable_to_non_nullable
               as RoutineHistoryModel,
+      groupClients: freezed == groupClients
+          ? _value.groupClients
+          : groupClients // ignore: cast_nullable_to_non_nullable
+              as List<UserInfoModel>?,
     ) as $Val);
   }
 
@@ -751,7 +758,8 @@ abstract class _$$RoutineDtoWrapperModelImplCopyWith<$Res>
       __$$RoutineDtoWrapperModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({RoutineHistoryModel routineDto});
+  $Res call(
+      {RoutineHistoryModel routineDto, List<UserInfoModel>? groupClients});
 
   @override
   $RoutineHistoryModelCopyWith<$Res> get routineDto;
@@ -773,12 +781,17 @@ class __$$RoutineDtoWrapperModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? routineDto = null,
+    Object? groupClients = freezed,
   }) {
     return _then(_$RoutineDtoWrapperModelImpl(
       null == routineDto
           ? _value.routineDto
           : routineDto // ignore: cast_nullable_to_non_nullable
               as RoutineHistoryModel,
+      freezed == groupClients
+          ? _value._groupClients
+          : groupClients // ignore: cast_nullable_to_non_nullable
+              as List<UserInfoModel>?,
     ));
   }
 }
@@ -786,17 +799,28 @@ class __$$RoutineDtoWrapperModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$RoutineDtoWrapperModelImpl implements _RoutineDtoWrapperModel {
-  _$RoutineDtoWrapperModelImpl(this.routineDto);
+  _$RoutineDtoWrapperModelImpl(
+      this.routineDto, final List<UserInfoModel>? groupClients)
+      : _groupClients = groupClients;
 
   factory _$RoutineDtoWrapperModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$RoutineDtoWrapperModelImplFromJson(json);
 
   @override
   final RoutineHistoryModel routineDto;
+  final List<UserInfoModel>? _groupClients;
+  @override
+  List<UserInfoModel>? get groupClients {
+    final value = _groupClients;
+    if (value == null) return null;
+    if (_groupClients is EqualUnmodifiableListView) return _groupClients;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'RoutineDtoWrapperModel(routineDto: $routineDto)';
+    return 'RoutineDtoWrapperModel(routineDto: $routineDto, groupClients: $groupClients)';
   }
 
   @override
@@ -805,12 +829,15 @@ class _$RoutineDtoWrapperModelImpl implements _RoutineDtoWrapperModel {
         (other.runtimeType == runtimeType &&
             other is _$RoutineDtoWrapperModelImpl &&
             (identical(other.routineDto, routineDto) ||
-                other.routineDto == routineDto));
+                other.routineDto == routineDto) &&
+            const DeepCollectionEquality()
+                .equals(other._groupClients, _groupClients));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, routineDto);
+  int get hashCode => Object.hash(runtimeType, routineDto,
+      const DeepCollectionEquality().hash(_groupClients));
 
   /// Create a copy of RoutineDtoWrapperModel
   /// with the given fields replaced by the non-null parameter values.
@@ -830,14 +857,16 @@ class _$RoutineDtoWrapperModelImpl implements _RoutineDtoWrapperModel {
 }
 
 abstract class _RoutineDtoWrapperModel implements RoutineDtoWrapperModel {
-  factory _RoutineDtoWrapperModel(final RoutineHistoryModel routineDto) =
-      _$RoutineDtoWrapperModelImpl;
+  factory _RoutineDtoWrapperModel(final RoutineHistoryModel routineDto,
+      final List<UserInfoModel>? groupClients) = _$RoutineDtoWrapperModelImpl;
 
   factory _RoutineDtoWrapperModel.fromJson(Map<String, dynamic> json) =
       _$RoutineDtoWrapperModelImpl.fromJson;
 
   @override
   RoutineHistoryModel get routineDto;
+  @override
+  List<UserInfoModel>? get groupClients;
 
   /// Create a copy of RoutineDtoWrapperModel
   /// with the given fields replaced by the non-null parameter values.

@@ -37,6 +37,7 @@ class ScheduleDetailView extends ConsumerWidget {
               statusText: Intl.message(
                   scheduleDetail.scheduleStatusType?.findScheduleDetailStringKey() ?? ""
               ),
+              groupClients: scheduleDetail.groupClients,
               userName: scheduleDetail.scheduleStatusType == ScheduleStatusType.trainerEtcSchedule
                   ? "${scheduleDetail.userInfo.userName} 코치님"
                   : "${scheduleDetail.userInfo.userName} 회원님",

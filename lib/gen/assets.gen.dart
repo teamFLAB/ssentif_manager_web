@@ -1,3 +1,5 @@
+// dart format width=80
+
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
 ///  FlutterGen
@@ -5,7 +7,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
+// ignore_for_file: deprecated_member_use,directives_ordering,implicit_dynamic_list_literal,unnecessary_import
 
 import 'package:flutter/widgets.dart';
 
@@ -48,18 +50,18 @@ class $AssetsFontsGen {
 
   /// List of all assets
   List<String> get values => [
-    gmarketSansTTFBold,
-    gmarketSansTTFLight,
-    gmarketSansTTFMedium,
-    sCDreamBold,
-    sCDreamExtraBold,
-    sCDreamExtraLight,
-    sCDreamMedium,
-    spoqaHanSansNeoBold,
-    spoqaHanSansNeoLight,
-    spoqaHanSansNeoMedium,
-    spoqaHanSansNeoRegular,
-  ];
+        gmarketSansTTFBold,
+        gmarketSansTTFLight,
+        gmarketSansTTFMedium,
+        sCDreamBold,
+        sCDreamExtraBold,
+        sCDreamExtraLight,
+        sCDreamMedium,
+        spoqaHanSansNeoBold,
+        spoqaHanSansNeoLight,
+        spoqaHanSansNeoMedium,
+        spoqaHanSansNeoRegular
+      ];
 }
 
 class $AssetsImagesGen {
@@ -165,6 +167,14 @@ class $AssetsImagesGen {
   AssetGenImage get icPlusWhite =>
       const AssetGenImage('assets/images/ic_plus_white.png');
 
+  /// File path: assets/images/ic_polygon_decrease.png
+  AssetGenImage get icPolygonDecrease =>
+      const AssetGenImage('assets/images/ic_polygon_decrease.png');
+
+  /// File path: assets/images/ic_polygon_increase.png
+  AssetGenImage get icPolygonIncrease =>
+      const AssetGenImage('assets/images/ic_polygon_increase.png');
+
   /// File path: assets/images/ic_previous_button.png
   AssetGenImage get icPreviousButton =>
       const AssetGenImage('assets/images/ic_previous_button.png');
@@ -177,6 +187,14 @@ class $AssetsImagesGen {
   AssetGenImage get icProfileSelected =>
       const AssetGenImage('assets/images/ic_profile_selected.png');
 
+  /// File path: assets/images/ic_records_percent.png
+  AssetGenImage get icRecordsPercent =>
+      const AssetGenImage('assets/images/ic_records_percent.png');
+
+  /// File path: assets/images/ic_repurchase_percent.png
+  AssetGenImage get icRepurchasePercent =>
+      const AssetGenImage('assets/images/ic_repurchase_percent.png');
+
   /// File path: assets/images/ic_right_gray.png
   AssetGenImage get icRightGray =>
       const AssetGenImage('assets/images/ic_right_gray.png');
@@ -184,6 +202,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/ic_right_primary.png
   AssetGenImage get icRightPrimary =>
       const AssetGenImage('assets/images/ic_right_primary.png');
+
+  /// File path: assets/images/ic_satisfaction_percent.png
+  AssetGenImage get icSatisfactionPercent =>
+      const AssetGenImage('assets/images/ic_satisfaction_percent.png');
 
   /// File path: assets/images/ic_search_gray.png
   AssetGenImage get icSearchGray =>
@@ -209,6 +231,10 @@ class $AssetsImagesGen {
   AssetGenImage get icTodayButton =>
       const AssetGenImage('assets/images/ic_today_button.png');
 
+  /// File path: assets/images/ic_total_class_count.png
+  AssetGenImage get icTotalClassCount =>
+      const AssetGenImage('assets/images/ic_total_class_count.png');
+
   /// File path: assets/images/ic_user_profile.png
   AssetGenImage get icUserProfile =>
       const AssetGenImage('assets/images/ic_user_profile.png');
@@ -220,6 +246,14 @@ class $AssetsImagesGen {
   /// File path: assets/images/ssentif_manager_text_logo.png
   AssetGenImage get ssentifManagerTextLogo =>
       const AssetGenImage('assets/images/ssentif_manager_text_logo.png');
+
+  /// File path: assets/images/tab_dashboard_selected.png
+  AssetGenImage get tabDashboardSelected =>
+      const AssetGenImage('assets/images/tab_dashboard_selected.png');
+
+  /// File path: assets/images/tab_dashboard_unselected.png
+  AssetGenImage get tabDashboardUnselected =>
+      const AssetGenImage('assets/images/tab_dashboard_unselected.png');
 
   /// File path: assets/images/tab_home_selected.png
   AssetGenImage get tabHomeSelected =>
@@ -263,56 +297,64 @@ class $AssetsImagesGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
-    btnCloseWhite,
-    femaleProfile,
-    gymVisualDummy,
-    icBackGray,
-    icBackgroundLogin,
-    icBookmarkSelected,
-    icBookmarkUnselected,
-    icButtonNext,
-    icButtonPrevious,
-    icCalBlack,
-    icCalWhite,
-    icCoachesBlack,
-    icCoachesWhite,
-    icDaySelected,
-    icDayUnselected,
-    icDelete,
-    icIndexCircle,
-    icMonthSelected,
-    icMonthUnselected,
-    icNextButton,
-    icPausePrimary,
-    icPlayPrimary,
-    icPlayVideo,
-    icPlusPrimary,
-    icPlusWhite,
-    icPreviousButton,
-    icProfileEmpty,
-    icProfileSelected,
-    icRightGray,
-    icRightPrimary,
-    icSearchGray,
-    icSsentifProfile,
-    icSsentifTextLogo,
-    icStatisticsBlack,
-    icStatisticsWhite,
-    icTodayButton,
-    icUserProfile,
-    maleProfile,
-    ssentifManagerTextLogo,
-    tabHomeSelected,
-    tabHomeUnselected,
-    tabIncomeSelected,
-    tabIncomeUnselected,
-    tabSessionSelected,
-    tabSessionUnselected,
-    tabSettingSelected,
-    tabSettingUnselected,
-    tabStaffSelected,
-    tabStaffUnselected,
-  ];
+        btnCloseWhite,
+        femaleProfile,
+        gymVisualDummy,
+        icBackGray,
+        icBackgroundLogin,
+        icBookmarkSelected,
+        icBookmarkUnselected,
+        icButtonNext,
+        icButtonPrevious,
+        icCalBlack,
+        icCalWhite,
+        icCoachesBlack,
+        icCoachesWhite,
+        icDaySelected,
+        icDayUnselected,
+        icDelete,
+        icIndexCircle,
+        icMonthSelected,
+        icMonthUnselected,
+        icNextButton,
+        icPausePrimary,
+        icPlayPrimary,
+        icPlayVideo,
+        icPlusPrimary,
+        icPlusWhite,
+        icPolygonDecrease,
+        icPolygonIncrease,
+        icPreviousButton,
+        icProfileEmpty,
+        icProfileSelected,
+        icRecordsPercent,
+        icRepurchasePercent,
+        icRightGray,
+        icRightPrimary,
+        icSatisfactionPercent,
+        icSearchGray,
+        icSsentifProfile,
+        icSsentifTextLogo,
+        icStatisticsBlack,
+        icStatisticsWhite,
+        icTodayButton,
+        icTotalClassCount,
+        icUserProfile,
+        maleProfile,
+        ssentifManagerTextLogo,
+        tabDashboardSelected,
+        tabDashboardUnselected,
+        tabHomeSelected,
+        tabHomeUnselected,
+        tabIncomeSelected,
+        tabIncomeUnselected,
+        tabSessionSelected,
+        tabSessionUnselected,
+        tabSettingSelected,
+        tabSettingUnselected,
+        tabStaffSelected,
+        tabStaffUnselected
+      ];
 }
 
 class Assets {
@@ -327,12 +369,18 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
+  const AssetGenImage(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+    this.animation,
+  });
 
   final String _assetName;
 
   final Size? size;
   final Set<String> flavors;
+  final AssetGenImageAnimation? animation;
 
   Image image({
     Key? key,
@@ -387,11 +435,30 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({AssetBundle? bundle, String? package}) {
-    return AssetImage(_assetName, bundle: bundle, package: package);
+  ImageProvider provider({
+    AssetBundle? bundle,
+    String? package,
+  }) {
+    return AssetImage(
+      _assetName,
+      bundle: bundle,
+      package: package,
+    );
   }
 
   String get path => _assetName;
 
   String get keyName => _assetName;
+}
+
+class AssetGenImageAnimation {
+  const AssetGenImageAnimation({
+    required this.isAnimation,
+    required this.duration,
+    required this.frames,
+  });
+
+  final bool isAnimation;
+  final Duration duration;
+  final int frames;
 }

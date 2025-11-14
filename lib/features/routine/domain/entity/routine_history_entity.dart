@@ -1,6 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:ssentif_manager_web/shared/domain/entity/user_entity.dart';
+import 'package:ssentif_manager_web/shared/domain/entity/user_info_entity.dart';
 import 'package:ssentif_manager_web/shared/enumtype/file_type.dart';
+
+import '../../../../shared/data/model/user_info_model.dart';
 
 part 'routine_history_entity.freezed.dart';
 
@@ -9,6 +12,7 @@ class RoutineHistoryEntity with _$RoutineHistoryEntity {
   const factory RoutineHistoryEntity({
     @Default(-1) int routineId,
     @Default("") String routineName,
+    @Default([]) List<UserInfoEntity> groupClients,
     @Default("") String clientMemo,
     @Default(0) int routineNumberOfExercise,
     @Default([]) List<String> exercisePartsList,

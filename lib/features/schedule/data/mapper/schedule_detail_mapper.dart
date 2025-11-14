@@ -55,7 +55,10 @@ class ScheduleDetailMapper extends BaseMapper<ScheduleDetailModel, ScheduleDetai
         repeatName: data.repeatName,
         voucherMatchingId: data.voucherMatchingId,
         voucherInfoEntity: voucherInfoMapper.map(data.voucherInfoDto),
-        userInfo: userInfoMapper.map(data.userInfoDto)
+        userInfo: userInfoMapper.map(data.userInfoDto),
+        groupClients: data.groupClients.map((e) {
+          return userInfoMapper.map(e);
+        }).toList()
     );
   }
 }

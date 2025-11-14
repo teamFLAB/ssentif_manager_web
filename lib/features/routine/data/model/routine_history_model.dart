@@ -3,6 +3,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../../shared/data/model/file_url_model.dart';
+import '../../../../shared/data/model/user_info_model.dart';
 import 'exercise_set_model.dart';
 
 part 'routine_history_model.freezed.dart';
@@ -44,7 +45,10 @@ class IndividualWorkoutHistoriesResponse with _$IndividualWorkoutHistoriesRespon
 
 @freezed
 class RoutineDtoWrapperModel with _$RoutineDtoWrapperModel {
-  factory RoutineDtoWrapperModel(RoutineHistoryModel routineDto) = _RoutineDtoWrapperModel;
+  factory RoutineDtoWrapperModel(
+      RoutineHistoryModel routineDto,
+      List<UserInfoModel>? groupClients
+  ) = _RoutineDtoWrapperModel;
   factory RoutineDtoWrapperModel.fromJson(Map<String, dynamic> json) => _$RoutineDtoWrapperModelFromJson(json);
 }
 

@@ -3,6 +3,7 @@ import 'package:ssentif_manager_web/gen/assets.gen.dart';
 enum NavigationSectionType {
   schedule, // 일정관리
   coach, // 직원관리
+  dashBoard,
   classRecords, //수업일지 피드
   revenue, // 매출 관리 (준비중)
   // setting // 설정
@@ -15,6 +16,8 @@ extension NavigationSectionTypeExtension on NavigationSectionType {
         return '일정 관리';
       case NavigationSectionType.coach:
         return '직원 관리';
+      case NavigationSectionType.dashBoard:
+        return '센터 대시보드';
       case NavigationSectionType.classRecords:
         return '수업일지 피드';
       case NavigationSectionType.revenue:
@@ -30,6 +33,8 @@ extension NavigationSectionTypeExtension on NavigationSectionType {
         return Assets.images.tabHomeUnselected;
       case NavigationSectionType.coach:
         return Assets.images.tabStaffUnselected;
+      case NavigationSectionType.dashBoard:
+        return Assets.images.tabDashboardUnselected;
       case NavigationSectionType.classRecords:
         return Assets.images.tabSessionUnselected;
       case NavigationSectionType.revenue:
@@ -45,6 +50,8 @@ extension NavigationSectionTypeExtension on NavigationSectionType {
         return Assets.images.tabHomeSelected;
       case NavigationSectionType.coach:
         return Assets.images.tabStaffSelected;
+      case NavigationSectionType.dashBoard:
+        return Assets.images.tabDashboardSelected;
       case NavigationSectionType.classRecords:
         return Assets.images.tabSessionSelected;
       case NavigationSectionType.revenue:

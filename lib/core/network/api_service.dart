@@ -10,6 +10,7 @@ import 'package:ssentif_manager_web/features/client/data/model/response_enrolled
 import 'package:ssentif_manager_web/features/client/data/model/client_profile_model.dart';
 import 'package:ssentif_manager_web/features/client/data/model/client_monthly_calendar_model.dart';
 import 'package:ssentif_manager_web/features/routine/data/model/routine_history_model.dart';
+import 'package:ssentif_manager_web/features/dashboard/data/model/trainer_with_schedule_model.dart';
 
 import '../../features/schedule/data/model/schedule_detail_model.dart';
 import '../../shared/data/model/work_place_model.dart';
@@ -61,7 +62,8 @@ class ApiService {
 
   /// 토큰 재발급
   Future<bool> refreshToken() async {
-    var tempRefreshToken = "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MzcxMDAsImlhdCI6MTc1Mzk1NDMxNiwiZXhwIjoxNzU2NTQ2MzE2LCJqdGkiOiIzNmZlY2M5Yy1lOGQ4LTQ1MWMtOGVhNS1lMDI5YmIxMDUyMzEifQ.odBOd1Li4uhLtgS1UZwpLlKaN8xHdcMPkvMBpq77598";
+    var tempRefreshToken =
+        "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MzcxMDAsImlhdCI6MTc1Mzk1NDMxNiwiZXhwIjoxNzU2NTQ2MzE2LCJqdGkiOiIzNmZlY2M5Yy1lOGQ4LTQ1MWMtOGVhNS1lMDI5YmIxMDUyMzEifQ.odBOd1Li4uhLtgS1UZwpLlKaN8xHdcMPkvMBpq77598";
 
     try {
       final refreshToken = StorageManager.getRefreshToken();
@@ -254,5 +256,23 @@ class ApiService {
       ),
     );
     return ClassHistoriesResponse.fromJson(response.data);
+  }
+
+  /// 완료된 스케줄 조회하기
+  Future<List<TrainerWithScheduleModel>> getCompletedSchedules({
+    required int workplaceId,
+    required String yearMonth,
+  }) async {
+    final response = await _dio.get(
+      '/api/user/workplace/${workplaceId}/schedules/completed',
+      queryParameters: {
+        'yearMonth': yearMonth,
+      },
+      options: Options(
+        extra: {'requiresToken': true},
+      ),
+    );
+    final data = response.data as List<dynamic>;
+    return data.map((e) => TrainerWithScheduleModel.fromJson(e)).toList();
   }
 }

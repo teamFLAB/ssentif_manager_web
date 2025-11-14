@@ -16,9 +16,12 @@ import 'package:ssentif_manager_web/features/coaches/view/component/coach_list_i
 import 'package:ssentif_manager_web/features/classRecords/view/component/routine_detail_dialog.dart';
 import 'package:ssentif_manager_web/features/classRecords/view/effect/class_records_effect.dart';
 import 'package:ssentif_manager_web/shared/enumtype/file_type.dart';
+import 'package:ssentif_manager_web/core/widgets/month_selector_widget.dart';
 
 import '../../../../gen/assets.gen.dart';
 import '../../../../shared/domain/entity/user_entity.dart';
+import '../../../../shared/domain/entity/user_info_entity.dart';
+import '../component/class_client_info_widget.dart';
 
 class ClassRecordsFeedScreen extends ConsumerStatefulWidget {
   final List<UserEntity> coaches;
@@ -97,62 +100,20 @@ class _ClassRecordsFeedScreenState
               padding: const EdgeInsets.only(bottom: 30),
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      const SizedBox(width: 20),
-                      Text(DateFormat('yyyy년 MM월').format(state.selectedMonth),
-                          style: SsentifTextStyles.medium22
-                              .copyWith(color: AppColors.black)),
-                      const SizedBox(width: 16),
-                      // 이번달 버튼
-                      GestureDetector(
-                        onTap: () {
-                          viewModel.handleIntent(
-                              ClassRecordsIntent.clickThisMonth());
-                        },
-                        child: Container(
-                          height: 22,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                          ),
-                          decoration: BoxDecoration(
-                            color: AppColors.gray4,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          alignment: Alignment.center,
-                          child: Text(
-                            '이번달',
-                            style: SsentifTextStyles.medium12.copyWith(
-                              color: AppColors.gray555,
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      // 이전 버튼
-                      GestureDetector(
-                        onTap: () {
-                          viewModel.handleIntent(
-                              ClassRecordsIntent.clickPreviousMonth());
-                        },
-                        child: Assets.images.icPreviousButton.image(
-                          width: 22,
-                          height: 22,
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      // 다음 버튼
-                      GestureDetector(
-                        onTap: () {
-                          viewModel.handleIntent(
-                              ClassRecordsIntent.clickNextMonth());
-                        },
-                        child: Assets.images.icNextButton.image(
-                          width: 22,
-                          height: 22,
-                        ),
-                      ),
-                    ],
+                  MonthSelectorWidget(
+                    selectedMonth: state.selectedMonth,
+                    onThisMonth: () {
+                      viewModel
+                          .handleIntent(ClassRecordsIntent.clickThisMonth());
+                    },
+                    onPreviousMonth: () {
+                      viewModel.handleIntent(
+                          ClassRecordsIntent.clickPreviousMonth());
+                    },
+                    onNextMonth: () {
+                      viewModel
+                          .handleIntent(ClassRecordsIntent.clickNextMonth());
+                    },
                   ),
                   const SizedBox(height: 20),
                   // 수업 기록 리스트
@@ -288,26 +249,19 @@ class _ClassRecordsFeedScreenState
                   const SizedBox(width: 18),
                   Assets.images.icRightGray.image(height: 16),
                   const SizedBox(width: 18),
-                  ProfileImageWidget(
-                      size: 20, imageURL: record.clientInfo?.imageUrl ?? ""),
-                  const SizedBox(width: 6),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        record.clientInfo!.userName,
-                        style: SsentifTextStyles.medium16.copyWith(
-                          color: AppColors.black,
-                        ),
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        "회원",
-                        style: SsentifTextStyles.medium12.copyWith(
-                          color: AppColors.black,
-                        ),
-                      ),
-                    ],
+                  Visibility(
+                      child: Row(
+                    children: record.groupClients.map((user) {
+                      return Padding(
+                          padding: EdgeInsets.only(right: 20),
+                          child: ClassClientInfoWidget(
+                              groupClientInfo: user, clientInfo: null));
+                    }).toList(),
+                  )),
+                  Visibility(
+                    visible: record.groupClients.isEmpty,
+                    child: ClassClientInfoWidget(
+                        groupClientInfo: null, clientInfo: record.clientInfo),
                   ),
                   const Spacer(),
                   Text(
@@ -366,8 +320,7 @@ class _ClassRecordsFeedScreenState
                                         image: NetworkImage(
                                             image.fileType == FileType.video
                                                 ? image.thumbnailUrl
-                                                : image.fileUrl
-                                        ),
+                                                : image.fileUrl),
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -390,12 +343,14 @@ class _ClassRecordsFeedScreenState
                                             ),
                                           )
                                         : image.fileType == FileType.video
-                                        ? Container(
-                                        decoration: BoxDecoration(
-                                        color: AppColors.blackAlpha10
-                                      ),
-                                        child: Assets.images.icPlayVideo.image(width: 24, height: 24)
-                                    ) : null,
+                                            ? Container(
+                                                decoration: BoxDecoration(
+                                                    color:
+                                                        AppColors.blackAlpha10),
+                                                child: Assets.images.icPlayVideo
+                                                    .image(
+                                                        width: 24, height: 24))
+                                            : null,
                                   );
                                 },
                               ),

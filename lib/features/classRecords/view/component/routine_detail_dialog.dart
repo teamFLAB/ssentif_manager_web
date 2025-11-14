@@ -11,6 +11,7 @@ import 'package:ssentif_manager_web/shared/enumtype/exercise_record_type.dart';
 import 'package:ssentif_manager_web/features/classRecords/view/component/routine_exercise_item.dart';
 
 import '../../../../gen/assets.gen.dart';
+import 'class_client_info_widget.dart';
 
 class RoutineDetailDialog extends StatelessWidget {
   final RoutineHistoryEntity record;
@@ -105,26 +106,26 @@ class RoutineDetailDialog extends StatelessWidget {
                   const SizedBox(width: 20),
                   Assets.images.icRightGray.image(height: 16),
                   const SizedBox(width: 20),
-                  ProfileImageWidget(
-                      size: 24, imageURL: record.clientInfo?.imageUrl ?? ""),
-                  const SizedBox(width: 6),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        record.clientInfo!.userName,
-                        style: SsentifTextStyles.medium18.copyWith(
-                          color: AppColors.black,
-                        ),
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        "회원",
-                        style: SsentifTextStyles.medium14.copyWith(
-                          color: AppColors.black,
-                        ),
-                      ),
-                    ],
+                  Visibility(
+                      child: Row(
+                        children: record.groupClients.map((user) {
+                          return Padding(
+                              padding: EdgeInsets.only(right: 20),
+                              child: ClassClientInfoWidget(
+                                  profileImageSize: 24,
+                                  groupClientInfo: user,
+                                  clientInfo: null
+                              )
+                          );
+                        }).toList(),
+                      )
+                  ),
+                  Visibility(
+                    visible: record.groupClients.isEmpty,
+                    child: ClassClientInfoWidget(
+                        groupClientInfo: null,
+                        clientInfo: record.clientInfo
+                    ),
                   ),
                 ],
               ),

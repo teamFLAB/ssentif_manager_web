@@ -18,6 +18,7 @@ class ScheduleDetailModel with _$ScheduleDetailModel {
     @Default("") String scheduleStatus,
     @Default("") String scheduleType,
     @Default(UserInfoModel()) UserInfoModel userInfoDto,
+    @Default([]) List<UserInfoModel> groupClients,
     @Default(VoucherInfoModel()) VoucherInfoModel voucherInfoDto,
     @Default(-1) int totalNumberOfTime,
     @Default(-1) int leftNumberOfTime,

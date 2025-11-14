@@ -71,12 +71,16 @@ _$RoutineDtoWrapperModelImpl _$$RoutineDtoWrapperModelImplFromJson(
         Map<String, dynamic> json) =>
     _$RoutineDtoWrapperModelImpl(
       RoutineHistoryModel.fromJson(json['routineDto'] as Map<String, dynamic>),
+      (json['groupClients'] as List<dynamic>?)
+          ?.map((e) => UserInfoModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$RoutineDtoWrapperModelImplToJson(
         _$RoutineDtoWrapperModelImpl instance) =>
     <String, dynamic>{
       'routineDto': instance.routineDto,
+      'groupClients': instance.groupClients,
     };
 
 _$RoutineHistoryModelImpl _$$RoutineHistoryModelImplFromJson(

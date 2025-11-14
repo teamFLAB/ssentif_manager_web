@@ -29,6 +29,7 @@ mixin _$ScheduleDetailModel {
   String get scheduleStatus => throw _privateConstructorUsedError;
   String get scheduleType => throw _privateConstructorUsedError;
   UserInfoModel get userInfoDto => throw _privateConstructorUsedError;
+  List<UserInfoModel> get groupClients => throw _privateConstructorUsedError;
   VoucherInfoModel get voucherInfoDto => throw _privateConstructorUsedError;
   int get totalNumberOfTime => throw _privateConstructorUsedError;
   int get leftNumberOfTime => throw _privateConstructorUsedError;
@@ -64,6 +65,7 @@ abstract class $ScheduleDetailModelCopyWith<$Res> {
       String scheduleStatus,
       String scheduleType,
       UserInfoModel userInfoDto,
+      List<UserInfoModel> groupClients,
       VoucherInfoModel voucherInfoDto,
       int totalNumberOfTime,
       int leftNumberOfTime,
@@ -101,6 +103,7 @@ class _$ScheduleDetailModelCopyWithImpl<$Res, $Val extends ScheduleDetailModel>
     Object? scheduleStatus = null,
     Object? scheduleType = null,
     Object? userInfoDto = null,
+    Object? groupClients = null,
     Object? voucherInfoDto = null,
     Object? totalNumberOfTime = null,
     Object? leftNumberOfTime = null,
@@ -147,6 +150,10 @@ class _$ScheduleDetailModelCopyWithImpl<$Res, $Val extends ScheduleDetailModel>
           ? _value.userInfoDto
           : userInfoDto // ignore: cast_nullable_to_non_nullable
               as UserInfoModel,
+      groupClients: null == groupClients
+          ? _value.groupClients
+          : groupClients // ignore: cast_nullable_to_non_nullable
+              as List<UserInfoModel>,
       voucherInfoDto: null == voucherInfoDto
           ? _value.voucherInfoDto
           : voucherInfoDto // ignore: cast_nullable_to_non_nullable
@@ -221,6 +228,7 @@ abstract class _$$ScheduleDetailModelImplCopyWith<$Res>
       String scheduleStatus,
       String scheduleType,
       UserInfoModel userInfoDto,
+      List<UserInfoModel> groupClients,
       VoucherInfoModel voucherInfoDto,
       int totalNumberOfTime,
       int leftNumberOfTime,
@@ -258,6 +266,7 @@ class __$$ScheduleDetailModelImplCopyWithImpl<$Res>
     Object? scheduleStatus = null,
     Object? scheduleType = null,
     Object? userInfoDto = null,
+    Object? groupClients = null,
     Object? voucherInfoDto = null,
     Object? totalNumberOfTime = null,
     Object? leftNumberOfTime = null,
@@ -304,6 +313,10 @@ class __$$ScheduleDetailModelImplCopyWithImpl<$Res>
           ? _value.userInfoDto
           : userInfoDto // ignore: cast_nullable_to_non_nullable
               as UserInfoModel,
+      groupClients: null == groupClients
+          ? _value._groupClients
+          : groupClients // ignore: cast_nullable_to_non_nullable
+              as List<UserInfoModel>,
       voucherInfoDto: null == voucherInfoDto
           ? _value.voucherInfoDto
           : voucherInfoDto // ignore: cast_nullable_to_non_nullable
@@ -353,6 +366,7 @@ class _$ScheduleDetailModelImpl implements _ScheduleDetailModel {
       this.scheduleStatus = "",
       this.scheduleType = "",
       this.userInfoDto = const UserInfoModel(),
+      final List<UserInfoModel> groupClients = const [],
       this.voucherInfoDto = const VoucherInfoModel(),
       this.totalNumberOfTime = -1,
       this.leftNumberOfTime = -1,
@@ -361,7 +375,8 @@ class _$ScheduleDetailModelImpl implements _ScheduleDetailModel {
       final List<String> weeks = const [],
       this.voucherMatchingId = -1,
       this.repeatName = ""})
-      : _weeks = weeks;
+      : _groupClients = groupClients,
+        _weeks = weeks;
 
   factory _$ScheduleDetailModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ScheduleDetailModelImplFromJson(json);
@@ -393,6 +408,15 @@ class _$ScheduleDetailModelImpl implements _ScheduleDetailModel {
   @override
   @JsonKey()
   final UserInfoModel userInfoDto;
+  final List<UserInfoModel> _groupClients;
+  @override
+  @JsonKey()
+  List<UserInfoModel> get groupClients {
+    if (_groupClients is EqualUnmodifiableListView) return _groupClients;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_groupClients);
+  }
+
   @override
   @JsonKey()
   final VoucherInfoModel voucherInfoDto;
@@ -426,7 +450,7 @@ class _$ScheduleDetailModelImpl implements _ScheduleDetailModel {
 
   @override
   String toString() {
-    return 'ScheduleDetailModel(scheduleId: $scheduleId, scheduleStartDateTime: $scheduleStartDateTime, scheduleEndDateTime: $scheduleEndDateTime, timeRequired: $timeRequired, scheduleTitle: $scheduleTitle, scheduleMemo: $scheduleMemo, scheduleStatus: $scheduleStatus, scheduleType: $scheduleType, userInfoDto: $userInfoDto, voucherInfoDto: $voucherInfoDto, totalNumberOfTime: $totalNumberOfTime, leftNumberOfTime: $leftNumberOfTime, schedulePrecautions: $schedulePrecautions, classInfoId: $classInfoId, weeks: $weeks, voucherMatchingId: $voucherMatchingId, repeatName: $repeatName)';
+    return 'ScheduleDetailModel(scheduleId: $scheduleId, scheduleStartDateTime: $scheduleStartDateTime, scheduleEndDateTime: $scheduleEndDateTime, timeRequired: $timeRequired, scheduleTitle: $scheduleTitle, scheduleMemo: $scheduleMemo, scheduleStatus: $scheduleStatus, scheduleType: $scheduleType, userInfoDto: $userInfoDto, groupClients: $groupClients, voucherInfoDto: $voucherInfoDto, totalNumberOfTime: $totalNumberOfTime, leftNumberOfTime: $leftNumberOfTime, schedulePrecautions: $schedulePrecautions, classInfoId: $classInfoId, weeks: $weeks, voucherMatchingId: $voucherMatchingId, repeatName: $repeatName)';
   }
 
   @override
@@ -452,6 +476,8 @@ class _$ScheduleDetailModelImpl implements _ScheduleDetailModel {
                 other.scheduleType == scheduleType) &&
             (identical(other.userInfoDto, userInfoDto) ||
                 other.userInfoDto == userInfoDto) &&
+            const DeepCollectionEquality()
+                .equals(other._groupClients, _groupClients) &&
             (identical(other.voucherInfoDto, voucherInfoDto) ||
                 other.voucherInfoDto == voucherInfoDto) &&
             (identical(other.totalNumberOfTime, totalNumberOfTime) ||
@@ -482,6 +508,7 @@ class _$ScheduleDetailModelImpl implements _ScheduleDetailModel {
       scheduleStatus,
       scheduleType,
       userInfoDto,
+      const DeepCollectionEquality().hash(_groupClients),
       voucherInfoDto,
       totalNumberOfTime,
       leftNumberOfTime,
@@ -519,6 +546,7 @@ abstract class _ScheduleDetailModel implements ScheduleDetailModel {
       final String scheduleStatus,
       final String scheduleType,
       final UserInfoModel userInfoDto,
+      final List<UserInfoModel> groupClients,
       final VoucherInfoModel voucherInfoDto,
       final int totalNumberOfTime,
       final int leftNumberOfTime,
@@ -549,6 +577,8 @@ abstract class _ScheduleDetailModel implements ScheduleDetailModel {
   String get scheduleType;
   @override
   UserInfoModel get userInfoDto;
+  @override
+  List<UserInfoModel> get groupClients;
   @override
   VoucherInfoModel get voucherInfoDto;
   @override

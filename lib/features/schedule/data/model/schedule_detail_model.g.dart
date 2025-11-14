@@ -20,6 +20,10 @@ _$ScheduleDetailModelImpl _$$ScheduleDetailModelImplFromJson(
       userInfoDto: json['userInfoDto'] == null
           ? const UserInfoModel()
           : UserInfoModel.fromJson(json['userInfoDto'] as Map<String, dynamic>),
+      groupClients: (json['groupClients'] as List<dynamic>?)
+              ?.map((e) => UserInfoModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       voucherInfoDto: json['voucherInfoDto'] == null
           ? const VoucherInfoModel()
           : VoucherInfoModel.fromJson(
@@ -47,6 +51,7 @@ Map<String, dynamic> _$$ScheduleDetailModelImplToJson(
       'scheduleStatus': instance.scheduleStatus,
       'scheduleType': instance.scheduleType,
       'userInfoDto': instance.userInfoDto,
+      'groupClients': instance.groupClients,
       'voucherInfoDto': instance.voucherInfoDto,
       'totalNumberOfTime': instance.totalNumberOfTime,
       'leftNumberOfTime': instance.leftNumberOfTime,

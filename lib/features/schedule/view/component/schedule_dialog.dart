@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
+import 'package:ssentif_manager_web/core/utils/ext.dart';
 import 'package:ssentif_manager_web/features/schedule/domain/enumtype/schedule_status_type.dart';
+import 'package:ssentif_manager_web/shared/domain/entity/user_info_entity.dart';
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/widgets/clickable_text.dart';
 import '../../../../gen/assets.gen.dart';
@@ -62,6 +64,7 @@ class ScheduleDialog extends Dialog {
               statusText: Intl.message(
                   scheduleDetail.scheduleStatusType?.findScheduleDetailStringKey() ?? ""
               ),
+              groupClients: scheduleDetail.groupClients,
               userName: scheduleDetail.scheduleStatusType == ScheduleStatusType.trainerEtcSchedule
                   ? "${scheduleDetail.userInfo.userName} 코치님"
                   : "${scheduleDetail.userInfo.userName} 회원님",
@@ -122,6 +125,7 @@ class ScheduleDialogHeader extends StatelessWidget {
   final Color backgroundColor;
   final String statusText;
   final String userName;
+  final List<UserInfoEntity> groupClients;
   final Function()? onClickProfile;
 
 
@@ -130,6 +134,7 @@ class ScheduleDialogHeader extends StatelessWidget {
     required this.backgroundColor,
     required this.statusText,
     required this.userName,
+    required this.groupClients,
     this.onClickProfile
   });
 
@@ -181,12 +186,17 @@ class ScheduleDialogHeader extends StatelessWidget {
               child: Row(
                 children: [
                   Text(
-                      userName,
+                      groupClients.isNotEmpty
+                          ? groupClients.getScheduleName(context)
+                          : userName,
                       style: SsentifTextStyles.bold18.copyWith(color: AppColors.white)
                   ),
                   const Padding(padding: EdgeInsets.only(right: 5)),
-                  Image.asset(
-                      Assets.images.icUserProfile.path
+                  Visibility(
+                    visible: groupClients.isEmpty,
+                    child: Image.asset(
+                        Assets.images.icUserProfile.path
+                    ),
                   ),
                 ],
               ),

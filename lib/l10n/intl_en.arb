@@ -446,5 +446,18 @@
   "employee" : "Employee",
   "freelancer" : "Freelancer",
   "manage_staff" : "Employee Management",
-  "manage_staff_description" : "View each coach’s member management at a glance."
+  "manage_staff_description" : "View each coach’s member management at a glance.",
+  "schedule_name_with_others" : "{firstName} & {count} others",
+  "@schedule_name_with_others" : {
+    "placeholders" : {
+      "firstName" : {
+        "type": "String",
+        "example": "John"
+      },
+      "count" : {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  }
 }
