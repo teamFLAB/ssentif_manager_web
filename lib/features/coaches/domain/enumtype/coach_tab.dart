@@ -1,7 +1,7 @@
 enum CoachTab {
   managedMembers,
-  monthlyStatistics,
-  sales;
+  monthlyStatistics;
+  // sales;
 }
 
 extension CoachTabExtension on CoachTab {
@@ -11,8 +11,8 @@ extension CoachTabExtension on CoachTab {
         return '관리중인 회원 목록';
       case CoachTab.monthlyStatistics:
         return '월별 통계';
-      case CoachTab.sales:
-        return '수강권 매출 (준비중)';
+      // case CoachTab.sales:
+      //   return '수강권 매출 (준비중)';
     }
   }
 }

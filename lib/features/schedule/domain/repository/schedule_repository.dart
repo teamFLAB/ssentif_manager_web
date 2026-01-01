@@ -24,9 +24,11 @@ final scheduleRepositoryProvider = Provider<ScheduleRepository>((ref) {
   final apiService = ref.read(apiServiceProvider);
   final scheduleMapper = ref.read(scheduleMapperProvider);
   final scheduleDetailMapper = ref.read(scheduleDetailMapperProvider);
+  final scheduleDetailHasRoutineMapper = ref.read(scheduleDetailHasRoutineMapperProvider);
   return ScheduleRepositoryImpl(
       apiService: apiService,
       scheduleMapper: scheduleMapper,
-      scheduleDetailMapper: scheduleDetailMapper
+      scheduleDetailMapper: scheduleDetailMapper,
+      scheduleDetailHasRoutineMapper :scheduleDetailHasRoutineMapper
   );
 });

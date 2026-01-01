@@ -22,7 +22,8 @@ TrainerWithScheduleModel _$TrainerWithScheduleModelFromJson(
 /// @nodoc
 mixin _$TrainerWithScheduleModel {
   UserProfileModel get trainer => throw _privateConstructorUsedError;
-  List<ScheduleDetailModel> get schedules => throw _privateConstructorUsedError;
+  List<ScheduleDetailHasRoutineModel>? get schedules =>
+      throw _privateConstructorUsedError;
 
   /// Serializes this TrainerWithScheduleModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -40,7 +41,9 @@ abstract class $TrainerWithScheduleModelCopyWith<$Res> {
           $Res Function(TrainerWithScheduleModel) then) =
       _$TrainerWithScheduleModelCopyWithImpl<$Res, TrainerWithScheduleModel>;
   @useResult
-  $Res call({UserProfileModel trainer, List<ScheduleDetailModel> schedules});
+  $Res call(
+      {UserProfileModel trainer,
+      List<ScheduleDetailHasRoutineModel>? schedules});
 
   $UserProfileModelCopyWith<$Res> get trainer;
 }
@@ -62,17 +65,17 @@ class _$TrainerWithScheduleModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? trainer = null,
-    Object? schedules = null,
+    Object? schedules = freezed,
   }) {
     return _then(_value.copyWith(
       trainer: null == trainer
           ? _value.trainer
           : trainer // ignore: cast_nullable_to_non_nullable
               as UserProfileModel,
-      schedules: null == schedules
+      schedules: freezed == schedules
           ? _value.schedules
           : schedules // ignore: cast_nullable_to_non_nullable
-              as List<ScheduleDetailModel>,
+              as List<ScheduleDetailHasRoutineModel>?,
     ) as $Val);
   }
 
@@ -96,7 +99,9 @@ abstract class _$$TrainerWithScheduleModelImplCopyWith<$Res>
       __$$TrainerWithScheduleModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserProfileModel trainer, List<ScheduleDetailModel> schedules});
+  $Res call(
+      {UserProfileModel trainer,
+      List<ScheduleDetailHasRoutineModel>? schedules});
 
   @override
   $UserProfileModelCopyWith<$Res> get trainer;
@@ -118,17 +123,17 @@ class __$$TrainerWithScheduleModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? trainer = null,
-    Object? schedules = null,
+    Object? schedules = freezed,
   }) {
     return _then(_$TrainerWithScheduleModelImpl(
       trainer: null == trainer
           ? _value.trainer
           : trainer // ignore: cast_nullable_to_non_nullable
               as UserProfileModel,
-      schedules: null == schedules
+      schedules: freezed == schedules
           ? _value._schedules
           : schedules // ignore: cast_nullable_to_non_nullable
-              as List<ScheduleDetailModel>,
+              as List<ScheduleDetailHasRoutineModel>?,
     ));
   }
 }
@@ -138,7 +143,7 @@ class __$$TrainerWithScheduleModelImplCopyWithImpl<$Res>
 class _$TrainerWithScheduleModelImpl implements _TrainerWithScheduleModel {
   const _$TrainerWithScheduleModelImpl(
       {required this.trainer,
-      final List<ScheduleDetailModel> schedules = const []})
+      required final List<ScheduleDetailHasRoutineModel>? schedules})
       : _schedules = schedules;
 
   factory _$TrainerWithScheduleModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -146,13 +151,14 @@ class _$TrainerWithScheduleModelImpl implements _TrainerWithScheduleModel {
 
   @override
   final UserProfileModel trainer;
-  final List<ScheduleDetailModel> _schedules;
+  final List<ScheduleDetailHasRoutineModel>? _schedules;
   @override
-  @JsonKey()
-  List<ScheduleDetailModel> get schedules {
+  List<ScheduleDetailHasRoutineModel>? get schedules {
+    final value = _schedules;
+    if (value == null) return null;
     if (_schedules is EqualUnmodifiableListView) return _schedules;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_schedules);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -195,7 +201,7 @@ class _$TrainerWithScheduleModelImpl implements _TrainerWithScheduleModel {
 abstract class _TrainerWithScheduleModel implements TrainerWithScheduleModel {
   const factory _TrainerWithScheduleModel(
           {required final UserProfileModel trainer,
-          final List<ScheduleDetailModel> schedules}) =
+          required final List<ScheduleDetailHasRoutineModel>? schedules}) =
       _$TrainerWithScheduleModelImpl;
 
   factory _TrainerWithScheduleModel.fromJson(Map<String, dynamic> json) =
@@ -204,7 +210,7 @@ abstract class _TrainerWithScheduleModel implements TrainerWithScheduleModel {
   @override
   UserProfileModel get trainer;
   @override
-  List<ScheduleDetailModel> get schedules;
+  List<ScheduleDetailHasRoutineModel>? get schedules;
 
   /// Create a copy of TrainerWithScheduleModel
   /// with the given fields replaced by the non-null parameter values.

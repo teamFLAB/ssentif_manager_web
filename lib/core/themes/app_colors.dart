@@ -44,4 +44,13 @@ class AppColors {
   static const backgroundTabSelected = Color(0xFFE4F4F2);
   static const backgroundTabSelectedText = Color(0xFF0E5E72);
   static const green1899 = Color(0xFF189997);
+
+  static const classCountBg = Color(0x268acde2);
+  static const routineRatioBg = Color(0x26fd7683);
+  static const reenrollmentBg = Color(0x2679d794);
+  static const satisfactionBg = Color(0x26f8c35f);
+
+  // 신규등록 지표 색상
+  static const newlyRegistrationSelected = Color(0xFFFF9F4A);
+  static const newlyRegistrationBg = Color(0x26FF9F4A);
 }

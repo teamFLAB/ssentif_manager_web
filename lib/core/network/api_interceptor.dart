@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'dart:html' as html;
 
 import '../storage/storage_manager.dart';
 

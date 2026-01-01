@@ -16,7 +16,7 @@ class GetCompletedSchedulesUseCase {
 
   GetCompletedSchedulesUseCase({required this.dashboardRepository});
 
-  Future<ApiStatusEntity<List<TrainerWithScheduleEntity>>> call({
+  Future<ApiStatusEntity<TrainerSchedulesWithPrevMonthEntity>> call({
     required int workplaceId,
     required String yearMonth,
   }) {

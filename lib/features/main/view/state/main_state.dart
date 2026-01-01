@@ -8,7 +8,7 @@ class MainState {
 
   MainState({
     this.gymName = 'SSENTIF GYM',
-    this.selectedSection = NavigationSectionType.schedule,
+    this.selectedSection = NavigationSectionType.dashBoard,
     required this.coaches
   });
 

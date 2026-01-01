@@ -16,27 +16,33 @@ class DashboardStatCardsRow extends ConsumerWidget {
       child: Row(
         children: [
           DashboardStatCard(
+            statType: DashboardStatType.newlyRegistration,
+            value: state.statValues.newlyRegistration,
+            mom: state.statMoms.newlyRegistration,
+          ),
+          const SizedBox(width: 12),
+          DashboardStatCard(
+            statType: DashboardStatType.reenrollment,
+            value: state.statValues.reenrollmentRate,
+            mom: state.statMoms.reenrollmentRate,
+          ),
+          const SizedBox(width: 12),
+          DashboardStatCard(
             statType: DashboardStatType.totalClassCount,
-            value: state.statValues[DashboardStatType.totalClassCount] ?? '0',
-            mom: state.statMoms[DashboardStatType.totalClassCount] ?? 0.0,
+            value: state.statValues.totalClassCount,
+            mom: state.statMoms.totalClassCount,
           ),
           const SizedBox(width: 12),
           DashboardStatCard(
             statType: DashboardStatType.recordWritingRate,
-            value: state.statValues[DashboardStatType.recordWritingRate] ?? '0',
-            mom: state.statMoms[DashboardStatType.recordWritingRate] ?? 0.0,
-          ),
-          const SizedBox(width: 12),
-          DashboardStatCard(
-            statType: DashboardStatType.reenrollmentRate,
-            value: state.statValues[DashboardStatType.reenrollmentRate] ?? '0',
-            mom: state.statMoms[DashboardStatType.reenrollmentRate] ?? 0.0,
+            value: state.statValues.recordWritingRate,
+            mom: state.statMoms.recordWritingRate,
           ),
           const SizedBox(width: 12),
           DashboardStatCard(
             statType: DashboardStatType.customerSatisfaction,
-            value: state.statValues[DashboardStatType.customerSatisfaction] ?? '0',
-            mom: state.statMoms[DashboardStatType.customerSatisfaction] ?? 0.0,
+            value: state.statValues.customerSatisfaction,
+            mom: state.statMoms.customerSatisfaction,
           ),
         ],
       ),

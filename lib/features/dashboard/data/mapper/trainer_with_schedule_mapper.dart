@@ -8,21 +8,21 @@ import 'package:ssentif_manager_web/shared/data/mapper/user_profile_mapper.dart'
 final trainerWithScheduleMapperProvider =
     Provider<TrainerWithScheduleMapper>((ref) {
   final userProfileMapper = ref.read(userProfileMapperProvider);
-  final scheduleDetailMapper = ref.read(scheduleDetailMapperProvider);
+  final scheduleDetailHasRoutineMapper = ref.read(scheduleDetailHasRoutineMapperProvider);
   return TrainerWithScheduleMapper(
     userProfileMapper: userProfileMapper,
-    scheduleDetailMapper: scheduleDetailMapper,
+    scheduleDetailHasRoutineMapper: scheduleDetailHasRoutineMapper,
   );
 });
 
 class TrainerWithScheduleMapper
     extends BaseMapper<TrainerWithScheduleModel, TrainerWithScheduleEntity> {
   final UserProfileMapper userProfileMapper;
-  final ScheduleDetailMapper scheduleDetailMapper;
+  final ScheduleDetailHasRoutineMapper scheduleDetailHasRoutineMapper;
 
   TrainerWithScheduleMapper({
     required this.userProfileMapper,
-    required this.scheduleDetailMapper,
+    required this.scheduleDetailHasRoutineMapper
   });
 
   @override
@@ -30,8 +30,8 @@ class TrainerWithScheduleMapper
     return TrainerWithScheduleEntity(
       trainer: userProfileMapper.map(data.trainer),
       schedules: data.schedules
-          .map((schedule) => scheduleDetailMapper.map(schedule))
-          .toList(),
+          ?.map((schedule) => scheduleDetailHasRoutineMapper.map(schedule))
+          .toList() ?? [],
     );
   }
 }

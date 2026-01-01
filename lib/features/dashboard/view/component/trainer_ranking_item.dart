@@ -7,13 +7,15 @@ import 'package:ssentif_manager_web/shared/domain/entity/user_entity.dart';
 class TrainerRankingItem extends StatelessWidget {
   final UserEntity trainer;
   final int count;
-  final Color backgroundColor;
+  final Color? backgroundColor;
+  final String suffix;
 
   const TrainerRankingItem({
     super.key,
     required this.trainer,
     required this.count,
-    required this.backgroundColor,
+    this.backgroundColor,
+    this.suffix = "건"
   });
 
   @override
@@ -25,7 +27,7 @@ class TrainerRankingItem extends StatelessWidget {
         vertical: 6,
       ),
       decoration: BoxDecoration(
-        color: backgroundColor,
+        color: backgroundColor ?? Colors.transparent,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
@@ -44,7 +46,7 @@ class TrainerRankingItem extends StatelessWidget {
             ),
           ),
           Text(
-            '$count건',
+            '$count$suffix',
             style: SsentifTextStyles.medium14.copyWith(
               color: AppColors.black,
             ),

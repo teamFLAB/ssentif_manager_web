@@ -7,6 +7,10 @@ extension CustomDateUtils on DateTime {
     return DateFormat('yyyy년 MM월', 'ko').format(this);
   }
 
+  String formatYearMonthHyphen() {
+    return DateFormat('yyyy-MM').format(this);
+  }
+
   String formatDotYMDWithWeekday() {
     return DateFormat('yyyy . MM . dd (E)', 'ko').format(this);
   }

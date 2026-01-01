@@ -15,6 +15,7 @@ import 'package:ssentif_manager_web/features/coaches/view/intent/managed_members
 import 'package:ssentif_manager_web/shared/enumtype/client_calendar_event_type.dart';
 import 'type_count_widget.dart';
 import 'monthly_calendar_widget.dart';
+import 'daily_records_dialog.dart';
 import '../../../../gen/assets.gen.dart';
 
 class ClientDetailWidget extends ConsumerWidget {
@@ -249,7 +250,14 @@ class ClientDetailWidget extends ConsumerWidget {
                       selectedMonth: selectedMonth,
                       eventsByDate: _getEventsFromCalendar(),
                       onDayTap: (date) {
-                        print('Selected date: $date');
+                        if (clientInfo != null) {
+                          DailyRecordsDialog.show(
+                            context,
+                            selectedDate: date,
+                            clientId: clientInfo!.clientId,
+                            events: clientCalendar?.events ?? [],
+                          );
+                        }
                       },
                     ),
                   ],

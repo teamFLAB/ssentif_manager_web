@@ -93,7 +93,12 @@ class DashboardStatCard extends StatelessWidget {
                         ),
                         const SizedBox(width: 4),
                         Text(
-                          '${mom.abs().toStringAsFixed(1)}%',
+                          statType == DashboardStatType.totalClassCount ||
+                                  statType == DashboardStatType.reenrollment ||
+                                  statType ==
+                                      DashboardStatType.newlyRegistration
+                              ? '${mom.abs().toInt()}${statType.unit}'
+                              : '${mom.abs().toStringAsFixed(1)}${statType.unit}',
                           style: SsentifTextStyles.medium12.copyWith(
                             color: momColor,
                           ),

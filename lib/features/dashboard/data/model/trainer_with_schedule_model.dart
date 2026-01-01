@@ -9,7 +9,7 @@ part 'trainer_with_schedule_model.g.dart';
 class TrainerWithScheduleModel with _$TrainerWithScheduleModel {
   const factory TrainerWithScheduleModel({
     required UserProfileModel trainer,
-    @Default([]) List<ScheduleDetailModel> schedules,
+    required List<ScheduleDetailHasRoutineModel>? schedules,
   }) = _TrainerWithScheduleModel;
 
   factory TrainerWithScheduleModel.fromJson(Map<String, dynamic> json) =>

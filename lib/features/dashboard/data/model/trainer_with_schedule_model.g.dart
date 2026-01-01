@@ -12,10 +12,9 @@ _$TrainerWithScheduleModelImpl _$$TrainerWithScheduleModelImplFromJson(
       trainer:
           UserProfileModel.fromJson(json['trainer'] as Map<String, dynamic>),
       schedules: (json['schedules'] as List<dynamic>?)
-              ?.map((e) =>
-                  ScheduleDetailModel.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
+          ?.map((e) =>
+              ScheduleDetailHasRoutineModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$TrainerWithScheduleModelImplToJson(

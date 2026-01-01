@@ -604,6 +604,632 @@ abstract class _ScheduleDetailModel implements ScheduleDetailModel {
       throw _privateConstructorUsedError;
 }
 
+ScheduleDetailHasRoutineModel _$ScheduleDetailHasRoutineModelFromJson(
+    Map<String, dynamic> json) {
+  return _ScheduleDetailHasRoutineModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ScheduleDetailHasRoutineModel {
+  int get scheduleId => throw _privateConstructorUsedError;
+  String get scheduleStartDateTime => throw _privateConstructorUsedError;
+  String get scheduleEndDateTime => throw _privateConstructorUsedError;
+  int get timeRequired => throw _privateConstructorUsedError;
+  String get scheduleTitle => throw _privateConstructorUsedError;
+  String get scheduleMemo => throw _privateConstructorUsedError;
+  String get scheduleStatus => throw _privateConstructorUsedError;
+  String get scheduleType => throw _privateConstructorUsedError;
+  UserInfoModel get userInfoDto => throw _privateConstructorUsedError;
+  List<UserInfoModel> get groupClients => throw _privateConstructorUsedError;
+  VoucherInfoModel get voucherInfoDto => throw _privateConstructorUsedError;
+  int get totalNumberOfTime => throw _privateConstructorUsedError;
+  int get leftNumberOfTime => throw _privateConstructorUsedError;
+  String get schedulePrecautions => throw _privateConstructorUsedError;
+  int get classInfoId => throw _privateConstructorUsedError;
+  List<String> get weeks => throw _privateConstructorUsedError;
+  int get voucherMatchingId => throw _privateConstructorUsedError;
+  String get repeatName => throw _privateConstructorUsedError;
+  bool get hasExercise => throw _privateConstructorUsedError;
+
+  /// Serializes this ScheduleDetailHasRoutineModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of ScheduleDetailHasRoutineModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $ScheduleDetailHasRoutineModelCopyWith<ScheduleDetailHasRoutineModel>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ScheduleDetailHasRoutineModelCopyWith<$Res> {
+  factory $ScheduleDetailHasRoutineModelCopyWith(
+          ScheduleDetailHasRoutineModel value,
+          $Res Function(ScheduleDetailHasRoutineModel) then) =
+      _$ScheduleDetailHasRoutineModelCopyWithImpl<$Res,
+          ScheduleDetailHasRoutineModel>;
+  @useResult
+  $Res call(
+      {int scheduleId,
+      String scheduleStartDateTime,
+      String scheduleEndDateTime,
+      int timeRequired,
+      String scheduleTitle,
+      String scheduleMemo,
+      String scheduleStatus,
+      String scheduleType,
+      UserInfoModel userInfoDto,
+      List<UserInfoModel> groupClients,
+      VoucherInfoModel voucherInfoDto,
+      int totalNumberOfTime,
+      int leftNumberOfTime,
+      String schedulePrecautions,
+      int classInfoId,
+      List<String> weeks,
+      int voucherMatchingId,
+      String repeatName,
+      bool hasExercise});
+
+  $UserInfoModelCopyWith<$Res> get userInfoDto;
+  $VoucherInfoModelCopyWith<$Res> get voucherInfoDto;
+}
+
+/// @nodoc
+class _$ScheduleDetailHasRoutineModelCopyWithImpl<$Res,
+        $Val extends ScheduleDetailHasRoutineModel>
+    implements $ScheduleDetailHasRoutineModelCopyWith<$Res> {
+  _$ScheduleDetailHasRoutineModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of ScheduleDetailHasRoutineModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? scheduleId = null,
+    Object? scheduleStartDateTime = null,
+    Object? scheduleEndDateTime = null,
+    Object? timeRequired = null,
+    Object? scheduleTitle = null,
+    Object? scheduleMemo = null,
+    Object? scheduleStatus = null,
+    Object? scheduleType = null,
+    Object? userInfoDto = null,
+    Object? groupClients = null,
+    Object? voucherInfoDto = null,
+    Object? totalNumberOfTime = null,
+    Object? leftNumberOfTime = null,
+    Object? schedulePrecautions = null,
+    Object? classInfoId = null,
+    Object? weeks = null,
+    Object? voucherMatchingId = null,
+    Object? repeatName = null,
+    Object? hasExercise = null,
+  }) {
+    return _then(_value.copyWith(
+      scheduleId: null == scheduleId
+          ? _value.scheduleId
+          : scheduleId // ignore: cast_nullable_to_non_nullable
+              as int,
+      scheduleStartDateTime: null == scheduleStartDateTime
+          ? _value.scheduleStartDateTime
+          : scheduleStartDateTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      scheduleEndDateTime: null == scheduleEndDateTime
+          ? _value.scheduleEndDateTime
+          : scheduleEndDateTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      timeRequired: null == timeRequired
+          ? _value.timeRequired
+          : timeRequired // ignore: cast_nullable_to_non_nullable
+              as int,
+      scheduleTitle: null == scheduleTitle
+          ? _value.scheduleTitle
+          : scheduleTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      scheduleMemo: null == scheduleMemo
+          ? _value.scheduleMemo
+          : scheduleMemo // ignore: cast_nullable_to_non_nullable
+              as String,
+      scheduleStatus: null == scheduleStatus
+          ? _value.scheduleStatus
+          : scheduleStatus // ignore: cast_nullable_to_non_nullable
+              as String,
+      scheduleType: null == scheduleType
+          ? _value.scheduleType
+          : scheduleType // ignore: cast_nullable_to_non_nullable
+              as String,
+      userInfoDto: null == userInfoDto
+          ? _value.userInfoDto
+          : userInfoDto // ignore: cast_nullable_to_non_nullable
+              as UserInfoModel,
+      groupClients: null == groupClients
+          ? _value.groupClients
+          : groupClients // ignore: cast_nullable_to_non_nullable
+              as List<UserInfoModel>,
+      voucherInfoDto: null == voucherInfoDto
+          ? _value.voucherInfoDto
+          : voucherInfoDto // ignore: cast_nullable_to_non_nullable
+              as VoucherInfoModel,
+      totalNumberOfTime: null == totalNumberOfTime
+          ? _value.totalNumberOfTime
+          : totalNumberOfTime // ignore: cast_nullable_to_non_nullable
+              as int,
+      leftNumberOfTime: null == leftNumberOfTime
+          ? _value.leftNumberOfTime
+          : leftNumberOfTime // ignore: cast_nullable_to_non_nullable
+              as int,
+      schedulePrecautions: null == schedulePrecautions
+          ? _value.schedulePrecautions
+          : schedulePrecautions // ignore: cast_nullable_to_non_nullable
+              as String,
+      classInfoId: null == classInfoId
+          ? _value.classInfoId
+          : classInfoId // ignore: cast_nullable_to_non_nullable
+              as int,
+      weeks: null == weeks
+          ? _value.weeks
+          : weeks // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      voucherMatchingId: null == voucherMatchingId
+          ? _value.voucherMatchingId
+          : voucherMatchingId // ignore: cast_nullable_to_non_nullable
+              as int,
+      repeatName: null == repeatName
+          ? _value.repeatName
+          : repeatName // ignore: cast_nullable_to_non_nullable
+              as String,
+      hasExercise: null == hasExercise
+          ? _value.hasExercise
+          : hasExercise // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+
+  /// Create a copy of ScheduleDetailHasRoutineModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserInfoModelCopyWith<$Res> get userInfoDto {
+    return $UserInfoModelCopyWith<$Res>(_value.userInfoDto, (value) {
+      return _then(_value.copyWith(userInfoDto: value) as $Val);
+    });
+  }
+
+  /// Create a copy of ScheduleDetailHasRoutineModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $VoucherInfoModelCopyWith<$Res> get voucherInfoDto {
+    return $VoucherInfoModelCopyWith<$Res>(_value.voucherInfoDto, (value) {
+      return _then(_value.copyWith(voucherInfoDto: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$ScheduleDetailHasRoutineModelImplCopyWith<$Res>
+    implements $ScheduleDetailHasRoutineModelCopyWith<$Res> {
+  factory _$$ScheduleDetailHasRoutineModelImplCopyWith(
+          _$ScheduleDetailHasRoutineModelImpl value,
+          $Res Function(_$ScheduleDetailHasRoutineModelImpl) then) =
+      __$$ScheduleDetailHasRoutineModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {int scheduleId,
+      String scheduleStartDateTime,
+      String scheduleEndDateTime,
+      int timeRequired,
+      String scheduleTitle,
+      String scheduleMemo,
+      String scheduleStatus,
+      String scheduleType,
+      UserInfoModel userInfoDto,
+      List<UserInfoModel> groupClients,
+      VoucherInfoModel voucherInfoDto,
+      int totalNumberOfTime,
+      int leftNumberOfTime,
+      String schedulePrecautions,
+      int classInfoId,
+      List<String> weeks,
+      int voucherMatchingId,
+      String repeatName,
+      bool hasExercise});
+
+  @override
+  $UserInfoModelCopyWith<$Res> get userInfoDto;
+  @override
+  $VoucherInfoModelCopyWith<$Res> get voucherInfoDto;
+}
+
+/// @nodoc
+class __$$ScheduleDetailHasRoutineModelImplCopyWithImpl<$Res>
+    extends _$ScheduleDetailHasRoutineModelCopyWithImpl<$Res,
+        _$ScheduleDetailHasRoutineModelImpl>
+    implements _$$ScheduleDetailHasRoutineModelImplCopyWith<$Res> {
+  __$$ScheduleDetailHasRoutineModelImplCopyWithImpl(
+      _$ScheduleDetailHasRoutineModelImpl _value,
+      $Res Function(_$ScheduleDetailHasRoutineModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of ScheduleDetailHasRoutineModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? scheduleId = null,
+    Object? scheduleStartDateTime = null,
+    Object? scheduleEndDateTime = null,
+    Object? timeRequired = null,
+    Object? scheduleTitle = null,
+    Object? scheduleMemo = null,
+    Object? scheduleStatus = null,
+    Object? scheduleType = null,
+    Object? userInfoDto = null,
+    Object? groupClients = null,
+    Object? voucherInfoDto = null,
+    Object? totalNumberOfTime = null,
+    Object? leftNumberOfTime = null,
+    Object? schedulePrecautions = null,
+    Object? classInfoId = null,
+    Object? weeks = null,
+    Object? voucherMatchingId = null,
+    Object? repeatName = null,
+    Object? hasExercise = null,
+  }) {
+    return _then(_$ScheduleDetailHasRoutineModelImpl(
+      scheduleId: null == scheduleId
+          ? _value.scheduleId
+          : scheduleId // ignore: cast_nullable_to_non_nullable
+              as int,
+      scheduleStartDateTime: null == scheduleStartDateTime
+          ? _value.scheduleStartDateTime
+          : scheduleStartDateTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      scheduleEndDateTime: null == scheduleEndDateTime
+          ? _value.scheduleEndDateTime
+          : scheduleEndDateTime // ignore: cast_nullable_to_non_nullable
+              as String,
+      timeRequired: null == timeRequired
+          ? _value.timeRequired
+          : timeRequired // ignore: cast_nullable_to_non_nullable
+              as int,
+      scheduleTitle: null == scheduleTitle
+          ? _value.scheduleTitle
+          : scheduleTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      scheduleMemo: null == scheduleMemo
+          ? _value.scheduleMemo
+          : scheduleMemo // ignore: cast_nullable_to_non_nullable
+              as String,
+      scheduleStatus: null == scheduleStatus
+          ? _value.scheduleStatus
+          : scheduleStatus // ignore: cast_nullable_to_non_nullable
+              as String,
+      scheduleType: null == scheduleType
+          ? _value.scheduleType
+          : scheduleType // ignore: cast_nullable_to_non_nullable
+              as String,
+      userInfoDto: null == userInfoDto
+          ? _value.userInfoDto
+          : userInfoDto // ignore: cast_nullable_to_non_nullable
+              as UserInfoModel,
+      groupClients: null == groupClients
+          ? _value._groupClients
+          : groupClients // ignore: cast_nullable_to_non_nullable
+              as List<UserInfoModel>,
+      voucherInfoDto: null == voucherInfoDto
+          ? _value.voucherInfoDto
+          : voucherInfoDto // ignore: cast_nullable_to_non_nullable
+              as VoucherInfoModel,
+      totalNumberOfTime: null == totalNumberOfTime
+          ? _value.totalNumberOfTime
+          : totalNumberOfTime // ignore: cast_nullable_to_non_nullable
+              as int,
+      leftNumberOfTime: null == leftNumberOfTime
+          ? _value.leftNumberOfTime
+          : leftNumberOfTime // ignore: cast_nullable_to_non_nullable
+              as int,
+      schedulePrecautions: null == schedulePrecautions
+          ? _value.schedulePrecautions
+          : schedulePrecautions // ignore: cast_nullable_to_non_nullable
+              as String,
+      classInfoId: null == classInfoId
+          ? _value.classInfoId
+          : classInfoId // ignore: cast_nullable_to_non_nullable
+              as int,
+      weeks: null == weeks
+          ? _value._weeks
+          : weeks // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      voucherMatchingId: null == voucherMatchingId
+          ? _value.voucherMatchingId
+          : voucherMatchingId // ignore: cast_nullable_to_non_nullable
+              as int,
+      repeatName: null == repeatName
+          ? _value.repeatName
+          : repeatName // ignore: cast_nullable_to_non_nullable
+              as String,
+      hasExercise: null == hasExercise
+          ? _value.hasExercise
+          : hasExercise // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$ScheduleDetailHasRoutineModelImpl
+    implements _ScheduleDetailHasRoutineModel {
+  _$ScheduleDetailHasRoutineModelImpl(
+      {this.scheduleId = -1,
+      this.scheduleStartDateTime = "",
+      this.scheduleEndDateTime = "",
+      this.timeRequired = -1,
+      this.scheduleTitle = "",
+      this.scheduleMemo = "",
+      this.scheduleStatus = "",
+      this.scheduleType = "",
+      this.userInfoDto = const UserInfoModel(),
+      final List<UserInfoModel> groupClients = const [],
+      this.voucherInfoDto = const VoucherInfoModel(),
+      this.totalNumberOfTime = -1,
+      this.leftNumberOfTime = -1,
+      this.schedulePrecautions = "",
+      this.classInfoId = -1,
+      final List<String> weeks = const [],
+      this.voucherMatchingId = -1,
+      this.repeatName = "",
+      this.hasExercise = false})
+      : _groupClients = groupClients,
+        _weeks = weeks;
+
+  factory _$ScheduleDetailHasRoutineModelImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$ScheduleDetailHasRoutineModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final int scheduleId;
+  @override
+  @JsonKey()
+  final String scheduleStartDateTime;
+  @override
+  @JsonKey()
+  final String scheduleEndDateTime;
+  @override
+  @JsonKey()
+  final int timeRequired;
+  @override
+  @JsonKey()
+  final String scheduleTitle;
+  @override
+  @JsonKey()
+  final String scheduleMemo;
+  @override
+  @JsonKey()
+  final String scheduleStatus;
+  @override
+  @JsonKey()
+  final String scheduleType;
+  @override
+  @JsonKey()
+  final UserInfoModel userInfoDto;
+  final List<UserInfoModel> _groupClients;
+  @override
+  @JsonKey()
+  List<UserInfoModel> get groupClients {
+    if (_groupClients is EqualUnmodifiableListView) return _groupClients;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_groupClients);
+  }
+
+  @override
+  @JsonKey()
+  final VoucherInfoModel voucherInfoDto;
+  @override
+  @JsonKey()
+  final int totalNumberOfTime;
+  @override
+  @JsonKey()
+  final int leftNumberOfTime;
+  @override
+  @JsonKey()
+  final String schedulePrecautions;
+  @override
+  @JsonKey()
+  final int classInfoId;
+  final List<String> _weeks;
+  @override
+  @JsonKey()
+  List<String> get weeks {
+    if (_weeks is EqualUnmodifiableListView) return _weeks;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_weeks);
+  }
+
+  @override
+  @JsonKey()
+  final int voucherMatchingId;
+  @override
+  @JsonKey()
+  final String repeatName;
+  @override
+  @JsonKey()
+  final bool hasExercise;
+
+  @override
+  String toString() {
+    return 'ScheduleDetailHasRoutineModel(scheduleId: $scheduleId, scheduleStartDateTime: $scheduleStartDateTime, scheduleEndDateTime: $scheduleEndDateTime, timeRequired: $timeRequired, scheduleTitle: $scheduleTitle, scheduleMemo: $scheduleMemo, scheduleStatus: $scheduleStatus, scheduleType: $scheduleType, userInfoDto: $userInfoDto, groupClients: $groupClients, voucherInfoDto: $voucherInfoDto, totalNumberOfTime: $totalNumberOfTime, leftNumberOfTime: $leftNumberOfTime, schedulePrecautions: $schedulePrecautions, classInfoId: $classInfoId, weeks: $weeks, voucherMatchingId: $voucherMatchingId, repeatName: $repeatName, hasExercise: $hasExercise)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ScheduleDetailHasRoutineModelImpl &&
+            (identical(other.scheduleId, scheduleId) ||
+                other.scheduleId == scheduleId) &&
+            (identical(other.scheduleStartDateTime, scheduleStartDateTime) ||
+                other.scheduleStartDateTime == scheduleStartDateTime) &&
+            (identical(other.scheduleEndDateTime, scheduleEndDateTime) ||
+                other.scheduleEndDateTime == scheduleEndDateTime) &&
+            (identical(other.timeRequired, timeRequired) ||
+                other.timeRequired == timeRequired) &&
+            (identical(other.scheduleTitle, scheduleTitle) ||
+                other.scheduleTitle == scheduleTitle) &&
+            (identical(other.scheduleMemo, scheduleMemo) ||
+                other.scheduleMemo == scheduleMemo) &&
+            (identical(other.scheduleStatus, scheduleStatus) ||
+                other.scheduleStatus == scheduleStatus) &&
+            (identical(other.scheduleType, scheduleType) ||
+                other.scheduleType == scheduleType) &&
+            (identical(other.userInfoDto, userInfoDto) ||
+                other.userInfoDto == userInfoDto) &&
+            const DeepCollectionEquality()
+                .equals(other._groupClients, _groupClients) &&
+            (identical(other.voucherInfoDto, voucherInfoDto) ||
+                other.voucherInfoDto == voucherInfoDto) &&
+            (identical(other.totalNumberOfTime, totalNumberOfTime) ||
+                other.totalNumberOfTime == totalNumberOfTime) &&
+            (identical(other.leftNumberOfTime, leftNumberOfTime) ||
+                other.leftNumberOfTime == leftNumberOfTime) &&
+            (identical(other.schedulePrecautions, schedulePrecautions) ||
+                other.schedulePrecautions == schedulePrecautions) &&
+            (identical(other.classInfoId, classInfoId) ||
+                other.classInfoId == classInfoId) &&
+            const DeepCollectionEquality().equals(other._weeks, _weeks) &&
+            (identical(other.voucherMatchingId, voucherMatchingId) ||
+                other.voucherMatchingId == voucherMatchingId) &&
+            (identical(other.repeatName, repeatName) ||
+                other.repeatName == repeatName) &&
+            (identical(other.hasExercise, hasExercise) ||
+                other.hasExercise == hasExercise));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        scheduleId,
+        scheduleStartDateTime,
+        scheduleEndDateTime,
+        timeRequired,
+        scheduleTitle,
+        scheduleMemo,
+        scheduleStatus,
+        scheduleType,
+        userInfoDto,
+        const DeepCollectionEquality().hash(_groupClients),
+        voucherInfoDto,
+        totalNumberOfTime,
+        leftNumberOfTime,
+        schedulePrecautions,
+        classInfoId,
+        const DeepCollectionEquality().hash(_weeks),
+        voucherMatchingId,
+        repeatName,
+        hasExercise
+      ]);
+
+  /// Create a copy of ScheduleDetailHasRoutineModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ScheduleDetailHasRoutineModelImplCopyWith<
+          _$ScheduleDetailHasRoutineModelImpl>
+      get copyWith => __$$ScheduleDetailHasRoutineModelImplCopyWithImpl<
+          _$ScheduleDetailHasRoutineModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$ScheduleDetailHasRoutineModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ScheduleDetailHasRoutineModel
+    implements ScheduleDetailHasRoutineModel {
+  factory _ScheduleDetailHasRoutineModel(
+      {final int scheduleId,
+      final String scheduleStartDateTime,
+      final String scheduleEndDateTime,
+      final int timeRequired,
+      final String scheduleTitle,
+      final String scheduleMemo,
+      final String scheduleStatus,
+      final String scheduleType,
+      final UserInfoModel userInfoDto,
+      final List<UserInfoModel> groupClients,
+      final VoucherInfoModel voucherInfoDto,
+      final int totalNumberOfTime,
+      final int leftNumberOfTime,
+      final String schedulePrecautions,
+      final int classInfoId,
+      final List<String> weeks,
+      final int voucherMatchingId,
+      final String repeatName,
+      final bool hasExercise}) = _$ScheduleDetailHasRoutineModelImpl;
+
+  factory _ScheduleDetailHasRoutineModel.fromJson(Map<String, dynamic> json) =
+      _$ScheduleDetailHasRoutineModelImpl.fromJson;
+
+  @override
+  int get scheduleId;
+  @override
+  String get scheduleStartDateTime;
+  @override
+  String get scheduleEndDateTime;
+  @override
+  int get timeRequired;
+  @override
+  String get scheduleTitle;
+  @override
+  String get scheduleMemo;
+  @override
+  String get scheduleStatus;
+  @override
+  String get scheduleType;
+  @override
+  UserInfoModel get userInfoDto;
+  @override
+  List<UserInfoModel> get groupClients;
+  @override
+  VoucherInfoModel get voucherInfoDto;
+  @override
+  int get totalNumberOfTime;
+  @override
+  int get leftNumberOfTime;
+  @override
+  String get schedulePrecautions;
+  @override
+  int get classInfoId;
+  @override
+  List<String> get weeks;
+  @override
+  int get voucherMatchingId;
+  @override
+  String get repeatName;
+  @override
+  bool get hasExercise;
+
+  /// Create a copy of ScheduleDetailHasRoutineModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$ScheduleDetailHasRoutineModelImplCopyWith<
+          _$ScheduleDetailHasRoutineModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
 VoucherInfoModel _$VoucherInfoModelFromJson(Map<String, dynamic> json) {
   return _VoucherInfoModel.fromJson(json);
 }

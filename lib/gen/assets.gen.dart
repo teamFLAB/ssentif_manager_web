@@ -131,6 +131,14 @@ class $AssetsImagesGen {
   AssetGenImage get icDelete =>
       const AssetGenImage('assets/images/ic_delete.png');
 
+  /// File path: assets/images/ic_filter_arrow.png
+  AssetGenImage get icFilterArrow =>
+      const AssetGenImage('assets/images/ic_filter_arrow.png');
+
+  /// File path: assets/images/ic_filter_calendar.png
+  AssetGenImage get icFilterCalendar =>
+      const AssetGenImage('assets/images/ic_filter_calendar.png');
+
   /// File path: assets/images/ic_index_circle.png
   AssetGenImage get icIndexCircle =>
       const AssetGenImage('assets/images/ic_index_circle.png');
@@ -142,6 +150,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/ic_month_unselected.png
   AssetGenImage get icMonthUnselected =>
       const AssetGenImage('assets/images/ic_month_unselected.png');
+
+  /// File path: assets/images/ic_newly_regist.png
+  AssetGenImage get icNewlyRegist =>
+      const AssetGenImage('assets/images/ic_newly_regist.png');
 
   /// File path: assets/images/ic_next_button.png
   AssetGenImage get icNextButton =>
@@ -210,6 +222,10 @@ class $AssetsImagesGen {
   /// File path: assets/images/ic_search_gray.png
   AssetGenImage get icSearchGray =>
       const AssetGenImage('assets/images/ic_search_gray.png');
+
+  /// File path: assets/images/ic_sort_satisfaction.png
+  AssetGenImage get icSortSatisfaction =>
+      const AssetGenImage('assets/images/ic_sort_satisfaction.png');
 
   /// File path: assets/images/ic_ssentif_profile.png
   AssetGenImage get icSsentifProfile =>
@@ -313,9 +329,12 @@ class $AssetsImagesGen {
         icDaySelected,
         icDayUnselected,
         icDelete,
+        icFilterArrow,
+        icFilterCalendar,
         icIndexCircle,
         icMonthSelected,
         icMonthUnselected,
+        icNewlyRegist,
         icNextButton,
         icPausePrimary,
         icPlayPrimary,
@@ -333,6 +352,7 @@ class $AssetsImagesGen {
         icRightPrimary,
         icSatisfactionPercent,
         icSearchGray,
+        icSortSatisfaction,
         icSsentifProfile,
         icSsentifTextLogo,
         icStatisticsBlack,
@@ -360,12 +380,8 @@ class $AssetsImagesGen {
 class Assets {
   const Assets._();
 
-  static const String aEnv = '.env';
   static const $AssetsFontsGen fonts = $AssetsFontsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
-
-  /// List of all assets
-  static List<String> get values => [aEnv];
 }
 
 class AssetGenImage {

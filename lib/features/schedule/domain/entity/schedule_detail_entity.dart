@@ -35,3 +35,29 @@ class ScheduleDetailEntity with _$ScheduleDetailEntity {
     @Default([]) List<UserInfoEntity> groupClients,
   }) = _ScheduleDetailEntity;
 }
+
+@freezed
+class ScheduleDetailHasRoutineEntity with _$ScheduleDetailHasRoutineEntity {
+  const factory ScheduleDetailHasRoutineEntity({
+    @Default(-1) int scheduleId,
+    @Default("") String startDate,
+    @Default("") String endDate,
+    @Default("") String startTime,
+    @Default("") String endTime,
+    @Default(0) int runningTime,
+    @Default("") String scheduleTitle,
+    @Default("") String scheduleMemo,
+    @Default(null) ScheduleStatusType? scheduleStatusType,
+    @Default(null) ScheduleType? scheduleType,
+    @Default(-1) int totalNumberOfTime,
+    @Default(-1) int leftNumberOfTime,
+    @Default("") String schedulePrecautions,
+    @Default(-1) int classInfoId,
+    @Default("") String repeatName,
+    @Default(-1) int voucherMatchingId,
+    @Default(VoucherInfoEntity()) VoucherInfoEntity voucherInfoEntity,
+    @Default(UserInfoEntity()) UserInfoEntity userInfo,
+    @Default([]) List<UserInfoEntity> groupClients,
+    @Default(false) bool hasRoutine
+  }) = _ScheduleDetailHasRoutineEntity;
+}

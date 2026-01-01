@@ -12,11 +12,13 @@ class ScheduleRepositoryImpl extends ScheduleRepository {
   final ApiService apiService;
   final ScheduleMapper scheduleMapper;
   final ScheduleDetailMapper scheduleDetailMapper;
+  final ScheduleDetailHasRoutineMapper scheduleDetailHasRoutineMapper;
 
   ScheduleRepositoryImpl({
     required this.apiService,
     required this.scheduleMapper,
-    required this.scheduleDetailMapper
+    required this.scheduleDetailMapper,
+    required this.scheduleDetailHasRoutineMapper
   });
 
   @override

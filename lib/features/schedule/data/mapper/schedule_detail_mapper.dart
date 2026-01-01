@@ -21,6 +21,15 @@ final scheduleDetailMapperProvider = Provider<ScheduleDetailMapper>((ref) {
   );
 });
 
+final scheduleDetailHasRoutineMapperProvider = Provider<ScheduleDetailHasRoutineMapper>((ref) {
+  final userInfoMapper = ref.read(userInfoMapperProvider);
+  return ScheduleDetailHasRoutineMapper(
+      voucherInfoMapper: VoucherInfoMapper(),
+      userInfoMapper: userInfoMapper
+  );
+});
+
+
 class ScheduleDetailMapper extends BaseMapper<ScheduleDetailModel, ScheduleDetailEntity> {
   final VoucherInfoMapper voucherInfoMapper;
   final UserInfoMapper userInfoMapper;
@@ -62,6 +71,50 @@ class ScheduleDetailMapper extends BaseMapper<ScheduleDetailModel, ScheduleDetai
     );
   }
 }
+
+class ScheduleDetailHasRoutineMapper extends BaseMapper<ScheduleDetailHasRoutineModel, ScheduleDetailHasRoutineEntity> {
+  final VoucherInfoMapper voucherInfoMapper;
+  final UserInfoMapper userInfoMapper;
+  ScheduleDetailHasRoutineMapper({
+    required this.voucherInfoMapper,
+    required this.userInfoMapper
+  });
+
+  @override
+  ScheduleDetailHasRoutineEntity map(ScheduleDetailHasRoutineModel data) {
+    return ScheduleDetailHasRoutineEntity(
+        scheduleId: data.scheduleId,
+        startDate: data.scheduleStartDateTime
+            .convertDateFormat(formatAfter: Constants.localizationDateFormat()),
+        startTime: data.scheduleStartDateTime
+            .convertDateFormat(formatAfter: Constants.hourMinutesFormat),
+        endDate: data.scheduleEndDateTime
+            .convertDateFormat(formatAfter: Constants.localizationDateFormat()),
+        endTime: data.scheduleEndDateTime
+            .convertDateFormat(formatAfter: Constants.hourMinutesFormat),
+        runningTime: data.timeRequired,
+        scheduleTitle: data.scheduleTitle,
+        scheduleMemo: data.scheduleMemo,
+        scheduleStatusType: ScheduleStatusTypeDto
+            .findScheduleStatusType(data.scheduleStatus),
+        scheduleType: ScheduleTypeDto
+            .findScheduleType(data.scheduleType),
+        totalNumberOfTime: data.totalNumberOfTime,
+        leftNumberOfTime: data.leftNumberOfTime,
+        schedulePrecautions: data.schedulePrecautions,
+        classInfoId: data.classInfoId,
+        repeatName: data.repeatName,
+        voucherMatchingId: data.voucherMatchingId,
+        voucherInfoEntity: voucherInfoMapper.map(data.voucherInfoDto),
+        userInfo: userInfoMapper.map(data.userInfoDto),
+        groupClients: data.groupClients.map((e) {
+          return userInfoMapper.map(e);
+        }).toList(),
+        hasRoutine: data.hasExercise
+    );
+  }
+}
+
 
 class VoucherInfoMapper extends BaseMapper<VoucherInfoModel, VoucherInfoEntity> {
   @override

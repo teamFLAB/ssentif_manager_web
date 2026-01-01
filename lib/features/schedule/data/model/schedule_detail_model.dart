@@ -33,6 +33,33 @@ class ScheduleDetailModel with _$ScheduleDetailModel {
 }
 
 @freezed
+class ScheduleDetailHasRoutineModel with _$ScheduleDetailHasRoutineModel {
+  factory ScheduleDetailHasRoutineModel({
+    @Default(-1) int scheduleId,
+    @Default("") String scheduleStartDateTime,
+    @Default("") String scheduleEndDateTime,
+    @Default(-1) int timeRequired,
+    @Default("") String scheduleTitle,
+    @Default("") String scheduleMemo,
+    @Default("") String scheduleStatus,
+    @Default("") String scheduleType,
+    @Default(UserInfoModel()) UserInfoModel userInfoDto,
+    @Default([]) List<UserInfoModel> groupClients,
+    @Default(VoucherInfoModel()) VoucherInfoModel voucherInfoDto,
+    @Default(-1) int totalNumberOfTime,
+    @Default(-1) int leftNumberOfTime,
+    @Default("") String schedulePrecautions,
+    @Default(-1) int classInfoId,
+    @Default([]) List<String> weeks,
+    @Default(-1) int voucherMatchingId,
+    @Default("") String repeatName,
+    @Default(false) bool hasExercise
+  }) = _ScheduleDetailHasRoutineModel;
+
+  factory ScheduleDetailHasRoutineModel.fromJson(Map<String, dynamic> json) => _$ScheduleDetailHasRoutineModelFromJson(json);
+}
+
+@freezed
 class VoucherInfoModel with _$VoucherInfoModel{
   const factory VoucherInfoModel({
     @Default(-1) int voucherId,
