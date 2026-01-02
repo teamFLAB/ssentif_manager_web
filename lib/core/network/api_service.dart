@@ -9,6 +9,8 @@ import 'package:ssentif_manager_web/features/client/data/model/response_enrolled
 import 'package:ssentif_manager_web/features/client/data/model/client_profile_model.dart';
 import 'package:ssentif_manager_web/features/client/data/model/client_monthly_calendar_model.dart';
 import 'package:ssentif_manager_web/features/routine/data/model/routine_history_model.dart';
+import 'package:ssentif_manager_web/features/client/data/model/body_composition_analysis_model.dart';
+import 'package:ssentif_manager_web/features/client/data/model/monthly_diet_model.dart';
 import '../../features/dashboard/data/model/trainer_schedules_with_prev_month_model.dart';
 import '../../features/dashboard/data/model/monthly_schedule_count_model.dart';
 import '../../features/dashboard/data/model/monthly_routine_ratio_model.dart';
@@ -520,47 +522,47 @@ class ApiService {
         extra: {'requiresToken': true},
       ),
     );
-    
+
     // 실제 응답 구조에 맞게 파싱
     // 응답이 routineDto 래퍼 없이 직접 데이터가 올 수 있음
     final data = response.data as Map<String, dynamic>;
     final workoutResponses = (data['workoutResponses'] as List<dynamic>?) ?? [];
-    
+
     // 각 workoutResponse를 RoutineDtoWrapperModel로 변환
     final wrappedResponses = workoutResponses.map((item) {
       final itemMap = item as Map<String, dynamic>;
-      
+
       // routineDto가 있으면 그대로 사용, 없으면 직접 RoutineHistoryModel 생성
       if (itemMap.containsKey('routineDto')) {
         return RoutineDtoWrapperModel.fromJson(itemMap);
       } else {
         // 실제 응답 구조에 맞게 직접 파싱
-        final routinesExercisesList = (itemMap['routinesExercises'] as List<dynamic>?) ?? [];
-        final routinesExercises = routinesExercisesList
-            .map((e) {
-              final exerciseMap = e as Map<String, dynamic>;
-              return {
-                'exerciseId': exerciseMap['exerciseId'],
-                'routinesExerciseName': exerciseMap['exerciseName'] ?? '',
-                'exerciseType': exerciseMap['exerciseType'] ?? '',
-                'exerciseParts': exerciseMap['exercisePart'] ?? '',
-                'exerciseSets': exerciseMap['exerciseSets'] ?? [],
-                'routineImagesList': exerciseMap['imageUrls'] ?? [],
-                'routinesImagesListWithType': exerciseMap['routinesImagesListWithType'] ?? [],
-                'routinesExerciseMemo': exerciseMap['routinesExerciseMemo'] ?? '',
-                'performMemo': exerciseMap['performMemo'] ?? '',
-                'motion': exerciseMap['motion'] ?? '',
-              };
-            })
-            .toList();
-        
+        final routinesExercisesList =
+            (itemMap['routinesExercises'] as List<dynamic>?) ?? [];
+        final routinesExercises = routinesExercisesList.map((e) {
+          final exerciseMap = e as Map<String, dynamic>;
+          return {
+            'exerciseId': exerciseMap['exerciseId'],
+            'routinesExerciseName': exerciseMap['exerciseName'] ?? '',
+            'exerciseType': exerciseMap['exerciseType'] ?? '',
+            'exerciseParts': exerciseMap['exercisePart'] ?? '',
+            'exerciseSets': exerciseMap['exerciseSets'] ?? [],
+            'routineImagesList': exerciseMap['imageUrls'] ?? [],
+            'routinesImagesListWithType':
+                exerciseMap['routinesImagesListWithType'] ?? [],
+            'routinesExerciseMemo': exerciseMap['routinesExerciseMemo'] ?? '',
+            'performMemo': exerciseMap['performMemo'] ?? '',
+            'motion': exerciseMap['motion'] ?? '',
+          };
+        }).toList();
+
         // exercisePartsList 추출
         final exercisePartsList = routinesExercises
             .map((e) => e['exerciseParts'] as String)
             .where((part) => part.isNotEmpty)
             .toSet()
             .toList();
-        
+
         final routineDto = RoutineHistoryModel(
           routineId: itemMap['routineId'] ?? -1,
           routineName: itemMap['title'] ?? itemMap['routineName'] ?? '',
@@ -572,14 +574,14 @@ class ApiService {
           exercisePartsList: exercisePartsList,
           routineNumberOfExercise: routinesExercises.length,
         );
-        
+
         return RoutineDtoWrapperModel(
           routineDto,
           null,
         );
       }
     }).toList();
-    
+
     return IndividualWorkoutHistoriesResponse(
       workoutResponses: wrappedResponses,
       lastWorkoutId: data['lastWorkoutId'] as int?,
@@ -621,5 +623,42 @@ class ApiService {
       ),
     );
     return ClassHistoriesResponse.fromJson(response.data);
+  }
+
+  /// 체성분분석 조회하기
+  Future<ResponseBodyCompositionAnalysis> getBodyCompositionAnalysis({
+    int? clientId,
+    int? count,
+  }) async {
+    final response = await _dio.get(
+      '/api/user/in-body/analysis',
+      queryParameters: {
+        if (clientId != null) 'clientId': clientId,
+        if (count != null) 'count': count,
+      },
+      options: Options(
+        extra: {'requiresToken': true},
+      ),
+    );
+    return ResponseBodyCompositionAnalysis.fromJson(response.data);
+  }
+
+  Future<MonthlyDietListModel> getMonthlyDiets({
+    required int year,
+    required int month,
+    int? clientId,
+  }) async {
+    final response = await _dio.get(
+      '/api/diet/list',
+      queryParameters: {
+        'year': year,
+        'month': month,
+        if (clientId != null) 'client-id': clientId,
+      },
+      options: Options(
+        extra: {'requiresToken': true},
+      ),
+    );
+    return MonthlyDietListModel.fromJson(response.data);
   }
 }

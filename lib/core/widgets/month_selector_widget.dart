@@ -28,7 +28,6 @@ class MonthSelectorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SizedBox(width: leftPadding ?? 20),
         Text(
           DateFormat('yyyy년 MM월').format(selectedMonth),
           style: monthTextStyle ??

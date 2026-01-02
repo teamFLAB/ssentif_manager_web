@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:ssentif_manager_web/core/network/api_service.dart';
+import 'package:ssentif_manager_web/core/network/status_type.dart';
 import 'package:ssentif_manager_web/core/themes/app_colors.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
 import 'package:ssentif_manager_web/core/utils/date_utils.dart';
 import 'package:ssentif_manager_web/features/client/domain/entity/calendar_event_entity.dart';
 import 'package:ssentif_manager_web/features/routine/data/model/routine_history_model.dart';
+import 'package:ssentif_manager_web/features/schedule/domain/entity/schedule_detail_entity.dart';
+import 'package:ssentif_manager_web/features/schedule/domain/repository/schedule_repository.dart';
 import 'package:ssentif_manager_web/shared/enumtype/client_calendar_event_type.dart';
 import 'package:ssentif_manager_web/shared/enumtype/exercise_part.dart';
 import 'package:ssentif_manager_web/shared/enumtype/meal_time_type.dart';
@@ -50,12 +53,93 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
   List<RoutineHistoryModel> _workoutRecords = [];
   Map<String, dynamic>? _dietRecord;
   List<RoutineDtoWrapperModel> _classRecords = [];
+  ScheduleDetailEntity? _scheduleDetail;
   bool _isLoading = true;
+
+  // 스크롤 제어 및 섹션 위치 추적
+  final ScrollController _scrollController = ScrollController();
+  final GlobalKey _workoutSectionKey = GlobalKey();
+  final GlobalKey _dietSectionKey = GlobalKey();
+  final GlobalKey _classSectionKey = GlobalKey();
 
   @override
   void initState() {
     super.initState();
     _loadData();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _scrollToSection(ClientCalendarEventType type) {
+    GlobalKey? targetKey;
+
+    switch (type) {
+      case ClientCalendarEventType.workoutEvent:
+        targetKey = _workoutSectionKey;
+        break;
+      case ClientCalendarEventType.dietEvent:
+        targetKey = _dietSectionKey;
+        break;
+      case ClientCalendarEventType.classEvent:
+      case ClientCalendarEventType.reservationCompleteEvent:
+      case ClientCalendarEventType.classCompleteEvent:
+      case ClientCalendarEventType.classRequestEvent:
+        targetKey = _classSectionKey;
+        break;
+      default:
+        return;
+    }
+
+    if (targetKey.currentContext != null) {
+      Scrollable.ensureVisible(
+        targetKey.currentContext!,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    }
+  }
+
+  // 수업 이벤트가 있는지 확인
+  bool _hasClassEvent() {
+    return widget.events.any((event) {
+      return event.eventType == ClientCalendarEventType.classEvent ||
+          event.eventType == ClientCalendarEventType.reservationCompleteEvent ||
+          event.eventType == ClientCalendarEventType.classCompleteEvent ||
+          event.eventType == ClientCalendarEventType.classRequestEvent;
+    });
+  }
+
+  // 수업 이벤트의 시작 시간 가져오기
+  String? _getClassEventStartTime() {
+    // scheduleDetail이 있으면 그 startTime 사용
+    if (_scheduleDetail != null && _scheduleDetail!.startTime.isNotEmpty) {
+      return _scheduleDetail!.startTime;
+    }
+
+    // 없으면 이벤트의 startDateTime 사용
+    final classEvent = widget.events.firstWhere(
+      (event) {
+        return event.eventType == ClientCalendarEventType.classEvent ||
+            event.eventType ==
+                ClientCalendarEventType.reservationCompleteEvent ||
+            event.eventType == ClientCalendarEventType.classCompleteEvent ||
+            event.eventType == ClientCalendarEventType.classRequestEvent;
+      },
+      orElse: () => CalendarEventEntity(
+        startDateTime: DateTime(2000),
+        endDateTime: DateTime(2000),
+      ),
+    );
+
+    if (classEvent.startDateTime.year == 2000) {
+      return null;
+    }
+
+    return DateFormat('HH:mm').format(classEvent.startDateTime);
   }
 
   Future<void> _loadData() async {
@@ -117,8 +201,51 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
       });
     }
 
+    // 수업 이벤트가 있으면 scheduleDetail 조회
+    if (_hasClassEvent()) {
+      try {
+        final classEvent = widget.events.firstWhere(
+          (event) {
+            return event.eventType == ClientCalendarEventType.classEvent ||
+                event.eventType ==
+                    ClientCalendarEventType.reservationCompleteEvent ||
+                event.eventType == ClientCalendarEventType.classCompleteEvent ||
+                event.eventType == ClientCalendarEventType.classRequestEvent;
+          },
+        );
+
+        final scheduleRepository = ref.read(scheduleRepositoryProvider);
+        final scheduleDetailResponse =
+            await scheduleRepository.getScheduleDetail(
+          scheduleId: classEvent.eventId,
+        );
+
+        if (scheduleDetailResponse.statusType == StatusType.SUCCESS &&
+            scheduleDetailResponse.data != null) {
+          setState(() {
+            _scheduleDetail = scheduleDetailResponse.data;
+          });
+        }
+      } catch (e) {
+        // scheduleDetail 조회 실패 시 무시하고 계속 진행
+        print('scheduleDetail 조회 실패: $e');
+      }
+    }
+
     setState(() {
       _isLoading = false;
+      // 초기 선택: 수업, 개인운동, 식단 순서로 기록이 존재하는 첫 번째로 설정
+      // 수업 이벤트가 있으면 수업으로 설정 (기록이 없어도)
+      if (_classRecords.isNotEmpty || _hasClassEvent()) {
+        _selectedCategory = ClientCalendarEventType.classEvent;
+      } else if (_workoutRecords.isNotEmpty) {
+        _selectedCategory = ClientCalendarEventType.workoutEvent;
+      } else if (_dietRecord != null) {
+        _selectedCategory = ClientCalendarEventType.dietEvent;
+      } else {
+        // 모두 없으면 수업으로 기본 설정
+        _selectedCategory = ClientCalendarEventType.classEvent;
+      }
     });
   }
 
@@ -159,17 +286,21 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
               ],
             ),
             const SizedBox(height: 20),
-            // 탭 버튼
+            // 탭 버튼 (스크롤에서 제외)
             EventTypeTabButtons(
               selectedType: _selectedCategory,
               selectTypeListener: (ClientCalendarEventType type) {
                 setState(() {
                   _selectedCategory = type;
                 });
+                // 탭 클릭 시 해당 섹션으로 스크롤
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  _scrollToSection(type);
+                });
               },
             ),
             const SizedBox(height: 20),
-            // 컨텐츠
+            // 컨텐츠 (스크롤 가능)
             Expanded(
               child: _isLoading
                   ? const Center(child: CircularProgressIndicator())
@@ -182,57 +313,95 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
   }
 
   Widget _buildContent() {
-    String emptyMessage = '';
-    int itemCount = 0;
+    // 모든 섹션을 Column으로 순서대로 표시
+    return SingleChildScrollView(
+      controller: _scrollController,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // 수업 섹션
+          if (_classRecords.isNotEmpty || _hasClassEvent()) ...[
+            Container(
+              key: _classSectionKey,
+              margin: const EdgeInsets.only(bottom: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '수업',
+                    style: SsentifTextStyles.bold18.copyWith(
+                      color: AppColors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  if (_classRecords.isNotEmpty)
+                    ..._classRecords
+                        .map((classRecord) => _buildClassItem(classRecord)),
+                  if (_classRecords.isEmpty && _hasClassEvent())
+                    _buildClassReservationMessage(),
+                ],
+              ),
+            ),
+          ],
 
-    switch (_selectedCategory) {
-      case ClientCalendarEventType.workoutEvent:
-        itemCount = _workoutRecords.length;
-        emptyMessage = '개인운동 기록이 없습니다';
-        break;
-      case ClientCalendarEventType.dietEvent:
-        itemCount = _dietRecord != null ? 1 : 0;
-        emptyMessage = '식단 기록이 없습니다';
-        break;
-      case ClientCalendarEventType.classEvent:
-      case ClientCalendarEventType.reservationCompleteEvent:
-      case ClientCalendarEventType.classCompleteEvent:
-      case ClientCalendarEventType.classRequestEvent:
-        itemCount = _classRecords.length;
-        emptyMessage = '수업 기록이 없습니다';
-        break;
-      default:
-        itemCount = 0;
-    }
+          // 개인운동 섹션
+          if (_workoutRecords.isNotEmpty) ...[
+            Container(
+              key: _workoutSectionKey,
+              margin: const EdgeInsets.only(bottom: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '개인운동',
+                    style: SsentifTextStyles.bold18.copyWith(
+                      color: AppColors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  ..._workoutRecords
+                      .map((workout) => _buildWorkoutItem(workout)),
+                ],
+              ),
+            ),
+          ],
 
-    if (itemCount == 0) {
-      return Center(
-        child: Text(
-          emptyMessage,
-          style: SsentifTextStyles.regular16.copyWith(
-            color: AppColors.gray2,
-          ),
-        ),
-      );
-    }
+          // 식단 섹션
+          if (_dietRecord != null) ...[
+            Container(
+              key: _dietSectionKey,
+              margin: const EdgeInsets.only(bottom: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '식단',
+                    style: SsentifTextStyles.bold18.copyWith(
+                      color: AppColors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  _buildDietItem(_dietRecord!),
+                ],
+              ),
+            ),
+          ],
 
-    return ListView.builder(
-      itemCount: itemCount,
-      itemBuilder: (context, index) {
-        switch (_selectedCategory) {
-          case ClientCalendarEventType.workoutEvent:
-            return _buildWorkoutItem(_workoutRecords[index]);
-          case ClientCalendarEventType.dietEvent:
-            return _buildDietItem(_dietRecord!);
-          case ClientCalendarEventType.classEvent:
-          case ClientCalendarEventType.reservationCompleteEvent:
-          case ClientCalendarEventType.classCompleteEvent:
-          case ClientCalendarEventType.classRequestEvent:
-            return _buildClassItem(_classRecords[index]);
-          default:
-            return const SizedBox.shrink();
-        }
-      },
+          // 모든 데이터가 없을 때
+          if (widget.events.isEmpty)
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(40),
+                child: Text(
+                  '기록이 없습니다',
+                  style: SsentifTextStyles.regular16.copyWith(
+                    color: AppColors.gray2,
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
     );
   }
 
@@ -526,6 +695,43 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
                   ),
                 ),
             ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildClassReservationMessage() {
+    final startTime = _getClassEventStartTime() ?? '';
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: AppColors.gray4, width: 1),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 4,
+            height: 16,
+            decoration: BoxDecoration(
+              color: AppColors.primary,
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(
+              startTime.isNotEmpty
+                  ? '[$startTime] 수업이 예약되어 있어요'
+                  : '수업이 예약되어 있어요',
+              style: SsentifTextStyles.medium16.copyWith(
+                color: AppColors.black,
+              ),
+            ),
           ),
         ],
       ),

@@ -87,6 +87,10 @@ class $AssetsImagesGen {
   AssetGenImage get icBackgroundLogin =>
       const AssetGenImage('assets/images/ic_background_login.png');
 
+  /// File path: assets/images/ic_balanced_tag.png
+  AssetGenImage get icBalancedTag =>
+      const AssetGenImage('assets/images/ic_balanced_tag.png');
+
   /// File path: assets/images/ic_bookmark_selected.png
   AssetGenImage get icBookmarkSelected =>
       const AssetGenImage('assets/images/ic_bookmark_selected.png');
@@ -139,9 +143,17 @@ class $AssetsImagesGen {
   AssetGenImage get icFilterCalendar =>
       const AssetGenImage('assets/images/ic_filter_calendar.png');
 
+  /// File path: assets/images/ic_high_cal_tag.png
+  AssetGenImage get icHighCalTag =>
+      const AssetGenImage('assets/images/ic_high_cal_tag.png');
+
   /// File path: assets/images/ic_index_circle.png
   AssetGenImage get icIndexCircle =>
       const AssetGenImage('assets/images/ic_index_circle.png');
+
+  /// File path: assets/images/ic_low_cal_tag.png
+  AssetGenImage get icLowCalTag =>
+      const AssetGenImage('assets/images/ic_low_cal_tag.png');
 
   /// File path: assets/images/ic_month_selected.png
   AssetGenImage get icMonthSelected =>
@@ -255,6 +267,18 @@ class $AssetsImagesGen {
   AssetGenImage get icUserProfile =>
       const AssetGenImage('assets/images/ic_user_profile.png');
 
+  /// File path: assets/images/icon_balanced.png
+  AssetGenImage get iconBalanced =>
+      const AssetGenImage('assets/images/icon_balanced.png');
+
+  /// File path: assets/images/icon_high.png
+  AssetGenImage get iconHigh =>
+      const AssetGenImage('assets/images/icon_high.png');
+
+  /// File path: assets/images/icon_low.png
+  AssetGenImage get iconLow =>
+      const AssetGenImage('assets/images/icon_low.png');
+
   /// File path: assets/images/male_profile.png
   AssetGenImage get maleProfile =>
       const AssetGenImage('assets/images/male_profile.png');
@@ -318,6 +342,7 @@ class $AssetsImagesGen {
         gymVisualDummy,
         icBackGray,
         icBackgroundLogin,
+        icBalancedTag,
         icBookmarkSelected,
         icBookmarkUnselected,
         icButtonNext,
@@ -331,7 +356,9 @@ class $AssetsImagesGen {
         icDelete,
         icFilterArrow,
         icFilterCalendar,
+        icHighCalTag,
         icIndexCircle,
+        icLowCalTag,
         icMonthSelected,
         icMonthUnselected,
         icNewlyRegist,
@@ -360,6 +387,9 @@ class $AssetsImagesGen {
         icTodayButton,
         icTotalClassCount,
         icUserProfile,
+        iconBalanced,
+        iconHigh,
+        iconLow,
         maleProfile,
         ssentifManagerTextLogo,
         tabDashboardSelected,
