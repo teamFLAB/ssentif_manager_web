@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:ssentif_manager_web/core/network/api_service.dart';
-import 'package:ssentif_manager_web/core/network/status_type.dart';
 import 'package:ssentif_manager_web/core/themes/app_colors.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
-import 'package:ssentif_manager_web/core/utils/date_utils.dart';
 import 'package:ssentif_manager_web/features/client/domain/entity/calendar_event_entity.dart';
+import 'package:ssentif_manager_web/features/client/view/state/daily_records_state.dart';
+import 'package:ssentif_manager_web/features/client/view/viewmodel/daily_records_view_model.dart';
 import 'package:ssentif_manager_web/features/routine/data/model/routine_history_model.dart';
-import 'package:ssentif_manager_web/features/schedule/domain/entity/schedule_detail_entity.dart';
-import 'package:ssentif_manager_web/features/schedule/domain/repository/schedule_repository.dart';
 import 'package:ssentif_manager_web/shared/enumtype/client_calendar_event_type.dart';
 import 'package:ssentif_manager_web/shared/enumtype/exercise_part.dart';
 import 'package:ssentif_manager_web/shared/enumtype/meal_time_type.dart';
+import 'diet_detail_dialog.dart';
 
 class DailyRecordsDialog extends ConsumerStatefulWidget {
   final DateTime selectedDate;
@@ -47,25 +45,22 @@ class DailyRecordsDialog extends ConsumerStatefulWidget {
 }
 
 class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
-  ClientCalendarEventType _selectedCategory =
-      ClientCalendarEventType.classEvent;
-
-  List<RoutineHistoryModel> _workoutRecords = [];
-  Map<String, dynamic>? _dietRecord;
-  List<RoutineDtoWrapperModel> _classRecords = [];
-  ScheduleDetailEntity? _scheduleDetail;
-  bool _isLoading = true;
-
   // 스크롤 제어 및 섹션 위치 추적
   final ScrollController _scrollController = ScrollController();
   final GlobalKey _workoutSectionKey = GlobalKey();
   final GlobalKey _dietSectionKey = GlobalKey();
   final GlobalKey _classSectionKey = GlobalKey();
 
+  late final DailyRecordsParams _params;
+
   @override
   void initState() {
     super.initState();
-    _loadData();
+    _params = DailyRecordsParams(
+      selectedDate: widget.selectedDate,
+      clientId: widget.clientId,
+      events: widget.events,
+    );
   }
 
   @override
@@ -103,21 +98,12 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
     }
   }
 
-  // 수업 이벤트가 있는지 확인
-  bool _hasClassEvent() {
-    return widget.events.any((event) {
-      return event.eventType == ClientCalendarEventType.classEvent ||
-          event.eventType == ClientCalendarEventType.reservationCompleteEvent ||
-          event.eventType == ClientCalendarEventType.classCompleteEvent ||
-          event.eventType == ClientCalendarEventType.classRequestEvent;
-    });
-  }
-
   // 수업 이벤트의 시작 시간 가져오기
-  String? _getClassEventStartTime() {
+  String? _getClassEventStartTime(DailyRecordsState state) {
     // scheduleDetail이 있으면 그 startTime 사용
-    if (_scheduleDetail != null && _scheduleDetail!.startTime.isNotEmpty) {
-      return _scheduleDetail!.startTime;
+    if (state.scheduleDetail != null &&
+        state.scheduleDetail!.startTime.isNotEmpty) {
+      return state.scheduleDetail!.startTime;
     }
 
     // 없으면 이벤트의 startDateTime 사용
@@ -142,117 +128,13 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
     return DateFormat('HH:mm').format(classEvent.startDateTime);
   }
 
-  Future<void> _loadData() async {
-    setState(() {
-      _isLoading = true;
-    });
-
-    final dateString = widget.selectedDate.formatYMD();
-    final apiService = ref.read(apiServiceProvider);
-
-    // 각 API 호출을 개별적으로 처리 (하나가 실패해도 나머지는 표시)
-    // 개인운동 조회
-    try {
-      final workoutResponse = await apiService.getDailyWorkoutRecords(
-        date: dateString,
-        clientId: widget.clientId,
-      );
-      setState(() {
-        _workoutRecords = workoutResponse.workoutResponses
-            .map((wrapper) => wrapper.routineDto)
-            .where((routine) =>
-                routine.routineId != -1 || routine.routineName.isNotEmpty)
-            .toList();
-      });
-    } catch (e) {
-      // 에러 발생 시 빈 배열로 설정하고 계속 진행
-      setState(() {
-        _workoutRecords = [];
-      });
-    }
-
-    // 식단 조회
-    try {
-      final dietData = await apiService.getDailyDietList(
-        date: dateString,
-        clientId: widget.clientId,
-      );
-      setState(() {
-        _dietRecord = dietData;
-      });
-    } catch (e) {
-      setState(() {
-        _dietRecord = null;
-      });
-    }
-
-    // 수업 조회
-    try {
-      final classResponse = await apiService.getDailyClassRecords(
-        classDate: dateString,
-        clientId: widget.clientId,
-      );
-      setState(() {
-        _classRecords = classResponse.classInfoDetailOfDateList;
-      });
-    } catch (e) {
-      setState(() {
-        _classRecords = [];
-      });
-    }
-
-    // 수업 이벤트가 있으면 scheduleDetail 조회
-    if (_hasClassEvent()) {
-      try {
-        final classEvent = widget.events.firstWhere(
-          (event) {
-            return event.eventType == ClientCalendarEventType.classEvent ||
-                event.eventType ==
-                    ClientCalendarEventType.reservationCompleteEvent ||
-                event.eventType == ClientCalendarEventType.classCompleteEvent ||
-                event.eventType == ClientCalendarEventType.classRequestEvent;
-          },
-        );
-
-        final scheduleRepository = ref.read(scheduleRepositoryProvider);
-        final scheduleDetailResponse =
-            await scheduleRepository.getScheduleDetail(
-          scheduleId: classEvent.eventId,
-        );
-
-        if (scheduleDetailResponse.statusType == StatusType.SUCCESS &&
-            scheduleDetailResponse.data != null) {
-          setState(() {
-            _scheduleDetail = scheduleDetailResponse.data;
-          });
-        }
-      } catch (e) {
-        // scheduleDetail 조회 실패 시 무시하고 계속 진행
-        print('scheduleDetail 조회 실패: $e');
-      }
-    }
-
-    setState(() {
-      _isLoading = false;
-      // 초기 선택: 수업, 개인운동, 식단 순서로 기록이 존재하는 첫 번째로 설정
-      // 수업 이벤트가 있으면 수업으로 설정 (기록이 없어도)
-      if (_classRecords.isNotEmpty || _hasClassEvent()) {
-        _selectedCategory = ClientCalendarEventType.classEvent;
-      } else if (_workoutRecords.isNotEmpty) {
-        _selectedCategory = ClientCalendarEventType.workoutEvent;
-      } else if (_dietRecord != null) {
-        _selectedCategory = ClientCalendarEventType.dietEvent;
-      } else {
-        // 모두 없으면 수업으로 기본 설정
-        _selectedCategory = ClientCalendarEventType.classEvent;
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     final formattedDate =
         DateFormat('yyyy년 MM월 dd일 EEEE', 'ko_KR').format(widget.selectedDate);
+
+    final state = ref.watch(dailyRecordsViewModelProvider(_params));
+    final viewModel = ref.read(dailyRecordsViewModelProvider(_params).notifier);
 
     return Dialog(
       shape: RoundedRectangleBorder(
@@ -288,11 +170,9 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
             const SizedBox(height: 20),
             // 탭 버튼 (스크롤에서 제외)
             EventTypeTabButtons(
-              selectedType: _selectedCategory,
+              selectedType: state.selectedCategory,
               selectTypeListener: (ClientCalendarEventType type) {
-                setState(() {
-                  _selectedCategory = type;
-                });
+                viewModel.updateSelectedCategory(type);
                 // 탭 클릭 시 해당 섹션으로 스크롤
                 WidgetsBinding.instance.addPostFrameCallback((_) {
                   _scrollToSection(type);
@@ -302,9 +182,9 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
             const SizedBox(height: 20),
             // 컨텐츠 (스크롤 가능)
             Expanded(
-              child: _isLoading
+              child: state.isLoading
                   ? const Center(child: CircularProgressIndicator())
-                  : _buildContent(),
+                  : _buildContent(state),
             ),
           ],
         ),
@@ -312,7 +192,16 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
     );
   }
 
-  Widget _buildContent() {
+  bool _hasClassEvent() {
+    return widget.events.any((event) {
+      return event.eventType == ClientCalendarEventType.classEvent ||
+          event.eventType == ClientCalendarEventType.reservationCompleteEvent ||
+          event.eventType == ClientCalendarEventType.classCompleteEvent ||
+          event.eventType == ClientCalendarEventType.classRequestEvent;
+    });
+  }
+
+  Widget _buildContent(DailyRecordsState state) {
     // 모든 섹션을 Column으로 순서대로 표시
     return SingleChildScrollView(
       controller: _scrollController,
@@ -320,86 +209,119 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // 수업 섹션
-          if (_classRecords.isNotEmpty || _hasClassEvent()) ...[
-            Container(
-              key: _classSectionKey,
-              margin: const EdgeInsets.only(bottom: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '수업',
-                    style: SsentifTextStyles.bold18.copyWith(
-                      color: AppColors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  if (_classRecords.isNotEmpty)
-                    ..._classRecords
-                        .map((classRecord) => _buildClassItem(classRecord)),
-                  if (_classRecords.isEmpty && _hasClassEvent())
-                    _buildClassReservationMessage(),
-                ],
-              ),
-            ),
-          ],
-
-          // 개인운동 섹션
-          if (_workoutRecords.isNotEmpty) ...[
-            Container(
-              key: _workoutSectionKey,
-              margin: const EdgeInsets.only(bottom: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '개인운동',
-                    style: SsentifTextStyles.bold18.copyWith(
-                      color: AppColors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  ..._workoutRecords
-                      .map((workout) => _buildWorkoutItem(workout)),
-                ],
-              ),
-            ),
-          ],
-
-          // 식단 섹션
-          if (_dietRecord != null) ...[
-            Container(
-              key: _dietSectionKey,
-              margin: const EdgeInsets.only(bottom: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '식단',
-                    style: SsentifTextStyles.bold18.copyWith(
-                      color: AppColors.black,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  _buildDietItem(_dietRecord!),
-                ],
-              ),
-            ),
-          ],
-
-          // 모든 데이터가 없을 때
-          if (widget.events.isEmpty)
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.all(40),
-                child: Text(
-                  '기록이 없습니다',
-                  style: SsentifTextStyles.regular16.copyWith(
-                    color: AppColors.gray2,
+          Container(
+            key: _classSectionKey,
+            margin: const EdgeInsets.only(bottom: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '수업',
+                  style: SsentifTextStyles.bold18.copyWith(
+                    color: AppColors.black,
                   ),
                 ),
-              ),
+                const SizedBox(height: 12),
+                if (state.classRecords.isNotEmpty)
+                  ...state.classRecords
+                      .map((classRecord) => _buildClassItem(classRecord))
+                else if (_hasClassEvent())
+                  _buildClassReservationMessage(state)
+                else
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(40),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: AppColors.gray4, width: 1),
+                    ),
+                    child: Text(
+                      '기록된 출석 완료 수업이 없어요.',
+                      style: SsentifTextStyles.regular16.copyWith(
+                        color: AppColors.gray2,
+                      ),
+                    ),
+                  ),
+              ],
             ),
+          ),
+
+          // 개인운동 섹션
+          Container(
+            key: _workoutSectionKey,
+            margin: const EdgeInsets.only(bottom: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '개인운동',
+                  style: SsentifTextStyles.bold18.copyWith(
+                    color: AppColors.black,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                if (state.workoutRecords.isNotEmpty)
+                  ...state.workoutRecords
+                      .map((workout) => _buildWorkoutItem(workout))
+                else
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(40),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: AppColors.gray4, width: 1),
+                    ),
+                    child: Text(
+                      '기록된 개인운동이 없어요.',
+                      style: SsentifTextStyles.regular16.copyWith(
+                        color: AppColors.gray2,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+
+          // 식단 섹션
+          Container(
+            key: _dietSectionKey,
+            margin: const EdgeInsets.only(bottom: 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '식단',
+                  style: SsentifTextStyles.bold18.copyWith(
+                    color: AppColors.black,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                if (state.dietRecord != null)
+                  _buildDietItem(state.dietRecord!)
+                else
+                  Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(40),
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: AppColors.gray4, width: 1),
+                    ),
+                    child: Text(
+                      '기록된 식단이 없어요.',
+                      style: SsentifTextStyles.regular16.copyWith(
+                        color: AppColors.gray2,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -601,7 +523,11 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
                 children: dietDailyResponses.map((diet) {
                   return Container(
                     padding: const EdgeInsets.only(right: 17),
-                    child: _buildDietThumbnailItem(diet),
+                    child: _buildDietThumbnailItem(
+                      context,
+                      diet,
+                      dietDailyResponses,
+                    ),
                   );
                 }).toList(),
               ),
@@ -612,10 +538,15 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
     );
   }
 
-  Widget _buildDietThumbnailItem(Map<String, dynamic> diet) {
+  Widget _buildDietThumbnailItem(
+    BuildContext context,
+    Map<String, dynamic> diet,
+    List<dynamic> dietDailyResponses,
+  ) {
     final mealTimeDto = diet['mealTime'] ?? '';
     final mealTakeTime = diet['time'] ?? '';
     final img = diet['img'] as List<dynamic>? ?? [];
+    final dietId = diet['id'] as int?;
 
     // DTO를 enum으로 변환
     final mealTimeType = MealTimeType.findMealTimeType(mealTimeDto);
@@ -626,7 +557,21 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
 
     return GestureDetector(
       onTap: () {
-        // 클릭 시 상세보기 (필요시 구현)
+        if (dietId != null) {
+          // 모든 dietId 수집
+          final dietIds = dietDailyResponses
+              .map((d) => d['id'] as int?)
+              .whereType<int>()
+              .toList();
+
+          // DietDetailDialog 표시
+          DietDetailDialog.show(
+            context,
+            clientId: widget.clientId,
+            dietIds: dietIds,
+            initialDietId: dietId,
+          );
+        }
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -656,10 +601,12 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
                               color: AppColors.gray4,
                               borderRadius: BorderRadius.circular(5),
                             ),
-                            child: const Icon(
-                              Icons.image_not_supported,
-                              color: AppColors.gray3,
-                              size: 40,
+                            child: const Center(
+                              child: Icon(
+                                Icons.restaurant,
+                                size: 45,
+                                color: AppColors.gray2,
+                              ),
                             ),
                           );
                         },
@@ -671,10 +618,12 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
                           color: AppColors.gray4,
                           borderRadius: BorderRadius.circular(5),
                         ),
-                        child: const Icon(
-                          Icons.image_not_supported,
-                          color: AppColors.gray3,
-                          size: 40,
+                        child: const Center(
+                          child: Icon(
+                            Icons.restaurant,
+                            size: 45,
+                            color: AppColors.gray2,
+                          ),
                         ),
                       ),
               ),
@@ -701,8 +650,8 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
     );
   }
 
-  Widget _buildClassReservationMessage() {
-    final startTime = _getClassEventStartTime() ?? '';
+  Widget _buildClassReservationMessage(DailyRecordsState state) {
+    final startTime = _getClassEventStartTime(state) ?? '';
 
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
@@ -836,8 +785,8 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
-                      width: 24,
-                      height: 24,
+                      width: 20,
+                      height: 20,
                       decoration: BoxDecoration(
                         color: AppColors.primary,
                         shape: BoxShape.circle,
@@ -845,7 +794,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
                       alignment: Alignment.center,
                       child: Text(
                         '${index + 1}',
-                        style: SsentifTextStyles.medium12.copyWith(
+                        style: SsentifTextStyles.medium10.copyWith(
                           color: AppColors.white,
                         ),
                       ),

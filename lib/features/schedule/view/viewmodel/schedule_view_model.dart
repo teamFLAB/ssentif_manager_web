@@ -63,7 +63,10 @@ class ScheduleViewModel extends StateNotifier<ScheduleState> {
         clickScheduleItem: (int scheduleId) {
           _getScheduleDetail(scheduleId);
         },
-        onRefreshScheduleList: () {},
+        onRefreshScheduleList: () {
+          // 다이얼로그가 닫힌 후 scheduleDetail 초기화
+          state = state.copyWith(scheduleDetail: null);
+        },
         clickPreviousMonth: () {
           var newMonth = _updateMonthlyCalendarDate(-1);
           var selectedDate = state.selectedDate;

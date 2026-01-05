@@ -25,6 +25,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'type_count_widget.dart';
 import 'monthly_calendar_widget.dart';
 import 'daily_records_dialog.dart';
+import 'diet_detail_dialog.dart';
 import '../../../../gen/assets.gen.dart';
 
 enum ClientDetailTab {
@@ -455,11 +456,27 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
             eventsByDate: _getEventsFromCalendar(),
             onDayTap: (date) {
               if (widget.clientInfo != null) {
+                // 선택된 날짜의 이벤트만 필터링
+                final selectedDateEvents =
+                    (widget.clientCalendar?.events ?? []).where((event) {
+                  final eventDate = DateTime(
+                    event.startDateTime.year,
+                    event.startDateTime.month,
+                    event.startDateTime.day,
+                  );
+                  final targetDate = DateTime(
+                    date.year,
+                    date.month,
+                    date.day,
+                  );
+                  return eventDate.isAtSameMomentAs(targetDate);
+                }).toList();
+
                 DailyRecordsDialog.show(
                   context,
                   selectedDate: date,
                   clientId: widget.clientInfo!.clientId,
-                  events: widget.clientCalendar?.events ?? [],
+                  events: selectedDateEvents,
                 );
               }
             },
@@ -1036,6 +1053,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                 'diet_grid_${_monthlyDiets.length}_${widget.selectedMonth.millisecondsSinceEpoch}'),
             monthlyDiets: _monthlyDiets,
             imageWidth: imageWidth,
+            clientId: widget.clientInfo?.clientId ?? -1,
           ),
         ),
       ],
@@ -1110,11 +1128,13 @@ class _DietMonthSelectorState extends State<_DietMonthSelector> {
 class _DietGridView extends StatelessWidget {
   final List<UploadedDietEntity> monthlyDiets;
   final double imageWidth;
+  final int clientId;
 
   const _DietGridView({
     super.key,
     required this.monthlyDiets,
     required this.imageWidth,
+    required this.clientId,
   });
 
   @override
@@ -1147,7 +1167,18 @@ class _DietGridView extends StatelessWidget {
         var diet = monthlyDiets[index];
         return GestureDetector(
           onTap: () {
-            // TODO: navToDietDetail 구현 필요
+            if (diet.dietId != null && diet.dietId! > 0) {
+              final dietIds = monthlyDiets
+                  .where((d) => d.dietId != null && d.dietId! > 0)
+                  .map((d) => d.dietId!)
+                  .toList();
+              DietDetailDialog.show(
+                context,
+                clientId: clientId,
+                dietIds: dietIds,
+                initialDietId: diet.dietId!,
+              );
+            }
           },
           child: Stack(
             fit: StackFit.expand,

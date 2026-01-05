@@ -38,6 +38,7 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
   final CalendarController _calendarController = CalendarController();
   final ScrollController _scrollController = ScrollController();
   bool _hasScrolledToCurrentTime = false;
+  bool _isDialogShowing = false;
 
   @override
   void initState() {
@@ -97,8 +98,9 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
           });
         }
 
-        // scheduleDetail이 있으면 다이얼로그 노출
-        if (state.scheduleDetail != null) {
+        // scheduleDetail이 있으면 다이얼로그 노출 (한 번만)
+        if (state.scheduleDetail != null && !_isDialogShowing) {
+          _isDialogShowing = true;
           Future.delayed(Duration.zero, () async {
             await showDialog(
               context: context,
@@ -118,6 +120,7 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
               ),
             );
             // 다이얼로그 닫힌 후 상태 초기화
+            _isDialogShowing = false;
             viewModel.handleIntent(ScheduleIntent.onRefreshScheduleList());
           });
         }

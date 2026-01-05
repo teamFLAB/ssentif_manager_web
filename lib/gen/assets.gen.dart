@@ -79,6 +79,10 @@ class $AssetsImagesGen {
   AssetGenImage get gymVisualDummy =>
       const AssetGenImage('assets/images/gym_visual_dummy.png');
 
+  /// File path: assets/images/ic_add_ingredients.png
+  AssetGenImage get icAddIngredients =>
+      const AssetGenImage('assets/images/ic_add_ingredients.png');
+
   /// File path: assets/images/ic_back_gray.png
   AssetGenImage get icBackGray =>
       const AssetGenImage('assets/images/ic_back_gray.png');
@@ -215,6 +219,10 @@ class $AssetsImagesGen {
   AssetGenImage get icRecordsPercent =>
       const AssetGenImage('assets/images/ic_records_percent.png');
 
+  /// File path: assets/images/ic_reduce_ingredients.png
+  AssetGenImage get icReduceIngredients =>
+      const AssetGenImage('assets/images/ic_reduce_ingredients.png');
+
   /// File path: assets/images/ic_repurchase_percent.png
   AssetGenImage get icRepurchasePercent =>
       const AssetGenImage('assets/images/ic_repurchase_percent.png');
@@ -335,11 +343,60 @@ class $AssetsImagesGen {
   AssetGenImage get tabStaffUnselected =>
       const AssetGenImage('assets/images/tab_staff_unselected.png');
 
+  /// File path: assets/images/tag_caffeine_eng.png
+  AssetGenImage get tagCaffeineEng =>
+      const AssetGenImage('assets/images/tag_caffeine_eng.png');
+
+  /// File path: assets/images/tag_caffeine_kor.png
+  AssetGenImage get tagCaffeineKor =>
+      const AssetGenImage('assets/images/tag_caffeine_kor.png');
+
+  /// File path: assets/images/tag_carbs_eng.png
+  AssetGenImage get tagCarbsEng =>
+      const AssetGenImage('assets/images/tag_carbs_eng.png');
+
+  /// File path: assets/images/tag_carbs_kor.png
+  AssetGenImage get tagCarbsKor =>
+      const AssetGenImage('assets/images/tag_carbs_kor.png');
+
+  /// File path: assets/images/tag_fat_eng.png
+  AssetGenImage get tagFatEng =>
+      const AssetGenImage('assets/images/tag_fat_eng.png');
+
+  /// File path: assets/images/tag_fat_kor.png
+  AssetGenImage get tagFatKor =>
+      const AssetGenImage('assets/images/tag_fat_kor.png');
+
+  /// File path: assets/images/tag_fiber_eng.png
+  AssetGenImage get tagFiberEng =>
+      const AssetGenImage('assets/images/tag_fiber_eng.png');
+
+  /// File path: assets/images/tag_fiber_kor.png
+  AssetGenImage get tagFiberKor =>
+      const AssetGenImage('assets/images/tag_fiber_kor.png');
+
+  /// File path: assets/images/tag_protein_eng.png
+  AssetGenImage get tagProteinEng =>
+      const AssetGenImage('assets/images/tag_protein_eng.png');
+
+  /// File path: assets/images/tag_protein_kor.png
+  AssetGenImage get tagProteinKor =>
+      const AssetGenImage('assets/images/tag_protein_kor.png');
+
+  /// File path: assets/images/tag_sodium_eng.png
+  AssetGenImage get tagSodiumEng =>
+      const AssetGenImage('assets/images/tag_sodium_eng.png');
+
+  /// File path: assets/images/tag_sodium_kor.png
+  AssetGenImage get tagSodiumKor =>
+      const AssetGenImage('assets/images/tag_sodium_kor.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
         btnCloseWhite,
         femaleProfile,
         gymVisualDummy,
+        icAddIngredients,
         icBackGray,
         icBackgroundLogin,
         icBalancedTag,
@@ -374,6 +431,7 @@ class $AssetsImagesGen {
         icProfileEmpty,
         icProfileSelected,
         icRecordsPercent,
+        icReduceIngredients,
         icRepurchasePercent,
         icRightGray,
         icRightPrimary,
@@ -403,7 +461,19 @@ class $AssetsImagesGen {
         tabSettingSelected,
         tabSettingUnselected,
         tabStaffSelected,
-        tabStaffUnselected
+        tabStaffUnselected,
+        tagCaffeineEng,
+        tagCaffeineKor,
+        tagCarbsEng,
+        tagCarbsKor,
+        tagFatEng,
+        tagFatKor,
+        tagFiberEng,
+        tagFiberKor,
+        tagProteinEng,
+        tagProteinKor,
+        tagSodiumEng,
+        tagSodiumKor
       ];
 }
 

@@ -1539,10 +1539,10 @@ class S {
     return Intl.message('caffeine', name: 'caffeine', desc: '', args: []);
   }
 
-  /// `Member's note`
+  /// `📝 Member's note`
   String get client_memo {
     return Intl.message(
-      'Member\'s note',
+      '📝 Member\'s note',
       name: 'client_memo',
       desc: '',
       args: [],

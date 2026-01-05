@@ -131,7 +131,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "class_time": MessageLookupByLibrary.simpleMessage("Time of lesson"),
     "class_wait": MessageLookupByLibrary.simpleMessage("Waiting"),
     "client": MessageLookupByLibrary.simpleMessage("Member"),
-    "client_memo": MessageLookupByLibrary.simpleMessage("Member\'s note"),
+    "client_memo": MessageLookupByLibrary.simpleMessage("📝 Member\'s note"),
     "client_workout_memo": MessageLookupByLibrary.simpleMessage(
       "Client\'s Memo",
     ),

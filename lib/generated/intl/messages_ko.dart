@@ -113,7 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "class_time": MessageLookupByLibrary.simpleMessage("수업 시간"),
     "class_wait": MessageLookupByLibrary.simpleMessage("수강 대기"),
     "client": MessageLookupByLibrary.simpleMessage("회원님"),
-    "client_memo": MessageLookupByLibrary.simpleMessage("회원님의 메모"),
+    "client_memo": MessageLookupByLibrary.simpleMessage("📝 회원님의 메모"),
     "client_workout_memo": MessageLookupByLibrary.simpleMessage("회원님의 메모"),
     "client_workout_memo_hint": MessageLookupByLibrary.simpleMessage(
       "운동 중 특이사항을 코치님께 전달해보세요.",

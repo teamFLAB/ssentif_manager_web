@@ -11,6 +11,7 @@ import 'package:ssentif_manager_web/features/client/data/model/client_monthly_ca
 import 'package:ssentif_manager_web/features/routine/data/model/routine_history_model.dart';
 import 'package:ssentif_manager_web/features/client/data/model/body_composition_analysis_model.dart';
 import 'package:ssentif_manager_web/features/client/data/model/monthly_diet_model.dart';
+import 'package:ssentif_manager_web/features/client/data/model/diet_detail_model.dart';
 import '../../features/dashboard/data/model/trainer_schedules_with_prev_month_model.dart';
 import '../../features/dashboard/data/model/monthly_schedule_count_model.dart';
 import '../../features/dashboard/data/model/monthly_routine_ratio_model.dart';
@@ -660,5 +661,23 @@ class ApiService {
       ),
     );
     return MonthlyDietListModel.fromJson(response.data);
+  }
+
+  /// 식단 상세 조회하기
+  Future<DietModel> getDietDetailById({
+    required int dietId,
+    int? clientId,
+  }) async {
+    final response = await _dio.get(
+      '/api/diet/v2',
+      queryParameters: {
+        'diet-id': dietId,
+        if (clientId != null) 'client-id': clientId,
+      },
+      options: Options(
+        extra: {'requiresToken': true},
+      ),
+    );
+    return DietModel.fromJson(response.data);
   }
 }
