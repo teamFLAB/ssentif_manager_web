@@ -243,6 +243,10 @@ class $AssetsImagesGen {
   AssetGenImage get icSearchGray =>
       const AssetGenImage('assets/images/ic_search_gray.png');
 
+  /// File path: assets/images/ic_selected_check.png
+  AssetGenImage get icSelectedCheck =>
+      const AssetGenImage('assets/images/ic_selected_check.png');
+
   /// File path: assets/images/ic_sort_satisfaction.png
   AssetGenImage get icSortSatisfaction =>
       const AssetGenImage('assets/images/ic_sort_satisfaction.png');
@@ -391,6 +395,30 @@ class $AssetsImagesGen {
   AssetGenImage get tagSodiumKor =>
       const AssetGenImage('assets/images/tag_sodium_kor.png');
 
+  /// File path: assets/images/voucher_card_black.png
+  AssetGenImage get voucherCardBlack =>
+      const AssetGenImage('assets/images/voucher_card_black.png');
+
+  /// File path: assets/images/voucher_card_blue.png
+  AssetGenImage get voucherCardBlue =>
+      const AssetGenImage('assets/images/voucher_card_blue.png');
+
+  /// File path: assets/images/voucher_card_green.png
+  AssetGenImage get voucherCardGreen =>
+      const AssetGenImage('assets/images/voucher_card_green.png');
+
+  /// File path: assets/images/voucher_card_orange.png
+  AssetGenImage get voucherCardOrange =>
+      const AssetGenImage('assets/images/voucher_card_orange.png');
+
+  /// File path: assets/images/voucher_card_purple.png
+  AssetGenImage get voucherCardPurple =>
+      const AssetGenImage('assets/images/voucher_card_purple.png');
+
+  /// File path: assets/images/voucher_card_red.png
+  AssetGenImage get voucherCardRed =>
+      const AssetGenImage('assets/images/voucher_card_red.png');
+
   /// List of all assets
   List<AssetGenImage> get values => [
         btnCloseWhite,
@@ -437,6 +465,7 @@ class $AssetsImagesGen {
         icRightPrimary,
         icSatisfactionPercent,
         icSearchGray,
+        icSelectedCheck,
         icSortSatisfaction,
         icSsentifProfile,
         icSsentifTextLogo,
@@ -473,7 +502,13 @@ class $AssetsImagesGen {
         tagProteinEng,
         tagProteinKor,
         tagSodiumEng,
-        tagSodiumKor
+        tagSodiumKor,
+        voucherCardBlack,
+        voucherCardBlue,
+        voucherCardGreen,
+        voucherCardOrange,
+        voucherCardPurple,
+        voucherCardRed
       ];
 }
 

@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:ssentif_manager_web/core/themes/app_colors.dart';
@@ -19,7 +20,16 @@ import 'package:ssentif_manager_web/features/client/domain/entity/body_compositi
 import 'package:ssentif_manager_web/core/network/status_type.dart';
 import 'package:ssentif_manager_web/features/client/domain/usecase/get_monthly_diet_usecase.dart';
 import 'package:ssentif_manager_web/features/client/domain/entity/uploaded_diet_entity.dart';
+import 'package:ssentif_manager_web/features/client/domain/usecase/get_client_voucher_list_usecase.dart';
+import 'package:ssentif_manager_web/features/client/domain/usecase/get_client_voucher_histories_usecase.dart';
+import 'package:ssentif_manager_web/features/client/domain/entity/voucher_entity.dart';
+import 'package:ssentif_manager_web/features/client/domain/entity/voucher_history_entity.dart';
+import 'package:ssentif_manager_web/shared/enumtype/voucher_color_type.dart';
+import 'package:ssentif_manager_web/shared/enumtype/voucher_status_type.dart';
 import 'package:ssentif_manager_web/core/widgets/month_selector_widget.dart';
+import 'package:ssentif_manager_web/core/utils/date_utils.dart';
+import 'package:ssentif_manager_web/core/utils/constants.dart';
+import '../../../../generated/l10n.dart';
 import 'package:ssentif_manager_web/shared/enumtype/feedback_tag_type.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'type_count_widget.dart';
@@ -32,6 +42,7 @@ enum ClientDetailTab {
   coachingStatus,
   bodyChange,
   diet,
+  membership,
 }
 
 class ClientDetailWidget extends ConsumerStatefulWidget {
@@ -70,6 +81,18 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
   List<UploadedDietEntity> _monthlyDiets = [];
   bool _isLoadingDiet = false;
 
+  // 수강권 관련 상태
+  List<VoucherEntity> _vouchers = [];
+  VoucherEntity? _selectedVoucher;
+  bool _isLoadingVoucher = false;
+  final ScrollController _voucherScrollController = ScrollController();
+
+  // 수강 이력 관련 상태
+  List<VoucherHistoryEntity> _voucherHistories = [];
+  bool _isLoadingVoucherHistory = false;
+  int _currentHistoryPage = 1;
+  static const int _historyItemsPerPage = 10;
+
   @override
   void didUpdateWidget(ClientDetailWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -79,6 +102,11 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
       _isLoadingBodyComposition = false;
       _monthlyDiets = [];
       _isLoadingDiet = false;
+      _vouchers = [];
+      _selectedVoucher = null;
+      _isLoadingVoucher = false;
+      _voucherHistories = [];
+      _isLoadingVoucherHistory = false;
 
       // 현재 탭이 bodyChange이면 즉시 데이터 로드
       if (_selectedTab == ClientDetailTab.bodyChange &&
@@ -91,6 +119,13 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
       if (_selectedTab == ClientDetailTab.diet && widget.clientInfo != null) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           _loadMonthlyDietData();
+        });
+      }
+      // 현재 탭이 membership이면 즉시 데이터 로드
+      if (_selectedTab == ClientDetailTab.membership &&
+          widget.clientInfo != null) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          _loadVoucherData();
         });
       }
     }
@@ -289,6 +324,31 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                             },
                           ),
                         ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: _buildTabButton(
+                            text: '수강권',
+                            isSelected:
+                                _selectedTab == ClientDetailTab.membership,
+                            onTap: () {
+                              final wasDifferentTab =
+                                  _selectedTab != ClientDetailTab.membership;
+                              setState(() {
+                                _selectedTab = ClientDetailTab.membership;
+                              });
+                              // 탭이 변경되었고 membership로 변경된 경우 데이터 로드
+                              if (wasDifferentTab &&
+                                  _vouchers.isEmpty &&
+                                  !_isLoadingVoucher &&
+                                  widget.clientInfo != null) {
+                                WidgetsBinding.instance
+                                    .addPostFrameCallback((_) {
+                                  _loadVoucherData();
+                                });
+                              }
+                            },
+                          ),
+                        ),
                       ],
                     ),
                     const SizedBox(height: 20),
@@ -359,6 +419,8 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
         return _buildBodyChangeContent();
       case ClientDetailTab.diet:
         return _buildDietContent();
+      case ClientDetailTab.membership:
+        return _buildMembershipContent();
     }
   }
 
@@ -379,9 +441,9 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
             GestureDetector(
               onTap: widget.onClickThisMonth,
               child: Container(
-                height: 20,
+                height: 22,
                 padding: const EdgeInsets.symmetric(
-                  horizontal: 8,
+                  horizontal: 12,
                 ),
                 decoration: BoxDecoration(
                   color: AppColors.gray4,
@@ -396,7 +458,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                 ),
               ),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 12),
             // 이전 버튼
             GestureDetector(
               onTap: widget.onClickPreviousMonth,
@@ -405,7 +467,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                 height: 20,
               ),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 10),
             // 다음 버튼
             GestureDetector(
               onTap: widget.onClickNextMonth,
@@ -507,6 +569,13 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Text(
+          '최근 체성분 측정',
+          style: SsentifTextStyles.medium18.copyWith(
+            color: AppColors.black,
+          ),
+        ),
+        const SizedBox(height: 16),
         // 탭 버튼들
         Row(
           children: [
@@ -1090,6 +1159,648 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
         _isLoadingDiet = false;
       });
     }
+  }
+
+  Widget _buildMembershipContent() {
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '발급된 수강권',
+            style: SsentifTextStyles.medium18.copyWith(
+              color: AppColors.black,
+            ),
+          ),
+          const SizedBox(height: 16),
+          // 수강권 리스트
+          SizedBox(
+            height: 190,
+            child: _isLoadingVoucher
+                ? const Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : _vouchers.isEmpty
+                    ? Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: AppColors.gray4, width: 1),
+                        ),
+                        child: Center(
+                          child: Text(
+                            '수강권이 없습니다',
+                            style: SsentifTextStyles.medium16.copyWith(
+                              color: AppColors.gray2,
+                            ),
+                          ),
+                        ),
+                      )
+                    : Listener(
+                        onPointerSignal: (event) {
+                          if (event is PointerScrollEvent) {
+                            // 마우스 휠 이벤트 처리 - 브라우저 앞/뒤로 가기 방지
+                            if (event.scrollDelta.dx != 0) {
+                              _voucherScrollController.position.moveTo(
+                                (_voucherScrollController.position.pixels -
+                                        event.scrollDelta.dx)
+                                    .clamp(
+                                        0.0,
+                                        _voucherScrollController
+                                            .position.maxScrollExtent),
+                              );
+                            }
+                          }
+                        },
+                        child: GestureDetector(
+                          onPanUpdate: (details) {
+                            // 마우스 드래그 스크롤 처리
+                            if (_voucherScrollController.hasClients) {
+                              _voucherScrollController.position.moveTo(
+                                (_voucherScrollController.position.pixels -
+                                        details.delta.dx)
+                                    .clamp(
+                                        0.0,
+                                        _voucherScrollController
+                                            .position.maxScrollExtent),
+                              );
+                            }
+                          },
+                          child: SingleChildScrollView(
+                            controller: _voucherScrollController,
+                            scrollDirection: Axis.horizontal,
+                            physics: const ClampingScrollPhysics(),
+                            child: Row(
+                              children: _vouchers.map((voucher) {
+                                return _buildVoucherItem(voucher);
+                              }).toList(),
+                            ),
+                          ),
+                        ),
+                      ),
+          ),
+          const SizedBox(height: 20),
+          // 수강 이력
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    '수강 이력',
+                    style: SsentifTextStyles.medium18.copyWith(
+                      color: AppColors.black,
+                    ),
+                  ),
+                  if (_voucherHistories.isNotEmpty &&
+                      _getTotalHistoryPages() > 1)
+                    Row(
+                      children: _buildPageNumberButtons(),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 12),
+              _isLoadingVoucherHistory
+                  ? const Center(
+                      child: Padding(
+                        padding: EdgeInsets.all(20),
+                        child: CircularProgressIndicator(),
+                      ),
+                    )
+                  : _voucherHistories.isEmpty
+                      ? Container(
+                          width: double.infinity,
+                          padding: const EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            color: AppColors.white,
+                            borderRadius: BorderRadius.circular(8),
+                            border:
+                                Border.all(color: AppColors.gray4, width: 1),
+                          ),
+                          child: Center(
+                            child: Text(
+                              '수강 이력이 없습니다',
+                              style: SsentifTextStyles.medium16.copyWith(
+                                color: AppColors.gray2,
+                              ),
+                            ),
+                          ),
+                        )
+                      : Column(
+                          children: _getPaginatedHistories()
+                              .asMap()
+                              .entries
+                              .map((entry) {
+                            final index = entry.key;
+                            final history = entry.value;
+                            // 전체 리스트에서의 인덱스 계산 (역순이므로)
+                            final globalIndex = (_currentHistoryPage - 1) *
+                                    _historyItemsPerPage +
+                                index;
+                            final order =
+                                _voucherHistories.length - globalIndex;
+                            return _buildVoucherHistoryItem(
+                              history: history,
+                              order: order,
+                            );
+                          }).toList(),
+                        ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildVoucherItem(VoucherEntity voucher) {
+    const double cardWidth = 310;
+    const double cardHeight = 190;
+    final isSelected = _selectedVoucher?.voucherId == voucher.voucherId;
+
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _selectedVoucher = voucher;
+        });
+        _loadVoucherHistoryData();
+      },
+      child: Container(
+        width: cardWidth,
+        height: cardHeight,
+        margin: const EdgeInsets.only(right: 12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            // 배경 이미지
+            ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: Image.asset(
+                VoucherColorType.getCardAsset(voucher.voucherColorType),
+                width: cardWidth,
+                height: cardHeight,
+                fit: BoxFit.fill,
+              ),
+            ),
+            // 수강권 정보 텍스트
+            Positioned(
+              top: 16,
+              left: 16,
+              right: 16,
+              bottom: 16,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          voucher.voucherName,
+                          style: SsentifTextStyles.bold20.copyWith(
+                            color: AppColors.white,
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                                text: "회당",
+                                style: SsentifTextStyles.regular14
+                                    .copyWith(color: AppColors.white),
+                                children: [
+                                  TextSpan(
+                                      text: " ${voucher.feePerSession}원",
+                                      style: SsentifTextStyles.medium18
+                                          .copyWith(color: AppColors.white))
+                                ]),
+                          ),
+                          const SizedBox(height: 5),
+                          RichText(
+                            text: TextSpan(
+                                text: "판매",
+                                style: SsentifTextStyles.regular14
+                                    .copyWith(color: AppColors.white),
+                                children: [
+                                  TextSpan(
+                                      text: " ${voucher.priceOfVoucher}원",
+                                      style: SsentifTextStyles.medium18
+                                          .copyWith(color: AppColors.white))
+                                ]),
+                          )
+                        ],
+                      ),
+                      const Spacer(),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                              text: '수강권 총 횟수',
+                              style: SsentifTextStyles.regular12.copyWith(
+                                color: AppColors.white,
+                              ),
+                              children: [
+                                const TextSpan(text: '   '),
+                                TextSpan(
+                                  text: '${voucher.totalCount}회',
+                                  style: SsentifTextStyles.medium16.copyWith(
+                                    color: AppColors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          RichText(
+                            text: TextSpan(
+                              text: '수업 진행 횟수',
+                              style: SsentifTextStyles.regular12.copyWith(
+                                color: AppColors.white,
+                              ),
+                              children: [
+                                const TextSpan(text: '   '),
+                                TextSpan(
+                                  text:
+                                      '${voucher.totalCount - voucher.remainCount}회',
+                                  style: SsentifTextStyles.medium16.copyWith(
+                                    color: AppColors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          RichText(
+                            text: TextSpan(
+                              text: '출석 미완료 횟수',
+                              style: SsentifTextStyles.regular12.copyWith(
+                                color: AppColors.white,
+                              ),
+                              children: [
+                                const TextSpan(text: '   '),
+                                TextSpan(
+                                  text:
+                                      '${voucher.remainCount - voucher.reservationCount}회',
+                                  style: SsentifTextStyles.medium16.copyWith(
+                                    color: AppColors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          RichText(
+                            text: TextSpan(
+                              text: '예약 가능 횟수',
+                              style: SsentifTextStyles.regular12.copyWith(
+                                color: AppColors.white,
+                              ),
+                              children: [
+                                const TextSpan(text: '   '),
+                                TextSpan(
+                                  text: '${voucher.reservationCount}회',
+                                  style: SsentifTextStyles.medium16.copyWith(
+                                    color: AppColors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            // 만료된 수강권 오버레이
+            if (voucher.voucherStatusType == VoucherStatusType.complete)
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: AppColors.black.withOpacity(0.15),
+                ),
+                child: Center(
+                  child: Text(
+                    S.of(context).expired_voucher,
+                    style: SsentifTextStyles.medium14.copyWith(
+                      color: AppColors.white,
+                    ),
+                  ),
+                ),
+              ),
+            // 선택된 수강권 체크 아이콘
+            if (isSelected)
+              Positioned(
+                top: 12,
+                right: 12,
+                child: Image.asset(
+                  Assets.images.icSelectedCheck.path,
+                  width: 24,
+                  height: 24,
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildVoucherHistoryItem({
+    required VoucherHistoryEntity history,
+    required int order,
+  }) {
+    // 날짜 포맷 변환 (yyyy-MM-dd -> yyyy년 MM월 dd일 E요일)
+    final formattedDate = history.classStartDate.convertDateFormat(
+      formatBefore: Constants.dateFormat,
+      formatAfter: Constants.localizationDateFormat(),
+    );
+    // 시간은 그대로 사용 (이미 HH:mm 형식일 것으로 예상)
+    final dateTimeText = '$formattedDate ${history.time}';
+
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: AppColors.gray4, width: 1),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // 회차 원형 인덱스
+              Container(
+                width: 25,
+                height: 25,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: AppColors.primary,
+                ),
+                alignment: Alignment.center,
+                child: Text(
+                  '$order',
+                  style: SsentifTextStyles.medium12.copyWith(
+                    color: AppColors.white,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              // 날짜/시간 텍스트
+              Expanded(
+                child: Text(
+                  dateTimeText,
+                  style: SsentifTextStyles.medium14.copyWith(
+                    color: AppColors.black,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              // 차감 텍스트
+              Text(
+                S.of(context).deduct,
+                style: SsentifTextStyles.medium16.copyWith(
+                  color: AppColors.modalTextRed,
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _loadVoucherData() async {
+    if (widget.clientInfo == null) return;
+
+    setState(() {
+      _isLoadingVoucher = true;
+    });
+
+    try {
+      final useCase = ref.read(getClientVoucherListUseCaseProvider);
+      final result = await useCase.call(
+        clientId: widget.clientInfo!.clientId,
+        active: false,
+      );
+
+      if (result.statusType == StatusType.SUCCESS && result.data != null) {
+        final vouchers = result.data!;
+        // complete 상태인 수강권들을 뒤로 정렬
+        vouchers.sort((a, b) {
+          final aIsComplete = a.voucherStatusType == VoucherStatusType.complete;
+          final bIsComplete = b.voucherStatusType == VoucherStatusType.complete;
+          if (aIsComplete && !bIsComplete) return 1;
+          if (!aIsComplete && bIsComplete) return -1;
+          return 0;
+        });
+        setState(() {
+          _vouchers = vouchers;
+          // 첫 번째 수강권으로 초기화
+          _selectedVoucher = vouchers.isNotEmpty ? vouchers.first : null;
+          _isLoadingVoucher = false;
+        });
+        // 선택된 수강권의 이력 로드
+        if (_selectedVoucher != null) {
+          _loadVoucherHistoryData();
+        }
+      } else {
+        setState(() {
+          _isLoadingVoucher = false;
+        });
+      }
+    } catch (e) {
+      setState(() {
+        _isLoadingVoucher = false;
+      });
+    }
+  }
+
+  Future<void> _loadVoucherHistoryData() async {
+    if (_selectedVoucher == null || _selectedVoucher!.voucherMatchingId == -1) {
+      setState(() {
+        _voucherHistories = [];
+        _isLoadingVoucherHistory = false;
+      });
+      return;
+    }
+
+    setState(() {
+      _isLoadingVoucherHistory = true;
+    });
+
+    try {
+      final useCase = ref.read(getClientVoucherHistoriesUseCaseProvider);
+      final result = await useCase.call(
+        voucherMatchingId: _selectedVoucher!.voucherMatchingId,
+      );
+
+      if (result.statusType == StatusType.SUCCESS && result.data != null) {
+        setState(() {
+          _voucherHistories = result.data!;
+          _currentHistoryPage = 1; // 데이터 로드 시 첫 페이지로 리셋
+          _isLoadingVoucherHistory = false;
+        });
+      } else {
+        setState(() {
+          _isLoadingVoucherHistory = false;
+        });
+      }
+    } catch (e) {
+      setState(() {
+        _isLoadingVoucherHistory = false;
+      });
+    }
+  }
+
+  List<Widget> _buildPageNumberButtons() {
+    final totalPages = _getTotalHistoryPages();
+    final List<Widget> buttons = [];
+
+    // 최대 5개 페이지 번호만 표시
+    int startPage = math.max(1, _currentHistoryPage - 2);
+    int endPage = math.min(totalPages, startPage + 4);
+
+    // 끝에서 시작하는 경우 조정
+    if (endPage - startPage < 4) {
+      startPage = math.max(1, endPage - 4);
+    }
+
+    // 이전 버튼
+    if (startPage > 1) {
+      buttons.add(
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              _currentHistoryPage = startPage - 1;
+            });
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(color: AppColors.gray4, width: 1),
+            ),
+            child: Text(
+              '<',
+              style: SsentifTextStyles.medium12.copyWith(
+                color: AppColors.black,
+              ),
+            ),
+          ),
+        ),
+      );
+      buttons.add(const SizedBox(width: 4));
+    }
+
+    // 페이지 번호 버튼들
+    for (int i = startPage; i <= endPage; i++) {
+      final isSelected = i == _currentHistoryPage;
+      buttons.add(
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              _currentHistoryPage = i;
+            });
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            decoration: BoxDecoration(
+              color: isSelected ? AppColors.primary : AppColors.white,
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(
+                color: isSelected ? AppColors.primary : AppColors.gray4,
+                width: 1,
+              ),
+            ),
+            child: Text(
+              '$i',
+              style: SsentifTextStyles.medium12.copyWith(
+                color: isSelected ? AppColors.white : AppColors.black,
+              ),
+            ),
+          ),
+        ),
+      );
+      if (i < endPage) {
+        buttons.add(const SizedBox(width: 4));
+      }
+    }
+
+    // 다음 버튼
+    if (endPage < totalPages) {
+      buttons.add(const SizedBox(width: 4));
+      buttons.add(
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              _currentHistoryPage = endPage + 1;
+            });
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(color: AppColors.gray4, width: 1),
+            ),
+            child: Text(
+              '>',
+              style: SsentifTextStyles.medium12.copyWith(
+                color: AppColors.black,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    return buttons;
+  }
+
+  List<VoucherHistoryEntity> _getPaginatedHistories() {
+    final startIndex = (_currentHistoryPage - 1) * _historyItemsPerPage;
+    final endIndex = startIndex + _historyItemsPerPage;
+    if (startIndex >= _voucherHistories.length) {
+      return [];
+    }
+    return _voucherHistories.sublist(
+      startIndex,
+      endIndex > _voucherHistories.length ? _voucherHistories.length : endIndex,
+    );
+  }
+
+  int _getTotalHistoryPages() {
+    if (_voucherHistories.isEmpty) return 1;
+    return (_voucherHistories.length / _historyItemsPerPage).ceil();
+  }
+
+  @override
+  void dispose() {
+    _voucherScrollController.dispose();
+    super.dispose();
   }
 }
 

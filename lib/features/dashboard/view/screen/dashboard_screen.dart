@@ -89,11 +89,14 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              MonthSelectorWidget(
-                selectedMonth: state.selectedMonth,
-                onThisMonth: () => viewModel.clickThisMonth(),
-                onPreviousMonth: () => viewModel.clickPreviousMonth(),
-                onNextMonth: () => viewModel.clickNextMonth(),
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: MonthSelectorWidget(
+                  selectedMonth: state.selectedMonth,
+                  onThisMonth: () => viewModel.clickThisMonth(),
+                  onPreviousMonth: () => viewModel.clickPreviousMonth(),
+                  onNextMonth: () => viewModel.clickNextMonth(),
+                ),
               ),
               const SizedBox(height: 20),
               const DashboardStatCardsRow(),

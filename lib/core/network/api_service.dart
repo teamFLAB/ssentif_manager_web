@@ -12,6 +12,8 @@ import 'package:ssentif_manager_web/features/routine/data/model/routine_history_
 import 'package:ssentif_manager_web/features/client/data/model/body_composition_analysis_model.dart';
 import 'package:ssentif_manager_web/features/client/data/model/monthly_diet_model.dart';
 import 'package:ssentif_manager_web/features/client/data/model/diet_detail_model.dart';
+import 'package:ssentif_manager_web/features/client/data/model/voucher_model.dart';
+import 'package:ssentif_manager_web/features/client/data/model/voucher_history_model.dart';
 import '../../features/dashboard/data/model/trainer_schedules_with_prev_month_model.dart';
 import '../../features/dashboard/data/model/monthly_schedule_count_model.dart';
 import '../../features/dashboard/data/model/monthly_routine_ratio_model.dart';
@@ -679,5 +681,34 @@ class ApiService {
       ),
     );
     return DietModel.fromJson(response.data);
+  }
+
+  /// 회원 수강권 리스트 조회하기
+  Future<ResponseVoucherHistories> getVoucherHistories(
+      int voucherMatchingId) async {
+    final response = await _dio.get(
+      '/api/matching/classInfo/history',
+      queryParameters: {
+        'voucherMatching': voucherMatchingId,
+      },
+    );
+    return ResponseVoucherHistories.fromJson(response.data);
+  }
+
+  Future<ResponseClientVoucherList> getClientVoucherList({
+    required int clientId,
+    required bool active,
+  }) async {
+    final response = await _dio.get(
+      '/api/voucher/list/client',
+      queryParameters: {
+        'client': clientId,
+        'active': active,
+      },
+      options: Options(
+        extra: {'requiresToken': true},
+      ),
+    );
+    return ResponseClientVoucherList.fromJson(response.data);
   }
 }

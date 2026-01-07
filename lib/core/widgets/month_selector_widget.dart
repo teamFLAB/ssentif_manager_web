@@ -31,11 +31,11 @@ class MonthSelectorWidget extends StatelessWidget {
         Text(
           DateFormat('yyyy년 MM월').format(selectedMonth),
           style: monthTextStyle ??
-              SsentifTextStyles.medium16.copyWith(
+              SsentifTextStyles.medium18.copyWith(
                 color: AppColors.black,
               ),
         ),
-        const SizedBox(width: 16),
+        const SizedBox(width: 12),
         // 이번달 버튼
         GestureDetector(
           onTap: onThisMonth,
@@ -79,5 +79,3 @@ class MonthSelectorWidget extends StatelessWidget {
     );
   }
 }
-
-
