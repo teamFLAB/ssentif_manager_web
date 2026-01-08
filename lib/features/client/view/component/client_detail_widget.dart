@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ssentif_manager_web/core/themes/app_colors.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
 import 'package:ssentif_manager_web/core/utils/ext.dart';
@@ -29,7 +30,6 @@ import 'package:ssentif_manager_web/shared/enumtype/voucher_status_type.dart';
 import 'package:ssentif_manager_web/core/widgets/month_selector_widget.dart';
 import 'package:ssentif_manager_web/core/utils/date_utils.dart';
 import 'package:ssentif_manager_web/core/utils/constants.dart';
-import '../../../../generated/l10n.dart';
 import 'package:ssentif_manager_web/shared/enumtype/feedback_tag_type.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'type_count_widget.dart';
@@ -93,6 +93,10 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
   int _currentHistoryPage = 1;
   static const int _historyItemsPerPage = 10;
 
+  // 식단 페이지네이션 관련 상태
+  int _currentDietPage = 1;
+  static const int _dietItemsPerPage = 16;
+
   @override
   void didUpdateWidget(ClientDetailWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -144,8 +148,9 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
     var genderStringKey = widget.clientInfo != null
         ? GenderType.findGenderOneChar(widget.clientInfo!.gender)
         : "";
-    return Expanded(
-      child: Column(
+
+    if (widget.clientInfo == null) {
+      return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
@@ -155,232 +160,251 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
             ),
           ),
           const SizedBox(height: 12),
-          if (widget.clientInfo != null)
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: BorderRadius.circular(8),
+          Container(
+            width: double.infinity,
+            height: 300,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Center(
+              child: Text(
+                '회원을 선택해주세요',
+                style: SsentifTextStyles.regular18.copyWith(
+                  color: AppColors.gray2,
                 ),
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          "${widget.clientInfo!.userName} ${Intl.message("client")}",
-                          style: SsentifTextStyles.medium18.copyWith(
-                            color: AppColors.black,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Text(
-                          '(${widget.clientInfo!.age}세, ${Intl.message(genderStringKey)})',
-                          style: SsentifTextStyles.medium14.copyWith(
-                            color: AppColors.black,
-                          ),
-                        ),
-                        const Spacer(),
-                        Text(
-                          '잔여 ${widget.clientProfile?.matchingInfoSimpleDto.leftNumberOfTime ?? 0}회',
-                          style: SsentifTextStyles.medium16.copyWith(
-                            color: AppColors.primary,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Visibility(
-                      visible: widget.clientInfo?.statusType !=
-                          MatchingStatusType.created,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 16),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: 60,
-                                child: Text(
-                                  '운동 목적',
-                                  style: SsentifTextStyles.medium12.copyWith(
-                                    color: AppColors.black,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 15),
-                              Text(
-                                widget.clientProfile?.searchUserInfoDto
-                                        .exercisePurposes
-                                        .map((e) => Intl.message(
-                                            e.findExercisePurposeString()))
-                                        .join(", ") ??
-                                    "",
-                                style: SsentifTextStyles.medium12.copyWith(
-                                  color: AppColors.gray2,
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 8),
-                          // 연락처
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: 60,
-                                child: Text(
-                                  '연락처',
-                                  style: SsentifTextStyles.medium12.copyWith(
-                                    color: AppColors.black,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 15),
-                              Text(
-                                widget.clientInfo!.phoneNumber
-                                    .toHyphenPhoneNumber(),
-                                style: SsentifTextStyles.medium12.copyWith(
-                                  color: AppColors.gray2,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 20, bottom: 20),
-                      child: Container(
-                        width: double.infinity,
-                        height: 2,
-                        color: AppColors.gray6,
-                      ),
-                    ),
-                    // 탭 버튼들
-                    Row(
-                      children: [
-                        Expanded(
-                          child: _buildTabButton(
-                            text: '코칭현황',
-                            isSelected:
-                                _selectedTab == ClientDetailTab.coachingStatus,
-                            onTap: () {
-                              setState(() {
-                                _selectedTab = ClientDetailTab.coachingStatus;
-                              });
-                            },
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: _buildTabButton(
-                            text: '신체변화',
-                            isSelected:
-                                _selectedTab == ClientDetailTab.bodyChange,
-                            onTap: () {
-                              final wasDifferentTab =
-                                  _selectedTab != ClientDetailTab.bodyChange;
-                              setState(() {
-                                _selectedTab = ClientDetailTab.bodyChange;
-                              });
-                              // 탭이 변경되었고 bodyChange로 변경된 경우 데이터 로드
-                              if (wasDifferentTab &&
-                                  _bodyCompositionData == null &&
-                                  !_isLoadingBodyComposition &&
-                                  widget.clientInfo != null) {
-                                WidgetsBinding.instance
-                                    .addPostFrameCallback((_) {
-                                  _loadBodyCompositionData();
-                                });
-                              }
-                            },
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: _buildTabButton(
-                            text: '식단',
-                            isSelected: _selectedTab == ClientDetailTab.diet,
-                            onTap: () {
-                              final wasDifferentTab =
-                                  _selectedTab != ClientDetailTab.diet;
-                              setState(() {
-                                _selectedTab = ClientDetailTab.diet;
-                              });
-                              // 탭이 변경되었고 diet로 변경된 경우 데이터 로드
-                              if (wasDifferentTab &&
-                                  _monthlyDiets.isEmpty &&
-                                  !_isLoadingDiet &&
-                                  widget.clientInfo != null) {
-                                WidgetsBinding.instance
-                                    .addPostFrameCallback((_) {
-                                  _loadMonthlyDietData();
-                                });
-                              }
-                            },
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: _buildTabButton(
-                            text: '수강권',
-                            isSelected:
-                                _selectedTab == ClientDetailTab.membership,
-                            onTap: () {
-                              final wasDifferentTab =
-                                  _selectedTab != ClientDetailTab.membership;
-                              setState(() {
-                                _selectedTab = ClientDetailTab.membership;
-                              });
-                              // 탭이 변경되었고 membership로 변경된 경우 데이터 로드
-                              if (wasDifferentTab &&
-                                  _vouchers.isEmpty &&
-                                  !_isLoadingVoucher &&
-                                  widget.clientInfo != null) {
-                                WidgetsBinding.instance
-                                    .addPostFrameCallback((_) {
-                                  _loadVoucherData();
-                                });
-                              }
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    // 탭별 컨텐츠
-                    Expanded(
-                      child: _buildTabContent(),
-                    ),
-                  ],
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '선택된 회원의 코칭현황',
+                style: SsentifTextStyles.medium14.copyWith(
+                  color: AppColors.gray1,
                 ),
               ),
-            )
-          else
-            Container(
-              width: double.infinity,
-              height: 300,
-              alignment: Alignment.center,
+              const SizedBox(height: 12),
+            ],
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: Container(
               decoration: BoxDecoration(
                 color: AppColors.white,
                 borderRadius: BorderRadius.circular(8),
               ),
-              child: Center(
-                child: Text(
-                  '회원을 선택해주세요',
-                  style: SsentifTextStyles.regular18.copyWith(
-                    color: AppColors.gray2,
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        "${widget.clientInfo!.userName} ${Intl.message("client")}",
+                        style: SsentifTextStyles.medium18.copyWith(
+                          color: AppColors.black,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        '(${widget.clientInfo!.age}세, ${Intl.message(genderStringKey)})',
+                        style: SsentifTextStyles.medium14.copyWith(
+                          color: AppColors.black,
+                        ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        '잔여 ${widget.clientProfile?.matchingInfoSimpleDto.leftNumberOfTime ?? 0}회',
+                        style: SsentifTextStyles.medium16.copyWith(
+                          color: AppColors.primary,
+                        ),
+                      ),
+                    ],
                   ),
-                  textAlign: TextAlign.center,
-                ),
+                  Visibility(
+                    visible: widget.clientInfo?.statusType !=
+                        MatchingStatusType.created,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 16),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 60,
+                              child: Text(
+                                '운동 목적',
+                                style: SsentifTextStyles.medium12.copyWith(
+                                  color: AppColors.black,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 15),
+                            Text(
+                              widget.clientProfile?.searchUserInfoDto
+                                      .exercisePurposes
+                                      .map((e) => Intl.message(
+                                          e.findExercisePurposeString()))
+                                      .join(", ") ??
+                                  "",
+                              style: SsentifTextStyles.medium12.copyWith(
+                                color: AppColors.gray2,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 8),
+                        // 연락처
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 60,
+                              child: Text(
+                                '연락처',
+                                style: SsentifTextStyles.medium12.copyWith(
+                                  color: AppColors.black,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 15),
+                            Text(
+                              widget.clientInfo!.phoneNumber
+                                  .toHyphenPhoneNumber(),
+                              style: SsentifTextStyles.medium12.copyWith(
+                                color: AppColors.gray2,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20, bottom: 20),
+                    child: Container(
+                      width: double.infinity,
+                      height: 2,
+                      color: AppColors.gray6,
+                    ),
+                  ),
+                  // 탭 버튼들
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _buildTabButton(
+                          text: '코칭현황',
+                          isSelected:
+                              _selectedTab == ClientDetailTab.coachingStatus,
+                          onTap: () {
+                            if (_selectedTab !=
+                                ClientDetailTab.coachingStatus) {
+                              setState(() {
+                                _selectedTab = ClientDetailTab.coachingStatus;
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: _buildTabButton(
+                          text: '신체변화',
+                          isSelected:
+                              _selectedTab == ClientDetailTab.bodyChange,
+                          onTap: () {
+                            final wasDifferentTab =
+                                _selectedTab != ClientDetailTab.bodyChange;
+                            setState(() {
+                              _selectedTab = ClientDetailTab.bodyChange;
+                            });
+                            // 탭이 변경되었고 bodyChange로 변경된 경우 데이터 로드
+                            if (wasDifferentTab &&
+                                _bodyCompositionData == null &&
+                                !_isLoadingBodyComposition &&
+                                widget.clientInfo != null) {
+                              WidgetsBinding.instance.addPostFrameCallback((_) {
+                                _loadBodyCompositionData();
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: _buildTabButton(
+                          text: '식단',
+                          isSelected: _selectedTab == ClientDetailTab.diet,
+                          onTap: () {
+                            final wasDifferentTab =
+                                _selectedTab != ClientDetailTab.diet;
+                            setState(() {
+                              _selectedTab = ClientDetailTab.diet;
+                            });
+                            // 탭이 변경되었고 diet로 변경된 경우 데이터 로드
+                            if (wasDifferentTab &&
+                                _monthlyDiets.isEmpty &&
+                                !_isLoadingDiet &&
+                                widget.clientInfo != null) {
+                              WidgetsBinding.instance.addPostFrameCallback((_) {
+                                _loadMonthlyDietData();
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: _buildTabButton(
+                          text: '수강권',
+                          isSelected:
+                              _selectedTab == ClientDetailTab.membership,
+                          onTap: () {
+                            final wasDifferentTab =
+                                _selectedTab != ClientDetailTab.membership;
+                            setState(() {
+                              _selectedTab = ClientDetailTab.membership;
+                            });
+                            // 탭이 변경되었고 membership로 변경된 경우 데이터 로드
+                            if (wasDifferentTab &&
+                                _vouchers.isEmpty &&
+                                !_isLoadingVoucher &&
+                                widget.clientInfo != null) {
+                              WidgetsBinding.instance.addPostFrameCallback((_) {
+                                _loadVoucherData();
+                              });
+                            }
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  // 탭별 컨텐츠
+                  RepaintBoundary(
+                    child: _buildTabContent(),
+                  ),
+                ],
               ),
             ),
-        ],
-      ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -389,22 +413,24 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
     required bool isSelected,
     required VoidCallback onTap,
   }) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        decoration: BoxDecoration(
-          color: isSelected ? AppColors.primary : AppColors.white,
-          borderRadius: BorderRadius.circular(5),
-          border: isSelected
-              ? Border.all(color: AppColors.primary, width: 1)
-              : Border.all(color: AppColors.gray4, width: 1),
-        ),
-        alignment: Alignment.center,
-        child: Text(
-          text,
-          style: SsentifTextStyles.medium14.copyWith(
-            color: isSelected ? AppColors.white : AppColors.black,
+    return RepaintBoundary(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 12),
+          decoration: BoxDecoration(
+            color: isSelected ? AppColors.primary : AppColors.white,
+            borderRadius: BorderRadius.circular(5),
+            border: isSelected
+                ? Border.all(color: AppColors.primary, width: 1)
+                : Border.all(color: AppColors.gray4, width: 1),
+          ),
+          alignment: Alignment.center,
+          child: Text(
+            text,
+            style: SsentifTextStyles.medium14.copyWith(
+              color: isSelected ? AppColors.white : AppColors.black,
+            ),
           ),
         ),
       ),
@@ -421,6 +447,40 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
         return _buildDietContent();
       case ClientDetailTab.membership:
         return _buildMembershipContent();
+    }
+  }
+
+  List<Widget> _buildTabContentSliver() {
+    switch (_selectedTab) {
+      case ClientDetailTab.coachingStatus:
+        return [
+          SliverToBoxAdapter(
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+              child: _buildCoachingStatusContent(),
+            ),
+          ),
+        ];
+      case ClientDetailTab.bodyChange:
+        return [
+          SliverToBoxAdapter(
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+              child: _buildBodyChangeContent(),
+            ),
+          ),
+        ];
+      case ClientDetailTab.diet:
+        return _buildDietContentSliver();
+      case ClientDetailTab.membership:
+        return [
+          SliverToBoxAdapter(
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+              child: _buildMembershipContent(),
+            ),
+          ),
+        ];
     }
   }
 
@@ -512,7 +572,8 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
         ),
         const SizedBox(height: 20),
         // 월간 캘린더
-        Expanded(
+        SizedBox(
+          height: 550, // 고정 높이 설정
           child: MonthlyCalendarWidget(
             selectedMonth: widget.selectedMonth,
             eventsByDate: _getEventsFromCalendar(),
@@ -1103,7 +1164,8 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
     }
 
     final screenWidth = MediaQuery.of(context).size.width;
-    final imageWidth = screenWidth / 3;
+    final imageWidth = screenWidth / 4;
+    final paginatedDiets = _getPaginatedDiets();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -1116,17 +1178,128 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
           onNextMonth: widget.onClickNextMonth,
         ),
         const SizedBox(height: 15),
-        Expanded(
-          child: _DietGridView(
+        if (_monthlyDiets.isNotEmpty && _getTotalDietPages() > 1)
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Row(
+                children: _buildDietPageNumberButtons(),
+              ),
+            ],
+          ),
+        if (_monthlyDiets.isNotEmpty && _getTotalDietPages() > 1)
+          const SizedBox(height: 12),
+        if (paginatedDiets.isEmpty)
+          Container(
+            height: 300,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              border: Border.all(color: AppColors.gray4, width: 1),
+            ),
+            child: Text(
+              Intl.message("empty_diet_list"),
+              style: SsentifTextStyles.medium16.copyWith(
+                color: AppColors.gray3,
+              ),
+            ),
+          )
+        else
+          _DietGridView(
             key: ValueKey(
-                'diet_grid_${_monthlyDiets.length}_${widget.selectedMonth.millisecondsSinceEpoch}'),
-            monthlyDiets: _monthlyDiets,
+                'diet_grid_${_monthlyDiets.length}_${widget.selectedMonth.millisecondsSinceEpoch}_$_currentDietPage'),
+            monthlyDiets: paginatedDiets,
+            allMonthlyDiets: _monthlyDiets,
             imageWidth: imageWidth,
             clientId: widget.clientInfo?.clientId ?? -1,
           ),
-        ),
       ],
     );
+  }
+
+  List<Widget> _buildDietContentSliver() {
+    if (_isLoadingDiet) {
+      return [
+        SliverToBoxAdapter(
+          child: Container(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+            child: const Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
+        ),
+      ];
+    }
+
+    final screenWidth = MediaQuery.of(context).size.width;
+    final imageWidth = screenWidth / 4;
+    final paginatedDiets = _getPaginatedDiets();
+
+    return [
+      SliverToBoxAdapter(
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _DietMonthSelector(
+                key: const ValueKey('diet_month_selector'),
+                selectedMonth: widget.selectedMonth,
+                onThisMonth: widget.onClickThisMonth,
+                onPreviousMonth: widget.onClickPreviousMonth,
+                onNextMonth: widget.onClickNextMonth,
+              ),
+              const SizedBox(height: 15),
+              if (_monthlyDiets.isNotEmpty && _getTotalDietPages() > 1)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Row(
+                      children: _buildDietPageNumberButtons(),
+                    ),
+                  ],
+                ),
+              if (_monthlyDiets.isNotEmpty && _getTotalDietPages() > 1)
+                const SizedBox(height: 12),
+            ],
+          ),
+        ),
+      ),
+      if (paginatedDiets.isEmpty)
+        SliverToBoxAdapter(
+          child: Container(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+            child: Container(
+              height: 300,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                border: Border.all(color: AppColors.gray4, width: 1),
+              ),
+              child: Text(
+                Intl.message("empty_diet_list"),
+                style: SsentifTextStyles.medium16.copyWith(
+                  color: AppColors.gray3,
+                ),
+              ),
+            ),
+          ),
+        )
+      else
+        _DietSliverGrid(
+          key: ValueKey(
+              'diet_grid_${_monthlyDiets.length}_${widget.selectedMonth.millisecondsSinceEpoch}_$_currentDietPage'),
+          monthlyDiets: paginatedDiets,
+          allMonthlyDiets: _monthlyDiets,
+          imageWidth: imageWidth,
+          clientId: widget.clientInfo?.clientId ?? -1,
+        ),
+      SliverToBoxAdapter(
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+        ),
+      ),
+    ];
   }
 
   Future<void> _loadMonthlyDietData() async {
@@ -1147,6 +1320,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
       if (result.statusType == StatusType.SUCCESS && result.data != null) {
         setState(() {
           _monthlyDiets = result.data!;
+          _currentDietPage = 1; // 데이터 로드 시 첫 페이지로 리셋
           _isLoadingDiet = false;
         });
       } else {
@@ -1500,7 +1674,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                 ),
                 child: Center(
                   child: Text(
-                    S.of(context).expired_voucher,
+                    Intl.message("expired_voucher"),
                     style: SsentifTextStyles.medium14.copyWith(
                       color: AppColors.white,
                     ),
@@ -1579,7 +1753,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
               const SizedBox(width: 10),
               // 차감 텍스트
               Text(
-                S.of(context).deduct,
+                Intl.message("deduct"),
                 style: SsentifTextStyles.medium16.copyWith(
                   color: AppColors.modalTextRed,
                 ),
@@ -1797,6 +1971,130 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
     return (_voucherHistories.length / _historyItemsPerPage).ceil();
   }
 
+  // 식단 페이지네이션 관련 메서드
+  List<UploadedDietEntity> _getPaginatedDiets() {
+    final startIndex = (_currentDietPage - 1) * _dietItemsPerPage;
+    final endIndex = startIndex + _dietItemsPerPage;
+    if (startIndex >= _monthlyDiets.length) {
+      return [];
+    }
+    return _monthlyDiets.sublist(
+      startIndex,
+      endIndex > _monthlyDiets.length ? _monthlyDiets.length : endIndex,
+    );
+  }
+
+  int _getTotalDietPages() {
+    if (_monthlyDiets.isEmpty) return 1;
+    return (_monthlyDiets.length / _dietItemsPerPage).ceil();
+  }
+
+  List<Widget> _buildDietPageNumberButtons() {
+    final totalPages = _getTotalDietPages();
+    final List<Widget> buttons = [];
+
+    // 최대 5개 페이지 번호만 표시
+    int startPage = math.max(1, _currentDietPage - 2);
+    int endPage = math.min(totalPages, startPage + 4);
+
+    // 끝에서 시작하는 경우 조정
+    if (endPage - startPage < 4) {
+      startPage = math.max(1, endPage - 4);
+    }
+
+    // 이전 버튼
+    if (startPage > 1) {
+      buttons.add(
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              _currentDietPage = startPage - 1;
+            });
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(color: AppColors.gray4, width: 1),
+            ),
+            child: Text(
+              '<',
+              style: SsentifTextStyles.medium12.copyWith(
+                color: AppColors.black,
+              ),
+            ),
+          ),
+        ),
+      );
+      buttons.add(const SizedBox(width: 4));
+    }
+
+    // 페이지 번호 버튼들
+    for (int i = startPage; i <= endPage; i++) {
+      final isSelected = i == _currentDietPage;
+      buttons.add(
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              _currentDietPage = i;
+            });
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            decoration: BoxDecoration(
+              color: isSelected ? AppColors.primary : AppColors.white,
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(
+                color: isSelected ? AppColors.primary : AppColors.gray4,
+                width: 1,
+              ),
+            ),
+            child: Text(
+              '$i',
+              style: SsentifTextStyles.medium12.copyWith(
+                color: isSelected ? AppColors.white : AppColors.black,
+              ),
+            ),
+          ),
+        ),
+      );
+      if (i < endPage) {
+        buttons.add(const SizedBox(width: 4));
+      }
+    }
+
+    // 다음 버튼
+    if (endPage < totalPages) {
+      buttons.add(const SizedBox(width: 4));
+      buttons.add(
+        GestureDetector(
+          onTap: () {
+            setState(() {
+              _currentDietPage = endPage + 1;
+            });
+          },
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            decoration: BoxDecoration(
+              color: AppColors.white,
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(color: AppColors.gray4, width: 1),
+            ),
+            child: Text(
+              '>',
+              style: SsentifTextStyles.medium12.copyWith(
+                color: AppColors.black,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    return buttons;
+  }
+
   @override
   void dispose() {
     _voucherScrollController.dispose();
@@ -1836,14 +2134,61 @@ class _DietMonthSelectorState extends State<_DietMonthSelector> {
   }
 }
 
+class _DietSliverGrid extends StatelessWidget {
+  final List<UploadedDietEntity> monthlyDiets;
+  final List<UploadedDietEntity> allMonthlyDiets;
+  final double imageWidth;
+  final int clientId;
+
+  const _DietSliverGrid({
+    super.key,
+    required this.monthlyDiets,
+    required this.allMonthlyDiets,
+    required this.imageWidth,
+    required this.clientId,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverPadding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      sliver: SliverGrid(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 4,
+          mainAxisSpacing: 0,
+          crossAxisSpacing: 0,
+          childAspectRatio: 1.0,
+        ),
+        delegate: SliverChildBuilderDelegate(
+          (BuildContext context, int index) {
+            final diet = monthlyDiets[index];
+            return _DietGridItem(
+              key: ValueKey('diet_item_${diet.dietId}_${diet.date}'),
+              diet: diet,
+              allMonthlyDiets: allMonthlyDiets,
+              imageWidth: imageWidth,
+              clientId: clientId,
+            );
+          },
+          childCount: monthlyDiets.length,
+          addAutomaticKeepAlives: false,
+          addRepaintBoundaries: true,
+        ),
+      ),
+    );
+  }
+}
+
 class _DietGridView extends StatelessWidget {
   final List<UploadedDietEntity> monthlyDiets;
+  final List<UploadedDietEntity> allMonthlyDiets;
   final double imageWidth;
   final int clientId;
 
   const _DietGridView({
     super.key,
     required this.monthlyDiets,
+    required this.allMonthlyDiets,
     required this.imageWidth,
     required this.clientId,
   });
@@ -1851,132 +2196,227 @@ class _DietGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (monthlyDiets.isEmpty) {
-      return Container(
-        height: 300,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: AppColors.gray4, width: 1),
-        ),
-        child: Text(
-          Intl.message("empty_diet_list"),
-          style: SsentifTextStyles.medium16.copyWith(
-            color: AppColors.gray3,
+      return const SizedBox.shrink();
+    }
+
+    // 4열 그리드를 위한 행들 생성
+    final rows = <Widget>[];
+    const crossAxisCount = 4;
+
+    for (int i = 0; i < monthlyDiets.length; i += crossAxisCount) {
+      final rowItems = <Widget>[];
+      for (int j = 0;
+          j < crossAxisCount && (i + j) < monthlyDiets.length;
+          j++) {
+        final diet = monthlyDiets[i + j];
+        rowItems.add(
+          Expanded(
+            child: AspectRatio(
+              aspectRatio: 1.0,
+              child: _DietGridItem(
+                key: ValueKey('diet_item_${diet.dietId}_${diet.date}'),
+                diet: diet,
+                allMonthlyDiets: allMonthlyDiets,
+                imageWidth: imageWidth,
+                clientId: clientId,
+              ),
+            ),
           ),
+        );
+      }
+      // 마지막 행이 4개 미만일 경우 빈 공간 채우기
+      while (rowItems.length < crossAxisCount) {
+        rowItems.add(const Expanded(
+          child: AspectRatio(
+            aspectRatio: 1.0,
+            child: SizedBox(),
+          ),
+        ));
+      }
+
+      rows.add(
+        Row(
+          children: rowItems,
         ),
       );
     }
 
-    return GridView.builder(
-      padding: EdgeInsets.zero,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-      ),
-      itemCount: monthlyDiets.length,
-      itemBuilder: (BuildContext context, int index) {
-        var diet = monthlyDiets[index];
-        return GestureDetector(
-          onTap: () {
-            if (diet.dietId != null && diet.dietId! > 0) {
-              final dietIds = monthlyDiets
-                  .where((d) => d.dietId != null && d.dietId! > 0)
-                  .map((d) => d.dietId!)
-                  .toList();
-              DietDetailDialog.show(
-                context,
-                clientId: clientId,
-                dietIds: dietIds,
-                initialDietId: diet.dietId!,
-              );
-            }
-          },
-          child: Stack(
-            fit: StackFit.expand,
-            children: [
-              diet.pictures.isNotEmpty
-                  ? Image.network(
-                      diet.pictures.first.remoteUrl,
-                      width: imageWidth,
-                      height: imageWidth,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Container(
-                          width: imageWidth,
-                          height: imageWidth,
-                          color: AppColors.gray4,
-                          child: const Icon(
-                            Icons.restaurant,
-                            size: 40,
-                            color: AppColors.gray2,
-                          ),
-                        );
-                      },
-                    )
-                  : Container(
-                      width: imageWidth,
-                      height: imageWidth,
-                      color: AppColors.gray4,
-                      child: const Icon(
-                        Icons.restaurant,
-                        size: 40,
-                        color: AppColors.gray2,
-                      ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: rows,
+    );
+  }
+}
+
+class _DietGridItem extends StatelessWidget {
+  final UploadedDietEntity diet;
+  final List<UploadedDietEntity> allMonthlyDiets;
+  final double imageWidth;
+  final int clientId;
+
+  // dietIds를 캐싱하여 매번 계산하지 않도록
+  static final Map<String, List<int>> _dietIdsCache = {};
+
+  const _DietGridItem({
+    super.key,
+    required this.diet,
+    required this.allMonthlyDiets,
+    required this.imageWidth,
+    required this.clientId,
+  });
+
+  List<int> _getDietIds() {
+    final cacheKey = '${clientId}_${allMonthlyDiets.length}';
+    if (!_dietIdsCache.containsKey(cacheKey)) {
+      _dietIdsCache[cacheKey] = allMonthlyDiets
+          .where((d) => d.dietId != null && d.dietId! > 0)
+          .map((d) => d.dietId!)
+          .toList();
+    }
+    return _dietIdsCache[cacheKey]!;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final hasImage = diet.pictures.isNotEmpty;
+    final imageCount = diet.pictures.length;
+    final feedbackImage = diet.feedbackTag.getTagSelectedImage();
+
+    return RepaintBoundary(
+      child: GestureDetector(
+        onTap: () {
+          if (diet.dietId != null && diet.dietId! > 0) {
+            final dietIds = _getDietIds();
+            DietDetailDialog.show(
+              context,
+              clientId: clientId,
+              dietIds: dietIds,
+              initialDietId: diet.dietId!,
+            );
+          }
+        },
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            hasImage
+                ? _DietImageWidget(
+                    imageUrl: diet.pictures.first.remoteUrl,
+                    thumbnailUrl: diet.pictures.first.thumbnailUrl,
+                    imageWidth: imageWidth,
+                  )
+                : Container(
+                    width: imageWidth,
+                    height: imageWidth,
+                    color: AppColors.gray4,
+                    child: const Icon(
+                      Icons.restaurant,
+                      size: 40,
+                      color: AppColors.gray2,
                     ),
-              Container(
-                width: imageWidth,
-                height: imageWidth,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: AppColors.white,
-                    width: 0.5,
                   ),
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      AppColors.blackAlpha30,
-                      diet.pictures.isNotEmpty
-                          ? AppColors.transparent
-                          : AppColors.blackAlpha30,
-                    ],
-                  ),
+            Container(
+              width: imageWidth,
+              height: imageWidth,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: AppColors.white,
+                  width: 0.5,
+                ),
+                gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [
+                    AppColors.blackAlpha30,
+                    hasImage ? AppColors.transparent : AppColors.blackAlpha30,
+                  ],
                 ),
               ),
-              if (diet.pictures.length > 1)
-                Center(
-                  child: Text(
-                    "+ ${diet.pictures.length}",
-                    style: SsentifTextStyles.medium22.copyWith(
-                      color: AppColors.white,
-                    ),
-                  ),
-                ),
-              Positioned(
-                top: 5,
-                left: 5,
+            ),
+            if (imageCount > 1)
+              Center(
                 child: Text(
-                  diet.date,
-                  style: SsentifTextStyles.medium12.copyWith(
-                    color: AppColors.backgroundColor,
+                  "+ $imageCount",
+                  style: SsentifTextStyles.medium22.copyWith(
+                    color: AppColors.white,
                   ),
                 ),
               ),
+            Positioned(
+              top: 5,
+              left: 5,
+              child: Text(
+                diet.date,
+                style: SsentifTextStyles.medium12.copyWith(
+                  color: AppColors.backgroundColor,
+                ),
+              ),
+            ),
+            if (feedbackImage.isNotEmpty)
               Positioned(
                 bottom: 5,
                 right: 5,
-                child: diet.feedbackTag.getTagSelectedImage().isNotEmpty
-                    ? Image.asset(
-                        diet.feedbackTag.getTagSelectedImage(),
-                        width: 56,
-                        height: 56,
-                      )
-                    : const SizedBox.shrink(),
+                child: Image.asset(
+                  feedbackImage,
+                  fit: BoxFit.fitWidth,
+                  width: 60,
+                  height: 60,
+                  cacheWidth: 60,
+                  cacheHeight: 60,
+                ),
               ),
-            ],
-          ),
-        );
-      },
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _DietImageWidget extends StatelessWidget {
+  final String imageUrl;
+  final String thumbnailUrl;
+  final double imageWidth;
+
+  const _DietImageWidget({
+    required this.imageUrl,
+    required this.thumbnailUrl,
+    required this.imageWidth,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final useThumbnail = thumbnailUrl.isNotEmpty;
+    final imageToLoad = useThumbnail ? thumbnailUrl : imageUrl;
+    // 이미지 크기에 맞춰 캐시 크기 조정 (너무 크게 설정하지 않음)
+    final cacheSize = imageWidth.toInt();
+
+    return CachedNetworkImage(
+      imageUrl: imageToLoad,
+      width: imageWidth,
+      height: imageWidth,
+      fit: BoxFit.cover,
+      memCacheWidth: cacheSize,
+      memCacheHeight: cacheSize,
+      maxWidthDiskCache: cacheSize,
+      maxHeightDiskCache: cacheSize,
+      placeholder: (context, url) => Container(
+        width: imageWidth,
+        height: imageWidth,
+        color: AppColors.gray4,
+      ),
+      fadeInDuration: Duration.zero,
+      fadeOutDuration: Duration.zero,
+      errorWidget: (context, url, error) => Container(
+        width: imageWidth,
+        height: imageWidth,
+        color: AppColors.gray4,
+        child: const Icon(
+          Icons.restaurant,
+          size: 40,
+          color: AppColors.gray2,
+        ),
+      ),
+      httpHeaders: const {},
+      useOldImageOnUrlChange: true,
     );
   }
 }

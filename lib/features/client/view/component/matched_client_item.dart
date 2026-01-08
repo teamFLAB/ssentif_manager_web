@@ -6,7 +6,6 @@ import 'package:ssentif_manager_web/core/utils/ext.dart';
 
 import '../../../../core/themes/app_colors.dart';
 import '../../../../core/themes/typography.dart';
-import '../../../../core/utils/constants.dart';
 import '../../../../gen/assets.gen.dart';
 import '../../../../shared/enumtype/gender_type.dart';
 import '../../domain/entity/client_list_entity.dart';
@@ -49,27 +48,35 @@ class MatchedClientItem extends StatelessWidget {
                   )
               ),
               const Padding(padding: EdgeInsets.only(right: 14)),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
                       "${client.userName} (${client.age}${Intl.message("unit_years_old")}, ${Intl.message(GenderType.findGenderOneChar(client.gender))})",
-                    style: SsentifTextStyles.medium14
-                        .copyWith(color: AppColors.black),
-                  ),
-                  const Padding(padding: EdgeInsets.only(top: 2)),
-                  Text(
-                    client.phoneNumber.toHyphenPhoneNumber(),
-                    style: SsentifTextStyles.medium12
-                        .copyWith(color: AppColors.gray2),
-                  )
-                ],
+                      style: SsentifTextStyles.medium14
+                          .copyWith(color: AppColors.black),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                    const Padding(padding: EdgeInsets.only(top: 2)),
+                    Text(
+                      client.phoneNumber.toHyphenPhoneNumber(),
+                      style: SsentifTextStyles.medium12
+                          .copyWith(color: AppColors.gray2),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    )
+                  ],
+                ),
               ),
-              const Spacer(),
+              const SizedBox(width: 8),
               Text(
                 "${Intl.message("remain")} ${client.leftCountOfVoucher} ${Intl.message("unit_session_count")}",
                 style: SsentifTextStyles.medium14
                     .copyWith(color: AppColors.primary),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
               )
             ],
           ),

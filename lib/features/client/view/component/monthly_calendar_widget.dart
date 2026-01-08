@@ -25,11 +25,14 @@ class MonthlyCalendarWidget extends StatelessWidget {
         border: Border.all(color: AppColors.gray4, width: 1),
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           // 요일 헤더
           _buildWeekdayHeader(),
           // 날짜 그리드
-          _buildDateGrid(),
+          Expanded(
+            child: _buildDateGrid(),
+          ),
         ],
       ),
     );
@@ -76,10 +79,7 @@ class MonthlyCalendarWidget extends StatelessWidget {
   Widget _buildDateGrid() {
     final firstDayOfMonth =
         DateTime(selectedMonth.year, selectedMonth.month, 1);
-    final lastDayOfMonth =
-        DateTime(selectedMonth.year, selectedMonth.month + 1, 0);
     final firstWeekday = firstDayOfMonth.weekday; // 1=월요일, 7=일요일
-    final totalDays = lastDayOfMonth.day;
 
     // 이번 달의 첫 번째 날이 시작되는 주의 첫 번째 날 (월요일)
     final startDate =
@@ -89,11 +89,12 @@ class MonthlyCalendarWidget extends StatelessWidget {
     final totalCells = 42;
 
     return GridView.builder(
-      shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 7,
-        childAspectRatio: 1.1,
+        childAspectRatio: 1.0,
+        mainAxisSpacing: 0,
+        crossAxisSpacing: 0,
       ),
       itemCount: totalCells,
       itemBuilder: (context, index) {
@@ -116,42 +117,54 @@ class MonthlyCalendarWidget extends StatelessWidget {
           border: Border.all(color: AppColors.grayE4, width: 0.5),
           color: isToday ? AppColors.primary.withOpacity(0.1) : AppColors.white,
         ),
-        child: Column(
-          children: [
-            // 날짜 표시
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.only(top: 4, right: 4),
-              child: Align(
-                alignment: Alignment.topRight,
-                child: Container(
-                  width: 20,
-                  height: 20,
-                  decoration: BoxDecoration(
-                    color: isToday ? AppColors.primary : Colors.transparent,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Center(
-                    child: Text(
-                      '${date.day}',
-                      style: SsentifTextStyles.medium10.copyWith(
-                        color: _getDateTextColor(date, isCurrentMonth, isToday),
+        child: Padding(
+          padding: const EdgeInsets.all(1),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // 날짜 표시
+              SizedBox(
+                height: 22,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 2, right: 2),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      width: 20,
+                      height: 20,
+                      decoration: BoxDecoration(
+                        color: isToday ? AppColors.primary : Colors.transparent,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: Text(
+                          '${date.day}',
+                          style: SsentifTextStyles.medium10.copyWith(
+                            color: _getDateTextColor(
+                                date, isCurrentMonth, isToday),
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-            // 이벤트 라벨들
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
-                child: Column(
-                  children: _buildEventLabels(events),
+              // 이벤트 라벨들
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 1),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: _buildEventLabels(events),
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:ssentif_manager_web/core/themes/app_colors.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ssentif_manager_web/features/coaches/domain/enumtype/coach_tab.dart';
 import 'package:ssentif_manager_web/features/coaches/view/intent/coaches_intent.dart';
-import 'package:ssentif_manager_web/features/schedule/view/component/weekly_scheduler_widget.dart';
-import 'package:ssentif_manager_web/features/schedule/view/screen/weekly_schedule_page.dart';
 import '../component/coach_list_item.dart';
 import 'package:ssentif_manager_web/features/coaches/view/viewmodel/coaches_view_model.dart';
 import 'monthly_statistics_screen.dart';
 import 'managed_members_screen.dart';
-import 'ticket_sales_screen.dart';
 
 import '../../../../shared/domain/entity/user_entity.dart';
 
@@ -42,75 +38,81 @@ class _CoachesScreenState extends ConsumerState<CoachesScreen> {
               color: AppColors.white,
             ),
           ),
-          // 스크롤 가능한 영역
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const SizedBox(height: 20),
-                  Container(
-                    height: 50,
-                    width: double.infinity,
-                    padding: EdgeInsets.only(left: 30),
-                    child: ListView.separated(
-                        physics: AlwaysScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: state.coaches.length,
-                        separatorBuilder: (BuildContext context, int idx) {
-                          return SizedBox(width: 8);
+          // 상단 고정 영역 (45-92)
+          Column(
+            children: [
+              const SizedBox(height: 20),
+              Container(
+                height: 50,
+                width: double.infinity,
+                padding: EdgeInsets.only(left: 30),
+                child: ListView.separated(
+                    physics: AlwaysScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: state.coaches.length,
+                    separatorBuilder: (BuildContext context, int idx) {
+                      return SizedBox(width: 8);
+                    },
+                    itemBuilder: (BuildContext context, int idx) {
+                      var user = state.coaches[idx];
+                      return CoachListItem(
+                        user: user,
+                        profileImgSize: 30,
+                        selected: state.selectedUser?.userId == user.userId,
+                        isFirstItem: idx == 0,
+                        onClick: () {
+                          viewModel.handleIntent(
+                              CoachesIntent.clickCoachProfile(user: user));
                         },
-                        itemBuilder: (BuildContext context, int idx) {
-                          var user = state.coaches[idx];
-                          return CoachListItem(
-                            user: user,
-                            profileImgSize: 30,
-                            selected: state.selectedUser?.userId == user.userId,
-                            isFirstItem: idx == 0,
-                            onClick: () {
-                              viewModel.handleIntent(
-                                  CoachesIntent.clickCoachProfile(user: user));
-                            },
-                          );
-                        }),
-                  ),
-                  const SizedBox(height: 20),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
-                    child: Container(
-                      height: 1,
-                      width: double.infinity,
-                      color: AppColors.gray9,
-                    ),
-                  ),
-                  const SizedBox(height: 15),
-                  _CoachTabBar(
-                      selectedTabIdx: state.selectedTabIdx,
-                      onSelectTab: (int value) {
-                        viewModel
-                            .handleIntent(CoachesIntent.selectTab(idx: value));
-                      }),
-                  const SizedBox(height: 20),
-                  // IndexedStack으로 변경하여 현재 페이지만 인스턴스 유지
-                  SizedBox(
-                    height: 900, // 고정 높이 설정
-                    child: IndexedStack(
-                      index: state.selectedTabIdx,
-                      children: [
-                        ManagedMembersScreen(
-                          selectedCoach: state.selectedUser,
-                        ),
-                        MonthlyStatisticsScreen(
-                          selectedCoach: state.selectedUser,
-                          selectedMonth: state.calendarDate ?? DateTime.now(),
-                        ),
-                        // TicketSalesScreen(),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 30),
-                ],
+                      );
+                    }),
               ),
+              const SizedBox(height: 20),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30),
+                child: Container(
+                  height: 1,
+                  width: double.infinity,
+                  color: AppColors.gray9,
+                ),
+              ),
+              const SizedBox(height: 15),
+              // 탭바 (좌측 절반만 차지)
+              Align(
+                alignment: Alignment.centerLeft,
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width / 2,
+                  child: _CoachTabBar(
+                    selectedTabIdx: state.selectedTabIdx,
+                    onSelectTab: (int value) {
+                      viewModel
+                          .handleIntent(CoachesIntent.selectTab(idx: value));
+                    },
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
+          // 탭별 콘텐츠 영역
+          Expanded(
+            child: IndexedStack(
+              index: state.selectedTabIdx,
+              children: [
+                // ManagedMembersScreen: 좌우 별도 스크롤
+                ManagedMembersScreen(
+                  selectedCoach: state.selectedUser,
+                ),
+                // MonthlyStatisticsScreen: 전체 스크롤
+                SingleChildScrollView(
+                  child: MonthlyStatisticsScreen(
+                    selectedCoach: state.selectedUser,
+                    selectedMonth: state.calendarDate ?? DateTime.now(),
+                  ),
+                ),
+                // TicketSalesScreen(),
+              ],
             ),
           ),
         ],
@@ -124,8 +126,7 @@ class _CoachTabBar extends StatelessWidget {
   final int selectedTabIdx;
   final ValueChanged<int> onSelectTab;
 
-  const _CoachTabBar(
-      {super.key, required this.selectedTabIdx, required this.onSelectTab});
+  const _CoachTabBar({required this.selectedTabIdx, required this.onSelectTab});
 
   @override
   Widget build(BuildContext context) {

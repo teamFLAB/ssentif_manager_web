@@ -27,6 +27,7 @@ dependencies:
   syncfusion_flutter_calendar: ^29.1.38
 #  flutter_dotenv: ^5.1.0
   fl_chart: ^0.69.0
+  cached_network_image: ^3.3.1
 
 dev_dependencies:
   flutter_test:

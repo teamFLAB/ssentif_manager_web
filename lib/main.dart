@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import 'core/navigation/app_router.dart';
 import 'core/themes/app_colors.dart';
-import 'generated/l10n.dart';
+import 'generated/intl/messages_all.dart';
 
 void main() async {
-
+  // Intl 메시지 초기화 (기본 locale을 ko로 설정)
+  await initializeMessages('ko');
+  Intl.defaultLocale = 'ko';
+  
   runApp(ProviderScope(child: const MyApp()));
 }
 
@@ -23,8 +27,8 @@ class MyApp extends ConsumerWidget {
         useMaterial3: true,
       ),
       routerConfig: appRouter,
+      locale: const Locale('ko'),
       localizationsDelegates: const [
-        S.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate
@@ -33,7 +37,6 @@ class MyApp extends ConsumerWidget {
         Locale("en"),
         Locale("ko")
       ],
-
     );
   }
 }

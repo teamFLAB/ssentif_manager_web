@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:ssentif_manager_web/features/routine/domain/entity/routine_history_entity.dart';
 import 'package:ssentif_manager_web/shared/domain/entity/user_info_entity.dart';
 
-import '../../generated/l10n.dart';
 
 extension NestedListExtensions<T> on List<List<T>> {
   List<T> flatten() {
@@ -53,9 +53,8 @@ extension FileUrlExt on FileUrlEntity {
 extension UserInfoEntityExt on List<UserInfoEntity> {
   String getScheduleName(BuildContext context) {
     if (length > 1) {
-      return S
-          .of(context)
-          .schedule_name_with_others(first.userName, length - 1);
+      final template = Intl.message("schedule_name_with_others");
+      return template.replaceAll("{firstName}", first.userName).replaceAll("{count}", "${length - 1}");
     } else {
       return firstOrNull?.userName ?? "";
     }

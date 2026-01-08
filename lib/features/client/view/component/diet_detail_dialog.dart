@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ssentif_manager_web/core/themes/app_colors.dart';
-import 'package:ssentif_manager_web/generated/l10n.dart';
+import 'package:intl/intl.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
 import 'package:ssentif_manager_web/core/widgets/image_expand_dialog.dart';
 import 'package:ssentif_manager_web/features/client/domain/entity/diet_entity.dart';
@@ -499,7 +499,7 @@ class DietDetailDialog extends ConsumerWidget {
         Padding(
           padding: const EdgeInsets.only(right: 16),
           child: Text(
-            S.of(context).client_memo,
+            Intl.message("client_memo"),
             style: SsentifTextStyles.medium14.copyWith(
               color: AppColors.black,
             ),
@@ -517,7 +517,7 @@ class DietDetailDialog extends ConsumerWidget {
               padding: EdgeInsets.symmetric(vertical: 12, horizontal: 12),
               child: Text(
                 memo.isEmpty
-                    ? S.of(context).not_exist_feedback_of_trainer
+                    ? Intl.message("not_exist_feedback_of_trainer")
                     : memo,
                 style: SsentifTextStyles.regular12.copyWith(
                   color: AppColors.gray1,
@@ -543,7 +543,7 @@ class DietDetailDialog extends ConsumerWidget {
         Padding(
           padding: const EdgeInsets.only(right: 16),
           child: Text(
-            S.of(context).feedback_of_trainer,
+            Intl.message("feedback_of_trainer"),
             style: SsentifTextStyles.medium14.copyWith(
               color: AppColors.black,
             ),
@@ -569,7 +569,7 @@ class DietDetailDialog extends ConsumerWidget {
                     diet.dietFeedback?.feedback != null &&
                             diet.dietFeedback!.feedback.isNotEmpty
                         ? diet.dietFeedback!.feedback
-                        : S.of(context).not_exist_feedback_of_trainer,
+                        : Intl.message("not_exist_feedback_of_trainer"),
                     style: SsentifTextStyles.regular12.copyWith(
                       color: AppColors.gray1,
                     ),
@@ -592,7 +592,7 @@ class DietDetailDialog extends ConsumerWidget {
               ),
               const SizedBox(width: 5),
               Text(
-                S.of(context).eat_more,
+                Intl.message("eat_more"),
                 style: SsentifTextStyles.medium14.copyWith(
                   color: AppColors.black,
                 ),
@@ -632,7 +632,7 @@ class DietDetailDialog extends ConsumerWidget {
               ),
               const SizedBox(width: 5),
               Text(
-                S.of(context).eat_less,
+                Intl.message("eat_less"),
                 style: SsentifTextStyles.medium14.copyWith(
                   color: AppColors.black,
                 ),
@@ -664,32 +664,30 @@ class DietDetailDialog extends ConsumerWidget {
   }
 
   String _getMealTimeText(BuildContext context, MealTimeType mealTimeType) {
-    final s = S.of(context);
     switch (mealTimeType) {
       case MealTimeType.breakfast:
-        return s.breakfast;
+        return Intl.message("breakfast");
       case MealTimeType.lunch:
-        return s.lunch;
+        return Intl.message("lunch");
       case MealTimeType.dinner:
-        return s.dinner;
+        return Intl.message("dinner");
       case MealTimeType.snack:
-        return s.snack;
+        return Intl.message("snack");
       case MealTimeType.midnightSnack:
-        return s.midnight_snack;
+        return Intl.message("midnight_snack");
     }
   }
 
   String _getMealTypeText(BuildContext context, MealType mealType) {
-    final s = S.of(context);
     switch (mealType) {
       case MealType.normal:
-        return s.normal;
+        return Intl.message("normal");
       case MealType.cheat:
-        return s.cheat;
+        return Intl.message("cheat");
       case MealType.diet:
-        return s.diet;
+        return Intl.message("diet");
       case MealType.instant:
-        return s.instant;
+        return Intl.message("instant");
     }
   }
 }

@@ -40,8 +40,8 @@ class ApiService {
   final Dio _dio;
 
   String get apiBaseUrl {
-    return "http://13.125.118.62:8080";
-    // return "https://api.ssentif.kr";
+    // return "http://13.125.118.62:8080";
+    return "https://api.ssentif.kr";
     // dotenv 관련 코드 모두 제거됨
   }
 
