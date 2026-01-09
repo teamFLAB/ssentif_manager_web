@@ -111,12 +111,12 @@ class ScheduleStatBox extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(width: DeviceSizeUtils().getResponsiveDouble(5, 1, context)),
+          SizedBox(width: DeviceSizeUtils().getResponsiveDouble(10, 1, context)),
           Align(
             alignment: Alignment.bottomRight,
             child: Text(
               value + " 건",
-              style: SsentifTextStyles.bold20(context).copyWith(color: AppColors.black),
+              style: SsentifTextStyles.bold18(context).copyWith(color: AppColors.black),
             ),
           ),
         ],

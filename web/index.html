@@ -40,6 +40,7 @@
     {{flutter_build_config}}
 
     _flutter.loader.load({
+      serviceWorkerSettings: null,
       onEntrypointLoaded: async function(engineInitializer) {
         const appRunner = await engineInitializer.initializeEngine({
           useColorEmoji: true, // Add emoji color setting
