@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ssentif_manager_web/core/navigation/app_router.dart';
 import 'package:ssentif_manager_web/core/themes/app_colors.dart';
@@ -6,6 +7,7 @@ import 'package:ssentif_manager_web/core/themes/typography.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ssentif_manager_web/core/utils/context_utils.dart';
 import 'package:ssentif_manager_web/core/utils/date_utils.dart';
+import 'package:ssentif_manager_web/core/utils/device_size_utils.dart';
 import 'package:ssentif_manager_web/features/schedule/view/effect/schedule_effect.dart';
 import 'package:ssentif_manager_web/features/schedule/view/intent/schedule_intent.dart';
 import 'package:ssentif_manager_web/shared/domain/entity/user_entity.dart';
@@ -37,6 +39,7 @@ class ScheduleScreen extends ConsumerStatefulWidget {
 class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
   final CalendarController _calendarController = CalendarController();
   final ScrollController _scrollController = ScrollController();
+  final ScrollController _horizontalScrollController = ScrollController();
   bool _hasScrolledToCurrentTime = false;
   bool _isDialogShowing = false;
 
@@ -74,11 +77,14 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
   @override
   void dispose() {
     _scrollController.dispose();
+    _horizontalScrollController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    var scheduleStatSpace = DeviceSizeUtils().getResponsiveDouble(14, 3, context);
+
     return Consumer(
       builder: (context, ref, _) {
         final viewModelProvider = scheduleViewModelProvider(widget.coaches);
@@ -143,7 +149,7 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
                       },
                       child: Text(
                         "로그아웃",
-                        style: SsentifTextStyles.medium14
+                        style: SsentifTextStyles.medium14(context)
                             .copyWith(color: AppColors.gray1),
                       ),
                     ),
@@ -155,6 +161,7 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
                 child: SingleChildScrollView(
                   controller: _scrollController,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                         padding: EdgeInsets.only(left: 30, right: 30),
@@ -197,32 +204,78 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
                         ),
                       ),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: EdgeInsets.only(left: 30),
-                            child: Row(
-                              children: [
-                                ScheduleStatBox(
-                                    title: '전체 수업',
-                                    value: state.totalClassCount.toString()),
-                                const SizedBox(width: 15),
-                                ScheduleStatBox(
-                                    title: '출석 완료',
-                                    value: state.attendanceCount.toString()),
-                                const SizedBox(width: 15),
-                                ScheduleStatBox(
-                                    title: '예약 완료',
-                                    value: state.reservationCount.toString()),
-                                const SizedBox(width: 15),
-                                ScheduleStatBox(
-                                    title: '예약 요청',
-                                    value: state.reservationRequestCount
-                                        .toString()),
-                                const SizedBox(width: 15),
-                                ScheduleStatBox(
-                                    title: '기타 일정',
-                                    value: state.etcCount.toString()),
-                              ],
+                            child: Listener(
+                              onPointerSignal: (event) {
+                                if (event is PointerScrollEvent) {
+                                  // 마우스 휠 이벤트 처리 - 브라우저 앞/뒤로 가기 방지
+                                  if (event.scrollDelta.dx != 0 &&
+                                      _horizontalScrollController.hasClients) {
+                                    _horizontalScrollController.position.moveTo(
+                                      (_horizontalScrollController
+                                                  .position.pixels -
+                                              event.scrollDelta.dx)
+                                          .clamp(
+                                              0.0,
+                                              _horizontalScrollController
+                                                  .position.maxScrollExtent),
+                                    );
+                                  }
+                                }
+                              },
+                              child: GestureDetector(
+                                onPanUpdate: (details) {
+                                  // 마우스 드래그 스크롤 처리
+                                  if (_horizontalScrollController.hasClients) {
+                                    _horizontalScrollController.position.moveTo(
+                                      (_horizontalScrollController
+                                                  .position.pixels -
+                                              details.delta.dx)
+                                          .clamp(
+                                              0.0,
+                                              _horizontalScrollController
+                                                  .position.maxScrollExtent),
+                                    );
+                                  }
+                                },
+                                child: SingleChildScrollView(
+                                  controller: _horizontalScrollController,
+                                  scrollDirection: Axis.horizontal,
+                                  physics: const ClampingScrollPhysics(),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      ScheduleStatBox(
+                                          title: '전체 수업',
+                                          value:
+                                              state.totalClassCount.toString()),
+                                      SizedBox(width: scheduleStatSpace),
+                                      ScheduleStatBox(
+                                          title: '출석 완료',
+                                          value:
+                                              state.attendanceCount.toString()),
+                                      SizedBox(width: scheduleStatSpace),
+                                      ScheduleStatBox(
+                                          title: '예약 완료',
+                                          value: state.reservationCount
+                                              .toString()),
+                                      SizedBox(width: scheduleStatSpace),
+                                      ScheduleStatBox(
+                                          title: '예약 요청',
+                                          value: state.reservationRequestCount
+                                              .toString()),
+                                      SizedBox(width: scheduleStatSpace),
+                                      ScheduleStatBox(
+                                          title: '기타 일정',
+                                          value: state.etcCount.toString()),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             ),
                           ),
                           const SizedBox(height: 20),
@@ -409,7 +462,7 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
         backgroundColor: AppColors.white,
         title: Text(
           '로그아웃 하시겠습니다?',
-          style: SsentifTextStyles.bold16.copyWith(
+          style: SsentifTextStyles.bold16(context).copyWith(
             color: AppColors.black,
           ),
           textAlign: TextAlign.start,
@@ -431,7 +484,7 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
                     child: Center(
                       child: Text(
                         '취소',
-                        style: SsentifTextStyles.medium14.copyWith(
+                        style: SsentifTextStyles.medium14(context).copyWith(
                           color: AppColors.gray555,
                         ),
                       ),
@@ -454,7 +507,7 @@ class _ScheduleScreenState extends ConsumerState<ScheduleScreen> {
                     child: Center(
                       child: Text(
                         '로그아웃',
-                        style: SsentifTextStyles.medium14.copyWith(
+                        style: SsentifTextStyles.medium14(context).copyWith(
                           color: AppColors.white,
                         ),
                       ),

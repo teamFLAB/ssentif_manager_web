@@ -58,14 +58,14 @@ class CoachListItem extends StatelessWidget {
               children: [
                 Text(
                   user.userName,
-                  style: SsentifTextStyles.medium14.copyWith(color: AppColors.black),
+                  style: SsentifTextStyles.medium14(context).copyWith(color: AppColors.black),
                 ),
                 const SizedBox(height: 2),
                 Text(
                   user.workPosition != null
                       ? Intl.message(user.workPosition!.getIntlKey())
                       : '',
-                  style: SsentifTextStyles.medium12.copyWith(color: AppColors.gray2),
+                  style: SsentifTextStyles.medium12(context).copyWith(color: AppColors.gray2),
                 ),
               ],
             )

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:ssentif_manager_web/core/themes/app_colors.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
+import 'package:ssentif_manager_web/core/utils/device_size_utils.dart';
 import 'package:ssentif_manager_web/gen/assets.gen.dart';
 import 'package:ssentif_manager_web/features/schedule/view/component/schedule_stat_box.dart';
 import 'package:ssentif_manager_web/core/widgets/monthly_calendar.dart';
@@ -31,19 +32,23 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
         ref.read(monthlyStatisticsViewModelProvider(providerParams).notifier);
     final state = ref.watch(monthlyStatisticsViewModelProvider(providerParams));
 
+    var margin30 = DeviceSizeUtils().getResponsiveDouble(30, 5, context);
+    var margin15 = DeviceSizeUtils().getResponsiveDouble(15, 2, context);
+    var margin20 = DeviceSizeUtils().getResponsiveDouble(20, 3, context);
+
     return Container(
       color: AppColors.backgroundColor,
       child: Column(
         children: [
           // 상단 헤더 영역
           Container(
-            padding: const EdgeInsets.only(right: 30, left: 30, bottom: 15),
+            padding: EdgeInsets.only(right: margin30, left: margin30, bottom: margin15),
             child: Row(
               children: [
                 // 월 표시 텍스트
                 Text(
                   DateFormat('yyyy년 MM월').format(state.selectedMonth),
-                  style: SsentifTextStyles.medium24.copyWith(
+                  style: SsentifTextStyles.medium24(context).copyWith(
                     color: AppColors.black,
                   ),
                 ),
@@ -66,7 +71,7 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
                     alignment: Alignment.center,
                     child: Text(
                       '이번달',
-                      style: SsentifTextStyles.medium12.copyWith(
+                      style: SsentifTextStyles.medium12(context).copyWith(
                         color: AppColors.gray555,
                       ),
                     ),
@@ -108,20 +113,20 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
                 children: [
                   // 왼쪽 통계 박스들
                   Padding(
-                    padding: EdgeInsets.only(right: 20),
+                    padding: EdgeInsets.only(right: margin20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(bottom: 20),
+                          padding: EdgeInsets.only(bottom: margin20),
                           child: Text(
                             '수업일정',
-                            style: SsentifTextStyles.medium14.copyWith(
+                            style: SsentifTextStyles.medium14(context).copyWith(
                               color: AppColors.black,
                             ),
                           ),
                         ),
-                        ..._buildStatBoxRows(state),
+                        ..._buildStatBoxRows(state, context),
                       ],
                     ),
                   ),
@@ -131,7 +136,7 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.only(left: 20),
+                      padding: EdgeInsets.only(left: margin20),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -139,11 +144,11 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
                           // 날짜별 일정 확인 텍스트
                           Text(
                             '날짜별 일정 확인',
-                            style: SsentifTextStyles.medium14.copyWith(
+                            style: SsentifTextStyles.medium14(context).copyWith(
                               color: AppColors.black,
                             ),
                           ),
-                          const SizedBox(height: 20),
+                          SizedBox(height: margin20),
                           // 캘린더
                           MonthlyCalendar(
                             selectedMonth: selectedMonth,
@@ -166,7 +171,11 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
     );
   }
 
-  List<Widget> _buildStatBoxRows(MonthlyStatisticsState state) {
+  List<Widget> _buildStatBoxRows(MonthlyStatisticsState state, BuildContext context) {
+
+    var width200 = DeviceSizeUtils().getResponsiveDouble(200, 15, context);
+    var margin15 = DeviceSizeUtils().getResponsiveDouble(15, 2, context);
+
     final statBoxes = [
       ('전체 수업', state.totalClassCount.toString()),
       ('출석 완료', state.attendanceCount.toString()),
@@ -182,16 +191,16 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
       final row = Row(
         children: [
           SizedBox(
-            width: 200,
+            width: width200,
             child: ScheduleStatBox(
               title: statBoxes[i].$1,
               value: statBoxes[i].$2,
             ),
           ),
           if (i + 1 < statBoxes.length) ...[
-            const SizedBox(width: 15),
+            SizedBox(width: margin15),
             SizedBox(
-              width: 200,
+              width: width200,
               child: ScheduleStatBox(
                 title: statBoxes[i + 1].$1,
                 value: statBoxes[i + 1].$2,
@@ -203,7 +212,7 @@ class MonthlyStatisticsScreen extends ConsumerWidget {
 
       rows.add(row);
       if (i + 2 < statBoxes.length) {
-        rows.add(const SizedBox(height: 15));
+        rows.add(SizedBox(height: margin15));
       }
     }
 

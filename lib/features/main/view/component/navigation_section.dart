@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ssentif_manager_web/core/themes/app_colors.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
+import 'package:ssentif_manager_web/core/utils/device_size_utils.dart';
 import 'package:ssentif_manager_web/features/main/domain/enumtype/navigation_section_type.dart';
-
-import '../../../../gen/assets.gen.dart';
 
 class NavigationSection extends StatelessWidget {
   final String gymName;
@@ -18,8 +17,13 @@ class NavigationSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final navigationWidth =
+        DeviceSizeUtils().getResponsiveSize(240, 35, context);
+    final itemHeight = DeviceSizeUtils().getResponsiveSize(48, 2, context);
+    final iconSize = DeviceSizeUtils().getResponsiveSize(24, 2, context);
+
     return Container(
-      width: 240,
+      width: navigationWidth,
       color: AppColors.backgroundColor,
       height: double.infinity,
       child: Column(
@@ -33,8 +37,8 @@ class NavigationSection extends StatelessWidget {
               padding: EdgeInsets.only(left: 20, right: 20),
               child: Text(
                 gymName,
-                style:
-                    SsentifTextStyles.bold20.copyWith(color: AppColors.gray555),
+                style: SsentifTextStyles.bold20(context)
+                    .copyWith(color: AppColors.gray555),
               ),
             ),
           ),
@@ -53,13 +57,13 @@ class NavigationSection extends StatelessWidget {
                   ...NavigationSectionType.values.map((type) {
                     final bool selected = type == selectedSection;
                     return Padding(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 8),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(8),
                         onTap: () => onSectionSelected(type),
                         child: Container(
-                          height: 48,
+                          height: itemHeight,
                           decoration: BoxDecoration(
                             color: selected
                                 ? AppColors.backgroundTabSelected
@@ -69,12 +73,15 @@ class NavigationSection extends StatelessWidget {
                           child: Row(
                             children: [
                               SizedBox(width: 20),
-                              (selected ? type.selectedIcon : type.unSelectedIcon)
-                                  .image(width: 24, height: 24),
+                              (selected
+                                      ? type.selectedIcon
+                                      : type.unSelectedIcon)
+                                  .image(width: iconSize, height: iconSize),
                               SizedBox(width: 12),
                               Text(
                                 type.label,
-                                style: SsentifTextStyles.regular16.copyWith(
+                                style: SsentifTextStyles.regular16(context)
+                                    .copyWith(
                                   color: selected
                                       ? AppColors.backgroundTabSelectedText
                                       : AppColors.gray1,

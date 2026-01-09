@@ -39,8 +39,8 @@ class ClassClientInfoWidget extends StatelessWidget {
                   ?? groupClientInfo?.userName
                   ?? "",
               style: (profileImageSize == 20
-                  ? SsentifTextStyles.medium16
-                  : SsentifTextStyles.medium18).copyWith(
+                  ? SsentifTextStyles.medium16(context)
+                  : SsentifTextStyles.medium18(context)).copyWith(
                 color: AppColors.black,
               ),
             ),
@@ -48,8 +48,8 @@ class ClassClientInfoWidget extends StatelessWidget {
             Text(
               "회원",
               style: (profileImageSize == 20
-                  ? SsentifTextStyles.medium12
-                  : SsentifTextStyles.medium14).copyWith(
+                  ? SsentifTextStyles.medium12(context)
+                  : SsentifTextStyles.medium14(context)).copyWith(
                 color: AppColors.black,
               ),
             ),

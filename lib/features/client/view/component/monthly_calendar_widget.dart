@@ -28,17 +28,17 @@ class MonthlyCalendarWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           // 요일 헤더
-          _buildWeekdayHeader(),
+          _buildWeekdayHeader(context),
           // 날짜 그리드
           Expanded(
-            child: _buildDateGrid(),
+            child: _buildDateGrid(context),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildWeekdayHeader() {
+  Widget _buildWeekdayHeader(BuildContext context) {
     const weekdays = ['월', '화', '수', '목', '금', '토', '일'];
     const weekendColors = [
       AppColors.black, // 월
@@ -65,7 +65,7 @@ class MonthlyCalendarWidget extends StatelessWidget {
             child: Center(
               child: Text(
                 weekdays[index],
-                style: SsentifTextStyles.medium12.copyWith(
+                style: SsentifTextStyles.medium12(context).copyWith(
                   color: weekendColors[index],
                 ),
               ),
@@ -76,7 +76,7 @@ class MonthlyCalendarWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildDateGrid() {
+  Widget _buildDateGrid(BuildContext context) {
     final firstDayOfMonth =
         DateTime(selectedMonth.year, selectedMonth.month, 1);
     final firstWeekday = firstDayOfMonth.weekday; // 1=월요일, 7=일요일
@@ -103,12 +103,12 @@ class MonthlyCalendarWidget extends StatelessWidget {
         final isToday = _isToday(currentDate);
         final events = eventsByDate[currentDate] ?? [];
 
-        return _buildDateCell(currentDate, isCurrentMonth, isToday, events);
+        return _buildDateCell(context, currentDate, isCurrentMonth, isToday, events);
       },
     );
   }
 
-  Widget _buildDateCell(DateTime date, bool isCurrentMonth, bool isToday,
+  Widget _buildDateCell(BuildContext context, DateTime date, bool isCurrentMonth, bool isToday,
       List<EventType> events) {
     return GestureDetector(
       onTap: () => onDayTap?.call(date),
@@ -139,7 +139,7 @@ class MonthlyCalendarWidget extends StatelessWidget {
                       child: Center(
                         child: Text(
                           '${date.day}',
-                          style: SsentifTextStyles.medium10.copyWith(
+                          style: SsentifTextStyles.medium10(context).copyWith(
                             color: _getDateTextColor(
                                 date, isCurrentMonth, isToday),
                           ),
@@ -158,7 +158,7 @@ class MonthlyCalendarWidget extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: _buildEventLabels(events),
+                      children: _buildEventLabels(context, events),
                     ),
                   ),
                 ),
@@ -170,7 +170,7 @@ class MonthlyCalendarWidget extends StatelessWidget {
     );
   }
 
-  List<Widget> _buildEventLabels(List<EventType> events) {
+  List<Widget> _buildEventLabels(BuildContext context, List<EventType> events) {
     // 중복 제거 (같은 타입의 이벤트는 하나만 표시)
     final uniqueEvents = events.toSet().toList();
 
@@ -179,7 +179,7 @@ class MonthlyCalendarWidget extends StatelessWidget {
         padding: const EdgeInsets.only(bottom: 1),
         child: EventLabelWidget(
           text: eventType.label,
-          textStyle: SsentifTextStyles.regular10,
+          textStyle: SsentifTextStyles.regular10(context),
           backgroundColor: eventType.color,
         ),
       );

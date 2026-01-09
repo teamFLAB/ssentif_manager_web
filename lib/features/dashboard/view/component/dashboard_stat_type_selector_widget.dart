@@ -40,7 +40,7 @@ class DashboardStatTypeSelectorWidget extends StatelessWidget {
                   ),
                   child: Text(
                     statType.category,
-                    style: SsentifTextStyles.regular10.copyWith(
+                    style: SsentifTextStyles.regular10(context).copyWith(
                       color: AppColors.white,
                     ),
                   ),

@@ -153,7 +153,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
               children: [
                 Text(
                   formattedDate,
-                  style: SsentifTextStyles.medium20.copyWith(
+                  style: SsentifTextStyles.medium20(context).copyWith(
                     color: AppColors.black,
                   ),
                 ),
@@ -217,7 +217,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
               children: [
                 Text(
                   '수업',
-                  style: SsentifTextStyles.bold18.copyWith(
+                  style: SsentifTextStyles.bold18(context).copyWith(
                     color: AppColors.black,
                   ),
                 ),
@@ -239,7 +239,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
                     ),
                     child: Text(
                       '기록된 출석 완료 수업이 없어요.',
-                      style: SsentifTextStyles.regular16.copyWith(
+                      style: SsentifTextStyles.regular16(context).copyWith(
                         color: AppColors.gray2,
                       ),
                     ),
@@ -257,7 +257,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
               children: [
                 Text(
                   '개인운동',
-                  style: SsentifTextStyles.bold18.copyWith(
+                  style: SsentifTextStyles.bold18(context).copyWith(
                     color: AppColors.black,
                   ),
                 ),
@@ -277,7 +277,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
                     ),
                     child: Text(
                       '기록된 개인운동이 없어요.',
-                      style: SsentifTextStyles.regular16.copyWith(
+                      style: SsentifTextStyles.regular16(context).copyWith(
                         color: AppColors.gray2,
                       ),
                     ),
@@ -295,7 +295,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
               children: [
                 Text(
                   '식단',
-                  style: SsentifTextStyles.bold18.copyWith(
+                  style: SsentifTextStyles.bold18(context).copyWith(
                     color: AppColors.black,
                   ),
                 ),
@@ -314,7 +314,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
                     ),
                     child: Text(
                       '기록된 식단이 없어요.',
-                      style: SsentifTextStyles.regular16.copyWith(
+                      style: SsentifTextStyles.regular16(context).copyWith(
                         color: AppColors.gray2,
                       ),
                     ),
@@ -358,7 +358,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
               Expanded(
                 child: Text(
                   workout.routineName.isNotEmpty ? workout.routineName : '개인운동',
-                  style: SsentifTextStyles.medium16.copyWith(
+                  style: SsentifTextStyles.medium16(context).copyWith(
                     color: AppColors.black,
                   ),
                 ),
@@ -368,7 +368,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
           const SizedBox(height: 10),
           Text(
             '총 ${workout.routinesExerciseDtos.length}개 종목, ${exerciseParts.length}개 운동 부위',
-            style: SsentifTextStyles.bold16.copyWith(
+            style: SsentifTextStyles.bold16(context).copyWith(
               color: AppColors.black,
             ),
           ),
@@ -376,7 +376,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
             const SizedBox(height: 10),
             Text(
               '운동 부위 - ${exerciseParts.map((e) => Intl.message(e.findStringKey())).join(" • ")}',
-              style: SsentifTextStyles.medium14.copyWith(
+              style: SsentifTextStyles.medium14(context).copyWith(
                 color: AppColors.black,
               ),
             ),
@@ -395,14 +395,14 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
                 children: [
                   Text(
                     '회원 메모',
-                    style: SsentifTextStyles.bold12.copyWith(
+                    style: SsentifTextStyles.bold12(context).copyWith(
                       color: AppColors.black,
                     ),
                   ),
                   const SizedBox(height: 7),
                   Text(
                     workout.clientMemo,
-                    style: SsentifTextStyles.medium12.copyWith(
+                    style: SsentifTextStyles.medium12(context).copyWith(
                       color: AppColors.black,
                     ),
                   ),
@@ -433,7 +433,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
                       alignment: Alignment.center,
                       child: Text(
                         '${index + 1}',
-                        style: SsentifTextStyles.medium12.copyWith(
+                        style: SsentifTextStyles.medium12(context).copyWith(
                           color: AppColors.white,
                         ),
                       ),
@@ -442,7 +442,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
                     Expanded(
                       child: Text(
                         exercise.routinesExerciseName,
-                        style: SsentifTextStyles.medium14.copyWith(
+                        style: SsentifTextStyles.medium14(context).copyWith(
                           color: AppColors.black,
                         ),
                         maxLines: 2,
@@ -490,7 +490,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
               Expanded(
                 child: Text(
                   '식단 기록',
-                  style: SsentifTextStyles.medium16.copyWith(
+                  style: SsentifTextStyles.medium16(context).copyWith(
                     color: AppColors.black,
                   ),
                 ),
@@ -501,7 +501,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
             const SizedBox(height: 8),
             Text(
               dailyMemo,
-              style: SsentifTextStyles.regular14.copyWith(
+              style: SsentifTextStyles.regular14(context).copyWith(
                 color: AppColors.gray2,
               ),
             ),
@@ -510,7 +510,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
             const SizedBox(height: 8),
             Text(
               '피드백: $dailyFeedback',
-              style: SsentifTextStyles.regular14.copyWith(
+              style: SsentifTextStyles.regular14(context).copyWith(
                 color: AppColors.gray2,
               ),
             ),
@@ -578,7 +578,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
         children: [
           Text(
             "[$mealTakeTime] $mealTimeText",
-            style: SsentifTextStyles.medium14.copyWith(
+            style: SsentifTextStyles.medium14(context).copyWith(
               color: AppColors.black,
             ),
           ),
@@ -638,7 +638,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
                   alignment: Alignment.center,
                   child: Text(
                     "+ ${img.length}",
-                    style: SsentifTextStyles.medium20.copyWith(
+                    style: SsentifTextStyles.medium20(context).copyWith(
                       color: AppColors.white,
                     ),
                   ),
@@ -677,7 +677,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
               startTime.isNotEmpty
                   ? '[$startTime] 수업이 예약되어 있어요'
                   : '수업이 예약되어 있어요',
-              style: SsentifTextStyles.medium16.copyWith(
+              style: SsentifTextStyles.medium16(context).copyWith(
                 color: AppColors.black,
               ),
             ),
@@ -719,7 +719,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
               Expanded(
                 child: Text(
                   routine.routineName.isNotEmpty ? routine.routineName : '수업',
-                  style: SsentifTextStyles.medium16.copyWith(
+                  style: SsentifTextStyles.medium16(context).copyWith(
                     color: AppColors.black,
                   ),
                 ),
@@ -729,7 +729,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
           const SizedBox(height: 10),
           Text(
             '총 ${routine.routinesExerciseDtos.length}개 종목, ${exerciseParts.length}개 운동 부위',
-            style: SsentifTextStyles.bold16.copyWith(
+            style: SsentifTextStyles.bold16(context).copyWith(
               color: AppColors.black,
             ),
           ),
@@ -737,7 +737,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
             const SizedBox(height: 10),
             Text(
               '운동 부위 - ${exerciseParts.map((e) => Intl.message(e.findStringKey())).join(" • ")}',
-              style: SsentifTextStyles.medium14.copyWith(
+              style: SsentifTextStyles.medium14(context).copyWith(
                 color: AppColors.black,
               ),
             ),
@@ -756,14 +756,14 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
                 children: [
                   Text(
                     '루틴 메모',
-                    style: SsentifTextStyles.medium12.copyWith(
+                    style: SsentifTextStyles.medium12(context).copyWith(
                       color: AppColors.black,
                     ),
                   ),
                   const SizedBox(height: 7),
                   Text(
                     routine.exerciseComment,
-                    style: SsentifTextStyles.medium12.copyWith(
+                    style: SsentifTextStyles.medium12(context).copyWith(
                       color: AppColors.black,
                     ),
                   ),
@@ -794,7 +794,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
                       alignment: Alignment.center,
                       child: Text(
                         '${index + 1}',
-                        style: SsentifTextStyles.medium10.copyWith(
+                        style: SsentifTextStyles.medium10(context).copyWith(
                           color: AppColors.white,
                         ),
                       ),
@@ -803,7 +803,7 @@ class _DailyRecordsDialogState extends ConsumerState<DailyRecordsDialog> {
                     Expanded(
                       child: Text(
                         exercise.routinesExerciseName,
-                        style: SsentifTextStyles.medium14.copyWith(
+                        style: SsentifTextStyles.medium14(context).copyWith(
                           color: AppColors.black,
                         ),
                         maxLines: 2,
@@ -837,6 +837,7 @@ class EventTypeTabButtons extends StatelessWidget {
       children: [
         Expanded(
           child: _buildTabButton(
+            context,
             backgroundColor: selectedType ==
                         ClientCalendarEventType.classEvent ||
                     selectedType ==
@@ -860,6 +861,7 @@ class EventTypeTabButtons extends StatelessWidget {
         const SizedBox(width: 12),
         Expanded(
           child: _buildTabButton(
+            context,
             backgroundColor:
                 selectedType == ClientCalendarEventType.workoutEvent
                     ? AppColors.modalTextRed
@@ -874,6 +876,7 @@ class EventTypeTabButtons extends StatelessWidget {
         const SizedBox(width: 12),
         Expanded(
           child: _buildTabButton(
+            context,
             backgroundColor: selectedType == ClientCalendarEventType.dietEvent
                 ? AppColors.subColorPurple
                 : AppColors.white,
@@ -888,7 +891,8 @@ class EventTypeTabButtons extends StatelessWidget {
     );
   }
 
-  Widget _buildTabButton({
+  Widget _buildTabButton(
+    BuildContext context, {
     required Color backgroundColor,
     required String text,
     required VoidCallback onClick,
@@ -910,7 +914,7 @@ class EventTypeTabButtons extends StatelessWidget {
         alignment: Alignment.center,
         child: Text(
           text,
-          style: SsentifTextStyles.medium14.copyWith(
+          style: SsentifTextStyles.medium14(context).copyWith(
             color: selected ? AppColors.white : AppColors.black,
           ),
           textAlign: TextAlign.center,

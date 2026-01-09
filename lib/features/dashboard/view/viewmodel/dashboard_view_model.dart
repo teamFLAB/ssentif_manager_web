@@ -271,7 +271,6 @@ class DashboardViewModel extends StateNotifier<DashboardState> {
           // 현재 달 재등록 횟수
           final currentMonthCount = data.currentMonth.totalCount;
 
-          print("이번달 =====>${currentMonthCount}");
           // 이전 달 재등록 횟수
           final previousMonthCount = data.previousMonth.totalCount;
 

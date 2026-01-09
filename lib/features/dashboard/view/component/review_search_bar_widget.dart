@@ -36,12 +36,12 @@ class ReviewSearchBarWidget extends StatelessWidget {
             child: TextField(
               controller: controller,
               cursorColor: AppColors.primary,
-              style: SsentifTextStyles.regular14.copyWith(
+              style: SsentifTextStyles.regular14(context).copyWith(
                 color: AppColors.black,
               ),
               decoration: InputDecoration(
                 hintText: '강사명, 회원명, 내용으로 검색',
-                hintStyle: SsentifTextStyles.regular14.copyWith(
+                hintStyle: SsentifTextStyles.regular14(context).copyWith(
                   color: AppColors.gray3,
                 ),
                 border: InputBorder.none,

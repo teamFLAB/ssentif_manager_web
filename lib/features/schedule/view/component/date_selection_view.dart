@@ -37,7 +37,7 @@ class DateSelectionView extends StatelessWidget {
             Text(
               formattedDate,
               style:
-                  SsentifTextStyles.medium24.copyWith(color: AppColors.black),
+                  SsentifTextStyles.medium24(context).copyWith(color: AppColors.black),
             ),
             const SizedBox(width: 24),
             GestureDetector(
@@ -98,10 +98,10 @@ class ScheduleSearchField extends StatelessWidget {
           Expanded(
             child: TextField(
               cursorColor: AppColors.primary,
-              style: SsentifTextStyles.medium14.copyWith(color: AppColors.black),
+              style: SsentifTextStyles.medium14(context).copyWith(color: AppColors.black),
               decoration: InputDecoration(
                 hintText: '코치/회원 이름으로 검색',
-                hintStyle: SsentifTextStyles.regular14.copyWith(color: AppColors.gray3),
+                hintStyle: SsentifTextStyles.regular14(context).copyWith(color: AppColors.gray3),
                 border: InputBorder.none,
                 isDense: true,
                 contentPadding: EdgeInsets.zero,

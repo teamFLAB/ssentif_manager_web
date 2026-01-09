@@ -49,12 +49,12 @@ class ScheduleDateCell extends StatelessWidget {
                   ),
                   child: Text(
                     '${cellDate.day}',
-                    style: SsentifTextStyles.medium14.copyWith(color: AppColors.white),
+                    style: SsentifTextStyles.medium14(context).copyWith(color: AppColors.white),
                   ),
                 )
               : Text(
                   '${cellDate.day}',
-                  style: SsentifTextStyles.medium14.copyWith(color:
+                  style: SsentifTextStyles.medium14(context).copyWith(color:
                     cellDate.month == selectedDate.month
                         ? Colors.black
                         : Colors.grey,
@@ -91,14 +91,14 @@ class ScheduleDateCell extends StatelessWidget {
                         Expanded(
                           child: Text(
                             Intl.message(scheduleType.findScheduleDetailStringKey()),
-                            style: SsentifTextStyles.medium12.copyWith(color: AppColors.gray2),
+                            style: SsentifTextStyles.medium12(context).copyWith(color: AppColors.gray2),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         // 스케줄 개수
                         Text(
                           '$scheduleCount',
-                          style: SsentifTextStyles.medium12.copyWith(color: AppColors.black),
+                          style: SsentifTextStyles.medium12(context).copyWith(color: AppColors.black),
                         ),
                       ],
                     ),

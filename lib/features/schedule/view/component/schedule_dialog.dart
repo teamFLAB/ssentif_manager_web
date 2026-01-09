@@ -158,7 +158,7 @@ class ScheduleDialogHeader extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 4, bottom: 2, left: 8, right: 8),
                     child: Text(
                       statusText,
-                      style: SsentifTextStyles.medium12.copyWith(color: backgroundColor),
+                      style: SsentifTextStyles.medium12(context).copyWith(color: backgroundColor),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -189,7 +189,7 @@ class ScheduleDialogHeader extends StatelessWidget {
                       groupClients.isNotEmpty
                           ? groupClients.getScheduleName(context)
                           : userName,
-                      style: SsentifTextStyles.bold18.copyWith(color: AppColors.white)
+                      style: SsentifTextStyles.bold18(context).copyWith(color: AppColors.white)
                   ),
                   const Padding(padding: EdgeInsets.only(right: 5)),
                   Visibility(
@@ -238,7 +238,7 @@ class ClassTypeContent extends StatelessWidget {
             children: [
               Text(
                   scheduleTitle,
-                  style: SsentifTextStyles.medium18.copyWith(color: AppColors.black)
+                  style: SsentifTextStyles.medium18(context).copyWith(color: AppColors.black)
               ),
               const Spacer(),
               // Visibility(
@@ -249,7 +249,7 @@ class ClassTypeContent extends StatelessWidget {
               //     },
               //     child: Text(
               //       "일정편집",
-              //       style: SsentifTextStyles.medium12.copyWith(color: AppColors.gray3).copyWith(
+              //       style: SsentifTextStyles.medium12(context).copyWith(color: AppColors.gray3).copyWith(
               //           decoration: TextDecoration.underline,
               //           decorationColor: AppColors.gray3,
               //           decorationThickness: 1
@@ -296,7 +296,7 @@ class EtcTypeContent extends StatelessWidget {
           children: [
             Text(
                 scheduleTitle,
-                style: SsentifTextStyles.medium18.copyWith(color: AppColors.black)
+                style: SsentifTextStyles.medium18(context).copyWith(color: AppColors.black)
             ),
             const Spacer(),
             // Visibility(
@@ -307,7 +307,7 @@ class EtcTypeContent extends StatelessWidget {
             //     },
             //     child: Text(
             //       "일정편집",
-            //       style: SsentifTextStyles.medium12.copyWith(color: AppColors.gray3).copyWith(
+            //       style: SsentifTextStyles.medium12(context).copyWith(color: AppColors.gray3).copyWith(
             //           decoration: TextDecoration.underline,
             //           decorationColor: AppColors.gray3,
             //           decorationThickness: 1
@@ -342,12 +342,12 @@ class ScheduleInfoText extends StatelessWidget {
       children: [
         Text(
             category,
-            style: SsentifTextStyles.medium14.copyWith(color: AppColors.gray2)
+            style: SsentifTextStyles.medium14(context).copyWith(color: AppColors.gray2)
         ),
         const Padding(padding: EdgeInsets.only(left: 16)),
         Text(
             value,
-            style: SsentifTextStyles.medium14.copyWith(color: AppColors.black)
+            style: SsentifTextStyles.medium14(context).copyWith(color: AppColors.black)
         )
       ],
     );
@@ -391,7 +391,7 @@ class ReservationCompleteButtons extends StatelessWidget {
               innerPadding: const EdgeInsets.symmetric(vertical: 15),
               backgroundColor: AppColors.primary,
               textAlign: TextAlign.center,
-              textStyle: SsentifTextStyles.medium16.copyWith(color: AppColors.white),
+              textStyle: SsentifTextStyles.medium16(context).copyWith(color: AppColors.white),
               boxShadow: boxShadow,
               borderRadius: BorderRadius.circular(11),
               onClick: () {
@@ -405,7 +405,7 @@ class ReservationCompleteButtons extends StatelessWidget {
               innerPadding: const EdgeInsets.symmetric(vertical: 15),
               backgroundColor: AppColors.modalBackgroundGreen,
               textAlign: TextAlign.center,
-              textStyle: SsentifTextStyles.medium16.copyWith(color: AppColors.modalTextGreen),
+              textStyle: SsentifTextStyles.medium16(context).copyWith(color: AppColors.modalTextGreen),
               boxShadow: boxShadow,
               borderRadius: BorderRadius.circular(11),
               onClick: () {
@@ -419,7 +419,7 @@ class ReservationCompleteButtons extends StatelessWidget {
               innerPadding: const EdgeInsets.symmetric(vertical: 15),
               backgroundColor: AppColors.white,
               textAlign: TextAlign.center,
-              textStyle: SsentifTextStyles.medium16.copyWith(color: AppColors.subColorRed),
+              textStyle: SsentifTextStyles.medium16(context).copyWith(color: AppColors.subColorRed),
               boxShadow: boxShadow,
               borderRadius: BorderRadius.circular(11),
               onClick: () {
@@ -452,7 +452,7 @@ class ReservationWaitButtons extends StatelessWidget {
               innerPadding: const EdgeInsets.symmetric(vertical: 15),
               backgroundColor: AppColors.white,
               textAlign: TextAlign.center,
-              textStyle: SsentifTextStyles.medium16.copyWith(color: AppColors.gray2),
+              textStyle: SsentifTextStyles.medium16(context).copyWith(color: AppColors.gray2),
               boxShadow: boxShadow,
               borderRadius: BorderRadius.circular(11),
               onClick: () {
@@ -467,7 +467,7 @@ class ReservationWaitButtons extends StatelessWidget {
               innerPadding: const EdgeInsets.symmetric(vertical: 15),
               backgroundColor: AppColors.subColorOrange,
               textAlign: TextAlign.center,
-              textStyle: SsentifTextStyles.medium16.copyWith(color: AppColors.white),
+              textStyle: SsentifTextStyles.medium16(context).copyWith(color: AppColors.white),
               boxShadow: boxShadow,
               borderRadius: BorderRadius.circular(11),
               onClick: () {
@@ -505,7 +505,7 @@ class ClassCompleteButtons extends StatelessWidget {
               innerPadding: const EdgeInsets.symmetric(vertical: 15),
               backgroundColor: AppColors.subColorBlue,
               textAlign: TextAlign.center,
-              textStyle: SsentifTextStyles.medium16.copyWith(color: AppColors.white),
+              textStyle: SsentifTextStyles.medium16(context).copyWith(color: AppColors.white),
               boxShadow: boxShadow,
               borderRadius: BorderRadius.circular(11),
               onClick: () {
@@ -519,7 +519,7 @@ class ClassCompleteButtons extends StatelessWidget {
               innerPadding: const EdgeInsets.symmetric(vertical: 15),
               backgroundColor: AppColors.white,
               textAlign: TextAlign.center,
-              textStyle: SsentifTextStyles.medium16.copyWith(color: AppColors.subColorRed),
+              textStyle: SsentifTextStyles.medium16(context).copyWith(color: AppColors.subColorRed),
               boxShadow: boxShadow,
               borderRadius: BorderRadius.circular(11),
               onClick: () {
@@ -547,7 +547,7 @@ class EtcScheduleButtons extends StatelessWidget {
             innerPadding: const EdgeInsets.symmetric(vertical: 15),
             backgroundColor: AppColors.gray3,
             textAlign: TextAlign.center,
-            textStyle: SsentifTextStyles.medium16.copyWith(color: AppColors.white),
+            textStyle: SsentifTextStyles.medium16(context).copyWith(color: AppColors.white),
             boxShadow: boxShadow,
             borderRadius: BorderRadius.circular(11),
             onClick: () {

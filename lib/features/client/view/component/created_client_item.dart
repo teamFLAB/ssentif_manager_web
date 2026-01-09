@@ -50,13 +50,13 @@ class CreatedClientItem extends StatelessWidget {
                 const Padding(padding: EdgeInsets.only(right: 11)),
                 Text(
                   "${client.userName} (${client.age}${Intl.message("unit_years_old")}, ${Intl.message(GenderType.findGenderOneChar(client.gender))})",
-                  style: SsentifTextStyles.medium14
+                  style: SsentifTextStyles.medium14(context)
                       .copyWith(color: AppColors.black),
                 ),
                 const Spacer(),
                 Text(
                   "${Intl.message("remain")} ${client.leftCountOfVoucher} ${Intl.message("unit_session_count")}",
-                  style: SsentifTextStyles.medium14
+                  style: SsentifTextStyles.medium14(context)
                       .copyWith(color: AppColors.primary),
                 )
               ],

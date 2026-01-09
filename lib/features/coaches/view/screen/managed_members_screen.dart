@@ -12,6 +12,7 @@ import 'package:ssentif_manager_web/shared/domain/entity/user_entity.dart';
 import 'dart:html' as html;
 
 import '../../../../core/navigation/app_router.dart';
+import '../../../../core/utils/device_size_utils.dart';
 
 class ManagedMembersScreen extends ConsumerWidget {
   final UserEntity? selectedCoach;
@@ -28,6 +29,9 @@ class ManagedMembersScreen extends ConsumerWidget {
     final state = ref.watch(managedMembersViewModelProvider(selectedCoach));
     handleEffect(ref, context);
 
+    var margin30 = DeviceSizeUtils().getResponsiveDouble(30, 5, context);
+    var margin20 = DeviceSizeUtils().getResponsiveDouble(20, 5, context);
+
     return Container(
       color: AppColors.backgroundColor,
       child: Row(
@@ -35,9 +39,12 @@ class ManagedMembersScreen extends ConsumerWidget {
         children: [
           // 좌측 영역: 회원 목록 (탭바 아래에서 시작, 스크롤 가능)
           Flexible(
-            flex: 2,
+            flex: 3,
             child: Padding(
-              padding: EdgeInsets.only(top: 0, left: 30, right: 30),
+              padding: EdgeInsets.only(
+                  top: 0,
+                  left: margin30,
+              ),
               child: ClientListWidget(
                 managedMembers: state.managedMembers,
                 isLoading: state.isMembersLoading,
@@ -50,8 +57,8 @@ class ManagedMembersScreen extends ConsumerWidget {
               ),
             ),
           ),
-          // 20px 간격
-          const SizedBox(width: 20),
+
+          SizedBox(width: margin20),
 
           // 중앙: gray4 border
           Container(
@@ -60,13 +67,13 @@ class ManagedMembersScreen extends ConsumerWidget {
           ),
 
           // 20px 간격
-          const SizedBox(width: 20),
+           SizedBox(width: margin20),
 
           // 우측: 회원 상세 정보 위젯 (상단부터 시작)
           Expanded(
-            flex: 3,
+            flex: 5,
             child: Padding(
-              padding: const EdgeInsets.only(right: 30),
+              padding: EdgeInsets.only(right: margin30),
               child: ClientDetailWidget(
                   clientInfo: state.selectedClient,
                   clientProfile: state.selectedClientProfile,

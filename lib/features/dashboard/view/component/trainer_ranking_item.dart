@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ssentif_manager_web/core/themes/app_colors.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
+import 'package:ssentif_manager_web/core/utils/device_size_utils.dart';
 import 'package:ssentif_manager_web/core/widgets/profile_image_widget.dart';
 import 'package:ssentif_manager_web/shared/domain/entity/user_entity.dart';
 
@@ -20,6 +21,9 @@ class TrainerRankingItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var profileImageSize = DeviceSizeUtils().getResponsiveSize(28, 3, context);
+
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.symmetric(
@@ -33,21 +37,21 @@ class TrainerRankingItem extends StatelessWidget {
       child: Row(
         children: [
           ProfileImageWidget(
-            size: 28,
+            size: profileImageSize,
             imageURL: trainer.imageUrl,
           ),
           const SizedBox(width: 10),
           Expanded(
             child: Text(
               trainer.userName,
-              style: SsentifTextStyles.medium14.copyWith(
+              style: SsentifTextStyles.medium14(context).copyWith(
                 color: AppColors.black,
               ),
             ),
           ),
           Text(
             '$count$suffix',
-            style: SsentifTextStyles.medium14.copyWith(
+            style: SsentifTextStyles.medium14(context).copyWith(
               color: AppColors.black,
             ),
           ),

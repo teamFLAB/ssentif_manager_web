@@ -12,7 +12,7 @@ extension ContextUtils on BuildContext {
           backgroundColor: AppColors.blackAlpha50,
           content: Text(
               message,
-              style: SsentifTextStyles.medium14.copyWith(color: AppColors.white)
+              style: SsentifTextStyles.medium14(this).copyWith(color: AppColors.white)
           )
       ),
     );

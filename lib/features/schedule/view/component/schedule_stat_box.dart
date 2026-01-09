@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:ssentif_manager_web/core/themes/app_colors.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
+import 'package:ssentif_manager_web/core/utils/device_size_utils.dart';
 
 class ScheduleStatBox extends StatelessWidget {
   final String title;
   final String value;
   const ScheduleStatBox({super.key, required this.title, required this.value});
 
-  Widget _buildPrefix() {
+  Widget _buildPrefix(BuildContext context) {
+    var iconSize = DeviceSizeUtils().getResponsiveDouble(14, 2, context);
     if (title == '전체 수업') {
       return Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            width: 14,
-            height: 14,
+            width: iconSize,
+            height: iconSize,
             decoration: BoxDecoration(
               color: AppColors.subColorBlue,
               borderRadius: BorderRadius.circular(2),
@@ -23,12 +25,12 @@ class ScheduleStatBox extends StatelessWidget {
           const SizedBox(width: 4),
           Text(
             '+',
-            style: SsentifTextStyles.medium10.copyWith(color: AppColors.gray2),
+            style: SsentifTextStyles.medium10(context).copyWith(color: AppColors.gray2),
           ),
           const SizedBox(width: 4),
           Container(
-            width: 14,
-            height: 14,
+            width: iconSize,
+            height: iconSize,
             decoration: BoxDecoration(
               color: AppColors.primary,
               borderRadius: BorderRadius.circular(2),
@@ -38,8 +40,8 @@ class ScheduleStatBox extends StatelessWidget {
       );
     } else if (title == '출석 완료') {
       return Container(
-        width: 14,
-        height: 14,
+        width: iconSize,
+        height: iconSize,
         decoration: BoxDecoration(
           color: AppColors.subColorBlue,
           borderRadius: BorderRadius.circular(2),
@@ -47,8 +49,8 @@ class ScheduleStatBox extends StatelessWidget {
       );
     } else if (title == '예약 완료') {
       return Container(
-        width: 14,
-        height: 14,
+        width: iconSize,
+        height: iconSize,
         decoration: BoxDecoration(
           color: AppColors.primary,
           borderRadius: BorderRadius.circular(2),
@@ -56,8 +58,8 @@ class ScheduleStatBox extends StatelessWidget {
       );
     } else if (title == '예약 요청') {
       return Container(
-        width: 14,
-        height: 14,
+        width: iconSize,
+        height: iconSize,
         decoration: BoxDecoration(
           color: AppColors.subColorOrange,
           borderRadius: BorderRadius.circular(2),
@@ -65,8 +67,8 @@ class ScheduleStatBox extends StatelessWidget {
       );
     } else if (title == '기타 일정') {
       return Container(
-        width: 14,
-        height: 14,
+        width: iconSize,
+        height: iconSize,
         decoration: BoxDecoration(
           color: AppColors.gray3,
           borderRadius: BorderRadius.circular(2),
@@ -78,13 +80,21 @@ class ScheduleStatBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var boxWidth = DeviceSizeUtils().getResponsiveDouble(170, 15, context);
+
+
     return Container(
-      width: 170, // 긴 텍스트도 잘리지 않도록 width를 180으로 늘림
+      width: boxWidth,
       decoration: BoxDecoration(
         color: AppColors.white,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(
+            DeviceSizeUtils().getResponsiveDouble(8, 2, context)
+        ),
       ),
-      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
+      padding: EdgeInsets.symmetric(
+          vertical: DeviceSizeUtils().getResponsiveDouble(12, 3, context),
+          horizontal: DeviceSizeUtils().getResponsiveDouble(15, 3, context)
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,21 +102,21 @@ class ScheduleStatBox extends StatelessWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _buildPrefix(),
-              const SizedBox(width: 5),
+              _buildPrefix(context),
+              SizedBox(width: DeviceSizeUtils().getResponsiveDouble(5, 1, context)),
               Text(
                 title,
                 style:
-                    SsentifTextStyles.medium14.copyWith(color: AppColors.gray2),
+                    SsentifTextStyles.medium14(context).copyWith(color: AppColors.gray2),
               ),
             ],
           ),
-          const SizedBox(height: 5),
+          SizedBox(width: DeviceSizeUtils().getResponsiveDouble(5, 1, context)),
           Align(
             alignment: Alignment.bottomRight,
             child: Text(
               value + " 건",
-              style: SsentifTextStyles.bold18.copyWith(color: AppColors.black),
+              style: SsentifTextStyles.bold20(context).copyWith(color: AppColors.black),
             ),
           ),
         ],

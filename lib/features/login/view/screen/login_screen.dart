@@ -49,7 +49,7 @@ class LoginScreen extends ConsumerWidget {
                 Center(
                   child: Text(
                     '로그인',
-                    style: SsentifTextStyles.regular18
+                    style: SsentifTextStyles.regular18(context)
                         .copyWith(color: AppColors.gray1),
                   ),
                 ),
@@ -84,13 +84,13 @@ class LoginScreen extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "신뢰받는 센터 운영의 시작",
-                                style: SsentifTextStyles.bold38.copyWith(color: AppColors.black)
+                                  "신뢰받는 센터 운영의 시작",
+                                  style: SsentifTextStyles.bold38(context).copyWith(color: AppColors.black)
                               ),
                               SizedBox(height: 10),
                               Text(
                                   "센티프와 함께 더 나은 회원관리 경험을 제공하세요.",
-                                  style: SsentifTextStyles.medium16.copyWith(color: AppColors.black)
+                                  style: SsentifTextStyles.medium16(context).copyWith(color: AppColors.black)
                               )
                             ],
                           )
@@ -127,7 +127,7 @@ class LoginScreen extends ConsumerWidget {
                                   width: 75,
                                   child: Text(
                                     '이메일 ID',
-                                    style: SsentifTextStyles.regular14
+                                    style: SsentifTextStyles.regular14(context)
                                         .copyWith(color: AppColors.gray1),
                                   ),
                                 ),
@@ -151,7 +151,7 @@ class LoginScreen extends ConsumerWidget {
                                   width: 75,
                                   child: Text(
                                     '비밀번호',
-                                    style: SsentifTextStyles.regular14
+                                    style: SsentifTextStyles.regular14(context)
                                         .copyWith(color: AppColors.gray1),
                                   ),
                                 ),
@@ -183,7 +183,7 @@ class LoginScreen extends ConsumerWidget {
                                   elevation: 1,
                                 ),
                                 child: Text('로그인',
-                                    style: SsentifTextStyles.bold18
+                                    style: SsentifTextStyles.bold18(context)
                                         .copyWith(color: AppColors.white)),
                               ),
                             ),
@@ -200,20 +200,20 @@ class LoginScreen extends ConsumerWidget {
                               children: [
                                 Text(
                                   "아이디 찾기",
-                                  style: SsentifTextStyles.medium14
+                                  style: SsentifTextStyles.medium14(context)
                                       .copyWith(color: AppColors.gray1),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.symmetric(horizontal: 5),
                                   child: Text(
                                     "/",
-                                    style: SsentifTextStyles.medium14
+                                    style: SsentifTextStyles.medium14(context)
                                         .copyWith(color: AppColors.gray1),
                                   ),
                                 ),
                                 Text(
                                   "아이디 찾기",
-                                  style: SsentifTextStyles.medium14
+                                  style: SsentifTextStyles.medium14(context)
                                       .copyWith(color: AppColors.gray1),
                                 ),
                               ],
@@ -258,12 +258,12 @@ class LoginTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       obscureText: obscureText,
-      style: SsentifTextStyles.regular14.copyWith(color: AppColors.black),
+      style: SsentifTextStyles.regular14(context).copyWith(color: AppColors.black),
       onChanged: onChanged,
       decoration: InputDecoration(
         hintText: hint,
         isDense: true,
-        hintStyle: SsentifTextStyles.regular14.copyWith(color: AppColors.gray2),
+        hintStyle: SsentifTextStyles.regular14(context).copyWith(color: AppColors.gray2),
         border: UnderlineInputBorder(
           borderSide: const BorderSide(
             color: AppColors.gray4,

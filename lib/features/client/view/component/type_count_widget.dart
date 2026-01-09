@@ -30,14 +30,14 @@ class TypeCountWidget extends StatelessWidget {
         const SizedBox(width: 8),
         Text(
           typeText,
-          style: SsentifTextStyles.medium14.copyWith(
+          style: SsentifTextStyles.medium14(context).copyWith(
             color: AppColors.black,
           ),
         ),
         const SizedBox(width: 4),
         Text(
           '${count}회',
-          style: SsentifTextStyles.medium14.copyWith(
+          style: SsentifTextStyles.medium14(context).copyWith(
             color: AppColors.black,
           ),
         ),

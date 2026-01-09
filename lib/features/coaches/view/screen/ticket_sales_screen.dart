@@ -26,7 +26,7 @@ class _TicketSalesScreenState extends ConsumerState<TicketSalesScreen> {
         ),
         child: Text(
           '수강권 매출/분석 기능이 곧 제공될 예정이예요!',
-          style: SsentifTextStyles.regular16,
+          style: SsentifTextStyles.regular16(context),
         ),
       ),
     );

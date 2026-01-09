@@ -54,7 +54,7 @@ class MatchedClientItem extends StatelessWidget {
                   children: [
                     Text(
                       "${client.userName} (${client.age}${Intl.message("unit_years_old")}, ${Intl.message(GenderType.findGenderOneChar(client.gender))})",
-                      style: SsentifTextStyles.medium14
+                      style: SsentifTextStyles.medium14(context)
                           .copyWith(color: AppColors.black),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
@@ -62,7 +62,7 @@ class MatchedClientItem extends StatelessWidget {
                     const Padding(padding: EdgeInsets.only(top: 2)),
                     Text(
                       client.phoneNumber.toHyphenPhoneNumber(),
-                      style: SsentifTextStyles.medium12
+                      style: SsentifTextStyles.medium12(context)
                           .copyWith(color: AppColors.gray2),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 1,
@@ -73,7 +73,7 @@ class MatchedClientItem extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 "${Intl.message("remain")} ${client.leftCountOfVoucher} ${Intl.message("unit_session_count")}",
-                style: SsentifTextStyles.medium14
+                style: SsentifTextStyles.medium14(context)
                     .copyWith(color: AppColors.primary),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,

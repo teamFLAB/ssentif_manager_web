@@ -28,33 +28,33 @@ class MonthlyCalendar extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildWeekdayHeader('월'),
-              _buildWeekdayHeader('화'),
-              _buildWeekdayHeader('수'),
-              _buildWeekdayHeader('목'),
-              _buildWeekdayHeader('금'),
-              _buildWeekdayHeader('토'),
-              _buildWeekdayHeader('일'),
+              _buildWeekdayHeader(context, '월'),
+              _buildWeekdayHeader(context, '화'),
+              _buildWeekdayHeader(context, '수'),
+              _buildWeekdayHeader(context, '목'),
+              _buildWeekdayHeader(context, '금'),
+              _buildWeekdayHeader(context, '토'),
+              _buildWeekdayHeader(context, '일'),
             ],
           ),
           const SizedBox(height: 12),
           // 날짜 그리드
-          ..._buildCalendarDays(),
+          ..._buildCalendarDays(context),
         ],
       ),
     );
   }
 
-  Widget _buildWeekdayHeader(String day) {
+  Widget _buildWeekdayHeader(BuildContext context, String day) {
     return Text(
       day,
-      style: SsentifTextStyles.bold14.copyWith(
+      style: SsentifTextStyles.bold14(context).copyWith(
         color: AppColors.black,
       ),
     );
   }
 
-  List<Widget> _buildCalendarDays() {
+  List<Widget> _buildCalendarDays(BuildContext context) {
     final List<Widget> rows = [];
     final DateTime firstDayOfMonth =
         DateTime(selectedMonth.year, selectedMonth.month, 1);
@@ -114,21 +114,21 @@ class MonthlyCalendar extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Text(
                           i.toString(),
-                          style: SsentifTextStyles.medium16.copyWith(
+                          style: SsentifTextStyles.medium16(context).copyWith(
                             color: AppColors.white,
                           ),
                         ),
                       )
                     : Text(
                         i.toString(),
-                        style: SsentifTextStyles.medium16.copyWith(
+                        style: SsentifTextStyles.medium16(context).copyWith(
                           color: textColor,
                         ),
                       ),
                 const SizedBox(height: 4),
                 Text(
                   '${scheduleCount}회',
-                  style: SsentifTextStyles.regular12.copyWith(
+                  style: SsentifTextStyles.regular12(context).copyWith(
                     color: isSaturday
                         ? AppColors.subColorBlue
                         : isSunday

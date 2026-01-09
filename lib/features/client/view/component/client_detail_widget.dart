@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ssentif_manager_web/core/themes/app_colors.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
+import 'package:ssentif_manager_web/core/utils/device_size_utils.dart';
 import 'package:ssentif_manager_web/core/utils/ext.dart';
 import 'package:ssentif_manager_web/features/client/domain/entity/client_list_entity.dart';
 import 'package:ssentif_manager_web/features/client/domain/entity/client_profile_entity.dart';
@@ -155,7 +156,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
         children: [
           Text(
             '선택된 회원의 코칭현황',
-            style: SsentifTextStyles.medium14.copyWith(
+            style: SsentifTextStyles.medium14(context).copyWith(
               color: AppColors.gray1,
             ),
           ),
@@ -171,7 +172,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
             child: Center(
               child: Text(
                 '회원을 선택해주세요',
-                style: SsentifTextStyles.regular18.copyWith(
+                style: SsentifTextStyles.regular18(context).copyWith(
                   color: AppColors.gray2,
                 ),
                 textAlign: TextAlign.center,
@@ -190,7 +191,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
             children: [
               Text(
                 '선택된 회원의 코칭현황',
-                style: SsentifTextStyles.medium14.copyWith(
+                style: SsentifTextStyles.medium14(context).copyWith(
                   color: AppColors.gray1,
                 ),
               ),
@@ -215,21 +216,21 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                     children: [
                       Text(
                         "${widget.clientInfo!.userName} ${Intl.message("client")}",
-                        style: SsentifTextStyles.medium18.copyWith(
+                        style: SsentifTextStyles.medium18(context).copyWith(
                           color: AppColors.black,
                         ),
                       ),
                       const SizedBox(width: 8),
                       Text(
                         '(${widget.clientInfo!.age}세, ${Intl.message(genderStringKey)})',
-                        style: SsentifTextStyles.medium14.copyWith(
+                        style: SsentifTextStyles.medium14(context).copyWith(
                           color: AppColors.black,
                         ),
                       ),
                       const Spacer(),
                       Text(
                         '잔여 ${widget.clientProfile?.matchingInfoSimpleDto.leftNumberOfTime ?? 0}회',
-                        style: SsentifTextStyles.medium16.copyWith(
+                        style: SsentifTextStyles.medium16(context).copyWith(
                           color: AppColors.primary,
                         ),
                       ),
@@ -249,7 +250,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                               width: 60,
                               child: Text(
                                 '운동 목적',
-                                style: SsentifTextStyles.medium12.copyWith(
+                                style: SsentifTextStyles.medium12(context).copyWith(
                                   color: AppColors.black,
                                 ),
                               ),
@@ -262,7 +263,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                                           e.findExercisePurposeString()))
                                       .join(", ") ??
                                   "",
-                              style: SsentifTextStyles.medium12.copyWith(
+                              style: SsentifTextStyles.medium12(context).copyWith(
                                 color: AppColors.gray2,
                               ),
                             ),
@@ -277,7 +278,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                               width: 60,
                               child: Text(
                                 '연락처',
-                                style: SsentifTextStyles.medium12.copyWith(
+                                style: SsentifTextStyles.medium12(context).copyWith(
                                   color: AppColors.black,
                                 ),
                               ),
@@ -286,7 +287,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                             Text(
                               widget.clientInfo!.phoneNumber
                                   .toHyphenPhoneNumber(),
-                              style: SsentifTextStyles.medium12.copyWith(
+                              style: SsentifTextStyles.medium12(context).copyWith(
                                 color: AppColors.gray2,
                               ),
                             ),
@@ -428,7 +429,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
           alignment: Alignment.center,
           child: Text(
             text,
-            style: SsentifTextStyles.medium14.copyWith(
+            style: SsentifTextStyles.medium14(context).copyWith(
               color: isSelected ? AppColors.white : AppColors.black,
             ),
           ),
@@ -492,7 +493,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
           children: [
             Text(
               DateFormat('yyyy년 MM월').format(widget.selectedMonth),
-              style: SsentifTextStyles.medium18.copyWith(
+              style: SsentifTextStyles.medium18(context).copyWith(
                 color: AppColors.black,
               ),
             ),
@@ -512,7 +513,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                 alignment: Alignment.center,
                 child: Text(
                   '이번달',
-                  style: SsentifTextStyles.medium10.copyWith(
+                  style: SsentifTextStyles.medium10(context).copyWith(
                     color: AppColors.gray555,
                   ),
                 ),
@@ -620,7 +621,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
       return Center(
         child: Text(
           Intl.message("empty_recent_body_composition"),
-          style: SsentifTextStyles.medium16.copyWith(
+          style: SsentifTextStyles.medium16(context).copyWith(
             color: AppColors.gray2,
           ),
         ),
@@ -632,7 +633,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
       children: [
         Text(
           '최근 체성분 측정',
-          style: SsentifTextStyles.medium18.copyWith(
+          style: SsentifTextStyles.medium18(context).copyWith(
             color: AppColors.black,
           ),
         ),
@@ -741,6 +742,9 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
     required BodyCompositionType type,
     required double value,
   }) {
+    var tagHeight = DeviceSizeUtils().getResponsiveDouble(70, 10, context);
+    var radius = DeviceSizeUtils().getResponsiveDouble(8, 1, context);
+
     final isSelected = _selectedBodyCompositionType == type;
 
     return GestureDetector(
@@ -750,11 +754,11 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
         });
       },
       child: Container(
-        height: 70,
+        height: tagHeight,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(radius),
           border: Border.all(
             color: isSelected ? AppColors.primary : AppColors.gray4,
             width: 1,
@@ -764,21 +768,17 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              height: 30,
-              alignment: Alignment.center,
-              child: Text(
-                type.getTypeString(),
-                style: SsentifTextStyles.medium12.copyWith(
-                  color: AppColors.gray2,
-                ),
-                textAlign: TextAlign.center,
+            Text(
+              type.getTypeString(),
+              style: SsentifTextStyles.medium14(context).copyWith(
+                color: AppColors.gray2,
               ),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(height: 5),
             Text(
               "${value.toStringAsFixed(1)}${type.getValueUnit()}",
-              style: SsentifTextStyles.medium12.copyWith(
+              style: SsentifTextStyles.medium14(context).copyWith(
                 color: AppColors.primary,
               ),
             ),
@@ -816,7 +816,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
       return Center(
         child: Text(
           Intl.message("empty_recent_body_composition"),
-          style: SsentifTextStyles.medium16.copyWith(
+          style: SsentifTextStyles.medium16(context).copyWith(
             color: AppColors.gray2,
           ),
         ),
@@ -890,14 +890,14 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                 children: [
                   Text(
                     _selectedBodyCompositionType.getTypeString(),
-                    style: SsentifTextStyles.medium14.copyWith(
+                    style: SsentifTextStyles.medium14(context).copyWith(
                       color: AppColors.black,
                     ),
                   ),
                   const Spacer(),
                   Text(
                     "${_getCurrentValue(_selectedBodyCompositionType).toStringAsFixed(1)}$unit",
-                    style: SsentifTextStyles.medium14.copyWith(
+                    style: SsentifTextStyles.medium14(context).copyWith(
                       color: AppColors.primary,
                     ),
                   ),
@@ -950,7 +950,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                                     child: Text(
                                       '$month월',
                                       style:
-                                          SsentifTextStyles.regular10.copyWith(
+                                          SsentifTextStyles.regular10(context).copyWith(
                                         color: AppColors.gray2,
                                       ),
                                     ),
@@ -987,7 +987,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                               padding: const EdgeInsets.only(right: 10),
                               child: Text(
                                 '${value.toStringAsFixed(1)}$unit',
-                                style: SsentifTextStyles.regular10.copyWith(
+                                style: SsentifTextStyles.regular10(context).copyWith(
                                   color: AppColors.gray2,
                                 ),
                                 textAlign: TextAlign.right,
@@ -1080,14 +1080,14 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
       children: [
         Text(
           title,
-          style: SsentifTextStyles.regular12.copyWith(
+          style: SsentifTextStyles.regular12(context).copyWith(
             color: AppColors.gray2,
           ),
         ),
         const SizedBox(height: 4),
         Text(
           "$value$unit",
-          style: SsentifTextStyles.medium12.copyWith(
+          style: SsentifTextStyles.medium12(context).copyWith(
             color: AppColors.black,
           ),
         ),
@@ -1199,7 +1199,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
             ),
             child: Text(
               Intl.message("empty_diet_list"),
-              style: SsentifTextStyles.medium16.copyWith(
+              style: SsentifTextStyles.medium16(context).copyWith(
                 color: AppColors.gray3,
               ),
             ),
@@ -1278,7 +1278,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
               ),
               child: Text(
                 Intl.message("empty_diet_list"),
-                style: SsentifTextStyles.medium16.copyWith(
+                style: SsentifTextStyles.medium16(context).copyWith(
                   color: AppColors.gray3,
                 ),
               ),
@@ -1342,7 +1342,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
         children: [
           Text(
             '발급된 수강권',
-            style: SsentifTextStyles.medium18.copyWith(
+            style: SsentifTextStyles.medium18(context).copyWith(
               color: AppColors.black,
             ),
           ),
@@ -1366,7 +1366,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                         child: Center(
                           child: Text(
                             '수강권이 없습니다',
-                            style: SsentifTextStyles.medium16.copyWith(
+                            style: SsentifTextStyles.medium16(context).copyWith(
                               color: AppColors.gray2,
                             ),
                           ),
@@ -1408,7 +1408,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                             physics: const ClampingScrollPhysics(),
                             child: Row(
                               children: _vouchers.map((voucher) {
-                                return _buildVoucherItem(voucher);
+                                return _buildVoucherItem(context, voucher);
                               }).toList(),
                             ),
                           ),
@@ -1426,7 +1426,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                 children: [
                   Text(
                     '수강 이력',
-                    style: SsentifTextStyles.medium18.copyWith(
+                    style: SsentifTextStyles.medium18(context).copyWith(
                       color: AppColors.black,
                     ),
                   ),
@@ -1458,7 +1458,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                           child: Center(
                             child: Text(
                               '수강 이력이 없습니다',
-                              style: SsentifTextStyles.medium16.copyWith(
+                              style: SsentifTextStyles.medium16(context).copyWith(
                                 color: AppColors.gray2,
                               ),
                             ),
@@ -1490,7 +1490,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
     );
   }
 
-  Widget _buildVoucherItem(VoucherEntity voucher) {
+  Widget _buildVoucherItem(BuildContext context, VoucherEntity voucher) {
     const double cardWidth = 310;
     const double cardHeight = 190;
     final isSelected = _selectedVoucher?.voucherId == voucher.voucherId;
@@ -1538,7 +1538,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                       Expanded(
                         child: Text(
                           voucher.voucherName,
-                          style: SsentifTextStyles.bold20.copyWith(
+                          style: SsentifTextStyles.bold20(context).copyWith(
                             color: AppColors.white,
                           ),
                           maxLines: 2,
@@ -1557,12 +1557,12 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                           RichText(
                             text: TextSpan(
                                 text: "회당",
-                                style: SsentifTextStyles.regular14
+                                style: SsentifTextStyles.regular14(context)
                                     .copyWith(color: AppColors.white),
                                 children: [
                                   TextSpan(
                                       text: " ${voucher.feePerSession}원",
-                                      style: SsentifTextStyles.medium18
+                                      style: SsentifTextStyles.medium18(context)
                                           .copyWith(color: AppColors.white))
                                 ]),
                           ),
@@ -1570,12 +1570,12 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                           RichText(
                             text: TextSpan(
                                 text: "판매",
-                                style: SsentifTextStyles.regular14
+                                style: SsentifTextStyles.regular14(context)
                                     .copyWith(color: AppColors.white),
                                 children: [
                                   TextSpan(
                                       text: " ${voucher.priceOfVoucher}원",
-                                      style: SsentifTextStyles.medium18
+                                      style: SsentifTextStyles.medium18(context)
                                           .copyWith(color: AppColors.white))
                                 ]),
                           )
@@ -1588,14 +1588,14 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                           RichText(
                             text: TextSpan(
                               text: '수강권 총 횟수',
-                              style: SsentifTextStyles.regular12.copyWith(
+                              style: SsentifTextStyles.regular12(context).copyWith(
                                 color: AppColors.white,
                               ),
                               children: [
                                 const TextSpan(text: '   '),
                                 TextSpan(
                                   text: '${voucher.totalCount}회',
-                                  style: SsentifTextStyles.medium16.copyWith(
+                                  style: SsentifTextStyles.medium16(context).copyWith(
                                     color: AppColors.white,
                                   ),
                                 ),
@@ -1606,7 +1606,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                           RichText(
                             text: TextSpan(
                               text: '수업 진행 횟수',
-                              style: SsentifTextStyles.regular12.copyWith(
+                              style: SsentifTextStyles.regular12(context).copyWith(
                                 color: AppColors.white,
                               ),
                               children: [
@@ -1614,7 +1614,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                                 TextSpan(
                                   text:
                                       '${voucher.totalCount - voucher.remainCount}회',
-                                  style: SsentifTextStyles.medium16.copyWith(
+                                  style: SsentifTextStyles.medium16(context).copyWith(
                                     color: AppColors.white,
                                   ),
                                 ),
@@ -1625,7 +1625,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                           RichText(
                             text: TextSpan(
                               text: '출석 미완료 횟수',
-                              style: SsentifTextStyles.regular12.copyWith(
+                              style: SsentifTextStyles.regular12(context).copyWith(
                                 color: AppColors.white,
                               ),
                               children: [
@@ -1633,7 +1633,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                                 TextSpan(
                                   text:
                                       '${voucher.remainCount - voucher.reservationCount}회',
-                                  style: SsentifTextStyles.medium16.copyWith(
+                                  style: SsentifTextStyles.medium16(context).copyWith(
                                     color: AppColors.white,
                                   ),
                                 ),
@@ -1644,14 +1644,14 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                           RichText(
                             text: TextSpan(
                               text: '예약 가능 횟수',
-                              style: SsentifTextStyles.regular12.copyWith(
+                              style: SsentifTextStyles.regular12(context).copyWith(
                                 color: AppColors.white,
                               ),
                               children: [
                                 const TextSpan(text: '   '),
                                 TextSpan(
                                   text: '${voucher.reservationCount}회',
-                                  style: SsentifTextStyles.medium16.copyWith(
+                                  style: SsentifTextStyles.medium16(context).copyWith(
                                     color: AppColors.white,
                                   ),
                                 ),
@@ -1675,7 +1675,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                 child: Center(
                   child: Text(
                     Intl.message("expired_voucher"),
-                    style: SsentifTextStyles.medium14.copyWith(
+                    style: SsentifTextStyles.medium14(context).copyWith(
                       color: AppColors.white,
                     ),
                   ),
@@ -1735,7 +1735,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
                 alignment: Alignment.center,
                 child: Text(
                   '$order',
-                  style: SsentifTextStyles.medium12.copyWith(
+                  style: SsentifTextStyles.medium12(context).copyWith(
                     color: AppColors.white,
                   ),
                 ),
@@ -1745,7 +1745,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
               Expanded(
                 child: Text(
                   dateTimeText,
-                  style: SsentifTextStyles.medium14.copyWith(
+                  style: SsentifTextStyles.medium14(context).copyWith(
                     color: AppColors.black,
                   ),
                 ),
@@ -1754,7 +1754,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
               // 차감 텍스트
               Text(
                 Intl.message("deduct"),
-                style: SsentifTextStyles.medium16.copyWith(
+                style: SsentifTextStyles.medium16(context).copyWith(
                   color: AppColors.modalTextRed,
                 ),
               ),
@@ -1879,7 +1879,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
             ),
             child: Text(
               '<',
-              style: SsentifTextStyles.medium12.copyWith(
+              style: SsentifTextStyles.medium12(context).copyWith(
                 color: AppColors.black,
               ),
             ),
@@ -1911,7 +1911,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
             ),
             child: Text(
               '$i',
-              style: SsentifTextStyles.medium12.copyWith(
+              style: SsentifTextStyles.medium12(context).copyWith(
                 color: isSelected ? AppColors.white : AppColors.black,
               ),
             ),
@@ -1942,7 +1942,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
             ),
             child: Text(
               '>',
-              style: SsentifTextStyles.medium12.copyWith(
+              style: SsentifTextStyles.medium12(context).copyWith(
                 color: AppColors.black,
               ),
             ),
@@ -2020,7 +2020,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
             ),
             child: Text(
               '<',
-              style: SsentifTextStyles.medium12.copyWith(
+              style: SsentifTextStyles.medium12(context).copyWith(
                 color: AppColors.black,
               ),
             ),
@@ -2052,7 +2052,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
             ),
             child: Text(
               '$i',
-              style: SsentifTextStyles.medium12.copyWith(
+              style: SsentifTextStyles.medium12(context).copyWith(
                 color: isSelected ? AppColors.white : AppColors.black,
               ),
             ),
@@ -2083,7 +2083,7 @@ class _ClientDetailWidgetState extends ConsumerState<ClientDetailWidget> {
             ),
             child: Text(
               '>',
-              style: SsentifTextStyles.medium12.copyWith(
+              style: SsentifTextStyles.medium12(context).copyWith(
                 color: AppColors.black,
               ),
             ),
@@ -2336,7 +2336,7 @@ class _DietGridItem extends StatelessWidget {
               Center(
                 child: Text(
                   "+ $imageCount",
-                  style: SsentifTextStyles.medium22.copyWith(
+                  style: SsentifTextStyles.medium22(context).copyWith(
                     color: AppColors.white,
                   ),
                 ),
@@ -2346,7 +2346,7 @@ class _DietGridItem extends StatelessWidget {
               left: 5,
               child: Text(
                 diet.date,
-                style: SsentifTextStyles.medium12.copyWith(
+                style: SsentifTextStyles.medium12(context).copyWith(
                   color: AppColors.backgroundColor,
                 ),
               ),

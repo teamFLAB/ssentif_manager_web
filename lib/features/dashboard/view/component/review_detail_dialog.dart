@@ -66,7 +66,7 @@ class ReviewDetailDialog extends StatelessWidget {
               children: [
                 Text(
                   '후기글',
-                  style: SsentifTextStyles.bold24.copyWith(
+                  style: SsentifTextStyles.bold24(context).copyWith(
                     color: AppColors.black,
                   ),
                 ),
@@ -100,7 +100,7 @@ class ReviewDetailDialog extends StatelessWidget {
                   children: [
                     Text(
                       review.clientName,
-                      style: SsentifTextStyles.bold20.copyWith(
+                      style: SsentifTextStyles.bold20(context).copyWith(
                         color: AppColors.black,
                       ),
                     ),
@@ -109,7 +109,7 @@ class ReviewDetailDialog extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 2),
                       child: Text(
                         '회원',
-                        style: SsentifTextStyles.regular16.copyWith(
+                        style: SsentifTextStyles.regular16(context).copyWith(
                           color: AppColors.black,
                         ),
                       ),
@@ -132,7 +132,7 @@ class ReviewDetailDialog extends StatelessWidget {
                   children: [
                     Text(
                       review.trainerName,
-                      style: SsentifTextStyles.bold20.copyWith(
+                      style: SsentifTextStyles.bold20(context).copyWith(
                         color: AppColors.black,
                       ),
                     ),
@@ -141,7 +141,7 @@ class ReviewDetailDialog extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 2),
                       child: Text(
                         '강사',
-                        style: SsentifTextStyles.regular16.copyWith(
+                        style: SsentifTextStyles.regular16(context).copyWith(
                           color: AppColors.black,
                         ),
                       ),
@@ -171,7 +171,7 @@ class ReviewDetailDialog extends StatelessWidget {
                     ),
                     child: Text(
                       formattedDate,
-                      style: SsentifTextStyles.regular14.copyWith(
+                      style: SsentifTextStyles.regular14(context).copyWith(
                         color: AppColors.black,
                       ),
                     ),
@@ -203,7 +203,7 @@ class ReviewDetailDialog extends StatelessWidget {
                         const SizedBox(width: 4),
                         Text(
                           '$satisfactionInt%',
-                          style: SsentifTextStyles.regular14.copyWith(
+                          style: SsentifTextStyles.regular14(context).copyWith(
                             color: AppColors.black,
                           ),
                         ),
@@ -217,7 +217,7 @@ class ReviewDetailDialog extends StatelessWidget {
             // 후기 내용
             Text(
               review.review,
-              style: SsentifTextStyles.regular14.copyWith(
+              style: SsentifTextStyles.regular14(context).copyWith(
                 color: AppColors.black,
               ),
             ),

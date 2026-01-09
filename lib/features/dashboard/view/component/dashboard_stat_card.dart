@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ssentif_manager_web/core/themes/app_colors.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
+import 'package:ssentif_manager_web/core/utils/device_size_utils.dart';
 import 'package:ssentif_manager_web/features/dashboard/domain/enumtype/dashboard_stat_type.dart';
 import '../../../../gen/assets.gen.dart';
 
@@ -21,13 +22,20 @@ class DashboardStatCard extends StatelessWidget {
     final bool isPositive = mom >= 0;
     final Color momColor =
         isPositive ? AppColors.subColorRed : AppColors.subColorBlue;
+    final iconSize = DeviceSizeUtils().getResponsiveSize(32, 6, context);
+    final cardWidth = DeviceSizeUtils().getResponsiveSize(250, 40, context);
+    final borderRadius = DeviceSizeUtils().getResponsiveSize(8, 2, context);
 
-    return Expanded(
+    return SizedBox(
+      width: cardWidth,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
+        padding: EdgeInsets.symmetric(
+          vertical: DeviceSizeUtils().getResponsiveDouble(16, 4, context),
+          horizontal: DeviceSizeUtils().getResponsiveDouble(12, 3, context),
+        ),
         decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(borderRadius),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -35,7 +43,7 @@ class DashboardStatCard extends StatelessWidget {
             // 카테고리
             Text(
               statType.category,
-              style: SsentifTextStyles.medium14.copyWith(
+              style: SsentifTextStyles.medium14(context).copyWith(
                 color: AppColors.gray2,
               ),
             ),
@@ -45,15 +53,15 @@ class DashboardStatCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 // 아이콘
-                statType.icon.image(width: 32, height: 32),
-                const SizedBox(width: 12),
+                statType.icon.image(width: iconSize, height: iconSize),
+                DeviceSizeUtils().getResponsiveSizedBoxWidth(12, 4, context),
                 // 값과 단위
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
                       value,
-                      style: SsentifTextStyles.bold22.copyWith(
+                      style: SsentifTextStyles.bold20(context).copyWith(
                         color: AppColors.black,
                       ),
                     ),
@@ -62,7 +70,7 @@ class DashboardStatCard extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 2),
                       child: Text(
                         statType.unit,
-                        style: SsentifTextStyles.bold14.copyWith(
+                        style: SsentifTextStyles.bold14(context).copyWith(
                           color: AppColors.black,
                         ),
                       ),
@@ -76,7 +84,7 @@ class DashboardStatCard extends StatelessWidget {
                   children: [
                     Text(
                       '전월 대비',
-                      style: SsentifTextStyles.medium10.copyWith(
+                      style: SsentifTextStyles.medium10(context).copyWith(
                         color: AppColors.gray2,
                       ),
                     ),
@@ -87,8 +95,10 @@ class DashboardStatCard extends StatelessWidget {
                                 ? Assets.images.icPolygonIncrease
                                 : Assets.images.icPolygonDecrease)
                             .image(
-                          width: 8,
-                          height: 8,
+                          width: DeviceSizeUtils()
+                              .getResponsiveDouble(8, 1, context),
+                          height: DeviceSizeUtils()
+                              .getResponsiveDouble(8, 1, context),
                           color: momColor,
                         ),
                         const SizedBox(width: 4),
@@ -99,7 +109,7 @@ class DashboardStatCard extends StatelessWidget {
                                       DashboardStatType.newlyRegistration
                               ? '${mom.abs().toInt()}${statType.unit}'
                               : '${mom.abs().toStringAsFixed(1)}${statType.unit}',
-                          style: SsentifTextStyles.medium12.copyWith(
+                          style: SsentifTextStyles.medium12(context).copyWith(
                             color: momColor,
                           ),
                         ),

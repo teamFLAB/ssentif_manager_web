@@ -35,27 +35,27 @@ class WeeklySchedulerWidget extends StatelessWidget {
       headerStyle: CalendarHeaderStyle(
           backgroundColor: AppColors.white,
           textAlign: TextAlign.center,
-          textStyle: SsentifTextStyles.medium20.copyWith(color: AppColors.black),
+          textStyle: SsentifTextStyles.medium20(context).copyWith(color: AppColors.black),
       ),
-      todayTextStyle: SsentifTextStyles.medium12.copyWith(color: AppColors.black),
+      todayTextStyle: SsentifTextStyles.medium12(context).copyWith(color: AppColors.black),
       showCurrentTimeIndicator: true,
       initialDisplayDate: startDate,
       firstDayOfWeek: 1,
       todayHighlightColor: AppColors.subColorRed,
       viewHeaderStyle: ViewHeaderStyle(
-        dateTextStyle: SsentifTextStyles.medium12.copyWith(color: AppColors.gray1),
-        dayTextStyle: SsentifTextStyles.medium10.copyWith(color: AppColors.gray1),
+        dateTextStyle: SsentifTextStyles.medium12(context).copyWith(color: AppColors.gray1),
+        dayTextStyle: SsentifTextStyles.medium10(context).copyWith(color: AppColors.gray1),
       ),
       timeSlotViewSettings: TimeSlotViewSettings(
         startHour: 0,
         endHour: 24,
-        timeTextStyle: SsentifTextStyles.medium12.copyWith(color: AppColors.black),
+        timeTextStyle: SsentifTextStyles.medium12(context).copyWith(color: AppColors.black),
         timeFormat: 'a h',
         dateFormat: 'dd',
         dayFormat: 'E',
       ),
       backgroundColor: AppColors.white,
-      appointmentTextStyle: SsentifTextStyles.medium12.copyWith(color: AppColors.white),
+      appointmentTextStyle: SsentifTextStyles.medium12(context).copyWith(color: AppColors.white),
       cellEndPadding: 0,
       selectionDecoration: BoxDecoration(
           border: Border.all(color: AppColors.subColorRed, width: 1),
@@ -73,7 +73,7 @@ class WeeklySchedulerWidget extends StatelessWidget {
           child: Center(
             child: Text(
               calendarAppointmentDetails.appointments.first.scheduleName,
-              style: SsentifTextStyles.bold12.copyWith(color: AppColors.white),
+              style: SsentifTextStyles.bold12(context).copyWith(color: AppColors.white),
               textAlign: TextAlign.center,
             ),
           ),

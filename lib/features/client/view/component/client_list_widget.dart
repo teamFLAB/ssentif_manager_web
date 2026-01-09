@@ -45,7 +45,7 @@ class ClientListWidget extends StatelessWidget {
               children: [
                 Text(
                   '매칭회원 ${matchedMembers.length}명',
-                  style: SsentifTextStyles.medium14.copyWith(
+                  style: SsentifTextStyles.medium14(context).copyWith(
                     color: AppColors.gray1,
                   ),
                 ),
@@ -75,7 +75,7 @@ class ClientListWidget extends StatelessWidget {
               children: [
                 Text(
                   '생성회원 ${createdMembers.length}명',
-                  style: SsentifTextStyles.medium14.copyWith(
+                  style: SsentifTextStyles.medium14(context).copyWith(
                     color: AppColors.gray1,
                   ),
                 ),

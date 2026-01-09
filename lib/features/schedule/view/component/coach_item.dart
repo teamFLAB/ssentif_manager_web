@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ssentif_manager_web/core/themes/app_colors.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
+import 'package:ssentif_manager_web/core/utils/device_size_utils.dart';
 import 'package:ssentif_manager_web/shared/domain/entity/user_entity.dart';
 import 'package:ssentif_manager_web/core/widgets/profile_image_widget.dart';
 
@@ -13,12 +14,14 @@ class CoachItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var borderRadius = DeviceSizeUtils().getResponsiveDouble(8, 2, context);
+
     return GestureDetector(
       onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
           color: selected ? AppColors.backgroundTabSelected : AppColors.white,
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(borderRadius),
           border: Border.all(
             color: selected ? AppColors.green1899 : AppColors.gray4,
             width: 1,
@@ -38,9 +41,9 @@ class CoachItem extends StatelessWidget {
             Text(
               coach.userName,
               style: selected
-                  ? SsentifTextStyles.bold14
+                  ? SsentifTextStyles.bold14(context)
                       .copyWith(color: AppColors.green1899)
-                  : SsentifTextStyles.regular14
+                  : SsentifTextStyles.regular14(context)
                       .copyWith(color: AppColors.black),
             ),
           ],

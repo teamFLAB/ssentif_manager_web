@@ -26,7 +26,7 @@ class IncomeScreen extends StatelessWidget {
             padding: EdgeInsets.only(left: 30),
             child: Text(
               "매출 관리 (준비중)",
-              style: SsentifTextStyles.medium24.copyWith(color: AppColors.black),
+              style: SsentifTextStyles.medium24(context).copyWith(color: AppColors.black),
             ),
           ),
           Padding(
@@ -42,7 +42,7 @@ class IncomeScreen extends StatelessWidget {
               ),
               child: Text(
                 '센터 매출 통계 페이지가 곧 제공될 예정이예요!',
-                style: SsentifTextStyles.regular16,
+                style: SsentifTextStyles.regular16(context),
               ),
             ),
           )

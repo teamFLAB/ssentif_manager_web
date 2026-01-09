@@ -156,8 +156,8 @@ class _CoachTabBar extends StatelessWidget {
                 child: Text(
                   tabs[idx].label,
                   style: (selected
-                          ? SsentifTextStyles.bold12
-                          : SsentifTextStyles.regular12)
+                          ? SsentifTextStyles.bold12(context)
+                          : SsentifTextStyles.regular12(context))
                       .copyWith(
                     color: selected ? AppColors.green1899 : AppColors.black,
                   ),

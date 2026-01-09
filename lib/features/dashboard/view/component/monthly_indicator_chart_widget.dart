@@ -54,7 +54,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
             children: [
               Text(
                 '최근 6개월 지표 변화',
-                style: SsentifTextStyles.bold16.copyWith(
+                style: SsentifTextStyles.bold16(context).copyWith(
                   color: AppColors.black,
                 ),
               ),
@@ -64,7 +64,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
                 },
                 child: Text(
                   '자세히',
-                  style: SsentifTextStyles.medium14.copyWith(
+                  style: SsentifTextStyles.medium14(context).copyWith(
                     color: AppColors.gray1,
                     decoration: TextDecoration.underline,
                   ),
@@ -75,19 +75,19 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
           const SizedBox(height: 16),
           Expanded(
             child: selectedStatType == DashboardStatType.totalClassCount
-                ? _buildLineChart(unit: selectedStatType.unit)
+                ? _buildLineChart(context, unit: selectedStatType.unit)
                 : selectedStatType == DashboardStatType.recordWritingRate
-                    ? _buildRoutineRatioChart(unit: selectedStatType.unit)
+                    ? _buildRoutineRatioChart(context, unit: selectedStatType.unit)
                     : selectedStatType == DashboardStatType.reenrollment
-                        ? _buildRepurchaseCountChart(
+                        ? _buildRepurchaseCountChart(context,
                             unit: selectedStatType.unit)
                         : selectedStatType ==
                                 DashboardStatType.customerSatisfaction
-                            ? _buildSatisfactionChart(
+                            ? _buildSatisfactionChart(context,
                                 unit: selectedStatType.unit)
                             : selectedStatType ==
                                     DashboardStatType.newlyRegistration
-                                ? _buildNewRegistrationChart(
+                                ? _buildNewRegistrationChart(context,
                                     unit: selectedStatType.unit)
                                 : const SizedBox(),
           ),
@@ -96,7 +96,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildLineChart({required String unit}) {
+  Widget _buildLineChart(BuildContext context, {required String unit}) {
     // 데이터 정렬 (yearMonth 기준)
     final sortedData = List<MonthlyScheduleCountEntity>.from(
       monthlyScheduleCounts,
@@ -141,7 +141,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
                     padding: EdgeInsets.only(right: 5),
                     child: Text(
                       '${value.toInt()}$unit',
-                      style: SsentifTextStyles.regular10.copyWith(
+                      style: SsentifTextStyles.regular10(context).copyWith(
                         color: AppColors.gray2,
                       ),
                       textAlign: TextAlign.right,
@@ -257,7 +257,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 8, right: 4),
                       child: Text(
                         '$month월',
-                        style: SsentifTextStyles.regular10.copyWith(
+                        style: SsentifTextStyles.regular10(context).copyWith(
                           color: AppColors.gray2,
                         ),
                       ),
@@ -282,7 +282,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
                   padding: EdgeInsets.only(right: 10),
                   child: Text(
                     '${value.toInt()}$unit',
-                    style: SsentifTextStyles.regular10.copyWith(
+                    style: SsentifTextStyles.regular10(context).copyWith(
                       color: AppColors.gray2,
                     ),
                     textAlign: TextAlign.right,
@@ -309,7 +309,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
               return touchedSpots.map((LineBarSpot touchedSpot) {
                 return LineTooltipItem(
                   '${touchedSpot.y.toInt()}건',
-                  SsentifTextStyles.regular12.copyWith(
+                  SsentifTextStyles.regular12(context).copyWith(
                     color: AppColors.white,
                   ),
                 );
@@ -352,7 +352,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildNewRegistrationChart({required String unit}) {
+  Widget _buildNewRegistrationChart(BuildContext context, {required String unit}) {
     final sortedData = List<MonthlyNewRegistrationCountEntity>.from(
       monthlyNewRegistrationCounts,
     )..sort((a, b) => a.yearMonth.compareTo(b.yearMonth));
@@ -458,7 +458,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
                       ),
                       child: Text(
                         '$month월',
-                        style: SsentifTextStyles.regular10.copyWith(
+                        style: SsentifTextStyles.regular10(context).copyWith(
                           color: AppColors.gray2,
                         ),
                       ),
@@ -483,7 +483,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 5),
                   child: Text(
                     '${value.toInt()}$unit',
-                    style: SsentifTextStyles.regular10.copyWith(
+                    style: SsentifTextStyles.regular10(context).copyWith(
                       color: AppColors.gray2,
                     ),
                     textAlign: TextAlign.right,
@@ -541,7 +541,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
               return spots.map((spot) {
                 return LineTooltipItem(
                   '${spot.y.toInt()}$unit',
-                  SsentifTextStyles.regular12.copyWith(
+                  SsentifTextStyles.regular12(context).copyWith(
                     color: AppColors.white,
                   ),
                 );
@@ -553,7 +553,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildRoutineRatioChart({required String unit}) {
+  Widget _buildRoutineRatioChart(BuildContext context, {required String unit}) {
     // 데이터 정렬 (yearMonth 기준)
     final sortedData = List<MonthlyRoutineRatioEntity>.from(
       monthlyRoutineRatios,
@@ -604,7 +604,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
                     ),
                     child: Text(
                       '${(value * 100).toInt()}$unit',
-                      style: SsentifTextStyles.regular10.copyWith(
+                      style: SsentifTextStyles.regular10(context).copyWith(
                         color: AppColors.gray2,
                       ),
                       textAlign: TextAlign.right,
@@ -711,7 +711,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
                       ),
                       child: Text(
                         '$month월',
-                        style: SsentifTextStyles.regular10.copyWith(
+                        style: SsentifTextStyles.regular10(context).copyWith(
                           color: AppColors.gray2,
                         ),
                       ),
@@ -737,7 +737,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
                   ),
                   child: Text(
                     '${(value).toInt()}$unit',
-                    style: SsentifTextStyles.regular10.copyWith(
+                    style: SsentifTextStyles.regular10(context).copyWith(
                       color: AppColors.gray2,
                     ),
                     textAlign: TextAlign.right,
@@ -764,7 +764,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
               return touchedSpots.map((LineBarSpot touchedSpot) {
                 return LineTooltipItem(
                   '${touchedSpot.y.toInt()}%',
-                  SsentifTextStyles.regular12.copyWith(
+                  SsentifTextStyles.regular12(context).copyWith(
                     color: AppColors.white,
                   ),
                 );
@@ -807,7 +807,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildRepurchaseCountChart({required String unit}) {
+  Widget _buildRepurchaseCountChart(BuildContext context, {required String unit}) {
     // 데이터 정렬 (yearMonth 기준)
     final sortedData = List<MonthlyRepurchaseCountEntity>.from(
       monthlyRepurchaseCounts,
@@ -857,7 +857,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
                     ),
                     child: Text(
                       '${value.toInt()}$unit',
-                      style: SsentifTextStyles.regular10.copyWith(
+                      style: SsentifTextStyles.regular10(context).copyWith(
                         color: AppColors.gray2,
                       ),
                       textAlign: TextAlign.right,
@@ -974,7 +974,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
                       ),
                       child: Text(
                         '$month월',
-                        style: SsentifTextStyles.regular10.copyWith(
+                        style: SsentifTextStyles.regular10(context).copyWith(
                           color: AppColors.gray2,
                         ),
                       ),
@@ -1000,7 +1000,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
                   ),
                   child: Text(
                     '${value.toInt()}$unit',
-                    style: SsentifTextStyles.regular10.copyWith(
+                    style: SsentifTextStyles.regular10(context).copyWith(
                       color: AppColors.gray2,
                     ),
                     textAlign: TextAlign.right,
@@ -1027,7 +1027,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
               return touchedSpots.map((LineBarSpot touchedSpot) {
                 return LineTooltipItem(
                   '${touchedSpot.y.toInt()}건',
-                  SsentifTextStyles.regular12.copyWith(
+                  SsentifTextStyles.regular12(context).copyWith(
                     color: AppColors.white,
                   ),
                 );
@@ -1070,7 +1070,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildSatisfactionChart({required String unit}) {
+  Widget _buildSatisfactionChart(BuildContext context, {required String unit}) {
     // 데이터 정렬 (yearMonth 기준)
     final sortedData = List<MonthlyScheduleReviewAverageEntity>.from(
       monthlyScheduleReviewAverages,
@@ -1120,7 +1120,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
                     ),
                     child: Text(
                       '${(value).toInt()}$unit',
-                      style: SsentifTextStyles.regular10.copyWith(
+                      style: SsentifTextStyles.regular10(context).copyWith(
                         color: AppColors.gray2,
                       ),
                       textAlign: TextAlign.right,
@@ -1227,7 +1227,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
                       ),
                       child: Text(
                         '$month월',
-                        style: SsentifTextStyles.regular10.copyWith(
+                        style: SsentifTextStyles.regular10(context).copyWith(
                           color: AppColors.gray2,
                         ),
                       ),
@@ -1253,7 +1253,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
                   ),
                   child: Text(
                     '${(value).toInt()}$unit',
-                    style: SsentifTextStyles.regular10.copyWith(
+                    style: SsentifTextStyles.regular10(context).copyWith(
                       color: AppColors.gray2,
                     ),
                     textAlign: TextAlign.right,
@@ -1280,7 +1280,7 @@ class MonthlyIndicatorChartWidget extends StatelessWidget {
               return touchedSpots.map((LineBarSpot touchedSpot) {
                 return LineTooltipItem(
                   '${touchedSpot.y.toInt()}%',
-                  SsentifTextStyles.regular12.copyWith(
+                  SsentifTextStyles.regular12(context).copyWith(
                     color: AppColors.white,
                   ),
                 );

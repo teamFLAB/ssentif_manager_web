@@ -5,6 +5,7 @@ import 'package:ssentif_manager_web/core/themes/app_colors.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
 import 'package:ssentif_manager_web/core/utils/constants.dart';
 import 'package:ssentif_manager_web/core/utils/date_utils.dart';
+import 'package:ssentif_manager_web/core/utils/device_size_utils.dart';
 import 'package:ssentif_manager_web/core/widgets/profile_image_widget.dart';
 import 'package:ssentif_manager_web/features/classRecords/view/intent/class_records_intent.dart';
 import 'package:ssentif_manager_web/features/classRecords/view/viewmodel/class_records_view_model.dart';
@@ -100,20 +101,23 @@ class _ClassRecordsFeedScreenState
               padding: const EdgeInsets.only(bottom: 30),
               child: Column(
                 children: [
-                  MonthSelectorWidget(
-                    selectedMonth: state.selectedMonth,
-                    onThisMonth: () {
-                      viewModel
-                          .handleIntent(ClassRecordsIntent.clickThisMonth());
-                    },
-                    onPreviousMonth: () {
-                      viewModel.handleIntent(
-                          ClassRecordsIntent.clickPreviousMonth());
-                    },
-                    onNextMonth: () {
-                      viewModel
-                          .handleIntent(ClassRecordsIntent.clickNextMonth());
-                    },
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: MonthSelectorWidget(
+                      selectedMonth: state.selectedMonth,
+                      onThisMonth: () {
+                        viewModel
+                            .handleIntent(ClassRecordsIntent.clickThisMonth());
+                      },
+                      onPreviousMonth: () {
+                        viewModel.handleIntent(
+                            ClassRecordsIntent.clickPreviousMonth());
+                      },
+                      onNextMonth: () {
+                        viewModel
+                            .handleIntent(ClassRecordsIntent.clickNextMonth());
+                      },
+                    ),
                   ),
                   const SizedBox(height: 20),
                   // 수업 기록 리스트
@@ -150,7 +154,7 @@ class _ClassRecordsFeedScreenState
         ),
         child: Text(
           '이번 달에 기록된 수업 없어요!',
-          style: SsentifTextStyles.regular16,
+          style: SsentifTextStyles.regular16(context),
         ),
       );
     }
@@ -210,7 +214,9 @@ class _ClassRecordsFeedScreenState
             ClassRecordsIntent.showRoutineDetailDialog(record: record));
       },
       child: Container(
-        margin: const EdgeInsets.only(bottom: 12),
+        margin: EdgeInsets.only(
+            bottom: DeviceSizeUtils().getResponsiveDouble(12, 2, context)
+        ),
         height: 180, // 고정 높이 설정
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
         decoration: BoxDecoration(
@@ -233,14 +239,14 @@ class _ClassRecordsFeedScreenState
                     children: [
                       Text(
                         record.trainerInfo!.userName,
-                        style: SsentifTextStyles.medium16.copyWith(
+                        style: SsentifTextStyles.medium16(context).copyWith(
                           color: AppColors.black,
                         ),
                       ),
                       const SizedBox(width: 4),
                       Text(
                         "코치",
-                        style: SsentifTextStyles.medium12.copyWith(
+                        style: SsentifTextStyles.medium12(context).copyWith(
                           color: AppColors.black,
                         ),
                       ),
@@ -266,7 +272,7 @@ class _ClassRecordsFeedScreenState
                   const Spacer(),
                   Text(
                     "${routineDate}, ${record.runningTime}",
-                    style: SsentifTextStyles.regular14.copyWith(
+                    style: SsentifTextStyles.regular14(context).copyWith(
                       color: AppColors.gray2,
                     ),
                   )
@@ -291,14 +297,14 @@ class _ClassRecordsFeedScreenState
                         children: [
                           Text(
                             "첨부된 사진/영상",
-                            style: SsentifTextStyles.bold14.copyWith(
+                            style: SsentifTextStyles.bold14(context).copyWith(
                               color: AppColors.black,
                             ),
                           ),
                           const SizedBox(height: 10),
                           if (allImages.isNotEmpty)
                             SizedBox(
-                              height: 80,
+                              height: DeviceSizeUtils().getResponsiveDouble(80, 8, context),
                               child: ListView.separated(
                                 scrollDirection: Axis.horizontal,
                                 itemCount:
@@ -312,10 +318,12 @@ class _ClassRecordsFeedScreenState
                                   var remainingCount = allImages.length - 3;
 
                                   return Container(
-                                    width: 80,
-                                    height: 80,
+                                    width: DeviceSizeUtils().getResponsiveDouble(80, 8, context),
+                                    height: DeviceSizeUtils().getResponsiveDouble(80, 8, context),
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
+                                      borderRadius: BorderRadius.circular(
+                                          DeviceSizeUtils().getResponsiveDouble(8, 1.5, context)
+                                      ),
                                       image: DecorationImage(
                                         image: NetworkImage(
                                             image.fileType == FileType.video
@@ -328,14 +336,16 @@ class _ClassRecordsFeedScreenState
                                         ? Container(
                                             decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(8),
+                                                  BorderRadius.circular(
+                                                      DeviceSizeUtils().getResponsiveDouble(8, 1.5, context)
+                                                  ),
                                               color:
                                                   Colors.black.withOpacity(0.5),
                                             ),
                                             child: Center(
                                               child: Text(
                                                 '+$remainingCount',
-                                                style: SsentifTextStyles.bold14
+                                                style: SsentifTextStyles.bold14(context)
                                                     .copyWith(
                                                   color: AppColors.white,
                                                 ),
@@ -344,12 +354,12 @@ class _ClassRecordsFeedScreenState
                                           )
                                         : image.fileType == FileType.video
                                             ? Container(
-                                                decoration: BoxDecoration(
-                                                    color:
-                                                        AppColors.blackAlpha10),
-                                                child: Assets.images.icPlayVideo
-                                                    .image(
-                                                        width: 24, height: 24))
+                                                decoration: BoxDecoration(color: AppColors.blackAlpha10),
+                                                child: Assets.images.icPlayVideo.image(
+                                                    width: DeviceSizeUtils().getResponsiveDouble(24, 3, context),
+                                                    height: DeviceSizeUtils().getResponsiveDouble(24, 3, context)
+                                                )
+                                    )
                                             : null,
                                   );
                                 },
@@ -383,14 +393,14 @@ class _ClassRecordsFeedScreenState
                                 children: [
                                   Text(
                                     "기록된 운동 ${record.routineNumberOfExercise}개",
-                                    style: SsentifTextStyles.bold14.copyWith(
+                                    style: SsentifTextStyles.bold14(context).copyWith(
                                       color: AppColors.black,
                                     ),
                                   ),
                                   const SizedBox(width: 4),
                                   Text(
                                     "(${exerciseParts})",
-                                    style: SsentifTextStyles.medium12.copyWith(
+                                    style: SsentifTextStyles.medium12(context).copyWith(
                                       color: AppColors.gray1,
                                     ),
                                   )
@@ -426,7 +436,7 @@ class _ClassRecordsFeedScreenState
                             children: [
                               Text(
                                 "진행한 운동",
-                                style: SsentifTextStyles.bold14.copyWith(
+                                style: SsentifTextStyles.bold14(context).copyWith(
                                   color: AppColors.black,
                                 ),
                               ),
@@ -451,7 +461,7 @@ class _ClassRecordsFeedScreenState
                         children: [
                           Text(
                             "루틴 설명",
-                            style: SsentifTextStyles.bold14.copyWith(
+                            style: SsentifTextStyles.bold14(context).copyWith(
                               color: AppColors.black,
                             ),
                           ),
@@ -475,7 +485,7 @@ class _ClassRecordsFeedScreenState
                                 Flexible(
                                   child: Text(
                                     record.exerciseComment,
-                                    style: SsentifTextStyles.regular12.copyWith(
+                                    style: SsentifTextStyles.regular12(context).copyWith(
                                       color: AppColors.gray555,
                                     ),
                                     overflow: TextOverflow.ellipsis,
@@ -519,7 +529,7 @@ class IndexCircleText extends StatelessWidget {
         Expanded(
           child: Text(
             text,
-            style: SsentifTextStyles.regular12.copyWith(
+            style: SsentifTextStyles.regular12(context).copyWith(
               color: AppColors.gray555,
             ),
           ),

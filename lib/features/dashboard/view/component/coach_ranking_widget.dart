@@ -69,7 +69,7 @@ class _CoachRankingWidgetState extends ConsumerState<CoachRankingWidget> {
           children: [
             Text(
               '지표별 강사 순위',
-              style: SsentifTextStyles.bold16.copyWith(
+              style: SsentifTextStyles.bold16(context).copyWith(
                 color: AppColors.black,
               ),
             ),
@@ -125,7 +125,7 @@ class _CoachRankingWidgetState extends ConsumerState<CoachRankingWidget> {
           children: [
             Text(
               '지표별 강사 순위',
-              style: SsentifTextStyles.bold16.copyWith(
+              style: SsentifTextStyles.bold16(context).copyWith(
                 color: AppColors.black,
               ),
             ),
@@ -190,7 +190,7 @@ class _CoachRankingWidgetState extends ConsumerState<CoachRankingWidget> {
           children: [
             Text(
               '지표별 강사 순위',
-              style: SsentifTextStyles.bold16.copyWith(
+              style: SsentifTextStyles.bold16(context).copyWith(
                 color: AppColors.black,
               ),
             ),
@@ -254,7 +254,7 @@ class _CoachRankingWidgetState extends ConsumerState<CoachRankingWidget> {
         children: [
           Text(
             '지표별 강사 순위',
-            style: SsentifTextStyles.bold16.copyWith(
+            style: SsentifTextStyles.bold16(context).copyWith(
               color: AppColors.black,
             ),
           ),

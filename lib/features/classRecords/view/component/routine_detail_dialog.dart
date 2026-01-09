@@ -49,14 +49,14 @@ class RoutineDetailDialog extends StatelessWidget {
                     children: [
                       Text(
                         '수업일지',
-                        style: SsentifTextStyles.bold18.copyWith(
+                        style: SsentifTextStyles.bold18(context).copyWith(
                           color: AppColors.black,
                         ),
                       ),
                       const SizedBox(width: 12),
                       Text(
                         "${routineDate}, ${record.runningTime}",
-                        style: SsentifTextStyles.medium14.copyWith(
+                        style: SsentifTextStyles.medium14(context).copyWith(
                           color: AppColors.gray2,
                         ),
                       ),
@@ -90,14 +90,14 @@ class RoutineDetailDialog extends StatelessWidget {
                     children: [
                       Text(
                         record.trainerInfo!.userName,
-                        style: SsentifTextStyles.medium18.copyWith(
+                        style: SsentifTextStyles.medium18(context).copyWith(
                           color: AppColors.black,
                         ),
                       ),
                       const SizedBox(width: 4),
                       Text(
                         "코치",
-                        style: SsentifTextStyles.medium14.copyWith(
+                        style: SsentifTextStyles.medium14(context).copyWith(
                           color: AppColors.black,
                         ),
                       ),
@@ -145,7 +145,7 @@ class RoutineDetailDialog extends StatelessWidget {
                         children: [
                           Text(
                             '루틴구성',
-                            style: SsentifTextStyles.bold14.copyWith(
+                            style: SsentifTextStyles.bold14(context).copyWith(
                               color: AppColors.black,
                             ),
                           ),
@@ -171,7 +171,7 @@ class RoutineDetailDialog extends StatelessWidget {
                                   record.exerciseComment.isNotEmpty
                                       ? record.exerciseComment
                                       : "아직 수업 내용이 기록되지 않았어요!",
-                                  style: SsentifTextStyles.regular14.copyWith(
+                                  style: SsentifTextStyles.regular14(context).copyWith(
                                     color: AppColors.gray555,
                                   ),
                                 ),
@@ -194,7 +194,7 @@ class RoutineDetailDialog extends StatelessWidget {
                         children: [
                           Text(
                             "루틴 설명",
-                            style: SsentifTextStyles.bold14.copyWith(
+                            style: SsentifTextStyles.bold14(context).copyWith(
                               color: AppColors.black,
                             ),
                           ),
@@ -205,7 +205,7 @@ class RoutineDetailDialog extends StatelessWidget {
                                 record.exerciseComment.isNotEmpty
                                     ? record.exerciseComment
                                     : "기록된 루틴 설명이 없어요!",
-                                style: SsentifTextStyles.regular12.copyWith(
+                                style: SsentifTextStyles.regular12(context).copyWith(
                                   color: AppColors.gray555,
                                 ),
                               ),
@@ -223,7 +223,7 @@ class RoutineDetailDialog extends StatelessWidget {
               const SizedBox(height: 8),
               Text(
                 '메모: ${record.clientMemo}',
-                style: SsentifTextStyles.regular14.copyWith(
+                style: SsentifTextStyles.regular14(context).copyWith(
                   color: AppColors.gray555,
                 ),
               ),

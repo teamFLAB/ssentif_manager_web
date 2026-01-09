@@ -86,7 +86,7 @@ class _MemberReviewListWidgetState extends State<MemberReviewListWidget> {
             children: [
               Text(
                 '회원의 수업 후기',
-                style: SsentifTextStyles.bold18.copyWith(
+                style: SsentifTextStyles.bold18(context).copyWith(
                   color: AppColors.black,
                 ),
               ),
@@ -133,7 +133,7 @@ class _MemberReviewListWidgetState extends State<MemberReviewListWidget> {
                 ? Center(
                     child: Text(
                       '후기가 없습니다.',
-                      style: SsentifTextStyles.regular14.copyWith(
+                      style: SsentifTextStyles.regular14(context).copyWith(
                         color: AppColors.gray2,
                       ),
                     ),
@@ -172,7 +172,7 @@ class _MemberReviewListWidgetState extends State<MemberReviewListWidget> {
             flex: 2,
             child: Text(
               '날짜',
-              style: SsentifTextStyles.medium12.copyWith(
+              style: SsentifTextStyles.medium12(context).copyWith(
                 color: AppColors.black,
               ),
               textAlign: TextAlign.center,
@@ -182,7 +182,7 @@ class _MemberReviewListWidgetState extends State<MemberReviewListWidget> {
             flex: 1,
             child: Text(
               '강사명',
-              style: SsentifTextStyles.medium12.copyWith(
+              style: SsentifTextStyles.medium12(context).copyWith(
                 color: AppColors.black,
               ),
               textAlign: TextAlign.center,
@@ -192,7 +192,7 @@ class _MemberReviewListWidgetState extends State<MemberReviewListWidget> {
             flex: 1,
             child: Text(
               '회원명',
-              style: SsentifTextStyles.medium12.copyWith(
+              style: SsentifTextStyles.medium12(context).copyWith(
                 color: AppColors.black,
               ),
               textAlign: TextAlign.center,
@@ -202,7 +202,7 @@ class _MemberReviewListWidgetState extends State<MemberReviewListWidget> {
             flex: 1,
             child: Text(
               '상태',
-              style: SsentifTextStyles.medium12.copyWith(
+              style: SsentifTextStyles.medium12(context).copyWith(
                 color: AppColors.black,
               ),
               textAlign: TextAlign.center,
@@ -212,7 +212,7 @@ class _MemberReviewListWidgetState extends State<MemberReviewListWidget> {
             flex: 2,
             child: Text(
               '만족도',
-              style: SsentifTextStyles.medium12.copyWith(
+              style: SsentifTextStyles.medium12(context).copyWith(
                 color: AppColors.black,
               ),
               textAlign: TextAlign.center,
@@ -222,7 +222,7 @@ class _MemberReviewListWidgetState extends State<MemberReviewListWidget> {
             flex: 5,
             child: Text(
               '후기',
-              style: SsentifTextStyles.medium12.copyWith(
+              style: SsentifTextStyles.medium12(context).copyWith(
                 color: AppColors.black,
               ),
               textAlign: TextAlign.center,
@@ -261,7 +261,7 @@ class _MemberReviewListWidgetState extends State<MemberReviewListWidget> {
               flex: 2,
               child: Text(
                 formattedDate,
-                style: SsentifTextStyles.medium12.copyWith(
+                style: SsentifTextStyles.medium12(context).copyWith(
                   color: AppColors.gray2,
                 ),
                 textAlign: TextAlign.center,
@@ -271,7 +271,7 @@ class _MemberReviewListWidgetState extends State<MemberReviewListWidget> {
               flex: 1,
               child: Text(
                 review.trainerName,
-                style: SsentifTextStyles.medium12.copyWith(
+                style: SsentifTextStyles.medium12(context).copyWith(
                   color: AppColors.gray2,
                 ),
                 textAlign: TextAlign.center,
@@ -281,7 +281,7 @@ class _MemberReviewListWidgetState extends State<MemberReviewListWidget> {
               flex: 1,
               child: Text(
                 review.clientName,
-                style: SsentifTextStyles.medium12.copyWith(
+                style: SsentifTextStyles.medium12(context).copyWith(
                   color: AppColors.gray2,
                 ),
                 textAlign: TextAlign.center,
@@ -291,7 +291,7 @@ class _MemberReviewListWidgetState extends State<MemberReviewListWidget> {
               flex: 1,
               child: Text(
                 _formatClientStatus(review.clientStatus),
-                style: SsentifTextStyles.medium12.copyWith(
+                style: SsentifTextStyles.medium12(context).copyWith(
                   color: AppColors.gray2,
                 ),
                 textAlign: TextAlign.center,
@@ -301,7 +301,7 @@ class _MemberReviewListWidgetState extends State<MemberReviewListWidget> {
               flex: 2,
               child: Text(
                 '$satisfactionPercent%',
-                style: SsentifTextStyles.medium12.copyWith(
+                style: SsentifTextStyles.medium12(context).copyWith(
                   color: AppColors.gray2,
                 ),
                 textAlign: TextAlign.center,
@@ -311,7 +311,7 @@ class _MemberReviewListWidgetState extends State<MemberReviewListWidget> {
               flex: 5,
               child: Text(
                 review.review,
-                style: SsentifTextStyles.medium12.copyWith(
+                style: SsentifTextStyles.medium12(context).copyWith(
                   color: AppColors.gray2,
                 ),
                 textAlign: TextAlign.center,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:ssentif_manager_web/core/themes/app_colors.dart';
 import 'package:ssentif_manager_web/core/themes/typography.dart';
+import 'package:ssentif_manager_web/core/utils/device_size_utils.dart';
 import '../../gen/assets.gen.dart';
 
 class MonthSelectorWidget extends StatelessWidget {
@@ -31,7 +32,7 @@ class MonthSelectorWidget extends StatelessWidget {
         Text(
           DateFormat('yyyy년 MM월').format(selectedMonth),
           style: monthTextStyle ??
-              SsentifTextStyles.medium18.copyWith(
+              SsentifTextStyles.medium18(context).copyWith(
                 color: AppColors.black,
               ),
         ),
@@ -40,7 +41,7 @@ class MonthSelectorWidget extends StatelessWidget {
         GestureDetector(
           onTap: onThisMonth,
           child: Container(
-            height: 22,
+            height: DeviceSizeUtils().getResponsiveDouble(22, 3, context),
             padding: const EdgeInsets.symmetric(
               horizontal: 12,
             ),
@@ -51,7 +52,7 @@ class MonthSelectorWidget extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               '이번달',
-              style: SsentifTextStyles.medium10.copyWith(
+              style: SsentifTextStyles.medium12(context).copyWith(
                 color: AppColors.gray555,
               ),
             ),
@@ -62,8 +63,8 @@ class MonthSelectorWidget extends StatelessWidget {
         GestureDetector(
           onTap: onPreviousMonth,
           child: Assets.images.icPreviousButton.image(
-            width: buttonSize ?? 20,
-            height: buttonSize ?? 20,
+            width: buttonSize ?? DeviceSizeUtils().getResponsiveDouble(22, 3, context),
+            height: buttonSize ?? DeviceSizeUtils().getResponsiveDouble(22, 3, context),
           ),
         ),
         const SizedBox(width: 10),
@@ -71,8 +72,8 @@ class MonthSelectorWidget extends StatelessWidget {
         GestureDetector(
           onTap: onNextMonth,
           child: Assets.images.icNextButton.image(
-            width: buttonSize ?? 20,
-            height: buttonSize ?? 20,
+            width: buttonSize ?? DeviceSizeUtils().getResponsiveDouble(22, 3, context),
+            height: buttonSize ?? DeviceSizeUtils().getResponsiveDouble(22, 3, context),
           ),
         ),
       ],

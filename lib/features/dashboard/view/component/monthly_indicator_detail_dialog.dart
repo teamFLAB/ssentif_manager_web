@@ -204,7 +204,7 @@ class _MonthlyIndicatorDetailDialogState
               children: [
                 Text(
                   '최근 12개월 지표 변화',
-                  style: SsentifTextStyles.bold20.copyWith(
+                  style: SsentifTextStyles.bold20(context).copyWith(
                     color: AppColors.black,
                   ),
                 ),
@@ -321,7 +321,7 @@ class _MonthlyIndicatorDetailDialogState
                       padding: const EdgeInsets.only(top: 8, right: 4),
                       child: Text(
                         DateFormat('yy. MM').format(date),
-                        style: SsentifTextStyles.regular10.copyWith(
+                        style: SsentifTextStyles.regular10(context).copyWith(
                           color: AppColors.gray2,
                         ),
                       ),
@@ -347,7 +347,7 @@ class _MonthlyIndicatorDetailDialogState
                   padding: const EdgeInsets.only(right: 10),
                   child: Text(
                     '${value.toInt()}$unit',
-                    style: SsentifTextStyles.regular10.copyWith(
+                    style: SsentifTextStyles.regular10(context).copyWith(
                       color: AppColors.gray2,
                     ),
                     textAlign: TextAlign.right,
@@ -402,7 +402,7 @@ class _MonthlyIndicatorDetailDialogState
               return spots.map((spot) {
                 return LineTooltipItem(
                   '${spot.y.toInt()}$unit',
-                  SsentifTextStyles.regular12.copyWith(
+                  SsentifTextStyles.regular12(context).copyWith(
                     color: AppColors.white,
                   ),
                 );
@@ -475,7 +475,7 @@ class _MonthlyIndicatorDetailDialogState
                       padding: const EdgeInsets.only(top: 8, right: 4),
                       child: Text(
                         DateFormat('yy. MM').format(date),
-                        style: SsentifTextStyles.regular10.copyWith(
+                        style: SsentifTextStyles.regular10(context).copyWith(
                           color: AppColors.gray2,
                         ),
                       ),
@@ -501,7 +501,7 @@ class _MonthlyIndicatorDetailDialogState
                   padding: const EdgeInsets.only(right: 10),
                   child: Text(
                     '${value.toInt()}$unit',
-                    style: SsentifTextStyles.regular10.copyWith(
+                    style: SsentifTextStyles.regular10(context).copyWith(
                       color: AppColors.gray2,
                     ),
                     textAlign: TextAlign.right,
@@ -554,7 +554,7 @@ class _MonthlyIndicatorDetailDialogState
               return spots.map((spot) {
                 return LineTooltipItem(
                   '${spot.y.toInt()}$unit',
-                  SsentifTextStyles.regular12.copyWith(color: AppColors.white),
+                  SsentifTextStyles.regular12(context).copyWith(color: AppColors.white),
                 );
               }).toList();
             },
@@ -617,7 +617,7 @@ class _MonthlyIndicatorDetailDialogState
                       padding: const EdgeInsets.only(top: 8, right: 4),
                       child: Text(
                         DateFormat('MM/yy').format(date),
-                        style: SsentifTextStyles.regular10.copyWith(
+                        style: SsentifTextStyles.regular10(context).copyWith(
                           color: AppColors.gray2,
                         ),
                       ),
@@ -644,7 +644,7 @@ class _MonthlyIndicatorDetailDialogState
                   ),
                   child: Text(
                     '${value.toInt()}$unit',
-                    style: SsentifTextStyles.regular10.copyWith(
+                    style: SsentifTextStyles.regular10(context).copyWith(
                       color: AppColors.gray2,
                     ),
                     textAlign: TextAlign.right,
@@ -700,7 +700,7 @@ class _MonthlyIndicatorDetailDialogState
               return spots.map((spot) {
                 return LineTooltipItem(
                   '${spot.y.toInt()}$unit',
-                  SsentifTextStyles.regular12.copyWith(color: AppColors.white),
+                  SsentifTextStyles.regular12(context).copyWith(color: AppColors.white),
                 );
               }).toList();
             },
@@ -771,7 +771,7 @@ class _MonthlyIndicatorDetailDialogState
                       padding: const EdgeInsets.only(top: 8, right: 4),
                       child: Text(
                         DateFormat('MM/yy').format(date),
-                        style: SsentifTextStyles.regular10.copyWith(
+                        style: SsentifTextStyles.regular10(context).copyWith(
                           color: AppColors.gray2,
                         ),
                       ),
@@ -797,7 +797,7 @@ class _MonthlyIndicatorDetailDialogState
                   padding: const EdgeInsets.only(right: 10),
                   child: Text(
                     '${value.toInt()}$unit',
-                    style: SsentifTextStyles.regular10.copyWith(
+                    style: SsentifTextStyles.regular10(context).copyWith(
                       color: AppColors.gray2,
                     ),
                     textAlign: TextAlign.right,
@@ -850,7 +850,7 @@ class _MonthlyIndicatorDetailDialogState
               return spots.map((spot) {
                 return LineTooltipItem(
                   '${spot.y.toInt()}$unit',
-                  SsentifTextStyles.regular12.copyWith(color: AppColors.white),
+                  SsentifTextStyles.regular12(context).copyWith(color: AppColors.white),
                 );
               }).toList();
             },
@@ -913,7 +913,7 @@ class _MonthlyIndicatorDetailDialogState
                       padding: const EdgeInsets.only(top: 8, right: 4),
                       child: Text(
                         DateFormat('MM/yy').format(date),
-                        style: SsentifTextStyles.regular10.copyWith(
+                        style: SsentifTextStyles.regular10(context).copyWith(
                           color: AppColors.gray2,
                         ),
                       ),
@@ -940,7 +940,7 @@ class _MonthlyIndicatorDetailDialogState
                   ),
                   child: Text(
                     '${value.toInt()}$unit',
-                    style: SsentifTextStyles.regular10.copyWith(
+                    style: SsentifTextStyles.regular10(context).copyWith(
                       color: AppColors.gray2,
                     ),
                     textAlign: TextAlign.right,
@@ -996,7 +996,7 @@ class _MonthlyIndicatorDetailDialogState
               return spots.map((spot) {
                 return LineTooltipItem(
                   '${spot.y.toInt()}$unit',
-                  SsentifTextStyles.regular12.copyWith(color: AppColors.white),
+                  SsentifTextStyles.regular12(context).copyWith(color: AppColors.white),
                 );
               }).toList();
             },

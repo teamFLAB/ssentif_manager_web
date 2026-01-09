@@ -36,7 +36,7 @@ class RoutineExerciseItem extends StatelessWidget {
               Expanded(
                 child: Text(
                   exercise.routinesExerciseName,
-                  style: SsentifTextStyles.medium16.copyWith(
+                  style: SsentifTextStyles.medium16(context).copyWith(
                     color: AppColors.black,
                   ),
                 ),
@@ -55,7 +55,7 @@ class RoutineExerciseItem extends StatelessWidget {
                     Intl.message(
                         ExercisePart.findExercisePart(exercise.exerciseParts)
                             .findStringKey()),
-                    style: SsentifTextStyles.medium12.copyWith(
+                    style: SsentifTextStyles.medium12(context).copyWith(
                       color: AppColors.white,
                     ),
                   ),
@@ -165,13 +165,13 @@ class RoutineExerciseItem extends StatelessWidget {
                 children: [
                   Text(
                     'set${index + 1}',
-                    style: SsentifTextStyles.regular14.copyWith(
+                    style: SsentifTextStyles.regular14(context).copyWith(
                       color: AppColors.gray555,
                     ),
                   ),
                   Text(
                     setText,
-                    style: SsentifTextStyles.medium14.copyWith(
+                    style: SsentifTextStyles.medium14(context).copyWith(
                       color: AppColors.black,
                     ),
                   ),

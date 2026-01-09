@@ -69,7 +69,7 @@ class DietDetailDialog extends ConsumerWidget {
               children: [
                 Text(
                   '식단 상세',
-                  style: SsentifTextStyles.medium20.copyWith(
+                  style: SsentifTextStyles.medium20(context).copyWith(
                     color: AppColors.black,
                   ),
                 ),
@@ -238,14 +238,14 @@ class DietDetailDialog extends ConsumerWidget {
                 children: [
                   Text(
                     "#${_getMealTimeText(context, diet.mealTimeType)} #${_getMealTypeText(context, diet.mealType)}",
-                    style: SsentifTextStyles.medium16.copyWith(
+                    style: SsentifTextStyles.medium16(context).copyWith(
                       color: AppColors.white,
                     ),
                   ),
                   const SizedBox(height: 7),
                   Text(
                     "${diet.mealTakeDate} ${diet.mealTakeTime}",
-                    style: SsentifTextStyles.medium18.copyWith(
+                    style: SsentifTextStyles.medium18(context).copyWith(
                       color: AppColors.white,
                     ),
                   ),
@@ -372,14 +372,14 @@ class DietDetailDialog extends ConsumerWidget {
             children: [
               Text(
                 "#${_getMealTimeText(context, diet.mealTimeType)} #${_getMealTypeText(context, diet.mealType)}",
-                style: SsentifTextStyles.medium16.copyWith(
+                style: SsentifTextStyles.medium16(context).copyWith(
                   color: AppColors.white,
                 ),
               ),
               const SizedBox(height: 7),
               Text(
                 "${diet.mealTakeDate} ${diet.mealTakeTime}",
-                style: SsentifTextStyles.medium18.copyWith(
+                style: SsentifTextStyles.medium18(context).copyWith(
                   color: AppColors.white,
                 ),
               ),
@@ -500,7 +500,7 @@ class DietDetailDialog extends ConsumerWidget {
           padding: const EdgeInsets.only(right: 16),
           child: Text(
             Intl.message("client_memo"),
-            style: SsentifTextStyles.medium14.copyWith(
+            style: SsentifTextStyles.medium14(context).copyWith(
               color: AppColors.black,
             ),
           ),
@@ -519,7 +519,7 @@ class DietDetailDialog extends ConsumerWidget {
                 memo.isEmpty
                     ? Intl.message("not_exist_feedback_of_trainer")
                     : memo,
-                style: SsentifTextStyles.regular12.copyWith(
+                style: SsentifTextStyles.regular12(context).copyWith(
                   color: AppColors.gray1,
                 ),
                 textAlign: memo.isEmpty ? TextAlign.start : TextAlign.start,
@@ -544,7 +544,7 @@ class DietDetailDialog extends ConsumerWidget {
           padding: const EdgeInsets.only(right: 16),
           child: Text(
             Intl.message("feedback_of_trainer"),
-            style: SsentifTextStyles.medium14.copyWith(
+            style: SsentifTextStyles.medium14(context).copyWith(
               color: AppColors.black,
             ),
           ),
@@ -570,7 +570,7 @@ class DietDetailDialog extends ConsumerWidget {
                             diet.dietFeedback!.feedback.isNotEmpty
                         ? diet.dietFeedback!.feedback
                         : Intl.message("not_exist_feedback_of_trainer"),
-                    style: SsentifTextStyles.regular12.copyWith(
+                    style: SsentifTextStyles.regular12(context).copyWith(
                       color: AppColors.gray1,
                     ),
                   ),
@@ -593,7 +593,7 @@ class DietDetailDialog extends ConsumerWidget {
               const SizedBox(width: 5),
               Text(
                 Intl.message("eat_more"),
-                style: SsentifTextStyles.medium14.copyWith(
+                style: SsentifTextStyles.medium14(context).copyWith(
                   color: AppColors.black,
                 ),
               ),
@@ -633,7 +633,7 @@ class DietDetailDialog extends ConsumerWidget {
               const SizedBox(width: 5),
               Text(
                 Intl.message("eat_less"),
-                style: SsentifTextStyles.medium14.copyWith(
+                style: SsentifTextStyles.medium14(context).copyWith(
                   color: AppColors.black,
                 ),
               ),

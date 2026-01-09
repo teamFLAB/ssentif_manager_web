@@ -42,7 +42,7 @@ class ReviewStatusFilterWidget extends StatelessWidget {
             value: status,
             child: Text(
               status.label,
-              style: SsentifTextStyles.regular12.copyWith(
+              style: SsentifTextStyles.regular12(context).copyWith(
                 color: AppColors.black,
               ),
             ),

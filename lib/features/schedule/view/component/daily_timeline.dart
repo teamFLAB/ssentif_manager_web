@@ -63,7 +63,7 @@ class DailyTimeline extends StatelessWidget {
                     width: kTimeLabelWidth,
                     decoration: BoxDecoration(color: AppColors.white),
                   ),
-                  _buildTimeLabels()
+                  _buildTimeLabels(context)
                 ],
               ),
               Container(
@@ -128,7 +128,7 @@ class DailyTimeline extends StatelessWidget {
     );
   }
 
-  Widget _buildTimeLabels() {
+  Widget _buildTimeLabels(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: List.generate(18, (i) {
@@ -143,7 +143,7 @@ class DailyTimeline extends StatelessWidget {
           child: Text(label,
               textAlign: TextAlign.center,
               style:
-                  SsentifTextStyles.medium12.copyWith(color: AppColors.gray2)),
+                  SsentifTextStyles.medium14(context).copyWith(color: AppColors.gray2)),
         );
       }),
     );
@@ -185,7 +185,7 @@ class _CoachTimeline extends StatelessWidget {
             ),
             child: Text(
               coach.userName,
-              style: SsentifTextStyles.bold18.copyWith(color: AppColors.black),
+              style: SsentifTextStyles.bold18(context).copyWith(color: AppColors.black),
               overflow: TextOverflow.ellipsis,
             ),
           ),

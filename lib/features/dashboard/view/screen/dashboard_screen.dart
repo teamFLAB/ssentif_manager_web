@@ -48,14 +48,16 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                   _showLogoutDialog(onLogout: () {
                     viewModel.logoutAndNavToLogin(() {
                       context.showSnackBar("로그아웃 되었습니다.");
-                      context.go(AppRoutePath.login.path, extra: {"replaceAll": true});
-                      html.window.history.replaceState(null, '', AppRoutePath.login.path);
+                      context.go(AppRoutePath.login.path,
+                          extra: {"replaceAll": true});
+                      html.window.history
+                          .replaceState(null, '', AppRoutePath.login.path);
                     });
                   });
                 },
                 child: Text(
                   "로그아웃",
-                  style: SsentifTextStyles.medium14
+                  style: SsentifTextStyles.medium14(context)
                       .copyWith(color: AppColors.gray1),
                 ),
               ),
@@ -66,6 +68,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
         Expanded(
             child: SingleChildScrollView(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 20, left: 20),
@@ -74,14 +77,14 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                   children: [
                     Text(
                       '센터 대시보드',
-                      style: SsentifTextStyles.bold22.copyWith(
+                      style: SsentifTextStyles.bold22(context).copyWith(
                         color: AppColors.black,
                       ),
                     ),
                     const SizedBox(width: 16),
                     Text(
                       'PT 성과 데이터를 분석하여 센터 운영 현황을 객관적으로 진단합니다.',
-                      style: SsentifTextStyles.regular16.copyWith(
+                      style: SsentifTextStyles.regular16(context).copyWith(
                         color: AppColors.black,
                       ),
                     ),
@@ -160,7 +163,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
         backgroundColor: AppColors.white,
         title: Text(
           '로그아웃 하시겠습니다?',
-          style: SsentifTextStyles.bold16.copyWith(
+          style: SsentifTextStyles.bold16(context).copyWith(
             color: AppColors.black,
           ),
           textAlign: TextAlign.start,
@@ -182,7 +185,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                     child: Center(
                       child: Text(
                         '취소',
-                        style: SsentifTextStyles.medium14.copyWith(
+                        style: SsentifTextStyles.medium14(context).copyWith(
                           color: AppColors.gray555,
                         ),
                       ),
@@ -205,7 +208,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                     child: Center(
                       child: Text(
                         '로그아웃',
-                        style: SsentifTextStyles.medium14.copyWith(
+                        style: SsentifTextStyles.medium14(context).copyWith(
                           color: AppColors.white,
                         ),
                       ),
@@ -220,6 +223,4 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
       ),
     );
   }
-
 }
-

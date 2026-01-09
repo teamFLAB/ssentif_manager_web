@@ -47,7 +47,7 @@ class ReviewPeriodFilterWidget extends StatelessWidget {
                 const SizedBox(width: 4),
                 Text(
                   period.label,
-                  style: SsentifTextStyles.regular12.copyWith(
+                  style: SsentifTextStyles.regular12(context).copyWith(
                     color: AppColors.black,
                   ),
                 ),
@@ -62,7 +62,7 @@ class ReviewPeriodFilterWidget extends StatelessWidget {
             value: period,
             child: Text(
               period.label,
-              style: SsentifTextStyles.regular12.copyWith(
+              style: SsentifTextStyles.regular12(context).copyWith(
                 color: AppColors.black,
               ),
             ),

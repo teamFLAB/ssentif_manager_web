@@ -44,7 +44,7 @@ class DailySchedulesDialog extends StatelessWidget {
                   Expanded(
                     child: Text(
                       selectedDate.formatLocalFullFormat(),
-                      style: SsentifTextStyles.medium24.copyWith(
+                      style: SsentifTextStyles.medium24(context).copyWith(
                         color: AppColors.black,
                       ),
                     ),
@@ -71,7 +71,7 @@ class DailySchedulesDialog extends StatelessWidget {
                     ? Center(
                         child: Text(
                           '해당 날짜에 등록된 일정이 없습니다.',
-                          style: SsentifTextStyles.regular14.copyWith(
+                          style: SsentifTextStyles.regular14(context).copyWith(
                             color: AppColors.gray2,
                           ),
                         ),
@@ -107,7 +107,7 @@ class DailySchedulesDialog extends StatelessWidget {
                                       Text(
                                         _getStatusText(statusType),
                                         style:
-                                            SsentifTextStyles.medium16.copyWith(
+                                            SsentifTextStyles.medium16(context).copyWith(
                                           color: AppColors.black,
                                         ),
                                       ),
@@ -115,7 +115,7 @@ class DailySchedulesDialog extends StatelessWidget {
                                       Text(
                                         '$count건',
                                         style:
-                                            SsentifTextStyles.medium16.copyWith(
+                                            SsentifTextStyles.medium16(context).copyWith(
                                           color: AppColors.black,
                                         ),
                                       ),
@@ -196,7 +196,7 @@ class DailySchedulesDialog extends StatelessWidget {
                 child: Center(
                   child: Text(
                     '${index + 1}',
-                    style: SsentifTextStyles.regular10.copyWith(
+                    style: SsentifTextStyles.regular10(context).copyWith(
                       color: AppColors.white,
                     ),
                   ),
@@ -212,14 +212,14 @@ class DailySchedulesDialog extends StatelessWidget {
                       schedule.scheduleStatusType == ScheduleStatusType.trainerEtcSchedule ?
                       '${schedule.trainerName} 코치 - ${schedule.scheduleName}'
                       : '${schedule.trainerName} 코치 - ${schedule.scheduleName} 회원',
-                      style: SsentifTextStyles.regular14.copyWith(
+                      style: SsentifTextStyles.regular14(context).copyWith(
                         color: AppColors.black,
                       ),
                     ),
                     const SizedBox(height: 5),
                     Text(
                       '${schedule.startTime?.formatHM()} ~ ${schedule.endTime?.formatHM()}',
-                      style: SsentifTextStyles.regular14.copyWith(
+                      style: SsentifTextStyles.regular14(context).copyWith(
                         color: AppColors.gray2,
                       ),
                     ),
